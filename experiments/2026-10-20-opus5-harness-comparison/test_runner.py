@@ -11,6 +11,21 @@ import run_benchmark as runner
 
 
 class RunnerTests(unittest.TestCase):
+    def test_json_scalar_and_plain_error_lines_are_diagnostics(self):
+        with tempfile.TemporaryDirectory() as directory:
+            folder = Path(directory)
+            program = ("import json,sys; sys.stdin.read(); "
+                       "sys.stderr.write('Config is not valid JSON(C):\\n'); "
+                       "[print(json.dumps(v),file=sys.stderr) for v in ['bench',[1,2],None,7]]; "
+                       "print(json.dumps({'type':'error','message':'configuration rejected'}))")
+            with patch.object(runner, "build", return_value=([sys.executable, "-c", program], os.environ.copy())):
+                result = runner.execute("fake", folder, "hello", {"timeout_seconds": 5}, {})
+            self.assertEqual(result["status"], "infra_error")
+            events = json.loads((folder / "trace.json").read_text(encoding="utf-8"))
+            self.assertTrue(all(isinstance(event, dict) for event in events))
+            self.assertEqual(sum(event["type"] == "diagnostic" for event in events), 5)
+            self.assertTrue(any(event["type"] == "error" for event in events))
+
     def test_process_redaction_and_json_error(self):
         runner.TOKEN = "private-test-credential"
         with tempfile.TemporaryDirectory() as directory:

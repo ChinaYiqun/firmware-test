@@ -11,6 +11,35 @@ import run_full as runner
 
 
 class FullRunnerTests(unittest.TestCase):
+    def test_key_validation_does_not_log_value(self):
+        key = "sk-or-v1-" + "a" * 64
+        self.assertEqual(runner.normalize_token('  "' + key + '"  '), key)
+        for invalid in ['"OPENROUTER_API_KEY": "' + key + '"', key + '\ntrailing', 'not-a-key']:
+            with self.assertRaises(RuntimeError) as error:
+                runner.normalize_token(invalid)
+            self.assertNotIn(key, str(error.exception))
+
+    def test_preflight_only_upgrade_preserves_previous_revision(self):
+        with tempfile.TemporaryDirectory() as name:
+            here = Path(name)
+            runner.dump(here / "experiment.json", {"model": "qwen/qwen3.8-27b", "base_url": "https://openrouter.ai/api"})
+            with patch.object(runner, "HERE", here), patch.object(runner, "CONSOLE", Console(file=io.StringIO())), \
+                 patch("sys.argv", ["run_full.py", "--dry-run", "--yes", "--limit", "1"]):
+                self.assertEqual(runner.main(), 0)
+                run = here / runner.read(here / "latest-dry-run.json")["run"]
+                # Emulate a prior run which failed in preflight before any task began.
+                import shutil
+                assert (run / "tasks").resolve().is_relative_to(here.resolve())
+                shutil.rmtree(run / "tasks")
+                config = runner.read(run / "config.json")
+                config["engine_sha256"] = "previous-parser"
+                runner.dump(run / "config.json", config)
+                self.assertEqual(runner.main(), 0)
+                archived = list((run / "config-revisions").glob("*/config.json"))
+                self.assertEqual(len(archived), 1)
+                self.assertEqual(runner.read(archived[0])["engine_sha256"], "previous-parser")
+                self.assertNotEqual(runner.read(run / "config.json")["engine_sha256"], "previous-parser")
+
     def test_all_public_cases_have_healthy_checks(self):
         with tempfile.TemporaryDirectory() as name, patch.object(runner, "HERE", Path(name)):
             manifest, health = runner.inventory()

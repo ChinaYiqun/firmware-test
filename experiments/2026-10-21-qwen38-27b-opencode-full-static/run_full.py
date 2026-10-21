@@ -46,6 +46,16 @@ def sha(path):
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
+def normalize_token(value):
+    value = value.strip()
+    if len(value) > 1 and (value[0], value[-1]) in {('"', '"'), ("'", "'"), ("“", "”"), ("‘", "’")}:
+        value = value[1:-1].strip()
+    if not re.fullmatch(r"sk-or-v1-[A-Za-z0-9_-]{20,}", value):
+        raise RuntimeError("Invalid OpenRouter key format. Paste only the sk-or-v1-... key, "
+                           "without JSON field names, commas, newlines or extra quotes. The value was not logged.")
+    return value
+
+
 def dump(path, value):
     # A status reader or antivirus can briefly hold a Windows file without delete sharing.
     for retry in range(25):
@@ -337,8 +347,18 @@ def main():
     if not run.resolve().is_relative_to((HERE / "runs").resolve()):
         raise RuntimeError("Resume path is outside this experiment's runs directory")
     existed = (run / "config.json").is_file()
-    if existed and read(run / "config.json") != config:
-        raise RuntimeError("Configuration/source/version changed; resume refused. Restore the settings or use --new-run.")
+    upgrade_unstarted = False
+    if existed:
+        previous_config = read(run / "config.json")
+        changed = {key for key in set(previous_config) | set(config) if previous_config.get(key) != config.get(key)}
+        if changed:
+            # A preflight-only run has no scored/model-task attempts to mix. Keep its
+            # original code/config revision and retry with the repaired parser.
+            upgrade_unstarted = (changed <= {"runner_sha256", "engine_sha256"}
+                                 and not list(run.glob("tasks/*/*/result.json"))
+                                 and not (run / "preflight-passed.json").exists())
+            if not upgrade_unstarted:
+                raise RuntimeError("Configuration/source/version changed; resume refused. Restore the settings or use --new-run.")
     if args.resume and not existed:
         raise RuntimeError("The requested resume run has no config.json")
     run.mkdir(parents=True, exist_ok=True)
@@ -353,7 +373,14 @@ def main():
         if not args.yes and not confirm(len(cases), done, len(pending), args.concurrency, args.dry_run):
             CONSOLE.print("Cancelled before model requests.")
             return 0
-        if not existed:
+        if not existed or upgrade_unstarted:
+            if upgrade_unstarted:
+                archive = run / "config-revisions" / uuid.uuid4().hex[:8]
+                archive.mkdir(parents=True)
+                for name in ("config.json", "frozen-runner.py", "frozen-engine.py"):
+                    if (run / name).exists():
+                        shutil.copyfile(run / name, archive / name)
+                CONSOLE.print("Preflight-only run: original configuration archived; retrying with repaired runner.")
             dump(run / "config.json", config)
             shutil.copyfile(Path(__file__), run / "frozen-runner.py")
             shutil.copyfile(ENGINE_FILE, run / "frozen-engine.py")
@@ -364,10 +391,8 @@ def main():
             persist_report(run, config, db, "preflight" if not args.dry_run else "running")
             if not args.dry_run:
                 # API keys are intentionally never read from the previous experiment.
-                engine.TOKEN = (os.environ.get("OPENROUTER_API_KEY") or os.environ.get("BENCH_ANTHROPIC_TOKEN")
-                                or getpass.getpass("OpenRouter API Key (hidden): "))
-                if not engine.TOKEN:
-                    raise RuntimeError("OpenRouter API key is empty")
+                engine.TOKEN = normalize_token(os.environ.get("OPENROUTER_API_KEY") or os.environ.get("BENCH_ANTHROPIC_TOKEN")
+                                               or getpass.getpass("OpenRouter API Key (hidden): "))
                 if not (run / "preflight-passed.json").is_file():
                     try:
                         engine.preflight(run, config, {"opencode": binary})

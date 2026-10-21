@@ -180,13 +180,20 @@ def execute(harness, folder, prompt, config, binaries):
                 log.flush()
                 try:
                     event = json.loads(line)
-                    events.append(event)
-                    kind = event.get("type", "event")
-                    if kind in {"tool_use", "tool_result", "error", "step_finish", "result", "assistant"}:
-                        EVENTS.put(f"{harness}: {kind}")
                 except ValueError:
-                    if line:
-                        EVENTS.put(f"{harness}: {line[:180]}")
+                    event = None
+                # Error output can contain JSON scalars or arrays from a pretty-printed
+                # configuration. They are diagnostics, not structured agent events.
+                if not isinstance(event, dict):
+                    if not line:
+                        continue
+                    event = {"type": "diagnostic", "stream": name, "text": line}
+                events.append(event)
+                kind = event.get("type", "event")
+                if kind == "diagnostic":
+                    EVENTS.put(f"{harness}: {line[:180]}")
+                elif kind in {"tool_use", "tool_result", "error", "step_finish", "result", "assistant"}:
+                    EVENTS.put(f"{harness}: {kind}")
         stream.close()
 
     for stream, name in [(proc.stdout, "stdout"), (proc.stderr, "stderr")]:
@@ -306,7 +313,12 @@ def preflight(run, config, binaries):
                       submission_created=submitted.is_file())
         dump(folder / "preflight.json", result)
         if result["status"] != "completed" or escaped or not denied or not submitted.is_file():
-            raise RuntimeError(f"{harness} preflight failed; no scored tasks started. Inspect {folder}")
+            detail = f"status={result['status']}, exit={result['exit_code']}, denied={denied}, submission={submitted.is_file()}"
+            stderr = (folder / "stderr.log").read_text(encoding="utf-8", errors="replace")
+            first_line = next((line for line in stderr.splitlines() if line.strip()), "")
+            if first_line:
+                detail += "; " + re.sub(r"\x1b\[[0-9;]*m", "", clean(first_line))[:400]
+            raise RuntimeError(f"{harness} preflight failed ({detail}); no scored tasks started. Inspect {folder}")
     dump(run / "preflight-passed.json", {"passed": True, "scope": "Harness policy probes, not OS sandbox"})
 
 
