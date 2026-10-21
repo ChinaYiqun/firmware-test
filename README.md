@@ -2,6 +2,16 @@
 
 在 EmbedEval 上比较 OpenCode / Claude Code，记录评分、耗时、Token 和逐题产物。
 
+## 全量 Qwen / OpenCode 静态评测
+
+新增 [219 题全量实验目录](experiments/2026-10-21-qwen38-27b-opencode-full-static/README.md)：只跑 OpenCode + OpenRouter `qwen/qwen3.8-27b`，只执行 L0/L3。219 题均有这两层检查，参考实现已全部通过健康检查。
+
+环境准备完成后双击该目录的 `start.cmd`：先弹窗确认总题数、已完成和本次待跑数量，再输入 Key；支持进度条、日志和逐题保存。再次启动默认自动续跑，已评分任务不重复请求模型；运行脚本不安装依赖。
+
+```powershell
+.\experiments\2026-10-21-qwen38-27b-opencode-full-static\start.cmd
+```
+
 ## 已完成的实验
 
 10 道 Zephyr 任务，每组合运行 1 次，共 40 个计分任务；仅运行 L0/L3 静态检查，未验证编译或硬件运行。

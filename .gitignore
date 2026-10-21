@@ -31,5 +31,7 @@ test_openrouter.sh
 
 # Machine-specific launch state; run logs/results remain tracked
 **/launch-status.json
+**/latest-run.json
+**/latest-dry-run.json
 *.sqlite-shm
 *.sqlite-wal

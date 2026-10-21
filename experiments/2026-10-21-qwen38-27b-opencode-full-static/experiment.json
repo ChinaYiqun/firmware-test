@@ -1,0 +1,8 @@
+{
+  "model": "qwen/qwen3.8-27b",
+  "base_url": "https://openrouter.ai/api",
+  "harness": "opencode",
+  "scoring": "L0+L3",
+  "selection": "all public cases with static.py and behavior.py",
+  "repetitions": 1
+}
