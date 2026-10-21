@@ -1,0 +1,106 @@
+{
+  "task_id": "claude-code__dma-001__1",
+  "harness": "claude-code",
+  "case_id": "dma-001",
+  "repeat": 1,
+  "started_at": "2026-10-20T07:56:00.203792+00:00",
+  "artifact_directory": "D:\\firmware-test\\experiments\\2026-10-20-qwen38-27b-harness-comparison\\runs\\run-20261020-154440-282906\\tasks\\claude-code__dma-001__1\\8217ac2e",
+  "status": "scored_fail",
+  "passed": false,
+  "exit_code": 0,
+  "duration_seconds": 121.453,
+  "usage_events": [
+    {
+      "duration_api_ms": 120505,
+      "stop_reason": "end_turn",
+      "session_id": "841c7cd8-d770-4eea-82e1-777cb46a6c8d",
+      "total_cost_usd": 0.247554,
+      "usage": {
+        "input_tokens": 11111,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 3648,
+        "output_tokens": 7607,
+        "output_tokens_details": {
+          "thinking_tokens": 5162
+        },
+        "server_tool_use": {
+          "web_search_requests": 0,
+          "web_fetch_requests": 0
+        },
+        "service_tier": "standard",
+        "cache_creation": {
+          "ephemeral_1h_input_tokens": 0,
+          "ephemeral_5m_input_tokens": 0
+        },
+        "inference_geo": "",
+        "iterations": [],
+        "speed": "standard",
+        "fallback_credit": null
+      },
+      "modelUsage": {
+        "qwen/qwen3.8-27b": {
+          "inputTokens": 11111,
+          "outputTokens": 7607,
+          "cacheReadInputTokens": 3648,
+          "cacheCreationInputTokens": 0,
+          "webSearchRequests": 0,
+          "costUSD": 0.247554,
+          "contextWindow": 200000,
+          "maxOutputTokens": 32000,
+          "thinkingTokens": 5162,
+          "canonicalModel": "qwen/qwen3.8-27b",
+          "provider": "firstParty",
+          "costBasis": "unknown"
+        }
+      },
+      "permission_denials": [],
+      "terminal_reason": "completed",
+      "fast_mode_state": "off",
+      "fast_mode_disabled_reason": "sdk_opt_in_required",
+      "subagent_stats": {
+        "spawned": 0,
+        "requested": {
+          "background": 0,
+          "foreground": 0,
+          "unset": 0
+        },
+        "started_in_background": 0,
+        "max_depth": 0,
+        "spawned_by_subagents": 0,
+        "completed": 0,
+        "failed": 0,
+        "killed": {
+          "parent": 0,
+          "user": 0,
+          "system": 0
+        },
+        "refused": {
+          "depth_limit": 0,
+          "concurrency_limit": 0,
+          "budget": 0
+        },
+        "by_type": {}
+      },
+      "safety_stops": 0,
+      "is_error": false,
+      "num_turns": 2,
+      "subtype": "success",
+      "api_error_status": null,
+      "result": "\n\nWritten to `submission/main.c`. Summary of how it meets each requirement:\n\n1. **Devicetree lookup** — `DEVICE_DT_GET(DT_NODELABEL(dma0))` with a NULL check.\n2. **Readiness check** — `device_is_ready()` before any DMA API call.\n3. **Buffers** — 64-byte aligned (32-byte) `src_buf`/`dst_buf`; source filled with pattern `1..64`, destination zeroed via `memset`.\n4. **Channel config** — `struct dma_config` with `DMA_DIRECTION_MEMORY_TO_MEMORY`, `DMA_MODE_M2M`, op size 4, full buffer size, `DMA_SLOT_ANY`, passed to `dma_config()`.\n5. **Callback** — `dma_callback_set()` with a completion callback that records driver-reported errors and signals a semaphore.\n6. **Wait** — `k_sem_take(&dma_sem, K_SECONDS(5))`; on timeout it stops the channel and returns.\n7. **Verification** — `memcmp(dst_buf, src_buf, 64)`.\n8. **Result print** — success/failure message via `printk`.\n9. **Error handling** — each step (device, config, callback set, start, timeout, DMA status error, verification mismatch) has its own diagnostic message and error return.\n\nThe app then idles in a sleep loop so the result stays observable on the console. Note it assumes the `dma0` label exists in the devicetree (a short example overlay is in the file header comment), since the app itself is a single `main.c` per the task spec.",
+      "ttft_ms": 115366,
+      "type": "result",
+      "duration_ms": 120701,
+      "uuid": "af462c42-b930-498d-95e1-7fda015d75e6",
+      "ttft_stream_ms": 989,
+      "time_to_request_ms": 113,
+      "first_content_frame_ms": 990,
+      "queued_turn_count": 0,
+      "result_index": 0
+    }
+  ],
+  "token_usage": null,
+  "cost_usd": null,
+  "errors": [],
+  "submission_sha256": "cb7a93e1625ebbea8d7e7c9a970d663433231186acfef4572c0482ee6478b5dc",
+  "ended_at": "2026-10-20T07:58:30.171603+00:00"
+}

@@ -1,0 +1,4 @@
+{
+  "passed": true,
+  "scope": "Harness policy probes, not OS sandbox"
+}

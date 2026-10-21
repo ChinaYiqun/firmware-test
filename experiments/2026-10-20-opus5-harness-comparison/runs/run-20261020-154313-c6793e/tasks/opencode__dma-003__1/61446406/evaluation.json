@@ -1,0 +1,62 @@
+{
+  "passed": false,
+  "healthy": true,
+  "scope": "L0+L3 static only",
+  "layers": [
+    {
+      "layer": 0,
+      "name": "static_analysis",
+      "passed": false,
+      "details": [
+        {
+          "check_name": "dma_header_included",
+          "passed": true,
+          "expected": "zephyr/drivers/dma.h included",
+          "actual": "present",
+          "check_type": "exact_match",
+          "weight": 1.0
+        },
+        {
+          "check_name": "cyclic_flag_set",
+          "passed": false,
+          "expected": "cyclic field set in dma_block_config",
+          "actual": "missing",
+          "check_type": "exact_match",
+          "weight": 1.0
+        },
+        {
+          "check_name": "dma_reload_called",
+          "passed": false,
+          "expected": "dma_reload() called in callback for continuous operation",
+          "actual": "missing",
+          "check_type": "exact_match",
+          "weight": 1.0
+        },
+        {
+          "check_name": "dma_stop_called",
+          "passed": true,
+          "expected": "dma_stop() called to terminate circular transfer",
+          "actual": "present",
+          "check_type": "exact_match",
+          "weight": 1.0
+        },
+        {
+          "check_name": "dma_config_and_start",
+          "passed": true,
+          "expected": "dma_config() and dma_start() both called",
+          "actual": "config=True, start=True",
+          "check_type": "exact_match",
+          "weight": 1.0
+        }
+      ],
+      "error": null,
+      "duration_seconds": 0.0,
+      "score": 1.0
+    }
+  ],
+  "not_evaluated": [
+    "L1 compile",
+    "L2 runtime",
+    "L4 mutation"
+  ]
+}

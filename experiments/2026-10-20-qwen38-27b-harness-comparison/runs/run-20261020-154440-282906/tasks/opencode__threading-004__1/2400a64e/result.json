@@ -1,0 +1,157 @@
+{
+  "task_id": "opencode__threading-004__1",
+  "harness": "opencode",
+  "case_id": "threading-004",
+  "repeat": 1,
+  "started_at": "2026-10-20T07:45:59.325556+00:00",
+  "artifact_directory": "D:\\firmware-test\\experiments\\2026-10-20-qwen38-27b-harness-comparison\\runs\\run-20261020-154440-282906\\tasks\\opencode__threading-004__1\\2400a64e",
+  "status": "scored_fail",
+  "passed": false,
+  "exit_code": 0,
+  "duration_seconds": 31.297,
+  "usage_events": [
+    {
+      "type": "step_finish",
+      "timestamp": 1792482371869,
+      "sessionID": "ses_ea7b9c203ffe47NmgLSR5VnYYf",
+      "part": {
+        "id": "prt_158466902001h0mLSh8xwn2XeC",
+        "reason": "tool-calls",
+        "messageID": "msg_1584640200013IEeWdtwV4SPmC",
+        "sessionID": "ses_ea7b9c203ffe47NmgLSR5VnYYf",
+        "type": "step-finish",
+        "tokens": {
+          "total": 5796,
+          "input": 4482,
+          "output": 102,
+          "reasoning": 1212,
+          "cache": {
+            "write": 0,
+            "read": 0
+          }
+        },
+        "cost": 0
+      }
+    },
+    {
+      "type": "step_finish",
+      "timestamp": 1792482375370,
+      "sessionID": "ses_ea7b9c203ffe47NmgLSR5VnYYf",
+      "part": {
+        "id": "prt_1584676b5001WyTgCqbJ3QCjEc",
+        "reason": "tool-calls",
+        "messageID": "msg_15846690e0010sq5OTi07X3HzE",
+        "sessionID": "ses_ea7b9c203ffe47NmgLSR5VnYYf",
+        "type": "step-finish",
+        "tokens": {
+          "total": 5330,
+          "input": 368,
+          "output": 579,
+          "reasoning": 31,
+          "cache": {
+            "write": 0,
+            "read": 4352
+          }
+        },
+        "cost": 0
+      }
+    },
+    {
+      "type": "step_finish",
+      "timestamp": 1792482379078,
+      "sessionID": "ses_ea7b9c203ffe47NmgLSR5VnYYf",
+      "part": {
+        "id": "prt_158468537001iOVECir0E0jsMh",
+        "reason": "tool-calls",
+        "messageID": "msg_1584676c10017Dv5qxCLh2eScx",
+        "sessionID": "ses_ea7b9c203ffe47NmgLSR5VnYYf",
+        "type": "step-finish",
+        "tokens": {
+          "total": 6325,
+          "input": 719,
+          "output": 398,
+          "reasoning": 600,
+          "cache": {
+            "write": 0,
+            "read": 4608
+          }
+        },
+        "cost": 0
+      }
+    },
+    {
+      "type": "step_finish",
+      "timestamp": 1792482380030,
+      "sessionID": "ses_ea7b9c203ffe47NmgLSR5VnYYf",
+      "part": {
+        "id": "prt_1584688e9001E6nd9lw5WcaXOM",
+        "reason": "tool-calls",
+        "messageID": "msg_158468541001w4sqLr7UBUft6E",
+        "sessionID": "ses_ea7b9c203ffe47NmgLSR5VnYYf",
+        "type": "step-finish",
+        "tokens": {
+          "total": 5868,
+          "input": 626,
+          "output": 107,
+          "reasoning": 15,
+          "cache": {
+            "write": 0,
+            "read": 5120
+          }
+        },
+        "cost": 0
+      }
+    },
+    {
+      "type": "step_finish",
+      "timestamp": 1792482388691,
+      "sessionID": "ses_ea7b9c203ffe47NmgLSR5VnYYf",
+      "part": {
+        "id": "prt_15846aacb001HvCqaKvmh1As0r",
+        "reason": "tool-calls",
+        "messageID": "msg_1584688f2001zivbdE48LGzxVg",
+        "sessionID": "ses_ea7b9c203ffe47NmgLSR5VnYYf",
+        "type": "step-finish",
+        "tokens": {
+          "total": 8676,
+          "input": 1037,
+          "output": 407,
+          "reasoning": 1600,
+          "cache": {
+            "write": 0,
+            "read": 5632
+          }
+        },
+        "cost": 0
+      }
+    },
+    {
+      "type": "step_finish",
+      "timestamp": 1792482390338,
+      "sessionID": "ses_ea7b9c203ffe47NmgLSR5VnYYf",
+      "part": {
+        "id": "prt_15846b136001rEKOWJYEB0q6Kb",
+        "reason": "stop",
+        "messageID": "msg_15846aad100154GiFmUVs9i2c0",
+        "sessionID": "ses_ea7b9c203ffe47NmgLSR5VnYYf",
+        "type": "step-finish",
+        "tokens": {
+          "total": 7313,
+          "input": 441,
+          "output": 71,
+          "reasoning": 145,
+          "cache": {
+            "write": 0,
+            "read": 6656
+          }
+        },
+        "cost": 0
+      }
+    }
+  ],
+  "token_usage": null,
+  "cost_usd": null,
+  "errors": [],
+  "submission_sha256": "d5f4ac7e1d8c2e0cfb405932d5b5be6eecb8124b081da8a9934a145bbb3b3cde",
+  "ended_at": "2026-10-20T07:46:30.645492+00:00"
+}

@@ -1,0 +1,65 @@
+{
+  "task_id": "opencode__spi-i2c-002__1",
+  "harness": "opencode",
+  "case_id": "spi-i2c-002",
+  "repeat": 1,
+  "started_at": "2026-10-20T07:46:02.028426+00:00",
+  "artifact_directory": "D:\\firmware-test\\experiments\\2026-10-20-opus5-harness-comparison\\runs\\run-20261020-154313-c6793e\\tasks\\opencode__spi-i2c-002__1\\2b912a26",
+  "status": "scored_pass",
+  "passed": true,
+  "exit_code": 0,
+  "duration_seconds": 49.235,
+  "usage_events": [
+    {
+      "type": "step_finish",
+      "timestamp": 1792482396790,
+      "sessionID": "ses_ea7b9b4afffecvEfz4DgeGKyzj",
+      "part": {
+        "id": "prt_15846ca5a0015IFiMIx4zflb0y",
+        "reason": "tool-calls",
+        "messageID": "msg_158464fa9001P8hBuKsmE5sXw7",
+        "sessionID": "ses_ea7b9b4afffecvEfz4DgeGKyzj",
+        "type": "step-finish",
+        "tokens": {
+          "total": 22882,
+          "input": 14029,
+          "output": 8853,
+          "reasoning": 0,
+          "cache": {
+            "write": 0,
+            "read": 0
+          }
+        },
+        "cost": 0
+      }
+    },
+    {
+      "type": "step_finish",
+      "timestamp": 1792482411099,
+      "sessionID": "ses_ea7b9b4afffecvEfz4DgeGKyzj",
+      "part": {
+        "id": "prt_158470243001cVwJ6PNDGlevdL",
+        "reason": "stop",
+        "messageID": "msg_15846ca64001k1erB0Vn8xLpc6",
+        "sessionID": "ses_ea7b9b4afffecvEfz4DgeGKyzj",
+        "type": "step-finish",
+        "tokens": {
+          "total": 17397,
+          "input": 14445,
+          "output": 2952,
+          "reasoning": 0,
+          "cache": {
+            "write": 0,
+            "read": 0
+          }
+        },
+        "cost": 0
+      }
+    }
+  ],
+  "token_usage": null,
+  "cost_usd": null,
+  "errors": [],
+  "submission_sha256": "b764b68d87263c1aefb36bb0fbae95508ad36e756c67e07708afcf7cf025e6e4",
+  "ended_at": "2026-10-20T07:46:51.287416+00:00"
+}

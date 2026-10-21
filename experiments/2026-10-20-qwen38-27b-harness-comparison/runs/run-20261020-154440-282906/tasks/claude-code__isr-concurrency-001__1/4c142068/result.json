@@ -1,0 +1,17 @@
+{
+  "task_id": "claude-code__isr-concurrency-001__1",
+  "harness": "claude-code",
+  "case_id": "isr-concurrency-001",
+  "repeat": 1,
+  "started_at": "2026-10-20T07:44:59.638443+00:00",
+  "artifact_directory": "D:\\firmware-test\\experiments\\2026-10-20-qwen38-27b-harness-comparison\\runs\\run-20261020-154440-282906\\tasks\\claude-code__isr-concurrency-001__1\\4c142068",
+  "status": "timeout",
+  "passed": false,
+  "exit_code": 1,
+  "duration_seconds": 600.875,
+  "usage_events": [],
+  "token_usage": null,
+  "cost_usd": null,
+  "errors": [],
+  "ended_at": "2026-10-20T07:56:00.199038+00:00"
+}

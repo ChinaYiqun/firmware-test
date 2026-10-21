@@ -1,0 +1,94 @@
+{
+  "benchmark": "EmbedEval",
+  "purpose": "Paired OpenCode / Claude Code pilot; not a representative benchmark score",
+  "initial_checks": [
+    "L0 static",
+    "L3 heuristic"
+  ],
+  "cases": [
+    {
+      "id": "gpio-basic-001",
+      "path": "benchmarks/embedeval-main/cases/zephyr/gpio-basic-001",
+      "difficulty": "easy",
+      "category": "gpio-basic",
+      "title": "GPIO Button Interrupt with LED Toggle"
+    },
+    {
+      "id": "uart-001",
+      "path": "benchmarks/embedeval-main/cases/zephyr/uart-001",
+      "difficulty": "easy",
+      "category": "uart",
+      "title": "UART Echo"
+    },
+    {
+      "id": "spi-i2c-002",
+      "path": "benchmarks/embedeval-main/cases/zephyr/spi-i2c-002",
+      "difficulty": "easy",
+      "category": "spi-i2c",
+      "title": "SPI Loopback Test"
+    },
+    {
+      "id": "timer-001",
+      "path": "benchmarks/embedeval-main/cases/zephyr/timer-001",
+      "difficulty": "easy",
+      "category": "timer",
+      "title": "Periodic Kernel Timer with Counter"
+    },
+    {
+      "id": "spi-i2c-001",
+      "path": "benchmarks/embedeval-main/cases/zephyr/spi-i2c-001",
+      "difficulty": "medium",
+      "category": "spi-i2c",
+      "title": "I2C Sensor Register Read with Error Handling"
+    },
+    {
+      "id": "timer-002",
+      "path": "benchmarks/embedeval-main/cases/zephyr/timer-002",
+      "difficulty": "medium",
+      "category": "timer",
+      "title": "One-shot Timer with Work Queue Submission"
+    },
+    {
+      "id": "threading-001",
+      "path": "benchmarks/embedeval-main/cases/zephyr/threading-001",
+      "difficulty": "medium",
+      "category": "threading",
+      "title": "Producer-Consumer with Message Queue"
+    },
+    {
+      "id": "dma-001",
+      "path": "benchmarks/embedeval-main/cases/zephyr/dma-001",
+      "difficulty": "medium",
+      "category": "dma",
+      "title": "Memory-to-Memory DMA Transfer"
+    },
+    {
+      "id": "gpio-basic-006",
+      "path": "benchmarks/embedeval-main/cases/zephyr/gpio-basic-006",
+      "difficulty": "hard",
+      "category": "gpio-basic",
+      "title": "GPIO Interrupt Debounce with Timer"
+    },
+    {
+      "id": "threading-004",
+      "path": "benchmarks/embedeval-main/cases/zephyr/threading-004",
+      "difficulty": "hard",
+      "category": "threading",
+      "title": "Priority Inheritance Mutex"
+    },
+    {
+      "id": "dma-003",
+      "path": "benchmarks/embedeval-main/cases/zephyr/dma-003",
+      "difficulty": "hard",
+      "category": "dma",
+      "title": "DMA Circular Buffer"
+    },
+    {
+      "id": "isr-concurrency-001",
+      "path": "benchmarks/embedeval-main/cases/zephyr/isr-concurrency-001",
+      "difficulty": "hard",
+      "category": "isr-concurrency",
+      "title": "ISR-safe Ring Buffer Implementation"
+    }
+  ]
+}

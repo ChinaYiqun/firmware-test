@@ -1,0 +1,136 @@
+{
+  "passed": true,
+  "healthy": true,
+  "scope": "L0+L3 static only",
+  "layers": [
+    {
+      "layer": 0,
+      "name": "static_analysis",
+      "passed": true,
+      "details": [
+        {
+          "check_name": "gpio_header_included",
+          "passed": true,
+          "expected": "zephyr/drivers/gpio.h included",
+          "actual": "present",
+          "check_type": "exact_match",
+          "weight": 1.0
+        },
+        {
+          "check_name": "kernel_header_included",
+          "passed": true,
+          "expected": "zephyr/kernel.h included",
+          "actual": "present",
+          "check_type": "exact_match",
+          "weight": 1.0
+        },
+        {
+          "check_name": "uses_dt_spec",
+          "passed": true,
+          "expected": "GPIO_DT_SPEC_GET macro used",
+          "actual": "present",
+          "check_type": "exact_match",
+          "weight": 1.0
+        },
+        {
+          "check_name": "gpio_callback_struct",
+          "passed": true,
+          "expected": "struct gpio_callback defined",
+          "actual": "present",
+          "check_type": "exact_match",
+          "weight": 1.0
+        },
+        {
+          "check_name": "gpio_init_callback_called",
+          "passed": true,
+          "expected": "gpio_init_callback() called",
+          "actual": "present",
+          "check_type": "exact_match",
+          "weight": 1.0
+        },
+        {
+          "check_name": "no_raw_register_access",
+          "passed": true,
+          "expected": "Uses GPIO API, not raw register access",
+          "actual": "API only",
+          "check_type": "constraint",
+          "weight": 1.0
+        }
+      ],
+      "error": null,
+      "duration_seconds": 0.0,
+      "score": 1.0
+    },
+    {
+      "layer": 3,
+      "name": "static_heuristic",
+      "passed": true,
+      "details": [
+        {
+          "check_name": "led_configured_output",
+          "passed": true,
+          "expected": "LED pin configured as GPIO_OUTPUT",
+          "actual": "present",
+          "check_type": "exact_match",
+          "weight": 1.0
+        },
+        {
+          "check_name": "button_configured_input",
+          "passed": true,
+          "expected": "Button pin configured as GPIO_INPUT",
+          "actual": "present",
+          "check_type": "exact_match",
+          "weight": 1.0
+        },
+        {
+          "check_name": "interrupt_edge_triggered",
+          "passed": true,
+          "expected": "Edge-triggered interrupt configured",
+          "actual": "present",
+          "check_type": "exact_match",
+          "weight": 1.0
+        },
+        {
+          "check_name": "callback_before_sleep",
+          "passed": true,
+          "expected": "gpio_add_callback called before k_sleep",
+          "actual": "correct order",
+          "check_type": "constraint",
+          "weight": 1.0
+        },
+        {
+          "check_name": "led_toggle_in_callback",
+          "passed": true,
+          "expected": "gpio_pin_toggle called (in callback)",
+          "actual": "present",
+          "check_type": "exact_match",
+          "weight": 1.0
+        },
+        {
+          "check_name": "device_ready_check",
+          "passed": true,
+          "expected": "Device ready check before GPIO operations",
+          "actual": "present",
+          "check_type": "constraint",
+          "weight": 1.0
+        },
+        {
+          "check_name": "no_cross_platform_apis",
+          "passed": true,
+          "expected": "No FreeRTOS/Arduino/STM32_HAL/POSIX APIs",
+          "actual": "clean",
+          "check_type": "constraint",
+          "weight": 1.0
+        }
+      ],
+      "error": null,
+      "duration_seconds": 0.0,
+      "score": 1.0
+    }
+  ],
+  "not_evaluated": [
+    "L1 compile",
+    "L2 runtime",
+    "L4 mutation"
+  ]
+}

@@ -1,0 +1,111 @@
+{
+  "task_id": "opencode__uart-001__1",
+  "harness": "opencode",
+  "case_id": "uart-001",
+  "repeat": 1,
+  "started_at": "2026-10-20T07:53:52.896166+00:00",
+  "artifact_directory": "D:\\firmware-test\\experiments\\2026-10-20-opus5-harness-comparison\\runs\\run-20261020-154313-c6793e\\tasks\\opencode__uart-001__1\\4e39fd23",
+  "status": "scored_pass",
+  "passed": true,
+  "exit_code": 0,
+  "duration_seconds": 32.11,
+  "usage_events": [
+    {
+      "type": "step_finish",
+      "timestamp": 1792482848351,
+      "sessionID": "ses_ea7b28643ffe74xR6ioGMuLLUX",
+      "part": {
+        "id": "prt_1584dade50011OGnvact2EIaH5",
+        "reason": "tool-calls",
+        "messageID": "msg_1584d7c360013pOGVWObaRAE2y",
+        "sessionID": "ses_ea7b28643ffe74xR6ioGMuLLUX",
+        "type": "step-finish",
+        "tokens": {
+          "total": 14773,
+          "input": 12864,
+          "output": 1909,
+          "reasoning": 0,
+          "cache": {
+            "write": 0,
+            "read": 0
+          }
+        },
+        "cost": 0
+      }
+    },
+    {
+      "type": "step_finish",
+      "timestamp": 1792482853075,
+      "sessionID": "ses_ea7b28643ffe74xR6ioGMuLLUX",
+      "part": {
+        "id": "prt_1584dc0a90018H5sXrkGzJhqLt",
+        "reason": "tool-calls",
+        "messageID": "msg_1584dae140019wJa29kR46adKb",
+        "sessionID": "ses_ea7b28643ffe74xR6ioGMuLLUX",
+        "type": "step-finish",
+        "tokens": {
+          "total": 4157,
+          "input": 4089,
+          "output": 68,
+          "reasoning": 0,
+          "cache": {
+            "write": 0,
+            "read": 0
+          }
+        },
+        "cost": 0
+      }
+    },
+    {
+      "type": "step_finish",
+      "timestamp": 1792482859067,
+      "sessionID": "ses_ea7b28643ffe74xR6ioGMuLLUX",
+      "part": {
+        "id": "prt_1584dd812001dPvilG4Aqn6oG9",
+        "reason": "tool-calls",
+        "messageID": "msg_1584dc0c20016IByN3No3h1Ii5",
+        "sessionID": "ses_ea7b28643ffe74xR6ioGMuLLUX",
+        "type": "step-finish",
+        "tokens": {
+          "total": 4520,
+          "input": 4250,
+          "output": 270,
+          "reasoning": 0,
+          "cache": {
+            "write": 0,
+            "read": 0
+          }
+        },
+        "cost": 0
+      }
+    },
+    {
+      "type": "step_finish",
+      "timestamp": 1792482864655,
+      "sessionID": "ses_ea7b28643ffe74xR6ioGMuLLUX",
+      "part": {
+        "id": "prt_1584dede6001C12SESd0I42hwx",
+        "reason": "stop",
+        "messageID": "msg_1584dd82c001CmCUZrpUPNsZyk",
+        "sessionID": "ses_ea7b28643ffe74xR6ioGMuLLUX",
+        "type": "step-finish",
+        "tokens": {
+          "total": 4670,
+          "input": 4528,
+          "output": 142,
+          "reasoning": 0,
+          "cache": {
+            "write": 0,
+            "read": 0
+          }
+        },
+        "cost": 0
+      }
+    }
+  ],
+  "token_usage": null,
+  "cost_usd": null,
+  "errors": [],
+  "submission_sha256": "d93f3040fe2a3076a1ba03bc57926538528d80e43b70dc22c3df6496a2d09f17",
+  "ended_at": "2026-10-20T07:54:25.043149+00:00"
+}

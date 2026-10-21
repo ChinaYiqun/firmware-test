@@ -1,0 +1,23 @@
+id: linux-driver-014
+category: linux-driver
+difficulty: hard
+title: Long-Lived Kernel Thread with kthread_should_stop
+description: Platform driver that spawns a polling kernel thread; the thread must exit promptly when the module is unbound via the standard kthread_stop cooperation protocol
+tags:
+- linux
+- kernel
+- driver
+- platform-driver
+- kthread
+- polling
+- lifecycle
+platform: docker_only
+sdk: embedded-linux
+estimated_tokens: 630
+sdk_version: '5.15'
+created_date: '2026-04-19'
+tier: challenge
+reasoning_types:
+- system_reasoning
+- cross_domain
+- rule_application

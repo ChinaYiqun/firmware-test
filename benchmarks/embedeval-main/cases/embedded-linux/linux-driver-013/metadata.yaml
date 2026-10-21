@@ -1,0 +1,23 @@
+id: linux-driver-013
+category: linux-driver
+difficulty: hard
+title: Managed Resources in a Platform Driver Probe
+description: Platform driver that acquires multiple probe-time resources without leaking on failure and without double-freeing on remove
+tags:
+- linux
+- kernel
+- driver
+- platform-driver
+- devm
+- resource-management
+- error-handling
+platform: docker_only
+sdk: embedded-linux
+estimated_tokens: 650
+sdk_version: '5.15'
+created_date: '2026-04-19'
+tier: challenge
+reasoning_types:
+- system_reasoning
+- cross_domain
+- rule_application

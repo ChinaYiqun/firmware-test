@@ -1,0 +1,144 @@
+{
+  "passed": true,
+  "healthy": true,
+  "scope": "L0+L3 static only",
+  "layers": [
+    {
+      "layer": 0,
+      "name": "static_analysis",
+      "passed": true,
+      "details": [
+        {
+          "check_name": "uart_header_included",
+          "passed": true,
+          "expected": "zephyr/drivers/uart.h included",
+          "actual": "present",
+          "check_type": "exact_match",
+          "weight": 1.0
+        },
+        {
+          "check_name": "kernel_header_included",
+          "passed": true,
+          "expected": "zephyr/kernel.h included",
+          "actual": "present",
+          "check_type": "exact_match",
+          "weight": 1.0
+        },
+        {
+          "check_name": "uses_devicetree_binding",
+          "passed": true,
+          "expected": "DEVICE_DT_GET or DT_ALIAS used to get UART device",
+          "actual": "present",
+          "check_type": "exact_match",
+          "weight": 1.0
+        },
+        {
+          "check_name": "uses_uart_poll_in",
+          "passed": true,
+          "expected": "uart_poll_in() called for reading",
+          "actual": "present",
+          "check_type": "exact_match",
+          "weight": 1.0
+        },
+        {
+          "check_name": "uses_uart_poll_out",
+          "passed": true,
+          "expected": "uart_poll_out() called for writing",
+          "actual": "present",
+          "check_type": "exact_match",
+          "weight": 1.0
+        },
+        {
+          "check_name": "no_printf_usage",
+          "passed": true,
+          "expected": "No printf — uses UART API directly",
+          "actual": "no printf",
+          "check_type": "constraint",
+          "weight": 1.0
+        },
+        {
+          "check_name": "no_raw_register_access",
+          "passed": true,
+          "expected": "Uses UART API, not raw register access",
+          "actual": "API only",
+          "check_type": "constraint",
+          "weight": 1.0
+        }
+      ],
+      "error": null,
+      "duration_seconds": 0.0,
+      "score": 1.0
+    },
+    {
+      "layer": 3,
+      "name": "static_heuristic",
+      "passed": true,
+      "details": [
+        {
+          "check_name": "device_ready_check",
+          "passed": true,
+          "expected": "device_is_ready() called before UART operations",
+          "actual": "present",
+          "check_type": "constraint",
+          "weight": 1.0
+        },
+        {
+          "check_name": "poll_in_return_checked",
+          "passed": true,
+          "expected": "uart_poll_in return value checked before echoing",
+          "actual": "checked",
+          "check_type": "constraint",
+          "weight": 1.0
+        },
+        {
+          "check_name": "infinite_loop_present",
+          "passed": true,
+          "expected": "Infinite loop for continuous echo (while(1) or for(;;))",
+          "actual": "present",
+          "check_type": "exact_match",
+          "weight": 1.0
+        },
+        {
+          "check_name": "no_long_sleep_in_poll_loop",
+          "passed": true,
+          "expected": "No long blocking sleep inside poll loop",
+          "actual": "no long sleep",
+          "check_type": "constraint",
+          "weight": 1.0
+        },
+        {
+          "check_name": "no_mixed_poll_and_irq_api",
+          "passed": true,
+          "expected": "Uses poll API consistently, not mixed with IRQ API",
+          "actual": "API consistent",
+          "check_type": "constraint",
+          "weight": 1.0
+        },
+        {
+          "check_name": "echo_order_correct",
+          "passed": true,
+          "expected": "uart_poll_out called after uart_poll_in",
+          "actual": "correct order",
+          "check_type": "constraint",
+          "weight": 1.0
+        },
+        {
+          "check_name": "no_cross_platform_apis",
+          "passed": true,
+          "expected": "No FreeRTOS/Arduino/STM32_HAL/POSIX APIs",
+          "actual": "clean",
+          "check_type": "constraint",
+          "weight": 1.0
+        }
+      ],
+      "error": null,
+      "duration_seconds": 0.0,
+      "score": 1.0
+    }
+  ],
+  "not_evaluated": [
+    "L1 compile",
+    "L2 runtime",
+    "L4 mutation"
+  ]
+}

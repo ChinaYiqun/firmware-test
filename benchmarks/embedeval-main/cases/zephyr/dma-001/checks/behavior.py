@@ -1,0 +1,124 @@
+"""Behavioral checks for DMA memory-to-memory transfer."""
+
+from embedeval.models import CheckDetail
+from embedeval.check_utils import check_no_cross_platform_apis
+from embedeval.check_utils import scoped_contains
+from embedeval.check_utils import find_in_code
+
+
+def run_checks(generated_code: str) -> list[CheckDetail]:
+    """Validate DMA behavioral properties and domain invariants."""
+    details: list[CheckDetail] = []
+
+    # Check 1: Source and destination buffers are separate
+    # (LLM failure: using same buffer for src and dst)
+    has_src = any(
+        p in generated_code for p in ["src_buf", "source_buf", "src_data"]
+    )
+    has_dst = any(
+        p in generated_code for p in ["dst_buf", "dest_buf", "dst_data"]
+    )
+    details.append(
+        CheckDetail(
+            check_name="separate_src_dst_buffers",
+            passed=has_src and has_dst,
+            expected="Separate source and destination buffers",
+            actual=f"src={has_src}, dst={has_dst}",
+            check_type="constraint",
+        )
+    )
+
+    # Check 2: MEMORY_TO_MEMORY direction set
+    has_m2m = scoped_contains(generated_code, 'MEMORY_TO_MEMORY', scope='code_only')
+    details.append(
+        CheckDetail(
+            check_name="memory_to_memory_direction",
+            passed=has_m2m,
+            expected="channel_direction = MEMORY_TO_MEMORY",
+            actual="present" if has_m2m else "missing",
+            check_type="exact_match",
+        )
+    )
+
+    # Check 3: dma_config before dma_start (correct ordering)
+    config_pos = find_in_code(generated_code, "dma_config(")
+    start_pos = find_in_code(generated_code, "dma_start(")
+    order_ok = config_pos != -1 and start_pos != -1 and config_pos < start_pos
+    details.append(
+        CheckDetail(
+            check_name="config_before_start",
+            passed=order_ok,
+            expected="dma_config() called before dma_start()",
+            actual="correct order" if order_ok else "wrong order or missing",
+            check_type="constraint",
+        )
+    )
+
+    # Check 4: Completion synchronization (semaphore, callback, or polling)
+    has_sync = any(
+        p in generated_code
+        for p in [
+            "k_sem_take",
+            "k_sem_give",
+            "dma_callback",
+            "k_poll",
+            "k_event",
+        ]
+    )
+    details.append(
+        CheckDetail(
+            check_name="completion_synchronization",
+            passed=has_sync,
+            expected="DMA completion synchronization mechanism",
+            actual="present" if has_sync else "missing",
+            check_type="constraint",
+        )
+    )
+
+    # Check 5: Block size > 0 (LLM failure: zero-size transfer)
+    has_block_size = scoped_contains(generated_code, 'block_size', scope='code_only')
+    details.append(
+        CheckDetail(
+            check_name="block_size_set",
+            passed=has_block_size,
+            expected="block_size configured in block config",
+            actual="present" if has_block_size else "missing",
+            check_type="exact_match",
+        )
+    )
+
+    # Check 6: Error handling for dma_config/dma_start
+    has_error_check = scoped_contains(generated_code, '< 0', scope='code_only') or scoped_contains(generated_code, '!= 0', scope='code_only')
+    details.append(
+        CheckDetail(
+            check_name="dma_error_handling",
+            passed=has_error_check,
+            expected="Error checking for DMA API return values",
+            actual="present" if has_error_check else "missing",
+            check_type="constraint",
+        )
+    )
+
+    # Check 7: Device ready check
+    has_ready = scoped_contains(generated_code, 'device_is_ready', scope='code_only')
+    details.append(
+        CheckDetail(
+            check_name="device_ready_check",
+            passed=has_ready,
+            expected="device_is_ready() before DMA operations",
+            actual="present" if has_ready else "missing",
+            check_type="constraint",
+        )
+    )
+
+    # Check: No cross-platform API contamination
+    cross_plat = check_no_cross_platform_apis(generated_code, skip_platforms=["Linux_Userspace"])
+    details.append(CheckDetail(
+        check_name="no_cross_platform_apis",
+        passed=len(cross_plat) == 0,
+        expected="No FreeRTOS/Arduino/STM32_HAL/POSIX APIs",
+        actual="clean" if not cross_plat else f"found: {[a for a, _ in cross_plat]}",
+        check_type="constraint",
+    ))
+
+    return details

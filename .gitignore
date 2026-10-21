@@ -1,0 +1,35 @@
+# Local environments and runtime state
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+node_modules/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+**/state/
+**/.lock
+**/outside-workspace.txt
+**/runs/dry-*/
+
+# Credentials and local settings
+.env
+.env.*
+!.env.example
+*credentials*.json
+*auth.json
+*.pem
+*.key
+
+# Download archives duplicate the unpacked datasets
+benchmarks/*.zip
+
+# Upstream historical model outputs, not our experiments or the benchmark tasks
+benchmarks/EmbedAgent-main/eval/result/
+benchmarks/EmbedAgent-main/eval/infer_results/
+test_openrouter.sh
+
+# Machine-specific launch state; run logs/results remain tracked
+**/launch-status.json
+*.sqlite-shm
+*.sqlite-wal

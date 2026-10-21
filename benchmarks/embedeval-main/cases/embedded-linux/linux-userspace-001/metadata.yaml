@@ -1,0 +1,22 @@
+id: linux-userspace-001
+category: linux-userspace
+difficulty: medium
+title: libgpiod v2 CLI Toggle Tool
+description: Userspace CLI that opens /dev/gpiochipN via the post-2020 GPIO character-device UAPI and drives a line to a requested value — exercises the v1→v2 libgpiod migration where the 2017-era API is deprecated
+tags:
+- libgpiod
+- gpio
+- chardev
+- userspace
+- kernel-5.15
+platform: docker_only
+sdk: embedded-linux
+estimated_tokens: 500
+sdk_version: '2.0'
+created_date: '2026-04-19'
+tier: core
+l1_skip: true
+reasoning_types:
+- rule_application
+- api_recall
+- cross_domain

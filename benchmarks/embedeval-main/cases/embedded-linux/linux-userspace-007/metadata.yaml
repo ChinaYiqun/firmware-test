@@ -1,0 +1,24 @@
+id: linux-userspace-007
+category: linux-userspace
+difficulty: hard
+title: sd-bus Service with vtable
+description: D-Bus service implemented using the kernel-integrated sd-bus API (libsystemd) rather than the deprecated reference libdbus — exposes a single Ping(s)→s method on com.embedeval.Example
+tags:
+- sd-bus
+- dbus
+- systemd
+- libsystemd
+- service
+- userspace
+platform: docker_only
+sdk: embedded-linux
+estimated_tokens: 700
+sdk_version: '250'
+created_date: '2026-04-19'
+tier: challenge
+l1_skip: true
+reasoning_types:
+- rule_application
+- cross_domain
+- api_recall
+- system_reasoning

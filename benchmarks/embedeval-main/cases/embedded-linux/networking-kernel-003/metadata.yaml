@@ -1,0 +1,22 @@
+id: networking-kernel-003
+category: networking
+difficulty: hard
+title: Netlink Kernel Socket with Input Callback
+description: Create a kernel-side netlink socket on a custom protocol number with an input callback that parses the first message and echoes a unicast reply; release the socket cleanly on module exit
+tags:
+- linux
+- kernel
+- networking
+- netlink
+- socket
+- user-kernel-boundary
+platform: docker_only
+sdk: embedded-linux
+estimated_tokens: 760
+sdk_version: '5.15'
+created_date: '2026-04-19'
+tier: challenge
+reasoning_types:
+- system_reasoning
+- cross_domain
+- rule_application

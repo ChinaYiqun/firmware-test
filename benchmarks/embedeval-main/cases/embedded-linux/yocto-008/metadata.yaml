@@ -1,0 +1,22 @@
+id: yocto-008
+category: yocto
+difficulty: hard
+title: Yocto Recipe with Multi-License Parsing
+description: Write a BitBake recipe with multiple SPDX licenses and correct LIC_FILES_CHKSUM entries
+tags:
+- yocto
+- bitbake
+- recipe
+- license
+- SPDX
+- LIC_FILES_CHKSUM
+- multi-license
+platform: yocto_build
+sdk: embedded-linux
+estimated_tokens: 400
+sdk_version: '5.0'
+created_date: '2026-03-24'
+tier: challenge
+reasoning_types:
+- rule_application
+- api_recall

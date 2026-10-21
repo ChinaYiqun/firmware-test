@@ -1,0 +1,24 @@
+id: ota-swupdate-001
+category: ota
+difficulty: medium
+title: SWUpdate sw-description with Minimal Image Triple
+description: Write a SWUpdate sw-description (libconfig) that installs three partition images (bootloader, kernel, rootfs) with per-image sha256 and a hardware-compatibility list, targeting an embedded Linux device on a single-bank eMMC layout.
+tags:
+- swupdate
+- ota
+- embedded-linux
+- sw-description
+- libconfig
+- kirkstone
+platform: native_sim
+sdk: embedded-linux
+estimated_tokens: 500
+sdk_version: '2022.12'
+created_date: '2026-04-19'
+tier: core
+reasoning_types:
+- system_reasoning
+- rule_application
+- api_recall
+l1_skip: true
+l2_skip: true

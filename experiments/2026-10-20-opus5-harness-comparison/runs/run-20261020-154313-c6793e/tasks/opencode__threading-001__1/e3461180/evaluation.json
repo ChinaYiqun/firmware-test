@@ -1,0 +1,120 @@
+{
+  "passed": false,
+  "healthy": true,
+  "scope": "L0+L3 static only",
+  "layers": [
+    {
+      "layer": 0,
+      "name": "static_analysis",
+      "passed": true,
+      "details": [
+        {
+          "check_name": "kernel_header_included",
+          "passed": true,
+          "expected": "zephyr/kernel.h included",
+          "actual": "present",
+          "check_type": "exact_match",
+          "weight": 1.0
+        },
+        {
+          "check_name": "msgq_defined",
+          "passed": true,
+          "expected": "K_MSGQ_DEFINE or k_msgq_init used",
+          "actual": "present",
+          "check_type": "exact_match",
+          "weight": 1.0
+        },
+        {
+          "check_name": "two_threads_defined",
+          "passed": true,
+          "expected": "At least 2 threads defined",
+          "actual": "3 threads found",
+          "check_type": "exact_match",
+          "weight": 1.0
+        },
+        {
+          "check_name": "msgq_put_called",
+          "passed": true,
+          "expected": "k_msgq_put() called (producer)",
+          "actual": "present",
+          "check_type": "exact_match",
+          "weight": 1.0
+        },
+        {
+          "check_name": "msgq_get_called",
+          "passed": true,
+          "expected": "k_msgq_get() called (consumer)",
+          "actual": "present",
+          "check_type": "exact_match",
+          "weight": 1.0
+        }
+      ],
+      "error": null,
+      "duration_seconds": 0.0,
+      "score": 1.0
+    },
+    {
+      "layer": 3,
+      "name": "static_heuristic",
+      "passed": false,
+      "details": [
+        {
+          "check_name": "different_thread_priorities",
+          "passed": false,
+          "expected": "Producer and consumer have different priorities",
+          "actual": "priorities: []",
+          "check_type": "constraint",
+          "weight": 1.0
+        },
+        {
+          "check_name": "producer_sleeps_between_sends",
+          "passed": true,
+          "expected": "Producer calls k_sleep between sends",
+          "actual": "present",
+          "check_type": "constraint",
+          "weight": 1.0
+        },
+        {
+          "check_name": "consumer_blocking_get",
+          "passed": true,
+          "expected": "Consumer uses blocking k_msgq_get (K_FOREVER or timeout)",
+          "actual": "present",
+          "check_type": "constraint",
+          "weight": 1.0
+        },
+        {
+          "check_name": "message_struct_with_data",
+          "passed": true,
+          "expected": "Message struct with typed data field",
+          "actual": "struct=True, field=True",
+          "check_type": "exact_match",
+          "weight": 1.0
+        },
+        {
+          "check_name": "queue_capacity_positive",
+          "passed": false,
+          "expected": "Message queue capacity > 0",
+          "actual": "not found",
+          "check_type": "constraint",
+          "weight": 1.0
+        },
+        {
+          "check_name": "no_cross_platform_apis",
+          "passed": true,
+          "expected": "No FreeRTOS/Arduino/STM32_HAL/POSIX APIs",
+          "actual": "clean",
+          "check_type": "constraint",
+          "weight": 1.0
+        }
+      ],
+      "error": null,
+      "duration_seconds": 0.0,
+      "score": 1.0
+    }
+  ],
+  "not_evaluated": [
+    "L1 compile",
+    "L2 runtime",
+    "L4 mutation"
+  ]
+}

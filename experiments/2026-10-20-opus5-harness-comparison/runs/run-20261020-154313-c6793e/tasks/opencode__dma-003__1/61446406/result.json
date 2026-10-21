@@ -1,0 +1,180 @@
+{
+  "task_id": "opencode__dma-003__1",
+  "harness": "opencode",
+  "case_id": "dma-003",
+  "repeat": 1,
+  "started_at": "2026-10-20T07:54:04.133858+00:00",
+  "artifact_directory": "D:\\firmware-test\\experiments\\2026-10-20-opus5-harness-comparison\\runs\\run-20261020-154313-c6793e\\tasks\\opencode__dma-003__1\\61446406",
+  "status": "scored_fail",
+  "passed": false,
+  "exit_code": 0,
+  "duration_seconds": 145.016,
+  "usage_events": [
+    {
+      "type": "step_finish",
+      "timestamp": 1792482873155,
+      "sessionID": "ses_ea7b20775ffer3m9OaZg9u7076",
+      "part": {
+        "id": "prt_1584e0f2a001ZdaqWOplaREk3i",
+        "reason": "tool-calls",
+        "messageID": "msg_1584dfab5001Kd73P7hQuVmGKt",
+        "sessionID": "ses_ea7b20775ffer3m9OaZg9u7076",
+        "type": "step-finish",
+        "tokens": {
+          "total": 3952,
+          "input": 3918,
+          "output": 34,
+          "reasoning": 0,
+          "cache": {
+            "write": 0,
+            "read": 0
+          }
+        },
+        "cost": 0
+      }
+    },
+    {
+      "type": "step_finish",
+      "timestamp": 1792482882434,
+      "sessionID": "ses_ea7b20775ffer3m9OaZg9u7076",
+      "part": {
+        "id": "prt_1584e3371001E0qtQMnLAWRrJj",
+        "reason": "tool-calls",
+        "messageID": "msg_1584e0f37001iNFpm8KbBHwQeN",
+        "sessionID": "ses_ea7b20775ffer3m9OaZg9u7076",
+        "type": "step-finish",
+        "tokens": {
+          "total": 4334,
+          "input": 4268,
+          "output": 66,
+          "reasoning": 0,
+          "cache": {
+            "write": 0,
+            "read": 0
+          }
+        },
+        "cost": 0
+      }
+    },
+    {
+      "type": "step_finish",
+      "timestamp": 1792482895522,
+      "sessionID": "ses_ea7b20775ffer3m9OaZg9u7076",
+      "part": {
+        "id": "prt_1584e668b001ZI0nTALa59qIDd",
+        "reason": "tool-calls",
+        "messageID": "msg_1584e337c001Rd127K7jyukv2Q",
+        "sessionID": "ses_ea7b20775ffer3m9OaZg9u7076",
+        "type": "step-finish",
+        "tokens": {
+          "total": 4490,
+          "input": 4422,
+          "output": 68,
+          "reasoning": 0,
+          "cache": {
+            "write": 0,
+            "read": 0
+          }
+        },
+        "cost": 0
+      }
+    },
+    {
+      "type": "step_finish",
+      "timestamp": 1792482952864,
+      "sessionID": "ses_ea7b20775ffer3m9OaZg9u7076",
+      "part": {
+        "id": "prt_1584f4695001nME7rPPQqNBXs5",
+        "reason": "tool-calls",
+        "messageID": "msg_1584e669b0014iZLq3j8lPeYGZ",
+        "sessionID": "ses_ea7b20775ffer3m9OaZg9u7076",
+        "type": "step-finish",
+        "tokens": {
+          "total": 24473,
+          "input": 14909,
+          "output": 9564,
+          "reasoning": 0,
+          "cache": {
+            "write": 0,
+            "read": 0
+          }
+        },
+        "cost": 0
+      }
+    },
+    {
+      "type": "step_finish",
+      "timestamp": 1792482961651,
+      "sessionID": "ses_ea7b20775ffer3m9OaZg9u7076",
+      "part": {
+        "id": "prt_1584f68b500156a48JdoB46qqq",
+        "reason": "tool-calls",
+        "messageID": "msg_1584f47c2001EmaEUazKIfTetW",
+        "sessionID": "ses_ea7b20775ffer3m9OaZg9u7076",
+        "type": "step-finish",
+        "tokens": {
+          "total": 5637,
+          "input": 5565,
+          "output": 72,
+          "reasoning": 0,
+          "cache": {
+            "write": 0,
+            "read": 0
+          }
+        },
+        "cost": 0
+      }
+    },
+    {
+      "type": "step_finish",
+      "timestamp": 1792482985454,
+      "sessionID": "ses_ea7b20775ffer3m9OaZg9u7076",
+      "part": {
+        "id": "prt_1584fc5c90013M1Y4vvYsDct6P",
+        "reason": "tool-calls",
+        "messageID": "msg_1584f68e9001HwHzTOXx4978pY",
+        "sessionID": "ses_ea7b20775ffer3m9OaZg9u7076",
+        "type": "step-finish",
+        "tokens": {
+          "total": 9018,
+          "input": 6741,
+          "output": 2277,
+          "reasoning": 0,
+          "cache": {
+            "write": 0,
+            "read": 0
+          }
+        },
+        "cost": 0
+      }
+    },
+    {
+      "type": "step_finish",
+      "timestamp": 1792483009827,
+      "sessionID": "ses_ea7b20775ffer3m9OaZg9u7076",
+      "part": {
+        "id": "prt_158502506001duu7teArLCsOJS",
+        "reason": "stop",
+        "messageID": "msg_1584fc5e1001Myzv0QlLzGx08I",
+        "sessionID": "ses_ea7b20775ffer3m9OaZg9u7076",
+        "type": "step-finish",
+        "tokens": {
+          "total": 9200,
+          "input": 8915,
+          "output": 285,
+          "reasoning": 0,
+          "cache": {
+            "write": 0,
+            "read": 0
+          }
+        },
+        "cost": 0
+      }
+    }
+  ],
+  "token_usage": null,
+  "cost_usd": null,
+  "errors": [],
+  "submission_sha256": "32fea6236135b6f4992f09e516c25b067893daec6197db8e4b6ad62643ebe478",
+  "ended_at": "2026-10-20T07:56:50.059786+00:00"
+}

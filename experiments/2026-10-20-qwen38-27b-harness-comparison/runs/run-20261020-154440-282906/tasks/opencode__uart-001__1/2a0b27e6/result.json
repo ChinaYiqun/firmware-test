@@ -1,0 +1,88 @@
+{
+  "task_id": "opencode__uart-001__1",
+  "harness": "opencode",
+  "case_id": "uart-001",
+  "repeat": 1,
+  "started_at": "2026-10-20T08:09:19.857296+00:00",
+  "artifact_directory": "D:\\firmware-test\\experiments\\2026-10-20-qwen38-27b-harness-comparison\\runs\\run-20261020-154440-282906\\tasks\\opencode__uart-001__1\\2a0b27e6",
+  "status": "scored_fail",
+  "passed": false,
+  "exit_code": 0,
+  "duration_seconds": 13.875,
+  "usage_events": [
+    {
+      "type": "step_finish",
+      "timestamp": 1792483768166,
+      "sessionID": "ses_ea7a46496ffePPOv8bogKBvMgL",
+      "part": {
+        "id": "prt_1585bb721001YT1u8fNFjEd1Uj",
+        "reason": "tool-calls",
+        "messageID": "msg_1585b9d5e001599REBADOPrC75",
+        "sessionID": "ses_ea7a46496ffePPOv8bogKBvMgL",
+        "type": "step-finish",
+        "tokens": {
+          "total": 4826,
+          "input": 4228,
+          "output": 262,
+          "reasoning": 336,
+          "cache": {
+            "write": 0,
+            "read": 0
+          }
+        },
+        "cost": 0
+      }
+    },
+    {
+      "type": "step_finish",
+      "timestamp": 1792483771516,
+      "sessionID": "ses_ea7a46496ffePPOv8bogKBvMgL",
+      "part": {
+        "id": "prt_1585bc435001POjAWbj45GMJqP",
+        "reason": "tool-calls",
+        "messageID": "msg_1585bb73d001ML9mOh24nFhb1N",
+        "sessionID": "ses_ea7a46496ffePPOv8bogKBvMgL",
+        "type": "step-finish",
+        "tokens": {
+          "total": 5081,
+          "input": 422,
+          "output": 244,
+          "reasoning": 319,
+          "cache": {
+            "write": 0,
+            "read": 4096
+          }
+        },
+        "cost": 0
+      }
+    },
+    {
+      "type": "step_finish",
+      "timestamp": 1792483773463,
+      "sessionID": "ses_ea7a46496ffePPOv8bogKBvMgL",
+      "part": {
+        "id": "prt_1585bcbf9001cRz6eFeQ7AE75v",
+        "reason": "stop",
+        "messageID": "msg_1585bc450001KXdzdkINVQMr3z",
+        "sessionID": "ses_ea7a46496ffePPOv8bogKBvMgL",
+        "type": "step-finish",
+        "tokens": {
+          "total": 5149,
+          "input": 438,
+          "output": 50,
+          "reasoning": 309,
+          "cache": {
+            "write": 0,
+            "read": 4352
+          }
+        },
+        "cost": 0
+      }
+    }
+  ],
+  "token_usage": null,
+  "cost_usd": null,
+  "errors": [],
+  "submission_sha256": "0d58187ab552f43ba6986e412c9c996d2f0303dca374561460b1557a6991bfba",
+  "ended_at": "2026-10-20T08:09:33.754591+00:00"
+}

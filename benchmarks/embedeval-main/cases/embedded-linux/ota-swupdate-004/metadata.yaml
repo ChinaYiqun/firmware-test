@@ -1,0 +1,26 @@
+id: ota-swupdate-004
+category: ota
+difficulty: medium
+title: SWUpdate Pre/Post-Install Scripts with Idempotent Handlers
+description: Write a SWUpdate sw-description that runs a preinstall shell script and a postinstall Lua handler, each tracked with sha256 and declared via the scripts list, enforcing hook-type naming and de-duplication.
+tags:
+- swupdate
+- ota
+- embedded-linux
+- scripts
+- lua
+- preinstall
+- postinstall
+- idempotency
+platform: native_sim
+sdk: embedded-linux
+estimated_tokens: 520
+sdk_version: '2022.12'
+created_date: '2026-04-19'
+tier: core
+reasoning_types:
+- system_reasoning
+- rule_application
+- api_recall
+l1_skip: true
+l2_skip: true

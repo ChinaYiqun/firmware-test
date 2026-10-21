@@ -1,0 +1,111 @@
+"""Behavioral checks for custom sensor driver registration."""
+
+import re
+
+from embedeval.models import CheckDetail
+from embedeval.check_utils import check_no_cross_platform_apis
+from embedeval.check_utils import scoped_contains
+
+
+def run_checks(generated_code: str) -> list[CheckDetail]:
+    """Validate custom sensor driver behavioral properties."""
+    details: list[CheckDetail] = []
+
+    # Check 1: sample_fetch and channel_get wired into api struct
+    # (LLM failure: defining functions but not assigning them in the api struct)
+    has_fetch_wired = bool(re.search(r'\.sample_fetch\s*=\s*\w+', generated_code))
+    has_get_wired = bool(re.search(r'\.channel_get\s*=\s*\w+', generated_code))
+    details.append(
+        CheckDetail(
+            check_name="api_struct_populated",
+            passed=has_fetch_wired and has_get_wired,
+            expected="sample_fetch and channel_get assigned in sensor_driver_api struct",
+            actual=f"fetch_wired={has_fetch_wired}, get_wired={has_get_wired}" if not (has_fetch_wired and has_get_wired) else "correct",
+            check_type="constraint",
+        )
+    )
+
+    # Check 2: channel_get handles unsupported channels with -ENOTSUP
+    # (LLM failure: returning 0 for all channels, no error for unsupported)
+    has_enotsup = scoped_contains(generated_code, 'ENOTSUP', scope='code_only')
+    details.append(
+        CheckDetail(
+            check_name="unsupported_channel_returns_enotsup",
+            passed=has_enotsup,
+            expected="-ENOTSUP returned for unsupported sensor channels",
+            actual="present" if has_enotsup else "missing (silently ignoring unsupported channels)",
+            check_type="constraint",
+        )
+    )
+
+    # Check 3: data->last_sample or similar field read in channel_get
+    # (LLM failure: channel_get that ignores the fetched data)
+    has_data_read = (
+        scoped_contains(generated_code, 'last_sample', scope='code_only') or
+        scoped_contains(generated_code, 'data->', scope='code_only')
+    )
+    details.append(
+        CheckDetail(
+            check_name="channel_get_reads_data",
+            passed=has_data_read,
+            expected="channel_get reads from driver data struct (e.g., data->last_sample)",
+            actual="present" if has_data_read else "missing (returning hardcoded value without fetched data)",
+            check_type="constraint",
+        )
+    )
+
+    # Check 4: sample_fetch writes to driver data struct
+    # (LLM failure: sample_fetch that returns 0 without storing anything)
+    has_data_write = (
+        scoped_contains(generated_code, 'last_sample', scope='code_only') and
+        scoped_contains(generated_code, '=', scope='code_only')
+    )
+    details.append(
+        CheckDetail(
+            check_name="sample_fetch_stores_data",
+            passed=has_data_write,
+            expected="sample_fetch stores sample into driver data struct",
+            actual="present" if has_data_write else "missing (fetch does not store data)",
+            check_type="constraint",
+        )
+    )
+
+    # Check 5: Init function returns 0
+    has_init_return_zero = (
+        scoped_contains(generated_code, 'my_sensor_init', scope='code_only') and
+        scoped_contains(generated_code, 'return 0', scope='code_only')
+    )
+    details.append(
+        CheckDetail(
+            check_name="init_returns_zero",
+            passed=has_init_return_zero,
+            expected="Init function returns 0 on success",
+            actual="present" if has_init_return_zero else "missing",
+            check_type="constraint",
+        )
+    )
+
+    # Check 6: val->val1 set in channel_get (correct sensor_value population)
+    # (LLM failure: setting val = data->sample directly without val->val1)
+    has_val1 = scoped_contains(generated_code, 'val->val1', scope='code_only') or scoped_contains(generated_code, 'val1', scope='code_only')
+    details.append(
+        CheckDetail(
+            check_name="sensor_value_val1_set",
+            passed=has_val1,
+            expected="val->val1 set in channel_get to populate sensor_value",
+            actual="present" if has_val1 else "missing (not properly populating sensor_value)",
+            check_type="constraint",
+        )
+    )
+
+    # Check: No cross-platform API contamination
+    cross_plat = check_no_cross_platform_apis(generated_code, skip_platforms=["Linux_Userspace"])
+    details.append(CheckDetail(
+        check_name="no_cross_platform_apis",
+        passed=len(cross_plat) == 0,
+        expected="No FreeRTOS/Arduino/STM32_HAL/POSIX APIs",
+        actual="clean" if not cross_plat else f"found: {[a for a, _ in cross_plat]}",
+        check_type="constraint",
+    ))
+
+    return details

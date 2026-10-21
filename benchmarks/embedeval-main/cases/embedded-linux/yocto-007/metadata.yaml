@@ -1,0 +1,21 @@
+id: yocto-007
+category: yocto
+difficulty: medium
+title: Yocto Custom Image Recipe
+description: Create a custom Yocto image recipe inheriting core-image with additional packages
+tags:
+- yocto
+- bitbake
+- image
+- core-image
+- IMAGE_INSTALL
+- IMAGE_FEATURES
+platform: yocto_build
+sdk: embedded-linux
+estimated_tokens: 350
+sdk_version: '5.0'
+created_date: '2026-03-24'
+tier: core
+reasoning_types:
+- rule_application
+- api_recall

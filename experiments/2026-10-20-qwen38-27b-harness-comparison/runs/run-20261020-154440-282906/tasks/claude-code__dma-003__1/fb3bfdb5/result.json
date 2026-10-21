@@ -1,0 +1,106 @@
+{
+  "task_id": "claude-code__dma-003__1",
+  "harness": "claude-code",
+  "case_id": "dma-003",
+  "repeat": 1,
+  "started_at": "2026-10-20T08:05:46.062592+00:00",
+  "artifact_directory": "D:\\firmware-test\\experiments\\2026-10-20-qwen38-27b-harness-comparison\\runs\\run-20261020-154440-282906\\tasks\\claude-code__dma-003__1\\fb3bfdb5",
+  "status": "scored_fail",
+  "passed": false,
+  "exit_code": 0,
+  "duration_seconds": 130.781,
+  "usage_events": [
+    {
+      "duration_api_ms": 125803,
+      "stop_reason": "end_turn",
+      "session_id": "585cefa7-d476-4911-807a-d5f025b857c8",
+      "total_cost_usd": 0.494498,
+      "usage": {
+        "input_tokens": 14728,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 49216,
+        "output_tokens": 15850,
+        "output_tokens_details": {
+          "thinking_tokens": 13013
+        },
+        "server_tool_use": {
+          "web_search_requests": 0,
+          "web_fetch_requests": 0
+        },
+        "service_tier": "standard",
+        "cache_creation": {
+          "ephemeral_1h_input_tokens": 0,
+          "ephemeral_5m_input_tokens": 0
+        },
+        "inference_geo": "",
+        "iterations": [],
+        "speed": "standard",
+        "fallback_credit": null
+      },
+      "modelUsage": {
+        "qwen/qwen3.8-27b": {
+          "inputTokens": 14728,
+          "outputTokens": 15850,
+          "cacheReadInputTokens": 49216,
+          "cacheCreationInputTokens": 0,
+          "webSearchRequests": 0,
+          "costUSD": 0.494498,
+          "contextWindow": 200000,
+          "maxOutputTokens": 32000,
+          "thinkingTokens": 13013,
+          "canonicalModel": "qwen/qwen3.8-27b",
+          "provider": "firstParty",
+          "costBasis": "unknown"
+        }
+      },
+      "permission_denials": [],
+      "terminal_reason": "completed",
+      "fast_mode_state": "off",
+      "fast_mode_disabled_reason": "sdk_opt_in_required",
+      "subagent_stats": {
+        "spawned": 0,
+        "requested": {
+          "background": 0,
+          "foreground": 0,
+          "unset": 0
+        },
+        "started_in_background": 0,
+        "max_depth": 0,
+        "spawned_by_subagents": 0,
+        "completed": 0,
+        "failed": 0,
+        "killed": {
+          "parent": 0,
+          "user": 0,
+          "system": 0
+        },
+        "refused": {
+          "depth_limit": 0,
+          "concurrency_limit": 0,
+          "budget": 0
+        },
+        "by_type": {}
+      },
+      "safety_stops": 0,
+      "is_error": false,
+      "num_turns": 5,
+      "subtype": "success",
+      "api_error_status": null,
+      "result": "\n\nWrote the complete application to `submission/main.c`.\n\nKey design points, mapped to the requirements:\n\n1. **DMA from devicetree** — `DEVICE_DT_GET(DT_NODELABEL(dma0))` (module-level constant).\n2. **Ready check** — `device_is_ready(dma_dev)` before any use, returns `-ENODEV` on failure.\n3. **Ping-pong buffers** — `buf_a` / `buf_b`, each 32 bytes, DMA-aligned (`__aligned(32)`); a simulated 32-byte source stands in for the sensor FIFO (comment notes where a real peripheral channel would plug in).\n4. **Active-buffer tracking** — `active_buf` pointer, toggled in the callback.\n5. **Circular/continuous mode** — 1-byte data size, burst 1, `cb_mode = DMA_BLOCK_TRANSFER_COMPLETED`, and the completion callback immediately re-issues `dma_start` so the next block starts as soon as the previous one lands.\n6. **Reload on completion** — `dma_callback` (ISR context) swaps the buffers and calls `dma_start` into the new active buffer before waking main.\n7. **Signalling** — `k_sem_give(&dma_sem)` from the callback; main blocks on `k_sem_take`. `k_sem_give` is ISR-safe.\n8. **Loop** — main takes the semaphore 4 times (`NUM_TRANSFERS`), processes each completed buffer (checksum + log), then `dma_stop` + `dma_free` the (still in-flight 5th) transfer.\n9. **Count** — `LOG_INF(\"Total completed transfers: %u\", total_completed)` after the stop.\n\nError paths are covered: a failed transfer or a failed reload still releases the semaphore so the main loop can't hang, logs the fault, and tears down cleanly. The header comment lists the Kconfig (`CONFIG_DMA`, `CONFIG_LOG`) and devicetree label prerequisites.",
+      "ttft_ms": 81508,
+      "type": "result",
+      "duration_ms": 128602,
+      "uuid": "323a70b7-0377-4528-a05b-2281cb91a18c",
+      "ttft_stream_ms": 1523,
+      "time_to_request_ms": 343,
+      "first_content_frame_ms": 1524,
+      "queued_turn_count": 0,
+      "result_index": 0
+    }
+  ],
+  "token_usage": null,
+  "cost_usd": null,
+  "errors": [],
+  "submission_sha256": "b508e7a09a6dbb408741f20af34cf02632f7aa2766429ae5735d57d4ce074de3",
+  "ended_at": "2026-10-20T08:07:56.866783+00:00"
+}

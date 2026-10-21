@@ -1,0 +1,25 @@
+id: ota-rauc-001
+category: ota
+difficulty: medium
+title: RAUC Bundle Manifest (Minimal)
+description: Write a RAUC manifest.raucm in INI format with update compatible string, bundle format, and one image slot declaration — strict slot-class naming (image.rootfs) over flat rootfs.
+tags:
+- rauc
+- ota
+- embedded-linux
+- manifest
+- raucm
+- ini
+- kirkstone
+platform: native_sim
+sdk: embedded-linux
+estimated_tokens: 420
+sdk_version: '1.7'
+created_date: '2026-04-19'
+tier: core
+reasoning_types:
+- system_reasoning
+- rule_application
+- api_recall
+l1_skip: true
+l2_skip: true

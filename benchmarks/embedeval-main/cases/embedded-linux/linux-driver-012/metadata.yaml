@@ -1,0 +1,23 @@
+id: linux-driver-012
+category: linux-driver
+difficulty: hard
+title: Threaded IRQ with Primary/Thread Split
+description: GPIO-backed button driver that splits its ISR into a primary (timestamp, IRQ_WAKE_THREAD) and a thread handler (debounce via msleep) using request_threaded_irq
+tags:
+- linux
+- kernel
+- driver
+- platform-driver
+- threaded-irq
+- irq
+- concurrency
+platform: docker_only
+sdk: embedded-linux
+estimated_tokens: 640
+sdk_version: '5.15'
+created_date: '2026-04-19'
+tier: challenge
+reasoning_types:
+- system_reasoning
+- cross_domain
+- rule_application

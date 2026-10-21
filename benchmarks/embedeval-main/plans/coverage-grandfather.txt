@@ -1,0 +1,43 @@
+# Per-check coverage grandfather list (REQ-02).
+#
+# TCs listed here were authored BEFORE the per-check coverage gate existed.
+# They are reported but do NOT cause --strict-coverage to fail.
+#
+# Rules:
+#   - Only TCs with negatives.py present on 2026-04-19 are grandfathered.
+#   - When /negatives revisits a grandfathered TC, remove it from this list
+#     after re-authoring to ≥80% coverage.
+#   - NEW TCs (added after 2026-04-19 or via Yocto/Linux expansion) are
+#     NEVER added to this list.
+#
+# One case_id per line. Lines starting with # are comments.
+ble-008
+boot-001
+device-tree-001
+dma-001
+dma-008
+dma-009
+esp-gpio-001
+gpio-basic-001
+gpio-basic-006
+isr-concurrency-003
+isr-concurrency-008
+kconfig-001
+linux-driver-001
+linux-driver-002
+memory-opt-001
+memory-opt-012
+networking-001
+ota-001
+power-mgmt-001
+pwm-001
+security-001
+sensor-driver-001
+storage-001
+threading-001
+timer-001
+timer-007
+uart-001
+watchdog-005
+yocto-001
+yocto-008

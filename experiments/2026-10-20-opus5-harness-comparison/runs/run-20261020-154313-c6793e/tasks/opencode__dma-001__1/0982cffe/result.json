@@ -1,0 +1,111 @@
+{
+  "task_id": "opencode__dma-001__1",
+  "harness": "opencode",
+  "case_id": "dma-001",
+  "repeat": 1,
+  "started_at": "2026-10-20T07:51:09.226198+00:00",
+  "artifact_directory": "D:\\firmware-test\\experiments\\2026-10-20-opus5-harness-comparison\\runs\\run-20261020-154313-c6793e\\tasks\\opencode__dma-001__1\\0982cffe",
+  "status": "scored_pass",
+  "passed": true,
+  "exit_code": 0,
+  "duration_seconds": 76.875,
+  "usage_events": [
+    {
+      "type": "step_finish",
+      "timestamp": 1792482726073,
+      "sessionID": "ses_ea7b49377ffeDBKJYjlIv62mLB",
+      "part": {
+        "id": "prt_1584bd0ae001VR5LlBTzwyD21Y",
+        "reason": "tool-calls",
+        "messageID": "msg_1584b6eba001oG5PIz3oGZ45U0",
+        "sessionID": "ses_ea7b49377ffeDBKJYjlIv62mLB",
+        "type": "step-finish",
+        "tokens": {
+          "total": 6105,
+          "input": 3913,
+          "output": 2192,
+          "reasoning": 0,
+          "cache": {
+            "write": 0,
+            "read": 0
+          }
+        },
+        "cost": 0
+      }
+    },
+    {
+      "type": "step_finish",
+      "timestamp": 1792482737299,
+      "sessionID": "ses_ea7b49377ffeDBKJYjlIv62mLB",
+      "part": {
+        "id": "prt_1584bfc740016lxaZAdsAWjbF2",
+        "reason": "tool-calls",
+        "messageID": "msg_1584bd0b50013KcmoL1STyUog6",
+        "sessionID": "ses_ea7b49377ffeDBKJYjlIv62mLB",
+        "type": "step-finish",
+        "tokens": {
+          "total": 6395,
+          "input": 6371,
+          "output": 24,
+          "reasoning": 0,
+          "cache": {
+            "write": 0,
+            "read": 0
+          }
+        },
+        "cost": 0
+      }
+    },
+    {
+      "type": "step_finish",
+      "timestamp": 1792482767938,
+      "sessionID": "ses_ea7b49377ffeDBKJYjlIv62mLB",
+      "part": {
+        "id": "prt_1584c7419001doz6NnG092wjbp",
+        "reason": "tool-calls",
+        "messageID": "msg_1584bfc89001d2ZjBMX3Y99ncV",
+        "sessionID": "ses_ea7b49377ffeDBKJYjlIv62mLB",
+        "type": "step-finish",
+        "tokens": {
+          "total": 37999,
+          "input": 18789,
+          "output": 19210,
+          "reasoning": 0,
+          "cache": {
+            "write": 0,
+            "read": 0
+          }
+        },
+        "cost": 0
+      }
+    },
+    {
+      "type": "step_finish",
+      "timestamp": 1792482775422,
+      "sessionID": "ses_ea7b49377ffeDBKJYjlIv62mLB",
+      "part": {
+        "id": "prt_1584c915e00133MIcCbr9Nv2vk",
+        "reason": "stop",
+        "messageID": "msg_1584c7437001v6Xc6FotHA377w",
+        "sessionID": "ses_ea7b49377ffeDBKJYjlIv62mLB",
+        "type": "step-finish",
+        "tokens": {
+          "total": 9102,
+          "input": 8816,
+          "output": 286,
+          "reasoning": 0,
+          "cache": {
+            "write": 0,
+            "read": 0
+          }
+        },
+        "cost": 0
+      }
+    }
+  ],
+  "token_usage": null,
+  "cost_usd": null,
+  "errors": [],
+  "submission_sha256": "16b42c3e2180b61934da390f741701f76b27873e5d9c73bb29e4b680a25105d5",
+  "ended_at": "2026-10-20T07:52:55.885705+00:00"
+}

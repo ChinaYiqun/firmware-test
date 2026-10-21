@@ -1,0 +1,106 @@
+{
+  "task_id": "claude-code__threading-001__1",
+  "harness": "claude-code",
+  "case_id": "threading-001",
+  "repeat": 1,
+  "started_at": "2026-10-20T07:53:19.572500+00:00",
+  "artifact_directory": "D:\\firmware-test\\experiments\\2026-10-20-opus5-harness-comparison\\runs\\run-20261020-154313-c6793e\\tasks\\claude-code__threading-001__1\\63025d65",
+  "status": "scored_fail",
+  "passed": false,
+  "exit_code": 0,
+  "duration_seconds": 44.469,
+  "usage_events": [
+    {
+      "duration_api_ms": 40664,
+      "stop_reason": "end_turn",
+      "session_id": "a6040529-ce6e-4c5b-8b3f-2180e337331a",
+      "total_cost_usd": 0.35141,
+      "usage": {
+        "input_tokens": 19687,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0,
+        "output_tokens": 10119,
+        "output_tokens_details": {
+          "thinking_tokens": 0
+        },
+        "server_tool_use": {
+          "web_search_requests": 0,
+          "web_fetch_requests": 0
+        },
+        "service_tier": "standard",
+        "cache_creation": {
+          "ephemeral_1h_input_tokens": 0,
+          "ephemeral_5m_input_tokens": 0
+        },
+        "inference_geo": "",
+        "iterations": [],
+        "speed": "standard",
+        "fallback_credit": null
+      },
+      "modelUsage": {
+        "claude-opus-5": {
+          "inputTokens": 19687,
+          "outputTokens": 10119,
+          "cacheReadInputTokens": 0,
+          "cacheCreationInputTokens": 0,
+          "webSearchRequests": 0,
+          "costUSD": 0.35141,
+          "contextWindow": 1000000,
+          "maxOutputTokens": 64000,
+          "thinkingTokens": 0,
+          "canonicalModel": "claude-opus-5",
+          "provider": "firstParty",
+          "costBasis": "list"
+        }
+      },
+      "permission_denials": [],
+      "terminal_reason": "completed",
+      "fast_mode_state": "off",
+      "fast_mode_disabled_reason": "sdk_opt_in_required",
+      "subagent_stats": {
+        "spawned": 0,
+        "requested": {
+          "background": 0,
+          "foreground": 0,
+          "unset": 0
+        },
+        "started_in_background": 0,
+        "max_depth": 0,
+        "spawned_by_subagents": 0,
+        "completed": 0,
+        "failed": 0,
+        "killed": {
+          "parent": 0,
+          "user": 0,
+          "system": 0
+        },
+        "refused": {
+          "depth_limit": 0,
+          "concurrency_limit": 0,
+          "budget": 0
+        },
+        "by_type": {}
+      },
+      "safety_stops": 0,
+      "is_error": false,
+      "num_turns": 2,
+      "subtype": "success",
+      "api_error_status": null,
+      "result": "I've written the complete Zephyr RTOS application to `submission/main.c`. The implementation includes:\n\n1. **Message struct** - `struct data_msg` carrying an integer value\n2. **Bounded message queue** - 10-element queue defined with `K_MSGQ_DEFINE`\n3. **Producer thread** - Sends incrementing integers with 100ms delay between sends\n4. **Consumer thread** - Receives and prints values from the queue\n5. **Priority ordering** - Producer at priority 4 (higher) vs consumer at priority 6 (lower)\n6. **Static thread definitions** - Both threads use `K_THREAD_DEFINE` macros\n7. **Idle main()** - Sleeps indefinitely with `K_FOREVER`\n\nThe application demonstrates proper producer-consumer synchronization using Zephyr's message queue API with blocking semantics.",
+      "ttft_ms": 14926,
+      "type": "result",
+      "duration_ms": 41016,
+      "uuid": "c5d1b3e5-b42b-407e-a33a-0f4dfa01bff4",
+      "ttft_stream_ms": 12133,
+      "time_to_request_ms": 145,
+      "first_content_frame_ms": 12135,
+      "queued_turn_count": 0,
+      "result_index": 0
+    }
+  ],
+  "token_usage": null,
+  "cost_usd": null,
+  "errors": [],
+  "submission_sha256": "7fd78bd0169d00edbca93e1216a73805938d2d878b834d7d17f5505b880e5477",
+  "ended_at": "2026-10-20T07:54:04.109279+00:00"
+}

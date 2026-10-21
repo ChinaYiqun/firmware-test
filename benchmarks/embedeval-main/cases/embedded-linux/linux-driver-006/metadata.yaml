@@ -1,0 +1,23 @@
+id: linux-driver-006
+category: linux-driver
+difficulty: hard
+title: Input Validation in ioctl Handler
+description: Implement a Linux driver ioctl handler with _IOC_TYPE validation and safe user-space argument copying
+tags:
+- linux
+- kernel
+- driver
+- ioctl
+- security
+- uaccess
+platform: docker_only
+sdk: embedded-linux
+estimated_tokens: 650
+sdk_version: '6.6'
+created_date: '2026-03-24'
+tier: challenge
+reasoning_types:
+- system_reasoning
+- cross_domain
+- rule_application
+- api_recall

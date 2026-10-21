@@ -1,0 +1,53 @@
+{
+  "task_id": "opencode__dma-003__1",
+  "harness": "opencode",
+  "case_id": "dma-003",
+  "repeat": 1,
+  "started_at": "2026-10-20T08:09:25.776964+00:00",
+  "artifact_directory": "D:\\firmware-test\\experiments\\2026-10-20-qwen38-27b-harness-comparison\\runs\\run-20261020-154440-282906\\tasks\\opencode__dma-003__1\\b397829c",
+  "status": "infra_error",
+  "passed": false,
+  "exit_code": 1,
+  "duration_seconds": 124.438,
+  "usage_events": [
+    {
+      "type": "step_finish",
+      "timestamp": 1792483855122,
+      "sessionID": "ses_ea7a42268ffe3eg182b2U3RHL0",
+      "part": {
+        "id": "prt_1585d0ad4001tP8c2Wfh5BDrwv",
+        "reason": "tool-calls",
+        "messageID": "msg_1585be58700184gxhddEKAIW9Z",
+        "sessionID": "ses_ea7a42268ffe3eg182b2U3RHL0",
+        "type": "step-finish",
+        "tokens": {
+          "total": 19949,
+          "input": 4231,
+          "output": 838,
+          "reasoning": 14880,
+          "cache": {
+            "write": 0,
+            "read": 0
+          }
+        },
+        "cost": 0
+      }
+    }
+  ],
+  "token_usage": null,
+  "cost_usd": null,
+  "errors": [
+    {
+      "type": "error",
+      "timestamp": 1792483897918,
+      "sessionID": "ses_ea7a42268ffe3eg182b2U3RHL0",
+      "error": {
+        "name": "UnknownError",
+        "data": {
+          "message": "unknown certificate verification error"
+        }
+      }
+    }
+  ],
+  "ended_at": "2026-10-20T08:11:38.192116+00:00"
+}

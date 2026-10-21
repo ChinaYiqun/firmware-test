@@ -1,0 +1,21 @@
+id: linux-userspace-005
+category: linux-userspace
+difficulty: hard
+title: udev Rule for USB Hotplug with Systemctl Action
+description: Author a udev rule matching a specific USB device that triggers a systemctl service restart on hotplug — exercises the ``==`` (match) vs ``=`` (assign) vs ``+=`` (append-assign) discipline
+tags:
+- udev
+- hotplug
+- usb
+- systemctl
+- embedded-linux
+platform: native_sim
+sdk: embedded-linux
+estimated_tokens: 340
+sdk_version: kirkstone
+created_date: '2026-04-19'
+tier: challenge
+reasoning_types:
+- rule_application
+- system_reasoning
+- api_recall

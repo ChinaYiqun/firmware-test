@@ -1,0 +1,111 @@
+{
+  "task_id": "opencode__spi-i2c-002__1",
+  "harness": "opencode",
+  "case_id": "spi-i2c-002",
+  "repeat": 1,
+  "started_at": "2026-10-20T07:46:30.645492+00:00",
+  "artifact_directory": "D:\\firmware-test\\experiments\\2026-10-20-qwen38-27b-harness-comparison\\runs\\run-20261020-154440-282906\\tasks\\opencode__spi-i2c-002__1\\131cd7df",
+  "status": "scored_pass",
+  "passed": true,
+  "exit_code": 0,
+  "duration_seconds": 25.531,
+  "usage_events": [
+    {
+      "type": "step_finish",
+      "timestamp": 1792482399194,
+      "sessionID": "ses_ea7b94584ffejNtLbskOVKVBz0",
+      "part": {
+        "id": "prt_15846d3b1001BzBjXJ5NwBZLLe",
+        "reason": "tool-calls",
+        "messageID": "msg_15846bcc5001dtC44ptjHiLLiU",
+        "sessionID": "ses_ea7b94584ffejNtLbskOVKVBz0",
+        "type": "step-finish",
+        "tokens": {
+          "total": 4580,
+          "input": 4358,
+          "output": 108,
+          "reasoning": 50,
+          "cache": {
+            "write": 0,
+            "read": 64
+          }
+        },
+        "cost": 0
+      }
+    },
+    {
+      "type": "step_finish",
+      "timestamp": 1792482404286,
+      "sessionID": "ses_ea7b94584ffejNtLbskOVKVBz0",
+      "part": {
+        "id": "prt_15846e7b0001O3v2thsuqE7pAP",
+        "reason": "tool-calls",
+        "messageID": "msg_15846d3be001DgwmtfAqawJSfn",
+        "sessionID": "ses_ea7b94584ffejNtLbskOVKVBz0",
+        "type": "step-finish",
+        "tokens": {
+          "total": 4892,
+          "input": 4596,
+          "output": 220,
+          "reasoning": 12,
+          "cache": {
+            "write": 0,
+            "read": 64
+          }
+        },
+        "cost": 0
+      }
+    },
+    {
+      "type": "step_finish",
+      "timestamp": 1792482414392,
+      "sessionID": "ses_ea7b94584ffejNtLbskOVKVBz0",
+      "part": {
+        "id": "prt_158470f2d001dj4XjQmsi0QBKH",
+        "reason": "tool-calls",
+        "messageID": "msg_15846e7b9001N0yYW9PjTPMbi2",
+        "sessionID": "ses_ea7b94584ffejNtLbskOVKVBz0",
+        "type": "step-finish",
+        "tokens": {
+          "total": 7277,
+          "input": 5491,
+          "output": 593,
+          "reasoning": 1129,
+          "cache": {
+            "write": 0,
+            "read": 64
+          }
+        },
+        "cost": 0
+      }
+    },
+    {
+      "type": "step_finish",
+      "timestamp": 1792482415913,
+      "sessionID": "ses_ea7b94584ffejNtLbskOVKVBz0",
+      "part": {
+        "id": "prt_1584715160019KBRFyPw4vJb2j",
+        "reason": "stop",
+        "messageID": "msg_158470f33001KadaHu9Tx2GEyl",
+        "sessionID": "ses_ea7b94584ffejNtLbskOVKVBz0",
+        "type": "step-finish",
+        "tokens": {
+          "total": 6278,
+          "input": 665,
+          "output": 87,
+          "reasoning": 22,
+          "cache": {
+            "write": 0,
+            "read": 5504
+          }
+        },
+        "cost": 0
+      }
+    }
+  ],
+  "token_usage": null,
+  "cost_usd": null,
+  "errors": [],
+  "submission_sha256": "a2c51ee712281e04de1c7220a6da5580e2b35b46027d2f1b9e18f7449a6bec0a",
+  "ended_at": "2026-10-20T07:46:56.189062+00:00"
+}

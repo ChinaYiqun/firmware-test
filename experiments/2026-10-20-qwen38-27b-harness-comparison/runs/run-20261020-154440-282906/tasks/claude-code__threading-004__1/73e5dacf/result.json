@@ -1,0 +1,106 @@
+{
+  "task_id": "claude-code__threading-004__1",
+  "harness": "claude-code",
+  "case_id": "threading-004",
+  "repeat": 1,
+  "started_at": "2026-10-20T07:56:28.697957+00:00",
+  "artifact_directory": "D:\\firmware-test\\experiments\\2026-10-20-qwen38-27b-harness-comparison\\runs\\run-20261020-154440-282906\\tasks\\claude-code__threading-004__1\\73e5dacf",
+  "status": "scored_fail",
+  "passed": false,
+  "exit_code": 0,
+  "duration_seconds": 16.313,
+  "usage_events": [
+    {
+      "duration_api_ms": 14523,
+      "stop_reason": "end_turn",
+      "session_id": "898f9a47-d382-443e-93f1-69829927156e",
+      "total_cost_usd": 0.090371,
+      "usage": {
+        "input_tokens": 6147,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 3872,
+        "output_tokens": 2308,
+        "output_tokens_details": {
+          "thinking_tokens": 1225
+        },
+        "server_tool_use": {
+          "web_search_requests": 0,
+          "web_fetch_requests": 0
+        },
+        "service_tier": "standard",
+        "cache_creation": {
+          "ephemeral_1h_input_tokens": 0,
+          "ephemeral_5m_input_tokens": 0
+        },
+        "inference_geo": "",
+        "iterations": [],
+        "speed": "standard",
+        "fallback_credit": null
+      },
+      "modelUsage": {
+        "qwen/qwen3.8-27b": {
+          "inputTokens": 6147,
+          "outputTokens": 2308,
+          "cacheReadInputTokens": 3872,
+          "cacheCreationInputTokens": 0,
+          "webSearchRequests": 0,
+          "costUSD": 0.090371,
+          "contextWindow": 200000,
+          "maxOutputTokens": 32000,
+          "thinkingTokens": 1225,
+          "canonicalModel": "qwen/qwen3.8-27b",
+          "provider": "firstParty",
+          "costBasis": "unknown"
+        }
+      },
+      "permission_denials": [],
+      "terminal_reason": "completed",
+      "fast_mode_state": "off",
+      "fast_mode_disabled_reason": "sdk_opt_in_required",
+      "subagent_stats": {
+        "spawned": 0,
+        "requested": {
+          "background": 0,
+          "foreground": 0,
+          "unset": 0
+        },
+        "started_in_background": 0,
+        "max_depth": 0,
+        "spawned_by_subagents": 0,
+        "completed": 0,
+        "failed": 0,
+        "killed": {
+          "parent": 0,
+          "user": 0,
+          "system": 0
+        },
+        "refused": {
+          "depth_limit": 0,
+          "concurrency_limit": 0,
+          "budget": 0
+        },
+        "by_type": {}
+      },
+      "safety_stops": 0,
+      "is_error": false,
+      "num_turns": 2,
+      "subtype": "success",
+      "api_error_status": null,
+      "result": "\n\nWritten to `submission/main.c`. The demo works as follows:\n\n- `low_prio_thread` (prio 10) starts, takes `pi_mutex`, prints \"Low: holding mutex\", sleeps 300 ms, then releases.\n- `med_prio_thread` (prio 7) wakes at 50 ms and loops, printing that it cannot preempt the boosted low-priority holder.\n- `high_prio_thread` (prio 4) wakes at 100 ms and blocks on `k_mutex_lock(&pi_mutex, K_FOREVER)` — this is what boosts the low-priority holder to priority 4 via priority inheritance, so the medium thread (7) cannot preempt it. At 300 ms the low thread releases, high acquires, prints \"High: acquired mutex\", and unlocks.\n- `main()` just idles with `k_sleep(K_FOREVER)` since `K_THREAD_DEFINE` threads start automatically.",
+      "ttft_ms": 8474,
+      "type": "result",
+      "duration_ms": 15063,
+      "uuid": "110ea4de-efa5-4553-b9fa-3ec61f7d811c",
+      "ttft_stream_ms": 1993,
+      "time_to_request_ms": 415,
+      "first_content_frame_ms": 1994,
+      "queued_turn_count": 0,
+      "result_index": 0
+    }
+  ],
+  "token_usage": null,
+  "cost_usd": null,
+  "errors": [],
+  "submission_sha256": "b404bd079bb5093d3175ea693ca6b63e4abbb87297ef89aeba39b4790c27d47b",
+  "ended_at": "2026-10-20T07:58:46.500724+00:00"
+}

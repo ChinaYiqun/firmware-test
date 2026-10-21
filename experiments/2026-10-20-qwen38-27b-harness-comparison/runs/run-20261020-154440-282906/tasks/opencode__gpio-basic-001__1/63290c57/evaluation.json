@@ -1,0 +1,70 @@
+{
+  "passed": false,
+  "healthy": true,
+  "scope": "L0+L3 static only",
+  "layers": [
+    {
+      "layer": 0,
+      "name": "static_analysis",
+      "passed": false,
+      "details": [
+        {
+          "check_name": "gpio_header_included",
+          "passed": true,
+          "expected": "zephyr/drivers/gpio.h included",
+          "actual": "present",
+          "check_type": "exact_match",
+          "weight": 1.0
+        },
+        {
+          "check_name": "kernel_header_included",
+          "passed": true,
+          "expected": "zephyr/kernel.h included",
+          "actual": "present",
+          "check_type": "exact_match",
+          "weight": 1.0
+        },
+        {
+          "check_name": "uses_dt_spec",
+          "passed": false,
+          "expected": "GPIO_DT_SPEC_GET macro used",
+          "actual": "missing",
+          "check_type": "exact_match",
+          "weight": 1.0
+        },
+        {
+          "check_name": "gpio_callback_struct",
+          "passed": true,
+          "expected": "struct gpio_callback defined",
+          "actual": "present",
+          "check_type": "exact_match",
+          "weight": 1.0
+        },
+        {
+          "check_name": "gpio_init_callback_called",
+          "passed": true,
+          "expected": "gpio_init_callback() called",
+          "actual": "present",
+          "check_type": "exact_match",
+          "weight": 1.0
+        },
+        {
+          "check_name": "no_raw_register_access",
+          "passed": true,
+          "expected": "Uses GPIO API, not raw register access",
+          "actual": "API only",
+          "check_type": "constraint",
+          "weight": 1.0
+        }
+      ],
+      "error": null,
+      "duration_seconds": 0.0,
+      "score": 1.0
+    }
+  ],
+  "not_evaluated": [
+    "L1 compile",
+    "L2 runtime",
+    "L4 mutation"
+  ]
+}

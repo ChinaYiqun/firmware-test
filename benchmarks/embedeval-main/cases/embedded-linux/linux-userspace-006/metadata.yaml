@@ -1,0 +1,22 @@
+id: linux-userspace-006
+category: linux-userspace
+difficulty: hard
+title: spidev ioctl SPI_IOC_MESSAGE Transaction
+description: Userspace C program that opens /dev/spidev0.0, configures mode/bpw/speed, and performs a simultaneous 4-byte TX+RX transaction via SPI_IOC_MESSAGE — exercises the kernel UAPI struct + (unsigned long) buffer cast discipline
+tags:
+- spidev
+- ioctl
+- spi
+- uapi
+- userspace
+- kernel-5.15
+platform: docker_only
+sdk: embedded-linux
+estimated_tokens: 600
+sdk_version: '5.15'
+created_date: '2026-04-19'
+tier: challenge
+reasoning_types:
+- rule_application
+- api_recall
+- cross_domain

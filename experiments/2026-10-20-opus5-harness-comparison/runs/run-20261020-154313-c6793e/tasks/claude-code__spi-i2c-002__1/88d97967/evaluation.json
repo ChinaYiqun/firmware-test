@@ -1,0 +1,120 @@
+{
+  "passed": true,
+  "healthy": true,
+  "scope": "L0+L3 static only",
+  "layers": [
+    {
+      "layer": 0,
+      "name": "static_analysis",
+      "passed": true,
+      "details": [
+        {
+          "check_name": "spi_header_included",
+          "passed": true,
+          "expected": "zephyr/drivers/spi.h included",
+          "actual": "present",
+          "check_type": "exact_match",
+          "weight": 1.0
+        },
+        {
+          "check_name": "device_binding",
+          "passed": true,
+          "expected": "DEVICE_DT_GET or device_get_binding used",
+          "actual": "present",
+          "check_type": "exact_match",
+          "weight": 1.0
+        },
+        {
+          "check_name": "spi_transceive_called",
+          "passed": true,
+          "expected": "spi_transceive() called",
+          "actual": "present",
+          "check_type": "exact_match",
+          "weight": 1.0
+        },
+        {
+          "check_name": "spi_buf_set_used",
+          "passed": true,
+          "expected": "struct spi_buf_set defined",
+          "actual": "present",
+          "check_type": "exact_match",
+          "weight": 1.0
+        },
+        {
+          "check_name": "spi_config_used",
+          "passed": true,
+          "expected": "struct spi_config defined",
+          "actual": "present",
+          "check_type": "exact_match",
+          "weight": 1.0
+        }
+      ],
+      "error": null,
+      "duration_seconds": 0.0,
+      "score": 1.0
+    },
+    {
+      "layer": 3,
+      "name": "static_heuristic",
+      "passed": true,
+      "details": [
+        {
+          "check_name": "ready_check_before_spi",
+          "passed": true,
+          "expected": "device_is_ready() before spi_transceive()",
+          "actual": "correct order",
+          "check_type": "constraint",
+          "weight": 1.0
+        },
+        {
+          "check_name": "separate_tx_rx_buffers",
+          "passed": true,
+          "expected": "Separate tx and rx buffers defined",
+          "actual": "tx_buf=True, rx_buf=True",
+          "check_type": "constraint",
+          "weight": 1.0
+        },
+        {
+          "check_name": "spi_error_handling",
+          "passed": true,
+          "expected": "Return value of spi_transceive() checked for errors",
+          "actual": "present",
+          "check_type": "constraint",
+          "weight": 1.0
+        },
+        {
+          "check_name": "loopback_comparison",
+          "passed": true,
+          "expected": "TX and RX buffers compared to verify loopback",
+          "actual": "present",
+          "check_type": "constraint",
+          "weight": 1.0
+        },
+        {
+          "check_name": "spi_frequency_configured",
+          "passed": true,
+          "expected": "SPI frequency set to non-zero value in spi_config",
+          "actual": "present",
+          "check_type": "constraint",
+          "weight": 1.0
+        },
+        {
+          "check_name": "no_cross_platform_apis",
+          "passed": true,
+          "expected": "No FreeRTOS/Arduino/STM32_HAL/POSIX APIs",
+          "actual": "clean",
+          "check_type": "constraint",
+          "weight": 1.0
+        }
+      ],
+      "error": null,
+      "duration_seconds": 0.0,
+      "score": 1.0
+    }
+  ],
+  "not_evaluated": [
+    "L1 compile",
+    "L2 runtime",
+    "L4 mutation"
+  ]
+}

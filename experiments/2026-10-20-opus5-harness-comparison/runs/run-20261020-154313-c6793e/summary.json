@@ -1,0 +1,29 @@
+{
+  "dry_run": false,
+  "scope": "L0+L3 static only",
+  "planned": 20,
+  "completed": 20,
+  "interrupted": false,
+  "harnesses": {
+    "opencode": {
+      "passed": 7,
+      "scored": 10,
+      "planned": 10,
+      "complete": 10,
+      "status_counts": {
+        "scored_fail": 3,
+        "scored_pass": 7
+      }
+    },
+    "claude-code": {
+      "passed": 7,
+      "scored": 10,
+      "planned": 10,
+      "complete": 10,
+      "status_counts": {
+        "scored_fail": 3,
+        "scored_pass": 7
+      }
+    }
+  }
+}

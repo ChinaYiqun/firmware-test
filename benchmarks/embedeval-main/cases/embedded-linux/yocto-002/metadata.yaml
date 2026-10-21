@@ -1,0 +1,21 @@
+id: yocto-002
+category: yocto
+difficulty: easy
+title: Yocto Recipe with CMake Build System
+description: Write a BitBake recipe that uses the cmake class to build a CMake project
+tags:
+- yocto
+- bitbake
+- recipe
+- cmake
+- embedded-linux
+- build-system
+platform: yocto_build
+sdk: embedded-linux
+estimated_tokens: 300
+sdk_version: '5.0'
+created_date: '2026-03-24'
+tier: core
+reasoning_types:
+- rule_application
+- api_recall

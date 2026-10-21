@@ -1,0 +1,106 @@
+{
+  "task_id": "claude-code__timer-002__1",
+  "harness": "claude-code",
+  "case_id": "timer-002",
+  "repeat": 1,
+  "started_at": "2026-10-20T07:46:56.195028+00:00",
+  "artifact_directory": "D:\\firmware-test\\experiments\\2026-10-20-qwen38-27b-harness-comparison\\runs\\run-20261020-154440-282906\\tasks\\claude-code__timer-002__1\\c5de0a40",
+  "status": "scored_pass",
+  "passed": true,
+  "exit_code": 0,
+  "duration_seconds": 28.469,
+  "usage_events": [
+    {
+      "duration_api_ms": 26770,
+      "stop_reason": "end_turn",
+      "session_id": "2f8af082-c2eb-4233-97eb-4a2205bff22f",
+      "total_cost_usd": 0.072728,
+      "usage": {
+        "input_tokens": 3988,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 5376,
+        "output_tokens": 2004,
+        "output_tokens_details": {
+          "thinking_tokens": 1428
+        },
+        "server_tool_use": {
+          "web_search_requests": 0,
+          "web_fetch_requests": 0
+        },
+        "service_tier": "standard",
+        "cache_creation": {
+          "ephemeral_1h_input_tokens": 0,
+          "ephemeral_5m_input_tokens": 0
+        },
+        "inference_geo": "",
+        "iterations": [],
+        "speed": "standard",
+        "fallback_credit": null
+      },
+      "modelUsage": {
+        "qwen/qwen3.8-27b": {
+          "inputTokens": 3988,
+          "outputTokens": 2004,
+          "cacheReadInputTokens": 5376,
+          "cacheCreationInputTokens": 0,
+          "webSearchRequests": 0,
+          "costUSD": 0.072728,
+          "contextWindow": 200000,
+          "maxOutputTokens": 32000,
+          "thinkingTokens": 1428,
+          "canonicalModel": "qwen/qwen3.8-27b",
+          "provider": "firstParty",
+          "costBasis": "unknown"
+        }
+      },
+      "permission_denials": [],
+      "terminal_reason": "completed",
+      "fast_mode_state": "off",
+      "fast_mode_disabled_reason": "sdk_opt_in_required",
+      "subagent_stats": {
+        "spawned": 0,
+        "requested": {
+          "background": 0,
+          "foreground": 0,
+          "unset": 0
+        },
+        "started_in_background": 0,
+        "max_depth": 0,
+        "spawned_by_subagents": 0,
+        "completed": 0,
+        "failed": 0,
+        "killed": {
+          "parent": 0,
+          "user": 0,
+          "system": 0
+        },
+        "refused": {
+          "depth_limit": 0,
+          "concurrency_limit": 0,
+          "budget": 0
+        },
+        "by_type": {}
+      },
+      "safety_stops": 0,
+      "is_error": false,
+      "num_turns": 2,
+      "subtype": "success",
+      "api_error_status": null,
+      "result": "\n\nWrote the complete Zephyr application to `submission/main.c`:\n\n- **Work item** — `static struct k_work my_work`, initialized in `main()` with `k_work_init(&my_work, worker_fn)`\n- **Worker function** — `worker_fn()` prints `\"Work executed\\n\"` via `printk`\n- **Timer** — `K_TIMER_DEFINE(my_timer, timer_expiry_fn, NULL)`; the expiry function `timer_expiry_fn()` calls `k_work_submit(&my_work)` to queue the work on the system work queue\n- **main()** — starts the timer once for `K_MSEC(1000)` with `K_NO_WAIT` period (one-shot, no repeat), sleeps `K_MSEC(3000)`, prints `\"Done\"`, and returns",
+      "ttft_ms": 20002,
+      "type": "result",
+      "duration_ms": 27263,
+      "uuid": "71723f01-0fe1-4108-a873-2828edf4cd63",
+      "ttft_stream_ms": 1958,
+      "time_to_request_ms": 317,
+      "first_content_frame_ms": 1960,
+      "queued_turn_count": 0,
+      "result_index": 0
+    }
+  ],
+  "token_usage": null,
+  "cost_usd": null,
+  "errors": [],
+  "submission_sha256": "4721d9f3569e05b9ae7275e882339be406a647de9b1682c1921384e9015a040d",
+  "ended_at": "2026-10-20T07:56:28.695951+00:00"
+}

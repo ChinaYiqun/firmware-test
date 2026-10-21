@@ -1,0 +1,295 @@
+{
+  "task_id": "opencode__threading-001__1",
+  "harness": "opencode",
+  "case_id": "threading-001",
+  "repeat": 1,
+  "started_at": "2026-10-20T08:07:56.870177+00:00",
+  "artifact_directory": "D:\\firmware-test\\experiments\\2026-10-20-qwen38-27b-harness-comparison\\runs\\run-20261020-154440-282906\\tasks\\opencode__threading-001__1\\747b524d",
+  "status": "scored_fail",
+  "passed": false,
+  "exit_code": 0,
+  "duration_seconds": 62.953,
+  "usage_events": [
+    {
+      "type": "step_finish",
+      "timestamp": 1792483709312,
+      "sessionID": "ses_ea7a55869ffemH7sEOmeNKW0sk",
+      "part": {
+        "id": "prt_1585ad150001xoxQBiiQB2xR7l",
+        "reason": "tool-calls",
+        "messageID": "msg_1585aaa5f001iMtS5q35QGFdND",
+        "sessionID": "ses_ea7a55869ffemH7sEOmeNKW0sk",
+        "type": "step-finish",
+        "tokens": {
+          "total": 5055,
+          "input": 4161,
+          "output": 138,
+          "reasoning": 692,
+          "cache": {
+            "write": 0,
+            "read": 64
+          }
+        },
+        "cost": 0
+      }
+    },
+    {
+      "type": "step_finish",
+      "timestamp": 1792483711008,
+      "sessionID": "ses_ea7a55869ffemH7sEOmeNKW0sk",
+      "part": {
+        "id": "prt_1585ad7e4001IgfYJOWpd0VmqS",
+        "reason": "tool-calls",
+        "messageID": "msg_1585ad169001JrL1UOIvgXGE1s",
+        "sessionID": "ses_ea7a55869ffemH7sEOmeNKW0sk",
+        "type": "step-finish",
+        "tokens": {
+          "total": 4586,
+          "input": 239,
+          "output": 109,
+          "reasoning": 14,
+          "cache": {
+            "write": 0,
+            "read": 4224
+          }
+        },
+        "cost": 0
+      }
+    },
+    {
+      "type": "step_finish",
+      "timestamp": 1792483713184,
+      "sessionID": "ses_ea7a55869ffemH7sEOmeNKW0sk",
+      "part": {
+        "id": "prt_1585ae06c001Vbc5WzKXQe7ajy",
+        "reason": "tool-calls",
+        "messageID": "msg_1585ad7fd001vAkxPUWRLkh8K8",
+        "sessionID": "ses_ea7a55869ffemH7sEOmeNKW0sk",
+        "type": "step-finish",
+        "tokens": {
+          "total": 5032,
+          "input": 492,
+          "output": 108,
+          "reasoning": 16,
+          "cache": {
+            "write": 0,
+            "read": 4416
+          }
+        },
+        "cost": 0
+      }
+    },
+    {
+      "type": "step_finish",
+      "timestamp": 1792483719424,
+      "sessionID": "ses_ea7a55869ffemH7sEOmeNKW0sk",
+      "part": {
+        "id": "prt_1585af8e0001Q90XDsptj1Grpv",
+        "reason": "tool-calls",
+        "messageID": "msg_1585ae081001c61L4XNFcmQtpD",
+        "sessionID": "ses_ea7a55869ffemH7sEOmeNKW0sk",
+        "type": "step-finish",
+        "tokens": {
+          "total": 5921,
+          "input": 280,
+          "output": 569,
+          "reasoning": 208,
+          "cache": {
+            "write": 0,
+            "read": 4864
+          }
+        },
+        "cost": 0
+      }
+    },
+    {
+      "type": "step_finish",
+      "timestamp": 1792483723466,
+      "sessionID": "ses_ea7a55869ffemH7sEOmeNKW0sk",
+      "part": {
+        "id": "prt_1585b08a7001KVEUks4Ri0111N",
+        "reason": "tool-calls",
+        "messageID": "msg_1585af8f0001nydtW2BY5FDGet",
+        "sessionID": "ses_ea7a55869ffemH7sEOmeNKW0sk",
+        "type": "step-finish",
+        "tokens": {
+          "total": 6160,
+          "input": 607,
+          "output": 323,
+          "reasoning": 110,
+          "cache": {
+            "write": 0,
+            "read": 5120
+          }
+        },
+        "cost": 0
+      }
+    },
+    {
+      "type": "step_finish",
+      "timestamp": 1792483727941,
+      "sessionID": "ses_ea7a55869ffemH7sEOmeNKW0sk",
+      "part": {
+        "id": "prt_1585b1a21001iC713Dp2Ib8PNb",
+        "reason": "tool-calls",
+        "messageID": "msg_1585b08ba001QjbnLgvMUnkTsK",
+        "sessionID": "ses_ea7a55869ffemH7sEOmeNKW0sk",
+        "type": "step-finish",
+        "tokens": {
+          "total": 6744,
+          "input": 368,
+          "output": 474,
+          "reasoning": 206,
+          "cache": {
+            "write": 0,
+            "read": 5696
+          }
+        },
+        "cost": 0
+      }
+    },
+    {
+      "type": "step_finish",
+      "timestamp": 1792483730637,
+      "sessionID": "ses_ea7a55869ffemH7sEOmeNKW0sk",
+      "part": {
+        "id": "prt_1585b24a6001y3t4KMX2PEGEtf",
+        "reason": "tool-calls",
+        "messageID": "msg_1585b1a36001R44MS9EbPCrmOO",
+        "sessionID": "ses_ea7a55869ffemH7sEOmeNKW0sk",
+        "type": "step-finish",
+        "tokens": {
+          "total": 6657,
+          "input": 511,
+          "output": 114,
+          "reasoning": 16,
+          "cache": {
+            "write": 0,
+            "read": 6016
+          }
+        },
+        "cost": 0
+      }
+    },
+    {
+      "type": "step_finish",
+      "timestamp": 1792483743758,
+      "sessionID": "ses_ea7a55869ffemH7sEOmeNKW0sk",
+      "part": {
+        "id": "prt_1585b57e3001ta5xsqUZeWkUHl",
+        "reason": "tool-calls",
+        "messageID": "msg_1585b24bc001rK1KQfGHMsQRy0",
+        "sessionID": "ses_ea7a55869ffemH7sEOmeNKW0sk",
+        "type": "step-finish",
+        "tokens": {
+          "total": 8389,
+          "input": 947,
+          "output": 188,
+          "reasoning": 790,
+          "cache": {
+            "write": 0,
+            "read": 6464
+          }
+        },
+        "cost": 0
+      }
+    },
+    {
+      "type": "step_finish",
+      "timestamp": 1792483749698,
+      "sessionID": "ses_ea7a55869ffemH7sEOmeNKW0sk",
+      "part": {
+        "id": "prt_1585b6f21001hUSKkr3Y57Fkjl",
+        "reason": "tool-calls",
+        "messageID": "msg_1585b57ff001NOrrL91nyYYbIH",
+        "sessionID": "ses_ea7a55869ffemH7sEOmeNKW0sk",
+        "type": "step-finish",
+        "tokens": {
+          "total": 8341,
+          "input": 294,
+          "output": 494,
+          "reasoning": 193,
+          "cache": {
+            "write": 0,
+            "read": 7360
+          }
+        },
+        "cost": 0
+      }
+    },
+    {
+      "type": "step_finish",
+      "timestamp": 1792483753502,
+      "sessionID": "ses_ea7a55869ffemH7sEOmeNKW0sk",
+      "part": {
+        "id": "prt_1585b7dfe001ALGlmYDlWGEyFg",
+        "reason": "tool-calls",
+        "messageID": "msg_1585b6f36001U4URubA1mjkFNX",
+        "sessionID": "ses_ea7a55869ffemH7sEOmeNKW0sk",
+        "type": "step-finish",
+        "tokens": {
+          "total": 8584,
+          "input": 587,
+          "output": 197,
+          "reasoning": 184,
+          "cache": {
+            "write": 0,
+            "read": 7616
+          }
+        },
+        "cost": 0
+      }
+    },
+    {
+      "type": "step_finish",
+      "timestamp": 1792483755218,
+      "sessionID": "ses_ea7a55869ffemH7sEOmeNKW0sk",
+      "part": {
+        "id": "prt_1585b84b3001L4z2ahrDjPaS3i",
+        "reason": "tool-calls",
+        "messageID": "msg_1585b7e14001aT8mEzTGKCJUCW",
+        "sessionID": "ses_ea7a55869ffemH7sEOmeNKW0sk",
+        "type": "step-finish",
+        "tokens": {
+          "total": 8516,
+          "input": 195,
+          "output": 110,
+          "reasoning": 19,
+          "cache": {
+            "write": 0,
+            "read": 8192
+          }
+        },
+        "cost": 0
+      }
+    },
+    {
+      "type": "step_finish",
+      "timestamp": 1792483759521,
+      "sessionID": "ses_ea7a55869ffemH7sEOmeNKW0sk",
+      "part": {
+        "id": "prt_1585b958c001E1heSaHjHSkpXd",
+        "reason": "stop",
+        "messageID": "msg_1585b84c700106Io2VRd5ktW3O",
+        "sessionID": "ses_ea7a55869ffemH7sEOmeNKW0sk",
+        "type": "step-finish",
+        "tokens": {
+          "total": 9673,
+          "input": 871,
+          "output": 73,
+          "reasoning": 345,
+          "cache": {
+            "write": 0,
+            "read": 8384
+          }
+        },
+        "cost": 0
+      }
+    }
+  ],
+  "token_usage": null,
+  "cost_usd": null,
+  "errors": [],
+  "submission_sha256": "4c1acdd239b719d440f1c979f72de5dbb998f065fbc09c7d9e665e17d8fe01e7",
+  "ended_at": "2026-10-20T08:09:19.839584+00:00"
+}

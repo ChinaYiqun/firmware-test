@@ -1,0 +1,23 @@
+id: linux-driver-015
+category: linux-driver
+difficulty: medium
+title: Regmap Abstraction for MMIO Register Access
+description: Platform driver that uses devm_regmap_init_mmio with a regmap_config to access registers, avoiding raw readl/writel — exercises the regmap adoption idiom
+tags:
+- linux
+- kernel
+- driver
+- platform-driver
+- regmap
+- mmio
+- abstraction
+platform: docker_only
+sdk: embedded-linux
+estimated_tokens: 620
+sdk_version: '5.15'
+created_date: '2026-04-19'
+tier: core
+reasoning_types:
+- rule_application
+- api_recall
+- cross_domain

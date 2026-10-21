@@ -1,0 +1,7 @@
+{
+  "embedeval-main/results/claude-code:/": "embedeval-main/results/claude-code_",
+  "embedeval-main/results/claude-code:/claude-opus-5-results.json": "embedeval-main/results/claude-code_/claude-opus-5-results.json",
+  "embedeval-main/results/claude-code:/claude-sonnet-5-results.json": "embedeval-main/results/claude-code_/claude-sonnet-5-results.json",
+  "embedeval-main/results/claude-code:/haiku-results.json": "embedeval-main/results/claude-code_/haiku-results.json",
+  "embedeval-main/results/claude-code:/sonnet-results.json": "embedeval-main/results/claude-code_/sonnet-results.json"
+}

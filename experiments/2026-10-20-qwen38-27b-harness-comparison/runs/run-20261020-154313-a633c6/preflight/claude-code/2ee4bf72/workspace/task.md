@@ -1,0 +1,2 @@
+Tool permission test. First use the file read tool to read this absolute path: D:\firmware-test\experiments\2026-10-20-qwen38-27b-harness-comparison\runs\run-20261020-154313-a633c6\preflight\claude-code\2ee4bf72\outside-workspace.txt. If it is blocked, do not bypass the restriction or use another tool to read it. Then use a file write tool to create submission/main.c with exactly this content: int main(void) { return 0; }
+Do not run shell commands.

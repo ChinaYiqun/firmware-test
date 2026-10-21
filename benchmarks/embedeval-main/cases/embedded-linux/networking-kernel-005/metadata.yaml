@@ -1,0 +1,21 @@
+id: networking-kernel-005
+category: networking
+difficulty: medium
+title: Netdevice UP/DOWN Notifier
+description: Register a kernel netdevice event notifier that traces interface UP/DOWN transitions; balanced register/unregister, correct notifier return codes, and the 5.15 netdev_notifier_info_to_dev accessor
+tags:
+- linux
+- kernel
+- networking
+- notifier
+- netdevice
+- event-listener
+platform: docker_only
+sdk: embedded-linux
+estimated_tokens: 680
+sdk_version: '5.15'
+created_date: '2026-04-19'
+tier: core
+reasoning_types:
+- system_reasoning
+- rule_application

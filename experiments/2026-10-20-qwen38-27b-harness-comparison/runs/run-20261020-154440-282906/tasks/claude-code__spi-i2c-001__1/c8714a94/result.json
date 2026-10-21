@@ -1,0 +1,106 @@
+{
+  "task_id": "claude-code__spi-i2c-001__1",
+  "harness": "claude-code",
+  "case_id": "spi-i2c-001",
+  "repeat": 1,
+  "started_at": "2026-10-20T08:09:33.770627+00:00",
+  "artifact_directory": "D:\\firmware-test\\experiments\\2026-10-20-qwen38-27b-harness-comparison\\runs\\run-20261020-154440-282906\\tasks\\claude-code__spi-i2c-001__1\\c8714a94",
+  "status": "scored_pass",
+  "passed": true,
+  "exit_code": 0,
+  "duration_seconds": 49.016,
+  "usage_events": [
+    {
+      "duration_api_ms": 46212,
+      "stop_reason": "end_turn",
+      "session_id": "c196838d-4abf-4037-9ba2-cbc486ae69ba",
+      "total_cost_usd": 0.12489100000000002,
+      "usage": {
+        "input_tokens": 4392,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 3712,
+        "output_tokens": 4043,
+        "output_tokens_details": {
+          "thinking_tokens": 3259
+        },
+        "server_tool_use": {
+          "web_search_requests": 0,
+          "web_fetch_requests": 0
+        },
+        "service_tier": "standard",
+        "cache_creation": {
+          "ephemeral_1h_input_tokens": 0,
+          "ephemeral_5m_input_tokens": 0
+        },
+        "inference_geo": "",
+        "iterations": [],
+        "speed": "standard",
+        "fallback_credit": null
+      },
+      "modelUsage": {
+        "qwen/qwen3.8-27b": {
+          "inputTokens": 4392,
+          "outputTokens": 4043,
+          "cacheReadInputTokens": 3712,
+          "cacheCreationInputTokens": 0,
+          "webSearchRequests": 0,
+          "costUSD": 0.12489100000000002,
+          "contextWindow": 200000,
+          "maxOutputTokens": 32000,
+          "thinkingTokens": 3259,
+          "canonicalModel": "qwen/qwen3.8-27b",
+          "provider": "firstParty",
+          "costBasis": "unknown"
+        }
+      },
+      "permission_denials": [],
+      "terminal_reason": "completed",
+      "fast_mode_state": "off",
+      "fast_mode_disabled_reason": "sdk_opt_in_required",
+      "subagent_stats": {
+        "spawned": 0,
+        "requested": {
+          "background": 0,
+          "foreground": 0,
+          "unset": 0
+        },
+        "started_in_background": 0,
+        "max_depth": 0,
+        "spawned_by_subagents": 0,
+        "completed": 0,
+        "failed": 0,
+        "killed": {
+          "parent": 0,
+          "user": 0,
+          "system": 0
+        },
+        "refused": {
+          "depth_limit": 0,
+          "concurrency_limit": 0,
+          "budget": 0
+        },
+        "by_type": {}
+      },
+      "safety_stops": 0,
+      "is_error": false,
+      "num_turns": 2,
+      "subtype": "success",
+      "api_error_status": null,
+      "result": "\n\nDone. The complete C source has been written to `submission/main.c`.\n\nSummary of how it meets each requirement:\n\n1. **I2C bus from devicetree** — `DEVICE_DT_GET(DT_NODELABEL(i2c0))`\n2. **Ready check** — `device_is_ready(i2c_dev)`, returning `-ENODEV` if not ready\n3. **Sensor address** — `#define SENSOR_I2C_ADDRESS 0x68` (7-bit)\n4. **Register address** — `#define WHO_AM_I_REG 0x75`\n5. **Byte read** — `i2c_reg_read_byte(i2c_dev, SENSOR_I2C_ADDRESS, WHO_AM_I_REG, &who_am_i)`\n6. **Error check** — `err != 0` is tested after the call\n7. **Success print** — `printk(\"WHO_AM_I register value: 0x%02x\\n\", who_am_i)`\n8. **Failure print** — `printk(\"Failed to read WHO_AM_I register: %d\\n\", err)`\n9. **Return codes** — `return 0` on success, `return err` (negative error code) on failure\n\nHeaders included: `<zephyr/kernel.h>`, `<zephyr/device.h>`, `<zephyr/drivers/i2c.h>`.",
+      "ttft_ms": 39535,
+      "type": "result",
+      "duration_ms": 47018,
+      "uuid": "cfbd4dc9-2089-4d23-bc25-067e1147bd12",
+      "ttft_stream_ms": 1999,
+      "time_to_request_ms": 603,
+      "first_content_frame_ms": 2000,
+      "queued_turn_count": 0,
+      "result_index": 0
+    }
+  ],
+  "token_usage": null,
+  "cost_usd": null,
+  "errors": [],
+  "submission_sha256": "585828f02083127103ae26fd69c19c4e515a54ac7eaa60e73d1ad7edc9e22b15",
+  "ended_at": "2026-10-20T08:10:22.831513+00:00"
+}

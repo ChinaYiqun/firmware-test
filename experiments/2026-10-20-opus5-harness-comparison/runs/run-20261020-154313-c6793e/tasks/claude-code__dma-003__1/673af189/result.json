@@ -1,0 +1,106 @@
+{
+  "task_id": "claude-code__dma-003__1",
+  "harness": "claude-code",
+  "case_id": "dma-003",
+  "repeat": 1,
+  "started_at": "2026-10-20T07:51:38.997920+00:00",
+  "artifact_directory": "D:\\firmware-test\\experiments\\2026-10-20-opus5-harness-comparison\\runs\\run-20261020-154313-c6793e\\tasks\\claude-code__dma-003__1\\673af189",
+  "status": "scored_fail",
+  "passed": false,
+  "exit_code": 0,
+  "duration_seconds": 51.11,
+  "usage_events": [
+    {
+      "duration_api_ms": 50114,
+      "stop_reason": "end_turn",
+      "session_id": "34d91a63-aa0c-4dd6-a90e-419ed6b06e0f",
+      "total_cost_usd": 0.4714,
+      "usage": {
+        "input_tokens": 26945,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0,
+        "output_tokens": 13467,
+        "output_tokens_details": {
+          "thinking_tokens": 0
+        },
+        "server_tool_use": {
+          "web_search_requests": 0,
+          "web_fetch_requests": 0
+        },
+        "service_tier": "standard",
+        "cache_creation": {
+          "ephemeral_1h_input_tokens": 0,
+          "ephemeral_5m_input_tokens": 0
+        },
+        "inference_geo": "",
+        "iterations": [],
+        "speed": "standard",
+        "fallback_credit": null
+      },
+      "modelUsage": {
+        "claude-opus-5": {
+          "inputTokens": 26945,
+          "outputTokens": 13467,
+          "cacheReadInputTokens": 0,
+          "cacheCreationInputTokens": 0,
+          "webSearchRequests": 0,
+          "costUSD": 0.4714,
+          "contextWindow": 1000000,
+          "maxOutputTokens": 64000,
+          "thinkingTokens": 0,
+          "canonicalModel": "claude-opus-5",
+          "provider": "firstParty",
+          "costBasis": "list"
+        }
+      },
+      "permission_denials": [],
+      "terminal_reason": "completed",
+      "fast_mode_state": "off",
+      "fast_mode_disabled_reason": "sdk_opt_in_required",
+      "subagent_stats": {
+        "spawned": 0,
+        "requested": {
+          "background": 0,
+          "foreground": 0,
+          "unset": 0
+        },
+        "started_in_background": 0,
+        "max_depth": 0,
+        "spawned_by_subagents": 0,
+        "completed": 0,
+        "failed": 0,
+        "killed": {
+          "parent": 0,
+          "user": 0,
+          "system": 0
+        },
+        "refused": {
+          "depth_limit": 0,
+          "concurrency_limit": 0,
+          "budget": 0
+        },
+        "by_type": {}
+      },
+      "safety_stops": 0,
+      "is_error": false,
+      "num_turns": 3,
+      "subtype": "success",
+      "api_error_status": null,
+      "result": "I've completed the Zephyr RTOS DMA application with ping-pong buffering and written it to `submission/main.c`.\n\nThe application implements:\n\n1. **DMA device acquisition** - Gets `dma0` from devicetree and checks readiness\n2. **Ping-pong buffers** - Two 32-byte buffers (`buf_a` and `buf_b`) that alternate\n3. **Active buffer tracking** - `active_buf` variable tracks which buffer (0 or 1) is currently being filled\n4. **Circular/continuous mode** - The DMA callback automatically reloads the next buffer and restarts the transfer via `dma_reload()` and `dma_start()`\n5. **Thread synchronization** - Semaphore signals the main thread after each transfer completion\n6. **Processing loop** - Main thread waits for 4 transfers, processes each completed buffer, then stops the DMA\n7. **Transfer counting** - Prints total completed transfers at the end\n\nThe callback-driven reload mechanism ensures continuous data capture without gaps - while the main thread processes one buffer, the DMA is already filling the other.",
+      "ttft_ms": 12951,
+      "type": "result",
+      "duration_ms": 50403,
+      "uuid": "b8fbeccb-21d3-4866-b7d7-ad5447f95705",
+      "ttft_stream_ms": 7981,
+      "time_to_request_ms": 152,
+      "first_content_frame_ms": 7983,
+      "queued_turn_count": 0,
+      "result_index": 0
+    }
+  ],
+  "token_usage": null,
+  "cost_usd": null,
+  "errors": [],
+  "submission_sha256": "d8a8a655a229ae61ee630e10f08a2ee7784897649c6a8851acf59bfdec67c28d",
+  "ended_at": "2026-10-20T07:52:30.126649+00:00"
+}

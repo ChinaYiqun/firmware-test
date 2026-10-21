@@ -1,0 +1,949 @@
+[
+  {
+    "type": "step_start",
+    "timestamp": 1792483116042,
+    "sessionID": "ses_ea7ae49edffeqHl0eGUfeYjbPJ",
+    "part": {
+      "id": "prt_15851c3b5001sKa4gQVde5Q6pn",
+      "messageID": "msg_15851b925001ojFphTTpxLtk5G",
+      "sessionID": "ses_ea7ae49edffeqHl0eGUfeYjbPJ",
+      "type": "step-start"
+    }
+  },
+  {
+    "type": "text",
+    "timestamp": 1792483116284,
+    "sessionID": "ses_ea7ae49edffeqHl0eGUfeYjbPJ",
+    "part": {
+      "id": "prt_15851c4db001uCj4Xn7YFMG2zc",
+      "messageID": "msg_15851b925001ojFphTTpxLtk5G",
+      "sessionID": "ses_ea7ae49edffeqHl0eGUfeYjbPJ",
+      "type": "text",
+      "text": "\n\nI'll start by exploring the workspace structure to understand what's already there.\n\n",
+      "time": {
+        "start": 1792483116252,
+        "end": 1792483116260
+      }
+    }
+  },
+  {
+    "type": "tool_use",
+    "timestamp": 1792483118372,
+    "sessionID": "ses_ea7ae49edffeqHl0eGUfeYjbPJ",
+    "part": {
+      "type": "tool",
+      "tool": "read",
+      "callID": "chatcmpl-tool-a1c88076357db238",
+      "state": {
+        "status": "completed",
+        "input": {
+          "filePath": "D:\\firmware-test\\experiments\\2026-10-20-qwen38-27b-harness-comparison\\runs\\run-20261020-154440-282906\\tasks\\opencode__isr-concurrency-001__1\\a10eac8c\\workspace"
+        },
+        "output": "<path>D:\\firmware-test\\experiments\\2026-10-20-qwen38-27b-harness-comparison\\runs\\run-20261020-154440-282906\\tasks\\opencode__isr-concurrency-001__1\\a10eac8c\\workspace</path>\n<type>directory</type>\n<entries>\nsubmission/\ntask.md\n\n(2 entries)\n</entries>",
+        "metadata": {
+          "preview": "submission/\ntask.md",
+          "truncated": false,
+          "loaded": [],
+          "display": {
+            "type": "directory",
+            "path": "D:\\firmware-test\\experiments\\2026-10-20-qwen38-27b-harness-comparison\\runs\\run-20261020-154440-282906\\tasks\\opencode__isr-concurrency-001__1\\a10eac8c\\workspace",
+            "entries": [
+              "submission/",
+              "task.md"
+            ],
+            "offset": 1,
+            "totalEntries": 2,
+            "truncated": false
+          }
+        },
+        "title": "firmware-test\\experiments\\2026-10-20-qwen38-27b-harness-comparison\\runs\\run-20261020-154440-282906\\tasks\\opencode__isr-concurrency-001__1\\a10eac8c\\workspace",
+        "time": {
+          "start": 1792483118202,
+          "end": 1792483118313
+        }
+      },
+      "metadata": {
+        "anthropic": {
+          "caller": {
+            "type": "direct"
+          }
+        }
+      },
+      "id": "prt_15851c4ee001308lKiVL7JK2B0",
+      "sessionID": "ses_ea7ae49edffeqHl0eGUfeYjbPJ",
+      "messageID": "msg_15851b925001ojFphTTpxLtk5G"
+    }
+  },
+  {
+    "type": "step_finish",
+    "timestamp": 1792483118372,
+    "sessionID": "ses_ea7ae49edffeqHl0eGUfeYjbPJ",
+    "part": {
+      "id": "prt_15851ccf60014URHU9V7zKEwcS",
+      "reason": "tool-calls",
+      "messageID": "msg_15851b925001ojFphTTpxLtk5G",
+      "sessionID": "ses_ea7ae49edffeqHl0eGUfeYjbPJ",
+      "type": "step-finish",
+      "tokens": {
+        "total": 4315,
+        "input": 4139,
+        "output": 125,
+        "reasoning": 51,
+        "cache": {
+          "write": 0,
+          "read": 0
+        }
+      },
+      "cost": 0
+    }
+  },
+  {
+    "type": "step_start",
+    "timestamp": 1792483120057,
+    "sessionID": "ses_ea7ae49edffeqHl0eGUfeYjbPJ",
+    "part": {
+      "id": "prt_15851d3a9001pXtrd2eAMNAcQK",
+      "messageID": "msg_15851cd13001iYWB2wPYaspPMZ",
+      "sessionID": "ses_ea7ae49edffeqHl0eGUfeYjbPJ",
+      "type": "step-start"
+    }
+  },
+  {
+    "type": "tool_use",
+    "timestamp": 1792483121045,
+    "sessionID": "ses_ea7ae49edffeqHl0eGUfeYjbPJ",
+    "part": {
+      "type": "tool",
+      "tool": "read",
+      "callID": "chatcmpl-tool-b2a02e4be06f6488",
+      "state": {
+        "status": "completed",
+        "input": {
+          "filePath": "D:\\firmware-test\\experiments\\2026-10-20-qwen38-27b-harness-comparison\\runs\\run-20261020-154440-282906\\tasks\\opencode__isr-concurrency-001__1\\a10eac8c\\workspace\\task.md"
+        },
+        "output": "<path>D:\\firmware-test\\experiments\\2026-10-20-qwen38-27b-harness-comparison\\runs\\run-20261020-154440-282906\\tasks\\opencode__isr-concurrency-001__1\\a10eac8c\\workspace\\task.md</path>\n<type>file</type>\n<content>\n1: Implement an ISR-safe ring buffer in C for Zephyr RTOS. The ring buffer must:\n2: 1. Allow ISR context to produce (write) data\n3: 2. Allow thread context to consume (read) data\n4: 3. Be lock-free (no mutexes -- use atomic operations)\n5: 4. Handle buffer full and empty conditions\n6: 5. Maintain FIFO ordering\n7: \n8: Provide the complete implementation with header and source.\n9: \n10: \n11: Submission instruction: write the complete C source to submission/main.c using file tools instead of returning it in chat. Do not access paths outside this task workspace.\n\n(End of file - total 11 lines)\n</content>",
+        "metadata": {
+          "preview": "Implement an ISR-safe ring buffer in C for Zephyr RTOS. The ring buffer must:\n1. Allow ISR context to produce (write) data\n2. Allow thread context to consume (read) data\n3. Be lock-free (no mutexes -- use atomic operations)\n4. Handle buffer full and empty conditions\n5. Maintain FIFO ordering\n\nProvide the complete implementation with header and source.\n\n\nSubmission instruction: write the complete C source to submission/main.c using file tools instead of returning it in chat. Do not access paths outside this task workspace.",
+          "truncated": false,
+          "loaded": [],
+          "display": {
+            "type": "file",
+            "path": "D:\\firmware-test\\experiments\\2026-10-20-qwen38-27b-harness-comparison\\runs\\run-20261020-154440-282906\\tasks\\opencode__isr-concurrency-001__1\\a10eac8c\\workspace\\task.md",
+            "text": "Implement an ISR-safe ring buffer in C for Zephyr RTOS. The ring buffer must:\n1. Allow ISR context to produce (write) data\n2. Allow thread context to consume (read) data\n3. Be lock-free (no mutexes -- use atomic operations)\n4. Handle buffer full and empty conditions\n5. Maintain FIFO ordering\n\nProvide the complete implementation with header and source.\n\n\nSubmission instruction: write the complete C source to submission/main.c using file tools instead of returning it in chat. Do not access paths outside this task workspace.",
+            "lineStart": 1,
+            "lineEnd": 11,
+            "totalLines": 11,
+            "truncated": false
+          }
+        },
+        "title": "firmware-test\\experiments\\2026-10-20-qwen38-27b-harness-comparison\\runs\\run-20261020-154440-282906\\tasks\\opencode__isr-concurrency-001__1\\a10eac8c\\workspace\\task.md",
+        "time": {
+          "start": 1792483120792,
+          "end": 1792483121029
+        }
+      },
+      "metadata": {
+        "anthropic": {
+          "caller": {
+            "type": "direct"
+          }
+        }
+      },
+      "id": "prt_15851d43d001hRDKR6ZMh7AlnC",
+      "sessionID": "ses_ea7ae49edffeqHl0eGUfeYjbPJ",
+      "messageID": "msg_15851cd13001iYWB2wPYaspPMZ"
+    }
+  },
+  {
+    "type": "tool_use",
+    "timestamp": 1792483121158,
+    "sessionID": "ses_ea7ae49edffeqHl0eGUfeYjbPJ",
+    "part": {
+      "type": "tool",
+      "tool": "read",
+      "callID": "chatcmpl-tool-b12de7a21fda8174",
+      "state": {
+        "status": "completed",
+        "input": {
+          "filePath": "D:\\firmware-test\\experiments\\2026-10-20-qwen38-27b-harness-comparison\\runs\\run-20261020-154440-282906\\tasks\\opencode__isr-concurrency-001__1\\a10eac8c\\workspace\\submission"
+        },
+        "output": "<path>D:\\firmware-test\\experiments\\2026-10-20-qwen38-27b-harness-comparison\\runs\\run-20261020-154440-282906\\tasks\\opencode__isr-concurrency-001__1\\a10eac8c\\workspace\\submission</path>\n<type>directory</type>\n<entries>\n\n\n(0 entries)\n</entries>",
+        "metadata": {
+          "preview": "",
+          "truncated": false,
+          "loaded": [],
+          "display": {
+            "type": "directory",
+            "path": "D:\\firmware-test\\experiments\\2026-10-20-qwen38-27b-harness-comparison\\runs\\run-20261020-154440-282906\\tasks\\opencode__isr-concurrency-001__1\\a10eac8c\\workspace\\submission",
+            "entries": [],
+            "offset": 1,
+            "totalEntries": 0,
+            "truncated": false
+          }
+        },
+        "title": "firmware-test\\experiments\\2026-10-20-qwen38-27b-harness-comparison\\runs\\run-20261020-154440-282906\\tasks\\opencode__isr-concurrency-001__1\\a10eac8c\\workspace\\submission",
+        "time": {
+          "start": 1792483121087,
+          "end": 1792483121120
+        }
+      },
+      "metadata": {
+        "anthropic": {
+          "caller": {
+            "type": "direct"
+          }
+        }
+      },
+      "id": "prt_15851d69e001H41WzuH95BvM3j",
+      "sessionID": "ses_ea7ae49edffeqHl0eGUfeYjbPJ",
+      "messageID": "msg_15851cd13001iYWB2wPYaspPMZ"
+    }
+  },
+  {
+    "type": "step_finish",
+    "timestamp": 1792483121159,
+    "sessionID": "ses_ea7ae49edffeqHl0eGUfeYjbPJ",
+    "part": {
+      "id": "prt_15851d7e7001IgdazCTVJZETu1",
+      "reason": "tool-calls",
+      "messageID": "msg_15851cd13001iYWB2wPYaspPMZ",
+      "sessionID": "ses_ea7ae49edffeqHl0eGUfeYjbPJ",
+      "type": "step-finish",
+      "tokens": {
+        "total": 4628,
+        "input": 281,
+        "output": 221,
+        "reasoning": 14,
+        "cache": {
+          "write": 0,
+          "read": 4112
+        }
+      },
+      "cost": 0
+    }
+  },
+  {
+    "type": "step_start",
+    "timestamp": 1792483124500,
+    "sessionID": "ses_ea7ae49edffeqHl0eGUfeYjbPJ",
+    "part": {
+      "id": "prt_15851e5060016ryZpl1W2nK370",
+      "messageID": "msg_15851d7fc001l19GftCUZrApkY",
+      "sessionID": "ses_ea7ae49edffeqHl0eGUfeYjbPJ",
+      "type": "step-start"
+    }
+  },
+  {
+    "type": "text",
+    "timestamp": 1792483345692,
+    "sessionID": "ses_ea7ae49edffeqHl0eGUfeYjbPJ",
+    "part": {
+      "id": "prt_158553c33001Fe7dHoW6zfk5E4",
+      "messageID": "msg_15851d7fc001l19GftCUZrApkY",
+      "sessionID": "ses_ea7ae49edffeqHl0eGUfeYjbPJ",
+      "type": "text",
+      "text": "\n\nThe workspace contains just the task and an empty `submission/` directory. I'll write a complete, self-contained implementation to `submission/main.c` — an SPSC lock-free ring buffer (producer-owned `head`, consumer-owned `tail`, synced via Zephyr atomics) with the \"header\" (API) and \"source\" (implementation) inlined, plus a `main()` demo where a `k_timer` expiry (ISR context) produces and a Zephyr thread consumes.\n\n",
+      "time": {
+        "start": 1792483343411,
+        "end": 1792483345682
+      }
+    }
+  },
+  {
+    "type": "tool_use",
+    "timestamp": 1792483381515,
+    "sessionID": "ses_ea7ae49edffeqHl0eGUfeYjbPJ",
+    "part": {
+      "type": "tool",
+      "tool": "write",
+      "callID": "chatcmpl-tool-a172b678639109af",
+      "state": {
+        "status": "completed",
+        "input": {
+          "filePath": "D:\\firmware-test\\experiments\\2026-10-20-qwen38-27b-harness-comparison\\runs\\run-20261020-154440-282906\\tasks\\opencode__isr-concurrency-001__1\\a10eac8c\\workspace\\submission\\main.c",
+          "content": "/*\n * isr_ring_buffer -- ISR-safe lock-free SPSC ring buffer for Zephyr RTOS\n * =====================================================================\n *\n * Submitted as a single file (submission/main.c) containing:\n *   Part 1: public API     (what would live in isr_ring_buffer.h)\n *   Part 2: implementation (what would live in isr_ring_buffer.c)\n *   Part 3: demo main()    (ISR producer via k_timer expiry, thread consumer)\n *\n * Design\n * ------\n * Classic single-producer / single-consumer (SPSC) lock-free ring buffer:\n *\n *   - head : monotonically increasing next-write index,\n *            written ONLY by the producer (ISR context)\n *   - tail : monotonically increasing next-read index,\n *            written ONLY by the consumer (thread context)\n *\n * Each side snapshots the other's index with atomic_get() and publishes\n * its own index update with atomic_set(). Zephyr's atomic_get()/atomic_set()\n * carry the required compiler + memory fences, so:\n *\n *   producer:  storage[head] = x;    atomic_set(&head, head + 1);\n *   consumer:  h = atomic_get(&head); ...read storage[tail]...\n *              atomic_set(&tail, tail + 1);\n *\n * guarantees that item data is globally visible before the index that\n * advertises it, and that the consumer never reads a slot the producer\n * could rewrite (the invariant head - tail <= capacity is maintained\n * because the producer refuses to write while full).\n *\n * No mutexes, no spinlocks, no critical sections: the ISR path never\n * blocks and the thread path never waits on the ISR.\n *\n * Semantics\n * ---------\n *   - Buffer full  : ring_buf_write() returns false and the item is\n *                    dropped (bulk variant returns the number stored).\n *   - Buffer empty : ring_buf_read() returns false; the caller polls or\n *                    blocks elsewhere (e.g. on a k_sem signalled from the\n *                    ISR) -- the buffer itself stays lock-free.\n *   - FIFO order   : items are always consumed in the order written.\n *   - Capacity     : all `size` slots are usable (monotonic counters\n *                    avoid the \"wasted slot\" trick).\n */\n\n#include <zephyr/kernel.h>\n#include <zephyr/sys/atomic.h>\n\n#include <stdbool.h>\n#include <stddef.h>\n#include <stdint.h>\n#include <string.h>\n\n/* ==========================================================================\n * Part 1: public API   (header: isr_ring_buffer.h)\n * ========================================================================== */\n\ntypedef struct {\n\tuint8_t *storage; /* backing array; must outlive the buffer  */\n\tsize_t   size;    /* capacity in bytes (must be > 0)         */\n\tatomic_t head;    /* next write index, monotonic, producer-owned */\n\tatomic_t tail;    /* next read index, monotonic, consumer-owned  */\n} ring_buf_t;\n\n/* Initialize an empty ring buffer. Call once before first use. */\nvoid ring_buf_init(ring_buf_t *rb, uint8_t *storage, size_t size);\n\n/*\n * Producer API -- safe to call from ISR context (never blocks).\n *\n * @return true if the byte was stored, false if the buffer is full\n *         (the byte is dropped).\n */\nbool ring_buf_write(ring_buf_t *rb, uint8_t data);\n\n/* Bulk producer variant, ISR context safe.\n * Stores up to `len` bytes, returns the number actually stored. */\nsize_t ring_buf_write_buf(ring_buf_t *rb, const uint8_t *data, size_t len);\n\n/*\n * Consumer API -- intended for thread context (never blocks).\n *\n * @return true and stores one byte in *data, or false if the buffer\n *         is empty.\n */\nbool ring_buf_read(ring_buf_t *rb, uint8_t *data);\n\n/* Bulk consumer variant.\n * Reads up to `len` bytes, returns the number actually read. */\nsize_t ring_buf_read_buf(ring_buf_t *rb, uint8_t *data, size_t len);\n\n/* Status queries -- may be called from either context. */\nbool   ring_buf_is_empty(const ring_buf_t *rb);\nbool   ring_buf_is_full(const ring_buf_t *rb);\nsize_t ring_buf_count(const ring_buf_t *rb);       /* bytes in buffer      */\nsize_t ring_buf_free_space(const ring_buf_t *rb);  /* bytes that fit       */\n\n/* ==========================================================================\n * Part 2: implementation   (source: isr_ring_buffer.c)\n * ========================================================================== */\n\n#define RINGBUF_MIN(a, b) (((a) < (b)) ? (a) : (b))\n\nvoid ring_buf_init(ring_buf_t *rb, uint8_t *storage, size_t size)\n{\n\trb->storage = storage;\n\trb->size = size;\n\tatomic_set(&rb->head, 0);\n\tatomic_set(&rb->tail, 0);\n}\n\nbool ring_buf_write(ring_buf_t *rb, uint8_t data)\n{\n\tuint32_t head = (uint32_t)atomic_get(&rb->head);\n\tuint32_t tail = (uint32_t)atomic_get(&rb->tail);\n\n\t/* Full once head has lapped tail by a whole capacity.\n\t * Unsigned wraparound keeps the check correct indefinitely. */\n\tif ((head - tail) >= (uint32_t)rb->size) {\n\t\treturn false; /* buffer full: drop the item */\n\t}\n\n\t/* Store the item, then publish the new head. The fence inside\n\t * atomic_set() makes the data write globally visible before the\n\t * index update, so the consumer can never see a head that points\n\t * at unwritten data. */\n\trb->storage[head % rb->size] = data;\n\tatomic_set(&rb->head, head + 1U);\n\n\treturn true;\n}\n\nbool ring_buf_read(ring_buf_t *rb, uint8_t *data)\n{\n\tuint32_t tail = (uint32_t)atomic_get(&rb->tail);\n\tuint32_t head = (uint32_t)atomic_get(&rb->head);\n\n\tif (head == tail) {\n\t\treturn false; /* buffer empty */\n\t}\n\n\t/* head > tail (mod 2^32) implies the producer already wrote this\n\t * slot, and the full condition prevents it rewriting the slot until\n\t * tail advances, so no concurrent writer can touch it. */\n\t*data = rb->storage[tail % rb->size];\n\n\t/* The fence makes the data read complete before the new tail is\n\t * published, so the producer cannot treat this slot as free until\n\t * we are done with it. */\n\tatomic_set(&rb->tail, tail + 1U);\n\n\treturn true;\n}\n\nsize_t ring_buf_write_buf(ring_buf_t *rb, const uint8_t *data, size_t len)\n{\n\tuint32_t head = (uint32_t)atomic_get(&rb->head);\n\tuint32_t tail = (uint32_t)atomic_get(&rb->tail);\n\tsize_t free_space = rb->size - (size_t)(head - tail);\n\tsize_t n = RINGBUF_MIN(len, free_space);\n\tsize_t first_chunk = RINGBUF_MIN(n, rb->size - (head % rb->size));\n\n\t/* Copy in at most two contiguous chunks to handle the wrap. */\n\tmemcpy(&rb->storage[head % rb->size], data, first_chunk);\n\tif (n > first_chunk) {\n\t\tmemcpy(&rb->storage[0], &data[first_chunk], n - first_chunk);\n\t}\n\n\tatomic_set(&rb->head, head + (uint32_t)n);\n\treturn n;\n}\n\nsize_t ring_buf_read_buf(ring_buf_t *rb, uint8_t *data, size_t len)\n{\n\tuint32_t tail = (uint32_t)atomic_get(&rb->tail);\n\tuint32_t head = (uint32_t)atomic_get(&rb->head);\n\tsize_t available = (size_t)(head - tail);\n\tsize_t n = RINGBUF_MIN(len, available);\n\tsize_t first_chunk = RINGBUF_MIN(n, rb->size - (tail % rb->size));\n\n\tmemcpy(data, &rb->storage[tail % rb->size], first_chunk);\n\tif (n > first_chunk) {\n\t\tmemcpy(&data[first_chunk], &rb->storage[0], n - first_chunk);\n\t}\n\n\tatomic_set(&rb->tail, tail + (uint32_t)n);\n\treturn n;\n}\n\nbool ring_buf_is_empty(const ring_buf_t *rb)\n{\n\treturn atomic_get(&rb->head) == atomic_get(&rb->tail);\n}\n\nbool ring_buf_is_full(const ring_buf_t *rb)\n{\n\treturn (size_t)(atomic_get(&rb->head) - atomic_get(&rb->tail)) >=\n\t       rb->size;\n}\n\nsize_t ring_buf_count(const ring_buf_t *rb)\n{\n\treturn (size_t)(atomic_get(&rb->head) - atomic_get(&rb->tail));\n}\n\nsize_t ring_buf_free_space(const ring_buf_t *rb)\n{\n\treturn rb->size - ring_buf_count(rb);\n}\n\n/* ==========================================================================\n * Part 3: demo -- ISR producer + thread consumer\n *\n * A k_timer expiry callback runs in ISR context, making it a realistic\n * stand-in for a hardware interrupt (e.g. a UART RX interrupt) feeding the\n * ring buffer. A dedicated Zephyr thread consumes it.\n *\n * The producer deliberately outpaces the consumer so the buffer fills up\n * and the full-buffer drop path is exercised; the empty path is exercised\n * at startup and whenever the consumer catches up.\n * ========================================================================== */\n\n#define RING_SIZE         32u  /* buffer capacity in bytes       */\n#define PRODUCE_PERIOD_MS 5u   /* 1 byte per ISR tick -> 200 B/s */\n#define CONSUME_PERIOD_MS 50u  /* consumer wakeup period         */\n#define CONSUME_BURST     8u   /* bytes per wakeup -> 160 B/s    */\n\nstatic uint8_t ring_storage[RING_SIZE];\nstatic ring_buf_t ring;\n\nstatic atomic_t produced; /* bytes accepted by the ISR producer */\nstatic atomic_t dropped;  /* bytes dropped because buffer was full */\nstatic uint8_t seq;       /* item sequence number, ISR-owned    */\n\nstatic struct k_timer producer_timer;\n\n/* Runs in ISR context every PRODUCE_PERIOD_MS. */\nstatic void producer_expiry(struct k_timer *timer)\n{\n\t(void)timer;\n\n\tseq++;\n\tif (ring_buf_write(&ring, seq)) {\n\t\tatomic_inc(&produced);\n\t} else {\n\t\t/* Buffer full: this item is dropped. A real driver could\n\t\t * retry later or apply a back-pressure policy here. */\n\t\tatomic_inc(&dropped);\n\t}\n}\n\n#define CONSUMER_STACK_SIZE 1024\nstatic K_THREAD_STACK_DEFINE(consumer_stack, CONSUMER_STACK_SIZE);\nstatic struct k_thread consumer_thread;\nstatic uint8_t last_rx; /* thread-owned: last sequence consumed */\n\nstatic void consumer_fn(void *arg1, void *arg2, void *arg3)\n{\n\t(void)arg1;\n\t(void)arg2;\n\t(void)arg3;\n\n\tuint8_t chunk[CONSUME_BURST];\n\tunsigned long consumed = 0U;\n\tunsigned long cycles = 0U;\n\n\twhile (true) {\n\t\tsize_t n = ring_buf_read_buf(&ring, chunk, sizeof(chunk));\n\n\t\tif (n > 0U) {\n\t\t\t/* chunk[0] is the oldest pending item; with FIFO\n\t\t\t * ordering it always carries the lowest sequence\n\t\t\t * number not seen yet. */\n\t\t\tlast_rx = chunk[0];\n\t\t\tconsumed += n;\n\t\t}\n\t\t/* n == 0: buffer empty -- nothing to consume this cycle. */\n\n\t\tif ((++cycles % 5U) == 0U) { /* status line every 250 ms */\n\t\t\tprintk(\"ring: %u/%u used | consumed=%lu dropped=%lu \"\n\t\t\t       \"last=%u\\n\",\n\t\t\t       (unsigned int)ring_buf_count(&ring),\n\t\t\t       RING_SIZE,\n\t\t\t       consumed,\n\t\t\t       (unsigned long)atomic_get(&dropped),\n\t\t\t       (unsigned int)last_rx);\n\t\t}\n\n\t\tk_msleep(CONSUME_PERIOD_MS);\n\t}\n}\n\nint main(void)\n{\n\tring_buf_init(&ring, ring_storage, sizeof(ring_storage));\n\n\t/* The k_timer expiry handler executes in ISR context. */\n\tk_timer_init(&producer_timer, NULL, producer_expiry);\n\tk_timer_start(&producer_timer, K_MSEC(1U), K_MSEC(PRODUCE_PERIOD_MS));\n\n\tk_thread_create(&consumer_thread, consumer_stack,\n\t\t\tK_THREAD_STACK_SIZEOF(consumer_stack),\n\t\t\tconsumer_fn, NULL, NULL, NULL,\n\t\t\tK_PRIO_COOP(7), 0, K_NO_WAIT);\n\n\tprintk(\"ISR-safe ring buffer demo: %u B buffer, producer in ISR \"\n\t       \"context, consumer in thread context\\n\",\n\t       (unsigned int)RING_SIZE);\n\n\twhile (1) {\n\t\tk_sleep(K_SECONDS(1));\n\t}\n\n\treturn 0;\n}\n"
+        },
+        "output": "Wrote file successfully.",
+        "metadata": {
+          "diagnostics": {},
+          "filepath": "D:\\firmware-test\\experiments\\2026-10-20-qwen38-27b-harness-comparison\\runs\\run-20261020-154440-282906\\tasks\\opencode__isr-concurrency-001__1\\a10eac8c\\workspace\\submission\\main.c",
+          "exists": false,
+          "truncated": false
+        },
+        "title": "firmware-test\\experiments\\2026-10-20-qwen38-27b-harness-comparison\\runs\\run-20261020-154440-282906\\tasks\\opencode__isr-concurrency-001__1\\a10eac8c\\workspace\\submission\\main.c",
+        "time": {
+          "start": 1792483381445,
+          "end": 1792483381493
+        }
+      },
+      "metadata": {
+        "anthropic": {
+          "caller": {
+            "type": "direct"
+          }
+        }
+      },
+      "id": "prt_1585545170016IvLOwpD5yqW3u",
+      "sessionID": "ses_ea7ae49edffeqHl0eGUfeYjbPJ",
+      "messageID": "msg_15851d7fc001l19GftCUZrApkY"
+    }
+  },
+  {
+    "type": "step_finish",
+    "timestamp": 1792483381515,
+    "sessionID": "ses_ea7ae49edffeqHl0eGUfeYjbPJ",
+    "part": {
+      "id": "prt_15855d0f9001G6FSdFmkEqXX15",
+      "reason": "tool-calls",
+      "messageID": "msg_15851d7fc001l19GftCUZrApkY",
+      "sessionID": "ses_ea7ae49edffeqHl0eGUfeYjbPJ",
+      "type": "step-finish",
+      "tokens": {
+        "total": 25915,
+        "input": 643,
+        "output": 3230,
+        "reasoning": 17674,
+        "cache": {
+          "write": 0,
+          "read": 4368
+        }
+      },
+      "cost": 0
+    }
+  },
+  {
+    "type": "step_start",
+    "timestamp": 1792483383823,
+    "sessionID": "ses_ea7ae49edffeqHl0eGUfeYjbPJ",
+    "part": {
+      "id": "prt_15855da04001Hqb2VVfKSLMBhC",
+      "messageID": "msg_15855d102001WR4wVuG9JrcnXP",
+      "sessionID": "ses_ea7ae49edffeqHl0eGUfeYjbPJ",
+      "type": "step-start"
+    }
+  },
+  {
+    "type": "text",
+    "timestamp": 1792483442909,
+    "sessionID": "ses_ea7ae49edffeqHl0eGUfeYjbPJ",
+    "part": {
+      "id": "prt_15856b486001uOtRZWlFb39HkC",
+      "messageID": "msg_15855d102001WR4wVuG9JrcnXP",
+      "sessionID": "ses_ea7ae49edffeqHl0eGUfeYjbPJ",
+      "type": "text",
+      "text": "\n\nNext, I'll fix a subtle strictness issue: in `ring_buf_count`/`ring_buf_is_full`, the raw `int32_t` counter results are being subtracted before being cast (which, in theory, could become signed overflow after 2^31 writes). I'll make them match the `uint32_t` difference used in the write/read paths. Also, I'll skip the redundant self-store when the bulk transfer count is 0.\n\n",
+      "time": {
+        "start": 1792483439750,
+        "end": 1792483442890
+      }
+    }
+  },
+  {
+    "type": "tool_use",
+    "timestamp": 1792483447384,
+    "sessionID": "ses_ea7ae49edffeqHl0eGUfeYjbPJ",
+    "part": {
+      "type": "tool",
+      "tool": "edit",
+      "callID": "chatcmpl-tool-9d409035fd47f0fd",
+      "state": {
+        "status": "completed",
+        "input": {
+          "filePath": "D:\\firmware-test\\experiments\\2026-10-20-qwen38-27b-harness-comparison\\runs\\run-20261020-154440-282906\\tasks\\opencode__isr-concurrency-001__1\\a10eac8c\\workspace\\submission\\main.c",
+          "newString": "\tatomic_set(&rb->head, head + (uint32_t)n);\n\treturn n;\n}\n\nsize_t ring_buf_read_buf(ring_buf_t *rb, uint8_t *data, size_t len)",
+          "oldString": "\tatomic_set(&rb->head, head + (uint32_t)n);\n\treturn n;\n}"
+        },
+        "output": "Edit applied successfully.",
+        "metadata": {
+          "diagnostics": {},
+          "diff": "Index: D:\\firmware-test\\experiments\\2026-10-20-qwen38-27b-harness-comparison\\runs\\run-20261020-154440-282906\\tasks\\opencode__isr-concurrency-001__1\\a10eac8c\\workspace\\submission\\main.c\n===================================================================\n--- D:\\firmware-test\\experiments\\2026-10-20-qwen38-27b-harness-comparison\\runs\\run-20261020-154440-282906\\tasks\\opencode__isr-concurrency-001__1\\a10eac8c\\workspace\\submission\\main.c\n+++ D:\\firmware-test\\experiments\\2026-10-20-qwen38-27b-harness-comparison\\runs\\run-20261020-154440-282906\\tasks\\opencode__isr-concurrency-001__1\\a10eac8c\\workspace\\submission\\main.c\n@@ -171,8 +171,10 @@\n \treturn n;\n }\n \n size_t ring_buf_read_buf(ring_buf_t *rb, uint8_t *data, size_t len)\n+\n+size_t ring_buf_read_buf(ring_buf_t *rb, uint8_t *data, size_t len)\n {\n \tuint32_t tail = (uint32_t)atomic_get(&rb->tail);\n \tuint32_t head = (uint32_t)atomic_get(&rb->head);\n \tsize_t available = (size_t)(head - tail);\n",
+          "filediff": {
+            "file": "D:\\firmware-test\\experiments\\2026-10-20-qwen38-27b-harness-comparison\\runs\\run-20261020-154440-282906\\tasks\\opencode__isr-concurrency-001__1\\a10eac8c\\workspace\\submission\\main.c",
+            "patch": "Index: D:\\firmware-test\\experiments\\2026-10-20-qwen38-27b-harness-comparison\\runs\\run-20261020-154440-282906\\tasks\\opencode__isr-concurrency-001__1\\a10eac8c\\workspace\\submission\\main.c\n===================================================================\n--- D:\\firmware-test\\experiments\\2026-10-20-qwen38-27b-harness-comparison\\runs\\run-20261020-154440-282906\\tasks\\opencode__isr-concurrency-001__1\\a10eac8c\\workspace\\submission\\main.c\n+++ D:\\firmware-test\\experiments\\2026-10-20-qwen38-27b-harness-comparison\\runs\\run-20261020-154440-282906\\tasks\\opencode__isr-concurrency-001__1\\a10eac8c\\workspace\\submission\\main.c\n@@ -171,8 +171,10 @@\n \treturn n;\n }\n \n size_t ring_buf_read_buf(ring_buf_t *rb, uint8_t *data, size_t len)\n+\n+size_t ring_buf_read_buf(ring_buf_t *rb, uint8_t *data, size_t len)\n {\n \tuint32_t tail = (uint32_t)atomic_get(&rb->tail);\n \tuint32_t head = (uint32_t)atomic_get(&rb->head);\n \tsize_t available = (size_t)(head - tail);\n",
+            "additions": 2,
+            "deletions": 0
+          },
+          "truncated": false
+        },
+        "title": "firmware-test\\experiments\\2026-10-20-qwen38-27b-harness-comparison\\runs\\run-20261020-154440-282906\\tasks\\opencode__isr-concurrency-001__1\\a10eac8c\\workspace\\submission\\main.c",
+        "time": {
+          "start": 1792483447326,
+          "end": 1792483447372
+        }
+      },
+      "metadata": {
+        "anthropic": {
+          "caller": {
+            "type": "direct"
+          }
+        }
+      },
+      "id": "prt_15856c0d3001voRdQkCggEC5Si",
+      "sessionID": "ses_ea7ae49edffeqHl0eGUfeYjbPJ",
+      "messageID": "msg_15855d102001WR4wVuG9JrcnXP"
+    }
+  },
+  {
+    "type": "step_finish",
+    "timestamp": 1792483447384,
+    "sessionID": "ses_ea7ae49edffeqHl0eGUfeYjbPJ",
+    "part": {
+      "id": "prt_15856d24f001rsYEFXUZ1RjaaF",
+      "reason": "tool-calls",
+      "messageID": "msg_15855d102001WR4wVuG9JrcnXP",
+      "sessionID": "ses_ea7ae49edffeqHl0eGUfeYjbPJ",
+      "type": "step-finish",
+      "tokens": {
+        "total": 9948,
+        "input": 8260,
+        "output": 304,
+        "reasoning": 1384,
+        "cache": {
+          "write": 0,
+          "read": 0
+        }
+      },
+      "cost": 0
+    }
+  },
+  {
+    "type": "step_start",
+    "timestamp": 1792483449512,
+    "sessionID": "ses_ea7ae49edffeqHl0eGUfeYjbPJ",
+    "part": {
+      "id": "prt_15856da9a001b3E7MvnnosrBOg",
+      "messageID": "msg_15856d2550013p3cXMxH2ii13L",
+      "sessionID": "ses_ea7ae49edffeqHl0eGUfeYjbPJ",
+      "type": "step-start"
+    }
+  },
+  {
+    "type": "text",
+    "timestamp": 1792483453305,
+    "sessionID": "ses_ea7ae49edffeqHl0eGUfeYjbPJ",
+    "part": {
+      "id": "prt_15856e84a001Sn0sEf0ECCULPv",
+      "messageID": "msg_15856d2550013p3cXMxH2ii13L",
+      "sessionID": "ses_ea7ae49edffeqHl0eGUfeYjbPJ",
+      "type": "text",
+      "text": "\n\nThat edit was a mistake — it inserted a stray line. Let me read the file and fix it properly.\n\n",
+      "time": {
+        "start": 1792483453002,
+        "end": 1792483453297
+      }
+    }
+  },
+  {
+    "type": "tool_use",
+    "timestamp": 1792483454270,
+    "sessionID": "ses_ea7ae49edffeqHl0eGUfeYjbPJ",
+    "part": {
+      "type": "tool",
+      "tool": "read",
+      "callID": "chatcmpl-tool-9aafccbf6cfbac85",
+      "state": {
+        "status": "completed",
+        "input": {
+          "filePath": "D:\\firmware-test\\experiments\\2026-10-20-qwen38-27b-harness-comparison\\runs\\run-20261020-154440-282906\\tasks\\opencode__isr-concurrency-001__1\\a10eac8c\\workspace\\submission\\main.c",
+          "limit": 75,
+          "offset": 140
+        },
+        "output": "<path>D:\\firmware-test\\experiments\\2026-10-20-qwen38-27b-harness-comparison\\runs\\run-20261020-154440-282906\\tasks\\opencode__isr-concurrency-001__1\\a10eac8c\\workspace\\submission\\main.c</path>\n<type>file</type>\n<content>\n140: \t\treturn false; /* buffer empty */\n141: \t}\n142: \n143: \t/* head > tail (mod 2^32) implies the producer already wrote this\n144: \t * slot, and the full condition prevents it rewriting the slot until\n145: \t * tail advances, so no concurrent writer can touch it. */\n146: \t*data = rb->storage[tail % rb->size];\n147: \n148: \t/* The fence makes the data read complete before the new tail is\n149: \t * published, so the producer cannot treat this slot as free until\n150: \t * we are done with it. */\n151: \tatomic_set(&rb->tail, tail + 1U);\n152: \n153: \treturn true;\n154: }\n155: \n156: size_t ring_buf_write_buf(ring_buf_t *rb, const uint8_t *data, size_t len)\n157: {\n158: \tuint32_t head = (uint32_t)atomic_get(&rb->head);\n159: \tuint32_t tail = (uint32_t)atomic_get(&rb->tail);\n160: \tsize_t free_space = rb->size - (size_t)(head - tail);\n161: \tsize_t n = RINGBUF_MIN(len, free_space);\n162: \tsize_t first_chunk = RINGBUF_MIN(n, rb->size - (head % rb->size));\n163: \n164: \t/* Copy in at most two contiguous chunks to handle the wrap. */\n165: \tmemcpy(&rb->storage[head % rb->size], data, first_chunk);\n166: \tif (n > first_chunk) {\n167: \t\tmemcpy(&rb->storage[0], &data[first_chunk], n - first_chunk);\n168: \t}\n169: \n170: \tatomic_set(&rb->head, head + (uint32_t)n);\n171: \treturn n;\n172: }\n173: \n174: size_t ring_buf_read_buf(ring_buf_t *rb, uint8_t *data, size_t len)\n175: \n176: size_t ring_buf_read_buf(ring_buf_t *rb, uint8_t *data, size_t len)\n177: {\n178: \tuint32_t tail = (uint32_t)atomic_get(&rb->tail);\n179: \tuint32_t head = (uint32_t)atomic_get(&rb->head);\n180: \tsize_t available = (size_t)(head - tail);\n181: \tsize_t n = RINGBUF_MIN(len, available);\n182: \tsize_t first_chunk = RINGBUF_MIN(n, rb->size - (tail % rb->size));\n183: \n184: \tmemcpy(data, &rb->storage[tail % rb->size], first_chunk);\n185: \tif (n > first_chunk) {\n186: \t\tmemcpy(&data[first_chunk], &rb->storage[0], n - first_chunk);\n187: \t}\n188: \n189: \tatomic_set(&rb->tail, tail + (uint32_t)n);\n190: \treturn n;\n191: }\n192: \n193: bool ring_buf_is_empty(const ring_buf_t *rb)\n194: {\n195: \treturn atomic_get(&rb->head) == atomic_get(&rb->tail);\n196: }\n197: \n198: bool ring_buf_is_full(const ring_buf_t *rb)\n199: {\n200: \treturn (size_t)(atomic_get(&rb->head) - atomic_get(&rb->tail)) >=\n201: \t       rb->size;\n202: }\n203: \n204: size_t ring_buf_count(const ring_buf_t *rb)\n205: {\n206: \treturn (size_t)(atomic_get(&rb->head) - atomic_get(&rb->tail));\n207: }\n208: \n209: size_t ring_buf_free_space(const ring_buf_t *rb)\n210: {\n211: \treturn rb->size - ring_buf_count(rb);\n212: }\n213: \n214: /* ==========================================================================\n\n(Showing lines 140-214 of 318. Use offset=215 to continue.)\n</content>",
+        "metadata": {
+          "preview": "\t\treturn false; /* buffer empty */\n\t}\n\n\t/* head > tail (mod 2^32) implies the producer already wrote this\n\t * slot, and the full condition prevents it rewriting the slot until\n\t * tail advances, so no concurrent writer can touch it. */\n\t*data = rb->storage[tail % rb->size];\n\n\t/* The fence makes the data read complete before the new tail is\n\t * published, so the producer cannot treat this slot as free until\n\t * we are done with it. */\n\tatomic_set(&rb->tail, tail + 1U);\n\n\treturn true;\n}\n\nsize_t ring_buf_write_buf(ring_buf_t *rb, const uint8_t *data, size_t len)\n{\n\tuint32_t head = (uint32_t)atomic_get(&rb->head);\n\tuint32_t tail = (uint32_t)atomic_get(&rb->tail);",
+          "truncated": true,
+          "loaded": [],
+          "display": {
+            "type": "file",
+            "path": "D:\\firmware-test\\experiments\\2026-10-20-qwen38-27b-harness-comparison\\runs\\run-20261020-154440-282906\\tasks\\opencode__isr-concurrency-001__1\\a10eac8c\\workspace\\submission\\main.c",
+            "text": "\t\treturn false; /* buffer empty */\n\t}\n\n\t/* head > tail (mod 2^32) implies the producer already wrote this\n\t * slot, and the full condition prevents it rewriting the slot until\n\t * tail advances, so no concurrent writer can touch it. */\n\t*data = rb->storage[tail % rb->size];\n\n\t/* The fence makes the data read complete before the new tail is\n\t * published, so the producer cannot treat this slot as free until\n\t * we are done with it. */\n\tatomic_set(&rb->tail, tail + 1U);\n\n\treturn true;\n}\n\nsize_t ring_buf_write_buf(ring_buf_t *rb, const uint8_t *data, size_t len)\n{\n\tuint32_t head = (uint32_t)atomic_get(&rb->head);\n\tuint32_t tail = (uint32_t)atomic_get(&rb->tail);\n\tsize_t free_space = rb->size - (size_t)(head - tail);\n\tsize_t n = RINGBUF_MIN(len, free_space);\n\tsize_t first_chunk = RINGBUF_MIN(n, rb->size - (head % rb->size));\n\n\t/* Copy in at most two contiguous chunks to handle the wrap. */\n\tmemcpy(&rb->storage[head % rb->size], data, first_chunk);\n\tif (n > first_chunk) {\n\t\tmemcpy(&rb->storage[0], &data[first_chunk], n - first_chunk);\n\t}\n\n\tatomic_set(&rb->head, head + (uint32_t)n);\n\treturn n;\n}\n\nsize_t ring_buf_read_buf(ring_buf_t *rb, uint8_t *data, size_t len)\n\nsize_t ring_buf_read_buf(ring_buf_t *rb, uint8_t *data, size_t len)\n{\n\tuint32_t tail = (uint32_t)atomic_get(&rb->tail);\n\tuint32_t head = (uint32_t)atomic_get(&rb->head);\n\tsize_t available = (size_t)(head - tail);\n\tsize_t n = RINGBUF_MIN(len, available);\n\tsize_t first_chunk = RINGBUF_MIN(n, rb->size - (tail % rb->size));\n\n\tmemcpy(data, &rb->storage[tail % rb->size], first_chunk);\n\tif (n > first_chunk) {\n\t\tmemcpy(&data[first_chunk], &rb->storage[0], n - first_chunk);\n\t}\n\n\tatomic_set(&rb->tail, tail + (uint32_t)n);\n\treturn n;\n}\n\nbool ring_buf_is_empty(const ring_buf_t *rb)\n{\n\treturn atomic_get(&rb->head) == atomic_get(&rb->tail);\n}\n\nbool ring_buf_is_full(const ring_buf_t *rb)\n{\n\treturn (size_t)(atomic_get(&rb->head) - atomic_get(&rb->tail)) >=\n\t       rb->size;\n}\n\nsize_t ring_buf_count(const ring_buf_t *rb)\n{\n\treturn (size_t)(atomic_get(&rb->head) - atomic_get(&rb->tail));\n}\n\nsize_t ring_buf_free_space(const ring_buf_t *rb)\n{\n\treturn rb->size - ring_buf_count(rb);\n}\n\n/* ==========================================================================",
+            "lineStart": 140,
+            "lineEnd": 214,
+            "totalLines": 318,
+            "truncated": true
+          }
+        },
+        "title": "firmware-test\\experiments\\2026-10-20-qwen38-27b-harness-comparison\\runs\\run-20261020-154440-282906\\tasks\\opencode__isr-concurrency-001__1\\a10eac8c\\workspace\\submission\\main.c",
+        "time": {
+          "start": 1792483454225,
+          "end": 1792483454257
+        }
+      },
+      "metadata": {
+        "anthropic": {
+          "caller": {
+            "type": "direct"
+          }
+        }
+      },
+      "id": "prt_15856e974001xAJ3MVDm5XItPy",
+      "sessionID": "ses_ea7ae49edffeqHl0eGUfeYjbPJ",
+      "messageID": "msg_15856d2550013p3cXMxH2ii13L"
+    }
+  },
+  {
+    "type": "step_finish",
+    "timestamp": 1792483454270,
+    "sessionID": "ses_ea7ae49edffeqHl0eGUfeYjbPJ",
+    "part": {
+      "id": "prt_15856ed34001dn55eCLFlUSgRE",
+      "reason": "tool-calls",
+      "messageID": "msg_15856d2550013p3cXMxH2ii13L",
+      "sessionID": "ses_ea7ae49edffeqHl0eGUfeYjbPJ",
+      "type": "step-finish",
+      "tokens": {
+        "total": 9060,
+        "input": 343,
+        "output": 164,
+        "reasoning": 313,
+        "cache": {
+          "write": 0,
+          "read": 8240
+        }
+      },
+      "cost": 0
+    }
+  },
+  {
+    "type": "step_start",
+    "timestamp": 1792483455755,
+    "sessionID": "ses_ea7ae49edffeqHl0eGUfeYjbPJ",
+    "part": {
+      "id": "prt_15856f303001PNaweyw2A0SO6w",
+      "messageID": "msg_15856ed3a001WyPvxfx8suH0Gg",
+      "sessionID": "ses_ea7ae49edffeqHl0eGUfeYjbPJ",
+      "type": "step-start"
+    }
+  },
+  {
+    "type": "tool_use",
+    "timestamp": 1792483462786,
+    "sessionID": "ses_ea7ae49edffeqHl0eGUfeYjbPJ",
+    "part": {
+      "type": "tool",
+      "tool": "edit",
+      "callID": "chatcmpl-tool-88ac1ae5ad78bb48",
+      "state": {
+        "status": "completed",
+        "input": {
+          "filePath": "D:\\firmware-test\\experiments\\2026-10-20-qwen38-27b-harness-comparison\\runs\\run-20261020-154440-282906\\tasks\\opencode__isr-concurrency-001__1\\a10eac8c\\workspace\\submission\\main.c",
+          "newString": "\tatomic_set(&rb->head, head + (uint32_t)n);\n\treturn n;\n}\n\nsize_t ring_buf_read_buf(ring_buf_t *rb, uint8_t *data, size_t len)\n{",
+          "oldString": "\tatomic_set(&rb->head, head + (uint32_t)n);\n\treturn n;\n}\n\nsize_t ring_buf_read_buf(ring_buf_t *rb, uint8_t *data, size_t len)\n\nsize_t ring_buf_read_buf(ring_buf_t *rb, uint8_t *data, size_t len)\n{"
+        },
+        "output": "Edit applied successfully.",
+        "metadata": {
+          "diagnostics": {},
+          "diff": "Index: D:\\firmware-test\\experiments\\2026-10-20-qwen38-27b-harness-comparison\\runs\\run-20261020-154440-282906\\tasks\\opencode__isr-concurrency-001__1\\a10eac8c\\workspace\\submission\\main.c\n===================================================================\n--- D:\\firmware-test\\experiments\\2026-10-20-qwen38-27b-harness-comparison\\runs\\run-20261020-154440-282906\\tasks\\opencode__isr-concurrency-001__1\\a10eac8c\\workspace\\submission\\main.c\n+++ D:\\firmware-test\\experiments\\2026-10-20-qwen38-27b-harness-comparison\\runs\\run-20261020-154440-282906\\tasks\\opencode__isr-concurrency-001__1\\a10eac8c\\workspace\\submission\\main.c\n@@ -171,10 +171,8 @@\n \treturn n;\n }\n \n size_t ring_buf_read_buf(ring_buf_t *rb, uint8_t *data, size_t len)\n-\n-size_t ring_buf_read_buf(ring_buf_t *rb, uint8_t *data, size_t len)\n {\n \tuint32_t tail = (uint32_t)atomic_get(&rb->tail);\n \tuint32_t head = (uint32_t)atomic_get(&rb->head);\n \tsize_t available = (size_t)(head - tail);\n",
+          "filediff": {
+            "file": "D:\\firmware-test\\experiments\\2026-10-20-qwen38-27b-harness-comparison\\runs\\run-20261020-154440-282906\\tasks\\opencode__isr-concurrency-001__1\\a10eac8c\\workspace\\submission\\main.c",
+            "patch": "Index: D:\\firmware-test\\experiments\\2026-10-20-qwen38-27b-harness-comparison\\runs\\run-20261020-154440-282906\\tasks\\opencode__isr-concurrency-001__1\\a10eac8c\\workspace\\submission\\main.c\n===================================================================\n--- D:\\firmware-test\\experiments\\2026-10-20-qwen38-27b-harness-comparison\\runs\\run-20261020-154440-282906\\tasks\\opencode__isr-concurrency-001__1\\a10eac8c\\workspace\\submission\\main.c\n+++ D:\\firmware-test\\experiments\\2026-10-20-qwen38-27b-harness-comparison\\runs\\run-20261020-154440-282906\\tasks\\opencode__isr-concurrency-001__1\\a10eac8c\\workspace\\submission\\main.c\n@@ -171,10 +171,8 @@\n \treturn n;\n }\n \n size_t ring_buf_read_buf(ring_buf_t *rb, uint8_t *data, size_t len)\n-\n-size_t ring_buf_read_buf(ring_buf_t *rb, uint8_t *data, size_t len)\n {\n \tuint32_t tail = (uint32_t)atomic_get(&rb->tail);\n \tuint32_t head = (uint32_t)atomic_get(&rb->head);\n \tsize_t available = (size_t)(head - tail);\n",
+            "additions": 0,
+            "deletions": 2
+          },
+          "truncated": false
+        },
+        "title": "firmware-test\\experiments\\2026-10-20-qwen38-27b-harness-comparison\\runs\\run-20261020-154440-282906\\tasks\\opencode__isr-concurrency-001__1\\a10eac8c\\workspace\\submission\\main.c",
+        "time": {
+          "start": 1792483462729,
+          "end": 1792483462756
+        }
+      },
+      "metadata": {
+        "anthropic": {
+          "caller": {
+            "type": "direct"
+          }
+        }
+      },
+      "id": "prt_158570700001QaNaFUOx4g4x0i",
+      "sessionID": "ses_ea7ae49edffeqHl0eGUfeYjbPJ",
+      "messageID": "msg_15856ed3a001WyPvxfx8suH0Gg"
+    }
+  },
+  {
+    "type": "step_finish",
+    "timestamp": 1792483462786,
+    "sessionID": "ses_ea7ae49edffeqHl0eGUfeYjbPJ",
+    "part": {
+      "id": "prt_158570e69001qLWsqk1N03sgxy",
+      "reason": "tool-calls",
+      "messageID": "msg_15856ed3a001WyPvxfx8suH0Gg",
+      "sessionID": "ses_ea7ae49edffeqHl0eGUfeYjbPJ",
+      "type": "step-finish",
+      "tokens": {
+        "total": 10693,
+        "input": 1394,
+        "output": 258,
+        "reasoning": 481,
+        "cache": {
+          "write": 0,
+          "read": 8560
+        }
+      },
+      "cost": 0
+    }
+  },
+  {
+    "type": "step_start",
+    "timestamp": 1792483464818,
+    "sessionID": "ses_ea7ae49edffeqHl0eGUfeYjbPJ",
+    "part": {
+      "id": "prt_158571669001a7vENdn58urfWc",
+      "messageID": "msg_158570e74001n5tzDGekWpPkKg",
+      "sessionID": "ses_ea7ae49edffeqHl0eGUfeYjbPJ",
+      "type": "step-start"
+    }
+  },
+  {
+    "type": "text",
+    "timestamp": 1792483472180,
+    "sessionID": "ses_ea7ae49edffeqHl0eGUfeYjbPJ",
+    "part": {
+      "id": "prt_1585730500015r928fTPWVQ879",
+      "messageID": "msg_158570e74001n5tzDGekWpPkKg",
+      "sessionID": "ses_ea7ae49edffeqHl0eGUfeYjbPJ",
+      "type": "text",
+      "text": "\n\nI've fixed the duplicated line. Next, I'll make two robustness improvements: casting the status-query counter to `uint32_t` before subtracting (to avoid signed overflow after 2^31 bytes), and adding a guard so that a zero-length bulk copy never calls `memcpy` with a null pointer.\n\n",
+      "time": {
+        "start": 1792483471440,
+        "end": 1792483472169
+      }
+    }
+  },
+  {
+    "type": "text",
+    "timestamp": 1792483474722,
+    "sessionID": "ses_ea7ae49edffeqHl0eGUfeYjbPJ",
+    "part": {
+      "id": "prt_158573c40001TXbaev30HiIJpd",
+      "messageID": "msg_158570e74001n5tzDGekWpPkKg",
+      "sessionID": "ses_ea7ae49edffeqHl0eGUfeYjbPJ",
+      "type": "text",
+      "text": "\n",
+      "time": {
+        "start": 1792483474496,
+        "end": 1792483474709
+      }
+    }
+  },
+  {
+    "type": "tool_use",
+    "timestamp": 1792483474750,
+    "sessionID": "ses_ea7ae49edffeqHl0eGUfeYjbPJ",
+    "part": {
+      "type": "tool",
+      "tool": "edit",
+      "callID": "chatcmpl-tool-930bbb9573b30f13",
+      "state": {
+        "status": "completed",
+        "input": {
+          "filePath": "D:\\firmware-test\\experiments\\2026-10-20-qwen38-27b-harness-comparison\\runs\\run-20261020-154440-282906\\tasks\\opencode__isr-concurrency-001__1\\a10eac8c\\workspace\\submission\\main.c",
+          "newString": "\t/* Copy in at most two contiguous chunks to handle the wrap. */\n\tif (n > 0U) {\n\t\tmemcpy(&rb->storage[head % rb->size], data, first_chunk);\n\t\tif (n > first_chunk) {\n\t\t\tmemcpy(&rb->storage[0], &data[first_chunk],\n\t\t\t       n - first_chunk);\n\t\t}\n\t}",
+          "oldString": "\t/* Copy in at most two contiguous chunks to handle the wrap. */\n\tmemcpy(&rb->storage[head % rb->size], data, first_chunk);\n\tif (n > first_chunk) {\n\t\tmemcpy(&rb->storage[0], &data[first_chunk], n - first_chunk);\n\t}"
+        },
+        "output": "Edit applied successfully.",
+        "metadata": {
+          "diagnostics": {},
+          "diff": "Index: D:\\firmware-test\\experiments\\2026-10-20-qwen38-27b-harness-comparison\\runs\\run-20261020-154440-282906\\tasks\\opencode__isr-concurrency-001__1\\a10eac8c\\workspace\\submission\\main.c\n===================================================================\n--- D:\\firmware-test\\experiments\\2026-10-20-qwen38-27b-harness-comparison\\runs\\run-20261020-154440-282906\\tasks\\opencode__isr-concurrency-001__1\\a10eac8c\\workspace\\submission\\main.c\n+++ D:\\firmware-test\\experiments\\2026-10-20-qwen38-27b-harness-comparison\\runs\\run-20261020-154440-282906\\tasks\\opencode__isr-concurrency-001__1\\a10eac8c\\workspace\\submission\\main.c\n@@ -161,11 +161,14 @@\n size_t n = RINGBUF_MIN(len, free_space);\n size_t first_chunk = RINGBUF_MIN(n, rb->size - (head % rb->size));\n \n /* Copy in at most two contiguous chunks to handle the wrap. */\n-memcpy(&rb->storage[head % rb->size], data, first_chunk);\n-if (n > first_chunk) {\n-\tmemcpy(&rb->storage[0], &data[first_chunk], n - first_chunk);\n+if (n > 0U) {\n+\tmemcpy(&rb->storage[head % rb->size], data, first_chunk);\n+\tif (n > first_chunk) {\n+\t\tmemcpy(&rb->storage[0], &data[first_chunk],\n+\t\t       n - first_chunk);\n+\t}\n }\n \n atomic_set(&rb->head, head + (uint32_t)n);\n return n;\n",
+          "filediff": {
+            "file": "D:\\firmware-test\\experiments\\2026-10-20-qwen38-27b-harness-comparison\\runs\\run-20261020-154440-282906\\tasks\\opencode__isr-concurrency-001__1\\a10eac8c\\workspace\\submission\\main.c",
+            "patch": "Index: D:\\firmware-test\\experiments\\2026-10-20-qwen38-27b-harness-comparison\\runs\\run-20261020-154440-282906\\tasks\\opencode__isr-concurrency-001__1\\a10eac8c\\workspace\\submission\\main.c\n===================================================================\n--- D:\\firmware-test\\experiments\\2026-10-20-qwen38-27b-harness-comparison\\runs\\run-20261020-154440-282906\\tasks\\opencode__isr-concurrency-001__1\\a10eac8c\\workspace\\submission\\main.c\n+++ D:\\firmware-test\\experiments\\2026-10-20-qwen38-27b-harness-comparison\\runs\\run-20261020-154440-282906\\tasks\\opencode__isr-concurrency-001__1\\a10eac8c\\workspace\\submission\\main.c\n@@ -161,11 +161,14 @@\n size_t n = RINGBUF_MIN(len, free_space);\n size_t first_chunk = RINGBUF_MIN(n, rb->size - (head % rb->size));\n \n /* Copy in at most two contiguous chunks to handle the wrap. */\n-memcpy(&rb->storage[head % rb->size], data, first_chunk);\n-if (n > first_chunk) {\n-\tmemcpy(&rb->storage[0], &data[first_chunk], n - first_chunk);\n+if (n > 0U) {\n+\tmemcpy(&rb->storage[head % rb->size], data, first_chunk);\n+\tif (n > first_chunk) {\n+\t\tmemcpy(&rb->storage[0], &data[first_chunk],\n+\t\t       n - first_chunk);\n+\t}\n }\n \n atomic_set(&rb->head, head + (uint32_t)n);\n return n;\n",
+            "additions": 6,
+            "deletions": 3
+          },
+          "truncated": false
+        },
+        "title": "firmware-test\\experiments\\2026-10-20-qwen38-27b-harness-comparison\\runs\\run-20261020-154440-282906\\tasks\\opencode__isr-concurrency-001__1\\a10eac8c\\workspace\\submission\\main.c",
+        "time": {
+          "start": 1792483474716,
+          "end": 1792483474745
+        }
+      },
+      "metadata": {
+        "anthropic": {
+          "caller": {
+            "type": "direct"
+          }
+        }
+      },
+      "id": "prt_158573330001qohHbOgX7N1LKA",
+      "sessionID": "ses_ea7ae49edffeqHl0eGUfeYjbPJ",
+      "messageID": "msg_158570e74001n5tzDGekWpPkKg"
+    }
+  },
+  {
+    "type": "text",
+    "timestamp": 1792483478745,
+    "sessionID": "ses_ea7ae49edffeqHl0eGUfeYjbPJ",
+    "part": {
+      "id": "prt_158574c4f001jjRA6Huut1Mdzs",
+      "messageID": "msg_158570e74001n5tzDGekWpPkKg",
+      "sessionID": "ses_ea7ae49edffeqHl0eGUfeYjbPJ",
+      "type": "text",
+      "text": "\n",
+      "time": {
+        "start": 1792483478607,
+        "end": 1792483478729
+      }
+    }
+  },
+  {
+    "type": "tool_use",
+    "timestamp": 1792483478777,
+    "sessionID": "ses_ea7ae49edffeqHl0eGUfeYjbPJ",
+    "part": {
+      "type": "tool",
+      "tool": "edit",
+      "callID": "chatcmpl-tool-959e932d50de6b97",
+      "state": {
+        "status": "completed",
+        "input": {
+          "filePath": "D:\\firmware-test\\experiments\\2026-10-20-qwen38-27b-harness-comparison\\runs\\run-20261020-154440-282906\\tasks\\opencode__isr-concurrency-001__1\\a10eac8c\\workspace\\submission\\main.c",
+          "newString": "\tif (n > 0U) {\n\t\tmemcpy(data, &rb->storage[tail % rb->size], first_chunk);\n\t\tif (n > first_chunk) {\n\t\t\tmemcpy(&data[first_chunk], &rb->storage[0],\n\t\t\t       n - first_chunk);\n\t\t}\n\t}",
+          "oldString": "\tmemcpy(data, &rb->storage[tail % rb->size], first_chunk);\n\tif (n > first_chunk) {\n\t\tmemcpy(&data[first_chunk], &rb->storage[0], n - first_chunk);\n\t}"
+        },
+        "output": "Edit applied successfully.",
+        "metadata": {
+          "diagnostics": {},
+          "diff": "Index: D:\\firmware-test\\experiments\\2026-10-20-qwen38-27b-harness-comparison\\runs\\run-20261020-154440-282906\\tasks\\opencode__isr-concurrency-001__1\\a10eac8c\\workspace\\submission\\main.c\n===================================================================\n--- D:\\firmware-test\\experiments\\2026-10-20-qwen38-27b-harness-comparison\\runs\\run-20261020-154440-282906\\tasks\\opencode__isr-concurrency-001__1\\a10eac8c\\workspace\\submission\\main.c\n+++ D:\\firmware-test\\experiments\\2026-10-20-qwen38-27b-harness-comparison\\runs\\run-20261020-154440-282906\\tasks\\opencode__isr-concurrency-001__1\\a10eac8c\\workspace\\submission\\main.c\n@@ -181,11 +181,14 @@\n size_t available = (size_t)(head - tail);\n size_t n = RINGBUF_MIN(len, available);\n size_t first_chunk = RINGBUF_MIN(n, rb->size - (tail % rb->size));\n \n-memcpy(data, &rb->storage[tail % rb->size], first_chunk);\n-if (n > first_chunk) {\n-\tmemcpy(&data[first_chunk], &rb->storage[0], n - first_chunk);\n+if (n > 0U) {\n+\tmemcpy(data, &rb->storage[tail % rb->size], first_chunk);\n+\tif (n > first_chunk) {\n+\t\tmemcpy(&data[first_chunk], &rb->storage[0],\n+\t\t       n - first_chunk);\n+\t}\n }\n \n atomic_set(&rb->tail, tail + (uint32_t)n);\n return n;\n",
+          "filediff": {
+            "file": "D:\\firmware-test\\experiments\\2026-10-20-qwen38-27b-harness-comparison\\runs\\run-20261020-154440-282906\\tasks\\opencode__isr-concurrency-001__1\\a10eac8c\\workspace\\submission\\main.c",
+            "patch": "Index: D:\\firmware-test\\experiments\\2026-10-20-qwen38-27b-harness-comparison\\runs\\run-20261020-154440-282906\\tasks\\opencode__isr-concurrency-001__1\\a10eac8c\\workspace\\submission\\main.c\n===================================================================\n--- D:\\firmware-test\\experiments\\2026-10-20-qwen38-27b-harness-comparison\\runs\\run-20261020-154440-282906\\tasks\\opencode__isr-concurrency-001__1\\a10eac8c\\workspace\\submission\\main.c\n+++ D:\\firmware-test\\experiments\\2026-10-20-qwen38-27b-harness-comparison\\runs\\run-20261020-154440-282906\\tasks\\opencode__isr-concurrency-001__1\\a10eac8c\\workspace\\submission\\main.c\n@@ -181,11 +181,14 @@\n size_t available = (size_t)(head - tail);\n size_t n = RINGBUF_MIN(len, available);\n size_t first_chunk = RINGBUF_MIN(n, rb->size - (tail % rb->size));\n \n-memcpy(data, &rb->storage[tail % rb->size], first_chunk);\n-if (n > first_chunk) {\n-\tmemcpy(&data[first_chunk], &rb->storage[0], n - first_chunk);\n+if (n > 0U) {\n+\tmemcpy(data, &rb->storage[tail % rb->size], first_chunk);\n+\tif (n > first_chunk) {\n+\t\tmemcpy(&data[first_chunk], &rb->storage[0],\n+\t\t       n - first_chunk);\n+\t}\n }\n \n atomic_set(&rb->tail, tail + (uint32_t)n);\n return n;\n",
+            "additions": 6,
+            "deletions": 3
+          },
+          "truncated": false
+        },
+        "title": "firmware-test\\experiments\\2026-10-20-qwen38-27b-harness-comparison\\runs\\run-20261020-154440-282906\\tasks\\opencode__isr-concurrency-001__1\\a10eac8c\\workspace\\submission\\main.c",
+        "time": {
+          "start": 1792483478737,
+          "end": 1792483478772
+        }
+      },
+      "metadata": {
+        "anthropic": {
+          "caller": {
+            "type": "direct"
+          }
+        }
+      },
+      "id": "prt_158573d20001ESO5tZZrk2ASOC",
+      "sessionID": "ses_ea7ae49edffeqHl0eGUfeYjbPJ",
+      "messageID": "msg_158570e74001n5tzDGekWpPkKg"
+    }
+  },
+  {
+    "type": "tool_use",
+    "timestamp": 1792483485281,
+    "sessionID": "ses_ea7ae49edffeqHl0eGUfeYjbPJ",
+    "part": {
+      "type": "tool",
+      "tool": "edit",
+      "callID": "chatcmpl-tool-b772bbf208e68424",
+      "state": {
+        "status": "completed",
+        "input": {
+          "filePath": "D:\\firmware-test\\experiments\\2026-10-20-qwen38-27b-harness-comparison\\runs\\run-20261020-154440-282906\\tasks\\opencode__isr-concurrency-001__1\\a10eac8c\\workspace\\submission\\main.c",
+          "newString": "bool ring_buf_is_full(const ring_buf_t *rb)\n{\n\tuint32_t head = (uint32_t)atomic_get(&rb->head);\n\tuint32_t tail = (uint32_t)atomic_get(&rb->tail);\n\n\treturn (head - tail) >= (uint32_t)rb->size;\n}\n\nsize_t ring_buf_count(const ring_buf_t *rb)\n{\n\tuint32_t head = (uint32_t)atomic_get(&rb->head);\n\tuint32_t tail = (uint32_t)atomic_get(&rb->tail);\n\n\treturn (size_t)(head - tail);\n}",
+          "oldString": "bool ring_buf_is_full(const ring_buf_t *rb)\n{\n\treturn (size_t)(atomic_get(&rb->head) - atomic_get(&rb->tail)) >=\n\t       rb->size;\n}\n\nsize_t ring_buf_count(const ring_buf_t *rb)\n{\n\treturn (size_t)(atomic_get(&rb->head) - atomic_get(&rb->tail));\n}"
+        },
+        "output": "Edit applied successfully.",
+        "metadata": {
+          "diagnostics": {},
+          "diff": "Index: D:\\firmware-test\\experiments\\2026-10-20-qwen38-27b-harness-comparison\\runs\\run-20261020-154440-282906\\tasks\\opencode__isr-concurrency-001__1\\a10eac8c\\workspace\\submission\\main.c\n===================================================================\n--- D:\\firmware-test\\experiments\\2026-10-20-qwen38-27b-harness-comparison\\runs\\run-20261020-154440-282906\\tasks\\opencode__isr-concurrency-001__1\\a10eac8c\\workspace\\submission\\main.c\n+++ D:\\firmware-test\\experiments\\2026-10-20-qwen38-27b-harness-comparison\\runs\\run-20261020-154440-282906\\tasks\\opencode__isr-concurrency-001__1\\a10eac8c\\workspace\\submission\\main.c\n@@ -200,15 +200,20 @@\n }\n \n bool ring_buf_is_full(const ring_buf_t *rb)\n {\n-\treturn (size_t)(atomic_get(&rb->head) - atomic_get(&rb->tail)) >=\n-\t       rb->size;\n+\tuint32_t head = (uint32_t)atomic_get(&rb->head);\n+\tuint32_t tail = (uint32_t)atomic_get(&rb->tail);\n+\n+\treturn (head - tail) >= (uint32_t)rb->size;\n }\n \n size_t ring_buf_count(const ring_buf_t *rb)\n {\n-\treturn (size_t)(atomic_get(&rb->head) - atomic_get(&rb->tail));\n+\tuint32_t head = (uint32_t)atomic_get(&rb->head);\n+\tuint32_t tail = (uint32_t)atomic_get(&rb->tail);\n+\n+\treturn (size_t)(head - tail);\n }\n \n size_t ring_buf_free_space(const ring_buf_t *rb)\n {\n",
+          "filediff": {
+            "file": "D:\\firmware-test\\experiments\\2026-10-20-qwen38-27b-harness-comparison\\runs\\run-20261020-154440-282906\\tasks\\opencode__isr-concurrency-001__1\\a10eac8c\\workspace\\submission\\main.c",
+            "patch": "Index: D:\\firmware-test\\experiments\\2026-10-20-qwen38-27b-harness-comparison\\runs\\run-20261020-154440-282906\\tasks\\opencode__isr-concurrency-001__1\\a10eac8c\\workspace\\submission\\main.c\n===================================================================\n--- D:\\firmware-test\\experiments\\2026-10-20-qwen38-27b-harness-comparison\\runs\\run-20261020-154440-282906\\tasks\\opencode__isr-concurrency-001__1\\a10eac8c\\workspace\\submission\\main.c\n+++ D:\\firmware-test\\experiments\\2026-10-20-qwen38-27b-harness-comparison\\runs\\run-20261020-154440-282906\\tasks\\opencode__isr-concurrency-001__1\\a10eac8c\\workspace\\submission\\main.c\n@@ -200,15 +200,20 @@\n }\n \n bool ring_buf_is_full(const ring_buf_t *rb)\n {\n-\treturn (size_t)(atomic_get(&rb->head) - atomic_get(&rb->tail)) >=\n-\t       rb->size;\n+\tuint32_t head = (uint32_t)atomic_get(&rb->head);\n+\tuint32_t tail = (uint32_t)atomic_get(&rb->tail);\n+\n+\treturn (head - tail) >= (uint32_t)rb->size;\n }\n \n size_t ring_buf_count(const ring_buf_t *rb)\n {\n-\treturn (size_t)(atomic_get(&rb->head) - atomic_get(&rb->tail));\n+\tuint32_t head = (uint32_t)atomic_get(&rb->head);\n+\tuint32_t tail = (uint32_t)atomic_get(&rb->tail);\n+\n+\treturn (size_t)(head - tail);\n }\n \n size_t ring_buf_free_space(const ring_buf_t *rb)\n {\n",
+            "additions": 8,
+            "deletions": 3
+          },
+          "truncated": false
+        },
+        "title": "firmware-test\\experiments\\2026-10-20-qwen38-27b-harness-comparison\\runs\\run-20261020-154440-282906\\tasks\\opencode__isr-concurrency-001__1\\a10eac8c\\workspace\\submission\\main.c",
+        "time": {
+          "start": 1792483485260,
+          "end": 1792483485277
+        }
+      },
+      "metadata": {
+        "anthropic": {
+          "caller": {
+            "type": "direct"
+          }
+        }
+      },
+      "id": "prt_158574cd4001RJkuOTzOdXDolW",
+      "sessionID": "ses_ea7ae49edffeqHl0eGUfeYjbPJ",
+      "messageID": "msg_158570e74001n5tzDGekWpPkKg"
+    }
+  },
+  {
+    "type": "step_finish",
+    "timestamp": 1792483485330,
+    "sessionID": "ses_ea7ae49edffeqHl0eGUfeYjbPJ",
+    "part": {
+      "id": "prt_158576684001ztwAAjxWT4p3bm",
+      "reason": "tool-calls",
+      "messageID": "msg_158570e74001n5tzDGekWpPkKg",
+      "sessionID": "ses_ea7ae49edffeqHl0eGUfeYjbPJ",
+      "type": "step-finish",
+      "tokens": {
+        "total": 11518,
+        "input": 295,
+        "output": 964,
+        "reasoning": 323,
+        "cache": {
+          "write": 0,
+          "read": 9936
+        }
+      },
+      "cost": 0
+    }
+  },
+  {
+    "type": "step_start",
+    "timestamp": 1792483487190,
+    "sessionID": "ses_ea7ae49edffeqHl0eGUfeYjbPJ",
+    "part": {
+      "id": "prt_158576dce001QarOdqi5wjUUsX",
+      "messageID": "msg_15857668e001FKnSvGGs5A6Hoa",
+      "sessionID": "ses_ea7ae49edffeqHl0eGUfeYjbPJ",
+      "type": "step-start"
+    }
+  },
+  {
+    "type": "text",
+    "timestamp": 1792483488713,
+    "sessionID": "ses_ea7ae49edffeqHl0eGUfeYjbPJ",
+    "part": {
+      "id": "prt_158576fd0001uoGEcveSpSHMEt",
+      "messageID": "msg_15857668e001FKnSvGGs5A6Hoa",
+      "sessionID": "ses_ea7ae49edffeqHl0eGUfeYjbPJ",
+      "type": "text",
+      "text": "\n\nLet me re-read the full file to verify everything is correct.\n\n",
+      "time": {
+        "start": 1792483487696,
+        "end": 1792483488706
+      }
+    }
+  },
+  {
+    "type": "tool_use",
+    "timestamp": 1792483489829,
+    "sessionID": "ses_ea7ae49edffeqHl0eGUfeYjbPJ",
+    "part": {
+      "type": "tool",
+      "tool": "read",
+      "callID": "chatcmpl-tool-bd71524eacb69cd9",
+      "state": {
+        "status": "completed",
+        "input": {
+          "filePath": "D:\\firmware-test\\experiments\\2026-10-20-qwen38-27b-harness-comparison\\runs\\run-20261020-154440-282906\\tasks\\opencode__isr-concurrency-001__1\\a10eac8c\\workspace\\submission\\main.c"
+        },
+        "output": "<path>D:\\firmware-test\\experiments\\2026-10-20-qwen38-27b-harness-comparison\\runs\\run-20261020-154440-282906\\tasks\\opencode__isr-concurrency-001__1\\a10eac8c\\workspace\\submission\\main.c</path>\n<type>file</type>\n<content>\n1: /*\n2:  * isr_ring_buffer -- ISR-safe lock-free SPSC ring buffer for Zephyr RTOS\n3:  * =====================================================================\n4:  *\n5:  * Submitted as a single file (submission/main.c) containing:\n6:  *   Part 1: public API     (what would live in isr_ring_buffer.h)\n7:  *   Part 2: implementation (what would live in isr_ring_buffer.c)\n8:  *   Part 3: demo main()    (ISR producer via k_timer expiry, thread consumer)\n9:  *\n10:  * Design\n11:  * ------\n12:  * Classic single-producer / single-consumer (SPSC) lock-free ring buffer:\n13:  *\n14:  *   - head : monotonically increasing next-write index,\n15:  *            written ONLY by the producer (ISR context)\n16:  *   - tail : monotonically increasing next-read index,\n17:  *            written ONLY by the consumer (thread context)\n18:  *\n19:  * Each side snapshots the other's index with atomic_get() and publishes\n20:  * its own index update with atomic_set(). Zephyr's atomic_get()/atomic_set()\n21:  * carry the required compiler + memory fences, so:\n22:  *\n23:  *   producer:  storage[head] = x;    atomic_set(&head, head + 1);\n24:  *   consumer:  h = atomic_get(&head); ...read storage[tail]...\n25:  *              atomic_set(&tail, tail + 1);\n26:  *\n27:  * guarantees that item data is globally visible before the index that\n28:  * advertises it, and that the consumer never reads a slot the producer\n29:  * could rewrite (the invariant head - tail <= capacity is maintained\n30:  * because the producer refuses to write while full).\n31:  *\n32:  * No mutexes, no spinlocks, no critical sections: the ISR path never\n33:  * blocks and the thread path never waits on the ISR.\n34:  *\n35:  * Semantics\n36:  * ---------\n37:  *   - Buffer full  : ring_buf_write() returns false and the item is\n38:  *                    dropped (bulk variant returns the number stored).\n39:  *   - Buffer empty : ring_buf_read() returns false; the caller polls or\n40:  *                    blocks elsewhere (e.g. on a k_sem signalled from the\n41:  *                    ISR) -- the buffer itself stays lock-free.\n42:  *   - FIFO order   : items are always consumed in the order written.\n43:  *   - Capacity     : all `size` slots are usable (monotonic counters\n44:  *                    avoid the \"wasted slot\" trick).\n45:  */\n46: \n47: #include <zephyr/kernel.h>\n48: #include <zephyr/sys/atomic.h>\n49: \n50: #include <stdbool.h>\n51: #include <stddef.h>\n52: #include <stdint.h>\n53: #include <string.h>\n54: \n55: /* ==========================================================================\n56:  * Part 1: public API   (header: isr_ring_buffer.h)\n57:  * ========================================================================== */\n58: \n59: typedef struct {\n60: \tuint8_t *storage; /* backing array; must outlive the buffer  */\n61: \tsize_t   size;    /* capacity in bytes (must be > 0)         */\n62: \tatomic_t head;    /* next write index, monotonic, producer-owned */\n63: \tatomic_t tail;    /* next read index, monotonic, consumer-owned  */\n64: } ring_buf_t;\n65: \n66: /* Initialize an empty ring buffer. Call once before first use. */\n67: void ring_buf_init(ring_buf_t *rb, uint8_t *storage, size_t size);\n68: \n69: /*\n70:  * Producer API -- safe to call from ISR context (never blocks).\n71:  *\n72:  * @return true if the byte was stored, false if the buffer is full\n73:  *         (the byte is dropped).\n74:  */\n75: bool ring_buf_write(ring_buf_t *rb, uint8_t data);\n76: \n77: /* Bulk producer variant, ISR context safe.\n78:  * Stores up to `len` bytes, returns the number actually stored. */\n79: size_t ring_buf_write_buf(ring_buf_t *rb, const uint8_t *data, size_t len);\n80: \n81: /*\n82:  * Consumer API -- intended for thread context (never blocks).\n83:  *\n84:  * @return true and stores one byte in *data, or false if the buffer\n85:  *         is empty.\n86:  */\n87: bool ring_buf_read(ring_buf_t *rb, uint8_t *data);\n88: \n89: /* Bulk consumer variant.\n90:  * Reads up to `len` bytes, returns the number actually read. */\n91: size_t ring_buf_read_buf(ring_buf_t *rb, uint8_t *data, size_t len);\n92: \n93: /* Status queries -- may be called from either context. */\n94: bool   ring_buf_is_empty(const ring_buf_t *rb);\n95: bool   ring_buf_is_full(const ring_buf_t *rb);\n96: size_t ring_buf_count(const ring_buf_t *rb);       /* bytes in buffer      */\n97: size_t ring_buf_free_space(const ring_buf_t *rb);  /* bytes that fit       */\n98: \n99: /* ==========================================================================\n100:  * Part 2: implementation   (source: isr_ring_buffer.c)\n101:  * ========================================================================== */\n102: \n103: #define RINGBUF_MIN(a, b) (((a) < (b)) ? (a) : (b))\n104: \n105: void ring_buf_init(ring_buf_t *rb, uint8_t *storage, size_t size)\n106: {\n107: \trb->storage = storage;\n108: \trb->size = size;\n109: \tatomic_set(&rb->head, 0);\n110: \tatomic_set(&rb->tail, 0);\n111: }\n112: \n113: bool ring_buf_write(ring_buf_t *rb, uint8_t data)\n114: {\n115: \tuint32_t head = (uint32_t)atomic_get(&rb->head);\n116: \tuint32_t tail = (uint32_t)atomic_get(&rb->tail);\n117: \n118: \t/* Full once head has lapped tail by a whole capacity.\n119: \t * Unsigned wraparound keeps the check correct indefinitely. */\n120: \tif ((head - tail) >= (uint32_t)rb->size) {\n121: \t\treturn false; /* buffer full: drop the item */\n122: \t}\n123: \n124: \t/* Store the item, then publish the new head. The fence inside\n125: \t * atomic_set() makes the data write globally visible before the\n126: \t * index update, so the consumer can never see a head that points\n127: \t * at unwritten data. */\n128: \trb->storage[head % rb->size] = data;\n129: \tatomic_set(&rb->head, head + 1U);\n130: \n131: \treturn true;\n132: }\n133: \n134: bool ring_buf_read(ring_buf_t *rb, uint8_t *data)\n135: {\n136: \tuint32_t tail = (uint32_t)atomic_get(&rb->tail);\n137: \tuint32_t head = (uint32_t)atomic_get(&rb->head);\n138: \n139: \tif (head == tail) {\n140: \t\treturn false; /* buffer empty */\n141: \t}\n142: \n143: \t/* head > tail (mod 2^32) implies the producer already wrote this\n144: \t * slot, and the full condition prevents it rewriting the slot until\n145: \t * tail advances, so no concurrent writer can touch it. */\n146: \t*data = rb->storage[tail % rb->size];\n147: \n148: \t/* The fence makes the data read complete before the new tail is\n149: \t * published, so the producer cannot treat this slot as free until\n150: \t * we are done with it. */\n151: \tatomic_set(&rb->tail, tail + 1U);\n152: \n153: \treturn true;\n154: }\n155: \n156: size_t ring_buf_write_buf(ring_buf_t *rb, const uint8_t *data, size_t len)\n157: {\n158: \tuint32_t head = (uint32_t)atomic_get(&rb->head);\n159: \tuint32_t tail = (uint32_t)atomic_get(&rb->tail);\n160: \tsize_t free_space = rb->size - (size_t)(head - tail);\n161: \tsize_t n = RINGBUF_MIN(len, free_space);\n162: \tsize_t first_chunk = RINGBUF_MIN(n, rb->size - (head % rb->size));\n163: \n164: \t/* Copy in at most two contiguous chunks to handle the wrap. */\n165: \tif (n > 0U) {\n166: \t\tmemcpy(&rb->storage[head % rb->size], data, first_chunk);\n167: \t\tif (n > first_chunk) {\n168: \t\t\tmemcpy(&rb->storage[0], &data[first_chunk],\n169: \t\t\t       n - first_chunk);\n170: \t\t}\n171: \t}\n172: \n173: \tatomic_set(&rb->head, head + (uint32_t)n);\n174: \treturn n;\n175: }\n176: \n177: size_t ring_buf_read_buf(ring_buf_t *rb, uint8_t *data, size_t len)\n178: {\n179: \tuint32_t tail = (uint32_t)atomic_get(&rb->tail);\n180: \tuint32_t head = (uint32_t)atomic_get(&rb->head);\n181: \tsize_t available = (size_t)(head - tail);\n182: \tsize_t n = RINGBUF_MIN(len, available);\n183: \tsize_t first_chunk = RINGBUF_MIN(n, rb->size - (tail % rb->size));\n184: \n185: \tif (n > 0U) {\n186: \t\tmemcpy(data, &rb->storage[tail % rb->size], first_chunk);\n187: \t\tif (n > first_chunk) {\n188: \t\t\tmemcpy(&data[first_chunk], &rb->storage[0],\n189: \t\t\t       n - first_chunk);\n190: \t\t}\n191: \t}\n192: \n193: \tatomic_set(&rb->tail, tail + (uint32_t)n);\n194: \treturn n;\n195: }\n196: \n197: bool ring_buf_is_empty(const ring_buf_t *rb)\n198: {\n199: \treturn atomic_get(&rb->head) == atomic_get(&rb->tail);\n200: }\n201: \n202: bool ring_buf_is_full(const ring_buf_t *rb)\n203: {\n204: \tuint32_t head = (uint32_t)atomic_get(&rb->head);\n205: \tuint32_t tail = (uint32_t)atomic_get(&rb->tail);\n206: \n207: \treturn (head - tail) >= (uint32_t)rb->size;\n208: }\n209: \n210: size_t ring_buf_count(const ring_buf_t *rb)\n211: {\n212: \tuint32_t head = (uint32_t)atomic_get(&rb->head);\n213: \tuint32_t tail = (uint32_t)atomic_get(&rb->tail);\n214: \n215: \treturn (size_t)(head - tail);\n216: }\n217: \n218: size_t ring_buf_free_space(const ring_buf_t *rb)\n219: {\n220: \treturn rb->size - ring_buf_count(rb);\n221: }\n222: \n223: /* ==========================================================================\n224:  * Part 3: demo -- ISR producer + thread consumer\n225:  *\n226:  * A k_timer expiry callback runs in ISR context, making it a realistic\n227:  * stand-in for a hardware interrupt (e.g. a UART RX interrupt) feeding the\n228:  * ring buffer. A dedicated Zephyr thread consumes it.\n229:  *\n230:  * The producer deliberately outpaces the consumer so the buffer fills up\n231:  * and the full-buffer drop path is exercised; the empty path is exercised\n232:  * at startup and whenever the consumer catches up.\n233:  * ========================================================================== */\n234: \n235: #define RING_SIZE         32u  /* buffer capacity in bytes       */\n236: #define PRODUCE_PERIOD_MS 5u   /* 1 byte per ISR tick -> 200 B/s */\n237: #define CONSUME_PERIOD_MS 50u  /* consumer wakeup period         */\n238: #define CONSUME_BURST     8u   /* bytes per wakeup -> 160 B/s    */\n239: \n240: static uint8_t ring_storage[RING_SIZE];\n241: static ring_buf_t ring;\n242: \n243: static atomic_t produced; /* bytes accepted by the ISR producer */\n244: static atomic_t dropped;  /* bytes dropped because buffer was full */\n245: static uint8_t seq;       /* item sequence number, ISR-owned    */\n246: \n247: static struct k_timer producer_timer;\n248: \n249: /* Runs in ISR context every PRODUCE_PERIOD_MS. */\n250: static void producer_expiry(struct k_timer *timer)\n251: {\n252: \t(void)timer;\n253: \n254: \tseq++;\n255: \tif (ring_buf_write(&ring, seq)) {\n256: \t\tatomic_inc(&produced);\n257: \t} else {\n258: \t\t/* Buffer full: this item is dropped. A real driver could\n259: \t\t * retry later or apply a back-pressure policy here. */\n260: \t\tatomic_inc(&dropped);\n261: \t}\n262: }\n263: \n264: #define CONSUMER_STACK_SIZE 1024\n265: static K_THREAD_STACK_DEFINE(consumer_stack, CONSUMER_STACK_SIZE);\n266: static struct k_thread consumer_thread;\n267: static uint8_t last_rx; /* thread-owned: last sequence consumed */\n268: \n269: static void consumer_fn(void *arg1, void *arg2, void *arg3)\n270: {\n271: \t(void)arg1;\n272: \t(void)arg2;\n273: \t(void)arg3;\n274: \n275: \tuint8_t chunk[CONSUME_BURST];\n276: \tunsigned long consumed = 0U;\n277: \tunsigned long cycles = 0U;\n278: \n279: \twhile (true) {\n280: \t\tsize_t n = ring_buf_read_buf(&ring, chunk, sizeof(chunk));\n281: \n282: \t\tif (n > 0U) {\n283: \t\t\t/* chunk[0] is the oldest pending item; with FIFO\n284: \t\t\t * ordering it always carries the lowest sequence\n285: \t\t\t * number not seen yet. */\n286: \t\t\tlast_rx = chunk[0];\n287: \t\t\tconsumed += n;\n288: \t\t}\n289: \t\t/* n == 0: buffer empty -- nothing to consume this cycle. */\n290: \n291: \t\tif ((++cycles % 5U) == 0U) { /* status line every 250 ms */\n292: \t\t\tprintk(\"ring: %u/%u used | consumed=%lu dropped=%lu \"\n293: \t\t\t       \"last=%u\\n\",\n294: \t\t\t       (unsigned int)ring_buf_count(&ring),\n295: \t\t\t       RING_SIZE,\n296: \t\t\t       consumed,\n297: \t\t\t       (unsigned long)atomic_get(&dropped),\n298: \t\t\t       (unsigned int)last_rx);\n299: \t\t}\n300: \n301: \t\tk_msleep(CONSUME_PERIOD_MS);\n302: \t}\n303: }\n304: \n305: int main(void)\n306: {\n307: \tring_buf_init(&ring, ring_storage, sizeof(ring_storage));\n308: \n309: \t/* The k_timer expiry handler executes in ISR context. */\n310: \tk_timer_init(&producer_timer, NULL, producer_expiry);\n311: \tk_timer_start(&producer_timer, K_MSEC(1U), K_MSEC(PRODUCE_PERIOD_MS));\n312: \n313: \tk_thread_create(&consumer_thread, consumer_stack,\n314: \t\t\tK_THREAD_STACK_SIZEOF(consumer_stack),\n315: \t\t\tconsumer_fn, NULL, NULL, NULL,\n316: \t\t\tK_PRIO_COOP(7), 0, K_NO_WAIT);\n317: \n318: \tprintk(\"ISR-safe ring buffer demo: %u B buffer, producer in ISR \"\n319: \t       \"context, consumer in thread context\\n\",\n320: \t       (unsigned int)RING_SIZE);\n321: \n322: \twhile (1) {\n323: \t\tk_sleep(K_SECONDS(1));\n324: \t}\n325: \n326: \treturn 0;\n327: }\n\n(End of file - total 327 lines)\n</content>",
+        "metadata": {
+          "preview": "/*\n * isr_ring_buffer -- ISR-safe lock-free SPSC ring buffer for Zephyr RTOS\n * =====================================================================\n *\n * Submitted as a single file (submission/main.c) containing:\n *   Part 1: public API     (what would live in isr_ring_buffer.h)\n *   Part 2: implementation (what would live in isr_ring_buffer.c)\n *   Part 3: demo main()    (ISR producer via k_timer expiry, thread consumer)\n *\n * Design\n * ------\n * Classic single-producer / single-consumer (SPSC) lock-free ring buffer:\n *\n *   - head : monotonically increasing next-write index,\n *            written ONLY by the producer (ISR context)\n *   - tail : monotonically increasing next-read index,\n *            written ONLY by the consumer (thread context)\n *\n * Each side snapshots the other's index with atomic_get() and publishes\n * its own index update with atomic_set(). Zephyr's atomic_get()/atomic_set()",
+          "truncated": false,
+          "loaded": [],
+          "display": {
+            "type": "file",
+            "path": "D:\\firmware-test\\experiments\\2026-10-20-qwen38-27b-harness-comparison\\runs\\run-20261020-154440-282906\\tasks\\opencode__isr-concurrency-001__1\\a10eac8c\\workspace\\submission\\main.c",
+            "text": "/*\n * isr_ring_buffer -- ISR-safe lock-free SPSC ring buffer for Zephyr RTOS\n * =====================================================================\n *\n * Submitted as a single file (submission/main.c) containing:\n *   Part 1: public API     (what would live in isr_ring_buffer.h)\n *   Part 2: implementation (what would live in isr_ring_buffer.c)\n *   Part 3: demo main()    (ISR producer via k_timer expiry, thread consumer)\n *\n * Design\n * ------\n * Classic single-producer / single-consumer (SPSC) lock-free ring buffer:\n *\n *   - head : monotonically increasing next-write index,\n *            written ONLY by the producer (ISR context)\n *   - tail : monotonically increasing next-read index,\n *            written ONLY by the consumer (thread context)\n *\n * Each side snapshots the other's index with atomic_get() and publishes\n * its own index update with atomic_set(). Zephyr's atomic_get()/atomic_set()\n * carry the required compiler + memory fences, so:\n *\n *   producer:  storage[head] = x;    atomic_set(&head, head + 1);\n *   consumer:  h = atomic_get(&head); ...read storage[tail]...\n *              atomic_set(&tail, tail + 1);\n *\n * guarantees that item data is globally visible before the index that\n * advertises it, and that the consumer never reads a slot the producer\n * could rewrite (the invariant head - tail <= capacity is maintained\n * because the producer refuses to write while full).\n *\n * No mutexes, no spinlocks, no critical sections: the ISR path never\n * blocks and the thread path never waits on the ISR.\n *\n * Semantics\n * ---------\n *   - Buffer full  : ring_buf_write() returns false and the item is\n *                    dropped (bulk variant returns the number stored).\n *   - Buffer empty : ring_buf_read() returns false; the caller polls or\n *                    blocks elsewhere (e.g. on a k_sem signalled from the\n *                    ISR) -- the buffer itself stays lock-free.\n *   - FIFO order   : items are always consumed in the order written.\n *   - Capacity     : all `size` slots are usable (monotonic counters\n *                    avoid the \"wasted slot\" trick).\n */\n\n#include <zephyr/kernel.h>\n#include <zephyr/sys/atomic.h>\n\n#include <stdbool.h>\n#include <stddef.h>\n#include <stdint.h>\n#include <string.h>\n\n/* ==========================================================================\n * Part 1: public API   (header: isr_ring_buffer.h)\n * ========================================================================== */\n\ntypedef struct {\n\tuint8_t *storage; /* backing array; must outlive the buffer  */\n\tsize_t   size;    /* capacity in bytes (must be > 0)         */\n\tatomic_t head;    /* next write index, monotonic, producer-owned */\n\tatomic_t tail;    /* next read index, monotonic, consumer-owned  */\n} ring_buf_t;\n\n/* Initialize an empty ring buffer. Call once before first use. */\nvoid ring_buf_init(ring_buf_t *rb, uint8_t *storage, size_t size);\n\n/*\n * Producer API -- safe to call from ISR context (never blocks).\n *\n * @return true if the byte was stored, false if the buffer is full\n *         (the byte is dropped).\n */\nbool ring_buf_write(ring_buf_t *rb, uint8_t data);\n\n/* Bulk producer variant, ISR context safe.\n * Stores up to `len` bytes, returns the number actually stored. */\nsize_t ring_buf_write_buf(ring_buf_t *rb, const uint8_t *data, size_t len);\n\n/*\n * Consumer API -- intended for thread context (never blocks).\n *\n * @return true and stores one byte in *data, or false if the buffer\n *         is empty.\n */\nbool ring_buf_read(ring_buf_t *rb, uint8_t *data);\n\n/* Bulk consumer variant.\n * Reads up to `len` bytes, returns the number actually read. */\nsize_t ring_buf_read_buf(ring_buf_t *rb, uint8_t *data, size_t len);\n\n/* Status queries -- may be called from either context. */\nbool   ring_buf_is_empty(const ring_buf_t *rb);\nbool   ring_buf_is_full(const ring_buf_t *rb);\nsize_t ring_buf_count(const ring_buf_t *rb);       /* bytes in buffer      */\nsize_t ring_buf_free_space(const ring_buf_t *rb);  /* bytes that fit       */\n\n/* ==========================================================================\n * Part 2: implementation   (source: isr_ring_buffer.c)\n * ========================================================================== */\n\n#define RINGBUF_MIN(a, b) (((a) < (b)) ? (a) : (b))\n\nvoid ring_buf_init(ring_buf_t *rb, uint8_t *storage, size_t size)\n{\n\trb->storage = storage;\n\trb->size = size;\n\tatomic_set(&rb->head, 0);\n\tatomic_set(&rb->tail, 0);\n}\n\nbool ring_buf_write(ring_buf_t *rb, uint8_t data)\n{\n\tuint32_t head = (uint32_t)atomic_get(&rb->head);\n\tuint32_t tail = (uint32_t)atomic_get(&rb->tail);\n\n\t/* Full once head has lapped tail by a whole capacity.\n\t * Unsigned wraparound keeps the check correct indefinitely. */\n\tif ((head - tail) >= (uint32_t)rb->size) {\n\t\treturn false; /* buffer full: drop the item */\n\t}\n\n\t/* Store the item, then publish the new head. The fence inside\n\t * atomic_set() makes the data write globally visible before the\n\t * index update, so the consumer can never see a head that points\n\t * at unwritten data. */\n\trb->storage[head % rb->size] = data;\n\tatomic_set(&rb->head, head + 1U);\n\n\treturn true;\n}\n\nbool ring_buf_read(ring_buf_t *rb, uint8_t *data)\n{\n\tuint32_t tail = (uint32_t)atomic_get(&rb->tail);\n\tuint32_t head = (uint32_t)atomic_get(&rb->head);\n\n\tif (head == tail) {\n\t\treturn false; /* buffer empty */\n\t}\n\n\t/* head > tail (mod 2^32) implies the producer already wrote this\n\t * slot, and the full condition prevents it rewriting the slot until\n\t * tail advances, so no concurrent writer can touch it. */\n\t*data = rb->storage[tail % rb->size];\n\n\t/* The fence makes the data read complete before the new tail is\n\t * published, so the producer cannot treat this slot as free until\n\t * we are done with it. */\n\tatomic_set(&rb->tail, tail + 1U);\n\n\treturn true;\n}\n\nsize_t ring_buf_write_buf(ring_buf_t *rb, const uint8_t *data, size_t len)\n{\n\tuint32_t head = (uint32_t)atomic_get(&rb->head);\n\tuint32_t tail = (uint32_t)atomic_get(&rb->tail);\n\tsize_t free_space = rb->size - (size_t)(head - tail);\n\tsize_t n = RINGBUF_MIN(len, free_space);\n\tsize_t first_chunk = RINGBUF_MIN(n, rb->size - (head % rb->size));\n\n\t/* Copy in at most two contiguous chunks to handle the wrap. */\n\tif (n > 0U) {\n\t\tmemcpy(&rb->storage[head % rb->size], data, first_chunk);\n\t\tif (n > first_chunk) {\n\t\t\tmemcpy(&rb->storage[0], &data[first_chunk],\n\t\t\t       n - first_chunk);\n\t\t}\n\t}\n\n\tatomic_set(&rb->head, head + (uint32_t)n);\n\treturn n;\n}\n\nsize_t ring_buf_read_buf(ring_buf_t *rb, uint8_t *data, size_t len)\n{\n\tuint32_t tail = (uint32_t)atomic_get(&rb->tail);\n\tuint32_t head = (uint32_t)atomic_get(&rb->head);\n\tsize_t available = (size_t)(head - tail);\n\tsize_t n = RINGBUF_MIN(len, available);\n\tsize_t first_chunk = RINGBUF_MIN(n, rb->size - (tail % rb->size));\n\n\tif (n > 0U) {\n\t\tmemcpy(data, &rb->storage[tail % rb->size], first_chunk);\n\t\tif (n > first_chunk) {\n\t\t\tmemcpy(&data[first_chunk], &rb->storage[0],\n\t\t\t       n - first_chunk);\n\t\t}\n\t}\n\n\tatomic_set(&rb->tail, tail + (uint32_t)n);\n\treturn n;\n}\n\nbool ring_buf_is_empty(const ring_buf_t *rb)\n{\n\treturn atomic_get(&rb->head) == atomic_get(&rb->tail);\n}\n\nbool ring_buf_is_full(const ring_buf_t *rb)\n{\n\tuint32_t head = (uint32_t)atomic_get(&rb->head);\n\tuint32_t tail = (uint32_t)atomic_get(&rb->tail);\n\n\treturn (head - tail) >= (uint32_t)rb->size;\n}\n\nsize_t ring_buf_count(const ring_buf_t *rb)\n{\n\tuint32_t head = (uint32_t)atomic_get(&rb->head);\n\tuint32_t tail = (uint32_t)atomic_get(&rb->tail);\n\n\treturn (size_t)(head - tail);\n}\n\nsize_t ring_buf_free_space(const ring_buf_t *rb)\n{\n\treturn rb->size - ring_buf_count(rb);\n}\n\n/* ==========================================================================\n * Part 3: demo -- ISR producer + thread consumer\n *\n * A k_timer expiry callback runs in ISR context, making it a realistic\n * stand-in for a hardware interrupt (e.g. a UART RX interrupt) feeding the\n * ring buffer. A dedicated Zephyr thread consumes it.\n *\n * The producer deliberately outpaces the consumer so the buffer fills up\n * and the full-buffer drop path is exercised; the empty path is exercised\n * at startup and whenever the consumer catches up.\n * ========================================================================== */\n\n#define RING_SIZE         32u  /* buffer capacity in bytes       */\n#define PRODUCE_PERIOD_MS 5u   /* 1 byte per ISR tick -> 200 B/s */\n#define CONSUME_PERIOD_MS 50u  /* consumer wakeup period         */\n#define CONSUME_BURST     8u   /* bytes per wakeup -> 160 B/s    */\n\nstatic uint8_t ring_storage[RING_SIZE];\nstatic ring_buf_t ring;\n\nstatic atomic_t produced; /* bytes accepted by the ISR producer */\nstatic atomic_t dropped;  /* bytes dropped because buffer was full */\nstatic uint8_t seq;       /* item sequence number, ISR-owned    */\n\nstatic struct k_timer producer_timer;\n\n/* Runs in ISR context every PRODUCE_PERIOD_MS. */\nstatic void producer_expiry(struct k_timer *timer)\n{\n\t(void)timer;\n\n\tseq++;\n\tif (ring_buf_write(&ring, seq)) {\n\t\tatomic_inc(&produced);\n\t} else {\n\t\t/* Buffer full: this item is dropped. A real driver could\n\t\t * retry later or apply a back-pressure policy here. */\n\t\tatomic_inc(&dropped);\n\t}\n}\n\n#define CONSUMER_STACK_SIZE 1024\nstatic K_THREAD_STACK_DEFINE(consumer_stack, CONSUMER_STACK_SIZE);\nstatic struct k_thread consumer_thread;\nstatic uint8_t last_rx; /* thread-owned: last sequence consumed */\n\nstatic void consumer_fn(void *arg1, void *arg2, void *arg3)\n{\n\t(void)arg1;\n\t(void)arg2;\n\t(void)arg3;\n\n\tuint8_t chunk[CONSUME_BURST];\n\tunsigned long consumed = 0U;\n\tunsigned long cycles = 0U;\n\n\twhile (true) {\n\t\tsize_t n = ring_buf_read_buf(&ring, chunk, sizeof(chunk));\n\n\t\tif (n > 0U) {\n\t\t\t/* chunk[0] is the oldest pending item; with FIFO\n\t\t\t * ordering it always carries the lowest sequence\n\t\t\t * number not seen yet. */\n\t\t\tlast_rx = chunk[0];\n\t\t\tconsumed += n;\n\t\t}\n\t\t/* n == 0: buffer empty -- nothing to consume this cycle. */\n\n\t\tif ((++cycles % 5U) == 0U) { /* status line every 250 ms */\n\t\t\tprintk(\"ring: %u/%u used | consumed=%lu dropped=%lu \"\n\t\t\t       \"last=%u\\n\",\n\t\t\t       (unsigned int)ring_buf_count(&ring),\n\t\t\t       RING_SIZE,\n\t\t\t       consumed,\n\t\t\t       (unsigned long)atomic_get(&dropped),\n\t\t\t       (unsigned int)last_rx);\n\t\t}\n\n\t\tk_msleep(CONSUME_PERIOD_MS);\n\t}\n}\n\nint main(void)\n{\n\tring_buf_init(&ring, ring_storage, sizeof(ring_storage));\n\n\t/* The k_timer expiry handler executes in ISR context. */\n\tk_timer_init(&producer_timer, NULL, producer_expiry);\n\tk_timer_start(&producer_timer, K_MSEC(1U), K_MSEC(PRODUCE_PERIOD_MS));\n\n\tk_thread_create(&consumer_thread, consumer_stack,\n\t\t\tK_THREAD_STACK_SIZEOF(consumer_stack),\n\t\t\tconsumer_fn, NULL, NULL, NULL,\n\t\t\tK_PRIO_COOP(7), 0, K_NO_WAIT);\n\n\tprintk(\"ISR-safe ring buffer demo: %u B buffer, producer in ISR \"\n\t       \"context, consumer in thread context\\n\",\n\t       (unsigned int)RING_SIZE);\n\n\twhile (1) {\n\t\tk_sleep(K_SECONDS(1));\n\t}\n\n\treturn 0;\n}",
+            "lineStart": 1,
+            "lineEnd": 327,
+            "totalLines": 327,
+            "truncated": false
+          }
+        },
+        "title": "firmware-test\\experiments\\2026-10-20-qwen38-27b-harness-comparison\\runs\\run-20261020-154440-282906\\tasks\\opencode__isr-concurrency-001__1\\a10eac8c\\workspace\\submission\\main.c",
+        "time": {
+          "start": 1792483489791,
+          "end": 1792483489813
+        }
+      },
+      "metadata": {
+        "anthropic": {
+          "caller": {
+            "type": "direct"
+          }
+        }
+      },
+      "id": "prt_1585773c6001TuIkJu4m2oO83j",
+      "sessionID": "ses_ea7ae49edffeqHl0eGUfeYjbPJ",
+      "messageID": "msg_15857668e001FKnSvGGs5A6Hoa"
+    }
+  },
+  {
+    "type": "step_finish",
+    "timestamp": 1792483489829,
+    "sessionID": "ses_ea7ae49edffeqHl0eGUfeYjbPJ",
+    "part": {
+      "id": "prt_158577818001yq4GjeYx99WwA5",
+      "reason": "tool-calls",
+      "messageID": "msg_15857668e001FKnSvGGs5A6Hoa",
+      "sessionID": "ses_ea7ae49edffeqHl0eGUfeYjbPJ",
+      "type": "step-finish",
+      "tokens": {
+        "total": 11374,
+        "input": 1024,
+        "output": 128,
+        "reasoning": 14,
+        "cache": {
+          "write": 0,
+          "read": 10208
+        }
+      },
+      "cost": 0
+    }
+  },
+  {
+    "type": "step_start",
+    "timestamp": 1792483492827,
+    "sessionID": "ses_ea7ae49edffeqHl0eGUfeYjbPJ",
+    "part": {
+      "id": "prt_1585783d5001lk9Fa7B1nXHx9X",
+      "messageID": "msg_158577820001cdXHS9mA3wwjif",
+      "sessionID": "ses_ea7ae49edffeqHl0eGUfeYjbPJ",
+      "type": "step-start"
+    }
+  },
+  {
+    "type": "text",
+    "timestamp": 1792483508738,
+    "sessionID": "ses_ea7ae49edffeqHl0eGUfeYjbPJ",
+    "part": {
+      "id": "prt_15857ad51001PWg8gmt3MPtuyO",
+      "messageID": "msg_158577820001cdXHS9mA3wwjif",
+      "sessionID": "ses_ea7ae49edffeqHl0eGUfeYjbPJ",
+      "type": "text",
+      "text": "\n\nThe file is complete and verified. The implementation is a lock-free SPSC ring buffer for Zephyr:\n\n**`submission/main.c`** (self-contained, header + source + demo in one file):\n\n- **Header section** (Part 1): `ring_buf_t` plus `ring_buf_init/write/read/write_buf/read_buf/is_empty/is_full/count/free_space`.\n- **Core design** (Part 2): monotonic `head`/`tail` `atomic_t` counters — the producer (ISR) owns `head`, the consumer (thread) owns `tail`. Each side snapshots the other with `atomic_get()` and publishes its own update with `atomic_set()`, whose fence guarantees item data is visible before the index advertises it. No mutexes/spinlocks/critical sections anywhere.\n  - **Full**: producer refuses to write when `head - tail >= size` (`ring_buf_write` returns false / bulk returns count stored).\n  - **Empty**: consumer sees `head == tail` and returns false.\n  - **FIFO**: single reader/writer per end plus the `head - tail <= size` invariant guarantee ordering; monotonic counters avoid the wasted-slot trick, so all 32 slots are usable.\n- **Demo** (Part 3): a `k_timer` expiry callback (runs in ISR context, like a UART RX interrupt) produces 1 byte/5 ms while a cooperative thread consumes in 8-byte bursts/50 ms, so both the full-drop and empty paths are exercised; status is printed periodically with consumed/dropped counters.",
+      "time": {
+        "start": 1792483503441,
+        "end": 1792483508682
+      }
+    }
+  },
+  {
+    "type": "step_finish",
+    "timestamp": 1792483508738,
+    "sessionID": "ses_ea7ae49edffeqHl0eGUfeYjbPJ",
+    "part": {
+      "id": "prt_15857c1d1001JboNuccpByJaLO",
+      "reason": "stop",
+      "messageID": "msg_158577820001cdXHS9mA3wwjif",
+      "sessionID": "ses_ea7ae49edffeqHl0eGUfeYjbPJ",
+      "type": "step-finish",
+      "tokens": {
+        "total": 16884,
+        "input": 5614,
+        "output": 335,
+        "reasoning": 535,
+        "cache": {
+          "write": 0,
+          "read": 10400
+        }
+      },
+      "cost": 0
+    }
+  }
+]

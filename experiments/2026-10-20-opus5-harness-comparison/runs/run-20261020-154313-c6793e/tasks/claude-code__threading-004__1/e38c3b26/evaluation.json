@@ -1,0 +1,128 @@
+{
+  "passed": true,
+  "healthy": true,
+  "scope": "L0+L3 static only",
+  "layers": [
+    {
+      "layer": 0,
+      "name": "static_analysis",
+      "passed": true,
+      "details": [
+        {
+          "check_name": "kernel_header_included",
+          "passed": true,
+          "expected": "zephyr/kernel.h included",
+          "actual": "present",
+          "check_type": "exact_match",
+          "weight": 1.0
+        },
+        {
+          "check_name": "mutex_used_not_semaphore",
+          "passed": true,
+          "expected": "k_mutex used (provides priority inheritance)",
+          "actual": "present",
+          "check_type": "exact_match",
+          "weight": 1.0
+        },
+        {
+          "check_name": "mutex_lock_called",
+          "passed": true,
+          "expected": "k_mutex_lock() called",
+          "actual": "present",
+          "check_type": "exact_match",
+          "weight": 1.0
+        },
+        {
+          "check_name": "mutex_unlock_called",
+          "passed": true,
+          "expected": "k_mutex_unlock() called",
+          "actual": "present",
+          "check_type": "exact_match",
+          "weight": 1.0
+        },
+        {
+          "check_name": "three_threads_defined",
+          "passed": true,
+          "expected": "At least 3 threads defined (low, med, high priority)",
+          "actual": "3 threads found",
+          "check_type": "exact_match",
+          "weight": 1.0
+        }
+      ],
+      "error": null,
+      "duration_seconds": 0.0,
+      "score": 1.0
+    },
+    {
+      "layer": 3,
+      "name": "static_heuristic",
+      "passed": true,
+      "details": [
+        {
+          "check_name": "mutex_not_semaphore",
+          "passed": true,
+          "expected": "k_mutex used (not k_sem) — only mutex has priority inheritance",
+          "actual": "mutex",
+          "check_type": "constraint",
+          "weight": 1.0
+        },
+        {
+          "check_name": "three_distinct_priorities",
+          "passed": true,
+          "expected": "Three distinct priorities for low, med, high threads",
+          "actual": "priorities=['10', '4', '7']",
+          "check_type": "constraint",
+          "weight": 1.0
+        },
+        {
+          "check_name": "mutex_holder_sleeps_while_locked",
+          "passed": true,
+          "expected": "Thread holding mutex calls k_sleep (simulates work under lock)",
+          "actual": "present",
+          "check_type": "constraint",
+          "weight": 1.0
+        },
+        {
+          "check_name": "mutex_contention_present",
+          "passed": true,
+          "expected": "k_mutex_lock called >= 2 times (contention between threads)",
+          "actual": "lock_count=2",
+          "check_type": "constraint",
+          "weight": 1.0
+        },
+        {
+          "check_name": "no_deadlock_unlock_balanced",
+          "passed": true,
+          "expected": "k_mutex_unlock called at least as many times as k_mutex_lock",
+          "actual": "lock=2, unlock=2",
+          "check_type": "constraint",
+          "weight": 1.0
+        },
+        {
+          "check_name": "same_mutex_shared",
+          "passed": true,
+          "expected": "Same mutex used by multiple threads for priority inheritance",
+          "actual": "mutex usage: {'my_mutex': 2}",
+          "check_type": "constraint",
+          "weight": 1.0
+        },
+        {
+          "check_name": "no_cross_platform_apis",
+          "passed": true,
+          "expected": "No FreeRTOS/Arduino/STM32_HAL/POSIX APIs",
+          "actual": "clean",
+          "check_type": "constraint",
+          "weight": 1.0
+        }
+      ],
+      "error": null,
+      "duration_seconds": 0.0,
+      "score": 1.0
+    }
+  ],
+  "not_evaluated": [
+    "L1 compile",
+    "L2 runtime",
+    "L4 mutation"
+  ]
+}

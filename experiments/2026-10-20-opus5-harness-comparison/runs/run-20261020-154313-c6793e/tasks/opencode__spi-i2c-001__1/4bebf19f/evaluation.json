@@ -1,0 +1,120 @@
+{
+  "passed": true,
+  "healthy": true,
+  "scope": "L0+L3 static only",
+  "layers": [
+    {
+      "layer": 0,
+      "name": "static_analysis",
+      "passed": true,
+      "details": [
+        {
+          "check_name": "i2c_header_included",
+          "passed": true,
+          "expected": "zephyr/drivers/i2c.h included",
+          "actual": "present",
+          "check_type": "exact_match",
+          "weight": 1.0
+        },
+        {
+          "check_name": "device_binding",
+          "passed": true,
+          "expected": "DEVICE_DT_GET or device_get_binding used",
+          "actual": "present",
+          "check_type": "exact_match",
+          "weight": 1.0
+        },
+        {
+          "check_name": "i2c_address_defined",
+          "passed": true,
+          "expected": "I2C address defined as hex constant",
+          "actual": "present",
+          "check_type": "exact_match",
+          "weight": 1.0
+        },
+        {
+          "check_name": "i2c_read_api_used",
+          "passed": true,
+          "expected": "I2C read API called",
+          "actual": "present",
+          "check_type": "exact_match",
+          "weight": 1.0
+        },
+        {
+          "check_name": "no_raw_i2c_access",
+          "passed": true,
+          "expected": "Uses I2C API, not raw register access",
+          "actual": "API only",
+          "check_type": "constraint",
+          "weight": 1.0
+        }
+      ],
+      "error": null,
+      "duration_seconds": 0.0,
+      "score": 1.0
+    },
+    {
+      "layer": 3,
+      "name": "static_heuristic",
+      "passed": true,
+      "details": [
+        {
+          "check_name": "ready_check_before_io",
+          "passed": true,
+          "expected": "device_is_ready() before I2C operations",
+          "actual": "correct order",
+          "check_type": "constraint",
+          "weight": 1.0
+        },
+        {
+          "check_name": "i2c_address_7bit_range",
+          "passed": true,
+          "expected": "I2C address in 7-bit range (0x01-0x7F)",
+          "actual": "addresses found: ['0x68']",
+          "check_type": "constraint",
+          "weight": 1.0
+        },
+        {
+          "check_name": "i2c_error_handling",
+          "passed": true,
+          "expected": "Return value checked for I2C read errors",
+          "actual": "present",
+          "check_type": "constraint",
+          "weight": 1.0
+        },
+        {
+          "check_name": "register_address_defined",
+          "passed": true,
+          "expected": "Register address defined (WHO_AM_I or 0x75)",
+          "actual": "present",
+          "check_type": "exact_match",
+          "weight": 1.0
+        },
+        {
+          "check_name": "read_result_stored",
+          "passed": true,
+          "expected": "Read result stored in uint8_t variable",
+          "actual": "present",
+          "check_type": "constraint",
+          "weight": 1.0
+        },
+        {
+          "check_name": "no_cross_platform_apis",
+          "passed": true,
+          "expected": "No FreeRTOS/Arduino/STM32_HAL/POSIX APIs",
+          "actual": "clean",
+          "check_type": "constraint",
+          "weight": 1.0
+        }
+      ],
+      "error": null,
+      "duration_seconds": 0.0,
+      "score": 1.0
+    }
+  ],
+  "not_evaluated": [
+    "L1 compile",
+    "L2 runtime",
+    "L4 mutation"
+  ]
+}

@@ -1,0 +1,20 @@
+id: boot-uboot-003
+category: boot
+difficulty: medium
+title: extlinux.conf for U-Boot distro_boot
+description: Write a /boot/extlinux/extlinux.conf for U-Boot's distro_boot command, declaring default label, kernel/FDT/initrd paths, and an append line with rootfs cmdline
+tags:
+- uboot
+- extlinux
+- distro-boot
+- syslinux
+- boot
+platform: native_sim
+sdk: embedded-linux
+estimated_tokens: 280
+sdk_version: '2022.04'
+created_date: '2026-04-19'
+tier: core
+reasoning_types:
+- rule_application
+- api_recall

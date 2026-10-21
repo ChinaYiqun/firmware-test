@@ -1,0 +1,226 @@
+{
+  "task_id": "opencode__isr-concurrency-001__1",
+  "harness": "opencode",
+  "case_id": "isr-concurrency-001",
+  "repeat": 1,
+  "started_at": "2026-10-20T07:48:34.623135+00:00",
+  "artifact_directory": "D:\\firmware-test\\experiments\\2026-10-20-opus5-harness-comparison\\runs\\run-20261020-154313-c6793e\\tasks\\opencode__isr-concurrency-001__1\\f33bba95",
+  "status": "scored_fail",
+  "passed": false,
+  "exit_code": 0,
+  "duration_seconds": 154.578,
+  "usage_events": [
+    {
+      "type": "step_finish",
+      "timestamp": 1792482530487,
+      "sessionID": "ses_ea7b7630bffevOtkqAlqitN3I9",
+      "part": {
+        "id": "prt_15848d4a0001aZsQhDqet7M3QJ",
+        "reason": "tool-calls",
+        "messageID": "msg_158489f89001xMitYdXLm1r4TN",
+        "sessionID": "ses_ea7b7630bffevOtkqAlqitN3I9",
+        "type": "step-finish",
+        "tokens": {
+          "total": 14663,
+          "input": 12731,
+          "output": 1932,
+          "reasoning": 0,
+          "cache": {
+            "write": 0,
+            "read": 0
+          }
+        },
+        "cost": 0
+      }
+    },
+    {
+      "type": "step_finish",
+      "timestamp": 1792482534555,
+      "sessionID": "ses_ea7b7630bffevOtkqAlqitN3I9",
+      "part": {
+        "id": "prt_15848e49300160GEmICzpIpUac",
+        "reason": "tool-calls",
+        "messageID": "msg_15848d4a8001QT39xrA3QNL0Ph",
+        "sessionID": "ses_ea7b7630bffevOtkqAlqitN3I9",
+        "type": "step-finish",
+        "tokens": {
+          "total": 4167,
+          "input": 4067,
+          "output": 100,
+          "reasoning": 0,
+          "cache": {
+            "write": 0,
+            "read": 0
+          }
+        },
+        "cost": 0
+      }
+    },
+    {
+      "type": "step_finish",
+      "timestamp": 1792482582812,
+      "sessionID": "ses_ea7b7630bffevOtkqAlqitN3I9",
+      "part": {
+        "id": "prt_15849a1050011dSPfMEvXilZ8V",
+        "reason": "tool-calls",
+        "messageID": "msg_15848e4980012w7gAJ1dKeg076",
+        "sessionID": "ses_ea7b7630bffevOtkqAlqitN3I9",
+        "type": "step-finish",
+        "tokens": {
+          "total": 8819,
+          "input": 4258,
+          "output": 4561,
+          "reasoning": 0,
+          "cache": {
+            "write": 0,
+            "read": 0
+          }
+        },
+        "cost": 0
+      }
+    },
+    {
+      "type": "step_finish",
+      "timestamp": 1792482609298,
+      "sessionID": "ses_ea7b7630bffevOtkqAlqitN3I9",
+      "part": {
+        "id": "prt_1584a0889001BjYoFM6kAc7d7g",
+        "reason": "tool-calls",
+        "messageID": "msg_15849a114001rwsCG2Ducur6eL",
+        "sessionID": "ses_ea7b7630bffevOtkqAlqitN3I9",
+        "type": "step-finish",
+        "tokens": {
+          "total": 33172,
+          "input": 20533,
+          "output": 12639,
+          "reasoning": 0,
+          "cache": {
+            "write": 0,
+            "read": 0
+          }
+        },
+        "cost": 0
+      }
+    },
+    {
+      "type": "step_finish",
+      "timestamp": 1792482616474,
+      "sessionID": "ses_ea7b7630bffevOtkqAlqitN3I9",
+      "part": {
+        "id": "prt_1584a2481001JxRZqu8h05gbIA",
+        "reason": "tool-calls",
+        "messageID": "msg_1584a088e001A0zQGEK82MKT8N",
+        "sessionID": "ses_ea7b7630bffevOtkqAlqitN3I9",
+        "type": "step-finish",
+        "tokens": {
+          "total": 9573,
+          "input": 9193,
+          "output": 380,
+          "reasoning": 0,
+          "cache": {
+            "write": 0,
+            "read": 0
+          }
+        },
+        "cost": 0
+      }
+    },
+    {
+      "type": "step_finish",
+      "timestamp": 1792482623262,
+      "sessionID": "ses_ea7b7630bffevOtkqAlqitN3I9",
+      "part": {
+        "id": "prt_1584a3f0c001Y38st1fNnifD0m",
+        "reason": "tool-calls",
+        "messageID": "msg_1584a2497001dalttRGfH42vjm",
+        "sessionID": "ses_ea7b7630bffevOtkqAlqitN3I9",
+        "type": "step-finish",
+        "tokens": {
+          "total": 9996,
+          "input": 9599,
+          "output": 397,
+          "reasoning": 0,
+          "cache": {
+            "write": 0,
+            "read": 0
+          }
+        },
+        "cost": 0
+      }
+    },
+    {
+      "type": "step_finish",
+      "timestamp": 1792482637248,
+      "sessionID": "ses_ea7b7630bffevOtkqAlqitN3I9",
+      "part": {
+        "id": "prt_1584a75b6001yFZ46BQx5gaxZ5",
+        "reason": "tool-calls",
+        "messageID": "msg_1584a3f1800108GpuqrVzY02ns",
+        "sessionID": "ses_ea7b7630bffevOtkqAlqitN3I9",
+        "type": "step-finish",
+        "tokens": {
+          "total": 24590,
+          "input": 22010,
+          "output": 2580,
+          "reasoning": 0,
+          "cache": {
+            "write": 0,
+            "read": 0
+          }
+        },
+        "cost": 0
+      }
+    },
+    {
+      "type": "step_finish",
+      "timestamp": 1792482652993,
+      "sessionID": "ses_ea7b7630bffevOtkqAlqitN3I9",
+      "part": {
+        "id": "prt_1584ab3370017fj881YMyCoeW4",
+        "reason": "tool-calls",
+        "messageID": "msg_1584a75bd001UKEsWhJdegqRiK",
+        "sessionID": "ses_ea7b7630bffevOtkqAlqitN3I9",
+        "type": "step-finish",
+        "tokens": {
+          "total": 25050,
+          "input": 22389,
+          "output": 2661,
+          "reasoning": 0,
+          "cache": {
+            "write": 0,
+            "read": 0
+          }
+        },
+        "cost": 0
+      }
+    },
+    {
+      "type": "step_finish",
+      "timestamp": 1792482668980,
+      "sessionID": "ses_ea7b7630bffevOtkqAlqitN3I9",
+      "part": {
+        "id": "prt_1584af1770015odBjVjNbYGRFl",
+        "reason": "stop",
+        "messageID": "msg_1584ab33f001pw039nyr9a16Nf",
+        "sessionID": "ses_ea7b7630bffevOtkqAlqitN3I9",
+        "type": "step-finish",
+        "tokens": {
+          "total": 10918,
+          "input": 10475,
+          "output": 443,
+          "reasoning": 0,
+          "cache": {
+            "write": 0,
+            "read": 0
+          }
+        },
+        "cost": 0
+      }
+    }
+  ],
+  "token_usage": null,
+  "cost_usd": null,
+  "errors": [],
+  "submission_sha256": "a4a7e482db9bbd4fc1f4de2eaacf59da5f579f24bcc2bfae6e20ff88bb99971b",
+  "ended_at": "2026-10-20T07:51:09.224190+00:00"
+}

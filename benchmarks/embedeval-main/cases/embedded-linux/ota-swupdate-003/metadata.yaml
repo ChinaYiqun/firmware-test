@@ -1,0 +1,26 @@
+id: ota-swupdate-003
+category: ota
+difficulty: hard
+title: SWUpdate Signed Update with Per-Image SHA-256
+description: Write a SWUpdate sw-description that enforces RSA-signed CMS envelope verification plus per-image sha256 integrity, rejecting weaker digest algorithms and plaintext secrets in metadata.
+tags:
+- swupdate
+- ota
+- embedded-linux
+- signing
+- rsa
+- sha256
+- cms
+- security
+platform: native_sim
+sdk: embedded-linux
+estimated_tokens: 580
+sdk_version: '2022.12'
+created_date: '2026-04-19'
+tier: challenge
+reasoning_types:
+- system_reasoning
+- rule_application
+- api_recall
+l1_skip: true
+l2_skip: true

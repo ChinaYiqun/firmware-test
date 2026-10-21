@@ -1,0 +1,21 @@
+id: linux-driver-003
+category: linux-driver
+difficulty: medium
+title: IIO ADC Driver Skeleton
+description: Minimal Industrial I/O driver exposing an ADC channel via sysfs
+tags:
+- linux
+- kernel
+- driver
+- iio
+- adc
+- sysfs
+platform: docker_only
+sdk: embedded-linux
+estimated_tokens: 550
+sdk_version: '6.6'
+created_date: '2026-03-24'
+tier: core
+reasoning_types:
+- rule_application
+- api_recall

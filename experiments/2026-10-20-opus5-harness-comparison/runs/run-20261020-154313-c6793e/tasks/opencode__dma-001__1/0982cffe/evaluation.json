@@ -1,0 +1,136 @@
+{
+  "passed": true,
+  "healthy": true,
+  "scope": "L0+L3 static only",
+  "layers": [
+    {
+      "layer": 0,
+      "name": "static_analysis",
+      "passed": true,
+      "details": [
+        {
+          "check_name": "dma_header_included",
+          "passed": true,
+          "expected": "zephyr/drivers/dma.h included",
+          "actual": "present",
+          "check_type": "exact_match",
+          "weight": 1.0
+        },
+        {
+          "check_name": "dma_config_struct",
+          "passed": true,
+          "expected": "struct dma_config defined",
+          "actual": "present",
+          "check_type": "exact_match",
+          "weight": 1.0
+        },
+        {
+          "check_name": "dma_block_config_struct",
+          "passed": true,
+          "expected": "struct dma_block_config defined",
+          "actual": "present",
+          "check_type": "exact_match",
+          "weight": 1.0
+        },
+        {
+          "check_name": "dma_config_called",
+          "passed": true,
+          "expected": "dma_config() called",
+          "actual": "present",
+          "check_type": "exact_match",
+          "weight": 1.0
+        },
+        {
+          "check_name": "dma_start_called",
+          "passed": true,
+          "expected": "dma_start() called",
+          "actual": "present",
+          "check_type": "exact_match",
+          "weight": 1.0
+        }
+      ],
+      "error": null,
+      "duration_seconds": 0.0,
+      "score": 1.0
+    },
+    {
+      "layer": 3,
+      "name": "static_heuristic",
+      "passed": true,
+      "details": [
+        {
+          "check_name": "separate_src_dst_buffers",
+          "passed": true,
+          "expected": "Separate source and destination buffers",
+          "actual": "src=True, dst=True",
+          "check_type": "constraint",
+          "weight": 1.0
+        },
+        {
+          "check_name": "memory_to_memory_direction",
+          "passed": true,
+          "expected": "channel_direction = MEMORY_TO_MEMORY",
+          "actual": "present",
+          "check_type": "exact_match",
+          "weight": 1.0
+        },
+        {
+          "check_name": "config_before_start",
+          "passed": true,
+          "expected": "dma_config() called before dma_start()",
+          "actual": "correct order",
+          "check_type": "constraint",
+          "weight": 1.0
+        },
+        {
+          "check_name": "completion_synchronization",
+          "passed": true,
+          "expected": "DMA completion synchronization mechanism",
+          "actual": "present",
+          "check_type": "constraint",
+          "weight": 1.0
+        },
+        {
+          "check_name": "block_size_set",
+          "passed": true,
+          "expected": "block_size configured in block config",
+          "actual": "present",
+          "check_type": "exact_match",
+          "weight": 1.0
+        },
+        {
+          "check_name": "dma_error_handling",
+          "passed": true,
+          "expected": "Error checking for DMA API return values",
+          "actual": "present",
+          "check_type": "constraint",
+          "weight": 1.0
+        },
+        {
+          "check_name": "device_ready_check",
+          "passed": true,
+          "expected": "device_is_ready() before DMA operations",
+          "actual": "present",
+          "check_type": "constraint",
+          "weight": 1.0
+        },
+        {
+          "check_name": "no_cross_platform_apis",
+          "passed": true,
+          "expected": "No FreeRTOS/Arduino/STM32_HAL/POSIX APIs",
+          "actual": "clean",
+          "check_type": "constraint",
+          "weight": 1.0
+        }
+      ],
+      "error": null,
+      "duration_seconds": 0.0,
+      "score": 1.0
+    }
+  ],
+  "not_evaluated": [
+    "L1 compile",
+    "L2 runtime",
+    "L4 mutation"
+  ]
+}

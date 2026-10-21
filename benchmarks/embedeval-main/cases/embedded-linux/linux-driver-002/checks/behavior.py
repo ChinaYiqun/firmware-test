@@ -1,0 +1,137 @@
+"""Behavioral checks for Linux platform driver with Device Tree binding."""
+
+import re
+
+from embedeval.check_utils import (
+    check_no_cross_platform_apis,
+    extract_error_blocks,
+    scoped_contains,
+    strip_comments,
+)
+from embedeval.models import CheckDetail
+
+
+def run_checks(generated_code: str) -> list[CheckDetail]:
+    """Validate platform driver behavioral properties."""
+    details: list[CheckDetail] = []
+
+    stripped = strip_comments(generated_code)
+
+    # Check 1: of_match_table wired into driver.of_match_table
+    has_of_match_table = scoped_contains(generated_code, '.of_match_table', scope='code_only')
+    details.append(
+        CheckDetail(
+            check_name="of_match_table_assigned",
+            passed=has_of_match_table,
+            expected=".of_match_table assigned in platform_driver.driver",
+            actual="present" if has_of_match_table else "MISSING (DT won't match!)",
+            check_type="constraint",
+        )
+    )
+
+    # Check 2: MODULE_DEVICE_TABLE(of, ...) present
+    has_module_device_table = scoped_contains(generated_code, 'MODULE_DEVICE_TABLE(of', scope='code_only')
+    details.append(
+        CheckDetail(
+            check_name="module_device_table_of",
+            passed=has_module_device_table,
+            expected="MODULE_DEVICE_TABLE(of, ...) for auto-load support",
+            actual="present" if has_module_device_table else "MISSING (no auto-load!)",
+            check_type="constraint",
+        )
+    )
+
+    # Check 3: probe returns 0 on success (not void, not negative)
+    has_probe_return = scoped_contains(generated_code, 'return 0', scope='code_only')
+    details.append(
+        CheckDetail(
+            check_name="probe_returns_zero",
+            passed=has_probe_return,
+            expected="probe function returns 0 on success",
+            actual="present" if has_probe_return else "missing",
+            check_type="constraint",
+        )
+    )
+
+    # Check 4: sentinel entry in of_device_id table
+    # Accept: {}, { }, {/* comment */}, { .compatible = NULL }, {0}
+    has_sentinel = bool(re.search(
+        r'\{\s*(?:/\*[^*]*\*/\s*)?\}'         # {} or {/* sentinel */}
+        r'|\{\s*\.compatible\s*=\s*NULL\s*\}'  # { .compatible = NULL }
+        r'|\{\s*0\s*\}',                      # {0}
+        generated_code
+    ))
+    details.append(
+        CheckDetail(
+            check_name="of_match_table_sentinel",
+            passed=has_sentinel,
+            expected="of_device_id table ends with {} sentinel",
+            actual="present" if has_sentinel else "MISSING (kernel oops!)",
+            check_type="constraint",
+        )
+    )
+
+    # Check 5: module_platform_driver() or explicit register/unregister
+    has_register = (
+        scoped_contains(generated_code, 'module_platform_driver', scope='code_only')
+        or scoped_contains(generated_code, 'platform_driver_register', scope='code_only')
+    )
+    details.append(
+        CheckDetail(
+            check_name="driver_registered",
+            passed=has_register,
+            expected="module_platform_driver() or platform_driver_register() called",
+            actual="present" if has_register else "MISSING (driver never loads!)",
+            check_type="constraint",
+        )
+    )
+
+    # Check 6: probe function has correct first argument type
+    has_platform_device_arg = scoped_contains(generated_code, 'struct platform_device', scope='code_only')
+    details.append(
+        CheckDetail(
+            check_name="probe_platform_device_arg",
+            passed=has_platform_device_arg,
+            expected="probe takes struct platform_device * argument",
+            actual="present" if has_platform_device_arg else "missing",
+            check_type="exact_match",
+        )
+    )
+
+    # Check 7: No deprecated gpio_request() in DT-based driver
+    has_gpio_request = "gpio_request(" in stripped
+    details.append(
+        CheckDetail(
+            check_name="no_deprecated_gpio_request",
+            passed=not has_gpio_request,
+            expected="No deprecated gpio_request() (use devm_gpiod_get with DT)",
+            actual="clean" if not has_gpio_request else "deprecated gpio_request() found",
+            check_type="constraint",
+        )
+    )
+
+    # Check 8: No Zephyr API contamination
+    zephyr_apis = ["k_work_submit", "k_thread_create", "K_THREAD_DEFINE",
+                   "k_mutex_lock", "k_sleep(", "K_MSEC("]
+    has_zephyr = any(api in generated_code for api in zephyr_apis)
+    details.append(
+        CheckDetail(
+            check_name="no_zephyr_apis",
+            passed=not has_zephyr,
+            expected="No Zephyr RTOS APIs in Linux kernel driver",
+            actual="clean" if not has_zephyr else "WRONG PLATFORM: Zephyr APIs found",
+            check_type="constraint",
+        )
+    )
+
+    # Check: No cross-platform API contamination
+    cross_plat = check_no_cross_platform_apis(generated_code, skip_platforms=["Linux_Userspace", "POSIX"])
+    details.append(CheckDetail(
+        check_name="no_cross_platform_apis",
+        passed=len(cross_plat) == 0,
+        expected="No FreeRTOS/Arduino/STM32_HAL APIs (Linux/POSIX is expected)",
+        actual="clean" if not cross_plat else f"found: {[a for a, _ in cross_plat]}",
+        check_type="constraint",
+    ))
+
+    return details

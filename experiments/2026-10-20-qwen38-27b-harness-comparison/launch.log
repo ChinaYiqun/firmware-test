@@ -1,0 +1,267 @@
+PASS gpio-basic-001
+PASS uart-001
+PASS spi-i2c-002
+PASS spi-i2c-001
+PASS timer-002
+PASS threading-001
+PASS dma-001
+PASS threading-004
+PASS dma-003
+PASS isr-concurrency-001
+Reference health: 10/10
+Run directory: 
+D:\firmware-test\experiments\2026-10-20-qwen38-27b-harness-comparison\runs\run-2
+0261020-154313-a633c6
+Preflight: opencode (gateway + tools + external-file denial)
+Preflight: claude-code (gateway + tools + external-file denial)
+[red]Error:[/] claude-code preflight failed; no scored tasks started. Inspect 
+D:\firmware-test\experiments\2026-10-20-qwen38-27b-harness-comparison\runs\run-2
+0261020-154313-a633c6\preflight\claude-code\2ee4bf72
+PASS gpio-basic-001
+PASS uart-001
+PASS spi-i2c-002
+PASS spi-i2c-001
+PASS timer-002
+PASS threading-001
+PASS dma-001
+PASS threading-004
+PASS dma-003
+PASS isr-concurrency-001
+Reference health: 10/10
+Run directory: 
+D:\firmware-test\experiments\2026-10-20-qwen38-27b-harness-comparison\runs\run-2
+0261020-154440-282906
+Preflight: opencode (gateway + tools + external-file denial)
+Preflight: claude-code (gateway + tools + external-file denial)
+Static-only pilot. Progress logs below; raw events in each task directory.
+opencode: tool_use
+opencode: step_finish
+opencode: tool_use
+opencode: step_finish
+opencode: step_finish
+claude-code: [claude-code:unrecognized_model] 
+{"model":"qwen/qwen3.8-27b","query_source":"sdk"}
+claude-code: assistant
+claude-code: assistant
+claude-code: assistant
+claude-code: assistant
+claude-code: assistant
+claude-code: assistant
+claude-code: assistant
+claude-code: result
+START claude-code / spi-i2c-002 / repeat 1
+START claude-code / isr-concurrency-001 / repeat 1
+claude-code: [claude-code:unrecognized_model] 
+{"model":"qwen/qwen3.8-27b","query_source":"sdk"}
+claude-code: assistant
+claude-code: assistant
+claude-code: assistant
+claude-code: assistant
+claude-code: assistant
+claude-code: assistant
+claude-code: assistant
+claude-code: assistant
+claude-code: assistant
+claude-code: assistant
+claude-code: result
+DONE claude-code / spi-i2c-002: scored_pass
+START opencode / threading-004 / repeat 1
+claude-code: [claude-code:unrecognized_model] 
+{"model":"qwen/qwen3.8-27b","query_source":"sdk"}
+opencode: tool_use
+opencode: step_finish
+opencode: tool_use
+opencode: step_finish
+opencode: tool_use
+opencode: step_finish
+opencode: tool_use
+opencode: step_finish
+opencode: tool_use
+opencode: step_finish
+opencode: step_finish
+DONE opencode / threading-004: scored_fail
+START opencode / spi-i2c-002 / repeat 1
+opencode: tool_use
+opencode: step_finish
+opencode: tool_use
+opencode: tool_use
+opencode: step_finish
+opencode: tool_use
+opencode: step_finish
+opencode: step_finish
+DONE opencode / spi-i2c-002: scored_pass
+START claude-code / timer-002 / repeat 1
+claude-code: assistant
+DONE claude-code / isr-concurrency-001: timeout
+START claude-code / dma-001 / repeat 1
+claude-code: [claude-code:unrecognized_model] 
+{"model":"qwen/qwen3.8-27b","query_source":"sdk"}
+claude-code: assistant
+claude-code: assistant
+claude-code: assistant
+claude-code: assistant
+claude-code: result
+START claude-code / threading-004 / repeat 1
+DONE claude-code / timer-002: scored_pass
+claude-code: [claude-code:unrecognized_model] 
+{"model":"qwen/qwen3.8-27b","query_source":"sdk"}
+claude-code: assistant
+claude-code: assistant
+claude-code: assistant
+claude-code: assistant
+claude-code: result
+DONE claude-code / dma-001: scored_fail
+START opencode / isr-concurrency-001 / repeat 1
+claude-code: [claude-code:unrecognized_model] 
+{"model":"qwen/qwen3.8-27b","query_source":"sdk"}
+opencode: tool_use
+opencode: step_finish
+claude-code: assistant
+opencode: tool_use
+opencode: tool_use
+opencode: step_finish
+claude-code: assistant
+claude-code: assistant
+claude-code: assistant
+claude-code: result
+DONE claude-code / threading-004: scored_fail
+START opencode / spi-i2c-001 / repeat 1
+opencode: tool_use
+opencode: step_finish
+opencode: tool_use
+opencode: step_finish
+opencode: tool_use
+opencode: step_finish
+opencode: tool_use
+opencode: step_finish
+opencode: tool_use
+opencode: tool_use
+opencode: tool_use
+opencode: step_finish
+opencode: tool_use
+opencode: step_finish
+opencode: step_finish
+DONE opencode / isr-concurrency-001: scored_fail
+START opencode / dma-001 / repeat 1
+opencode: tool_use
+opencode: step_finish
+opencode: tool_use
+opencode: step_finish
+opencode: step_finish
+DONE opencode / spi-i2c-001: scored_pass
+START claude-code / dma-003 / repeat 1
+claude-code: [claude-code:unrecognized_model] 
+{"model":"qwen/qwen3.8-27b","query_source":"sdk"}
+opencode: tool_use
+opencode: step_finish
+opencode: tool_use
+opencode: step_finish
+claude-code: assistant
+claude-code: assistant
+claude-code: assistant
+claude-code: assistant
+claude-code: assistant
+claude-code: assistant
+claude-code: assistant
+claude-code: assistant
+claude-code: assistant
+claude-code: assistant
+claude-code: assistant
+claude-code: result
+DONE claude-code / dma-003: scored_fail
+START opencode / threading-001 / repeat 1
+opencode: tool_use
+opencode: step_finish
+opencode: step_finish
+DONE opencode / dma-001: scored_fail
+START claude-code / gpio-basic-001 / repeat 1
+claude-code: [claude-code:unrecognized_model] 
+{"model":"qwen/qwen3.8-27b","query_source":"sdk"}
+claude-code: assistant
+claude-code: assistant
+opencode: tool_use
+opencode: step_finish
+claude-code: assistant
+opencode: tool_use
+opencode: step_finish
+opencode: tool_use
+opencode: step_finish
+claude-code: assistant
+claude-code: result
+DONE claude-code / gpio-basic-001: scored_fail
+START claude-code / threading-001 / repeat 1
+claude-code: [claude-code:unrecognized_model] 
+{"model":"qwen/qwen3.8-27b","query_source":"sdk"}
+opencode: tool_use
+opencode: step_finish
+opencode: tool_use
+opencode: step_finish
+opencode: tool_use
+opencode: tool_use
+opencode: step_finish
+opencode: tool_use
+opencode: step_finish
+claude-code: assistant
+opencode: tool_use
+opencode: step_finish
+claude-code: assistant
+opencode: tool_use
+opencode: tool_use
+opencode: tool_use
+opencode: step_finish
+claude-code: assistant
+claude-code: assistant
+opencode: tool_use
+opencode: step_finish
+opencode: tool_use
+opencode: step_finish
+claude-code: assistant
+opencode: step_finish
+DONE opencode / threading-001: scored_fail
+START opencode / uart-001 / repeat 1
+claude-code: assistant
+claude-code: assistant
+claude-code: result
+DONE claude-code / threading-001: scored_fail
+START opencode / dma-003 / repeat 1
+opencode: tool_use
+opencode: step_finish
+opencode: tool_use
+opencode: step_finish
+opencode: step_finish
+DONE opencode / uart-001: scored_fail
+START claude-code / spi-i2c-001 / repeat 1
+claude-code: [claude-code:unrecognized_model] 
+{"model":"qwen/qwen3.8-27b","query_source":"sdk"}
+claude-code: assistant
+claude-code: assistant
+claude-code: assistant
+claude-code: assistant
+claude-code: assistant
+claude-code: result
+DONE claude-code / spi-i2c-001: scored_pass
+START opencode / timer-002 / repeat 1
+opencode: tool_use
+opencode: step_finish
+opencode: error
+DONE opencode / dma-003: infra_error
+START opencode / gpio-basic-001 / repeat 1
+opencode: error
+DONE opencode / timer-002: infra_error
+START claude-code / uart-001 / repeat 1
+claude-code: [claude-code:unrecognized_model] 
+{"model":"qwen/qwen3.8-27b","query_source":"sdk"}
+claude-code: assistant
+claude-code: assistant
+claude-code: assistant
+claude-code: assistant
+claude-code: result
+DONE claude-code / uart-001: scored_fail
+opencode: tool_use
+opencode: step_finish
+opencode: step_finish
+DONE opencode / gpio-basic-001: scored_fail
+  Tasks ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 20/20 0:27:32
+Report: 
+D:\firmware-test\experiments\2026-10-20-qwen38-27b-harness-comparison\runs\run-2
+0261020-154440-282906\report.md

@@ -1,0 +1,23 @@
+id: networking-kernel-002
+category: networking
+difficulty: hard
+title: sk_buff Clone + Queue + Free Discipline
+description: Kernel module that clones incoming skbs into a per-module queue from softirq context, processes them from a workqueue worker, and tears down with skb_queue_purge on exit; distinguishes consume_skb from kfree_skb and guards clone-NULL
+tags:
+- linux
+- kernel
+- networking
+- sk_buff
+- workqueue
+- softirq
+- resource-lifecycle
+platform: docker_only
+sdk: embedded-linux
+estimated_tokens: 760
+sdk_version: '5.15'
+created_date: '2026-04-19'
+tier: challenge
+reasoning_types:
+- system_reasoning
+- cross_domain
+- rule_application

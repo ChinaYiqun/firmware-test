@@ -1,0 +1,21 @@
+id: linux-userspace-003
+category: linux-userspace
+difficulty: medium
+title: systemd Service Unit with Watchdog + Restart Triad
+description: Author a .service unit file whose Type, WatchdogSec, and Restart directives form a correctly-wired self-healing supervisor — a classic LLM trap where two-of-three settings silently disable the watchdog
+tags:
+- systemd
+- service-unit
+- watchdog
+- supervisor
+- embedded-linux
+- kirkstone
+platform: native_sim
+sdk: embedded-linux
+estimated_tokens: 350
+sdk_version: kirkstone
+created_date: '2026-04-19'
+tier: core
+reasoning_types:
+- rule_application
+- api_recall

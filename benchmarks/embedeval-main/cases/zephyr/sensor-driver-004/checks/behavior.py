@@ -1,0 +1,105 @@
+"""Behavioral checks for sensor attribute configuration before read."""
+
+from embedeval.models import CheckDetail
+from embedeval.check_utils import check_no_cross_platform_apis
+from embedeval.check_utils import scoped_contains
+from embedeval.check_utils import find_in_code
+
+
+def run_checks(generated_code: str) -> list[CheckDetail]:
+    """Validate sensor attribute configuration behavioral properties."""
+    details: list[CheckDetail] = []
+
+    # Check 1: sensor_attr_set called before sensor_sample_fetch
+    # (LLM failure: reading data before configuring the sensor)
+    attr_pos = find_in_code(generated_code, "sensor_attr_set")
+    fetch_pos = find_in_code(generated_code, "sensor_sample_fetch")
+    details.append(
+        CheckDetail(
+            check_name="attr_set_before_fetch",
+            passed=attr_pos != -1 and fetch_pos != -1 and attr_pos < fetch_pos,
+            expected="sensor_attr_set() before sensor_sample_fetch()",
+            actual="correct" if (attr_pos != -1 and fetch_pos != -1 and attr_pos < fetch_pos) else "wrong order or missing",
+            check_type="constraint",
+        )
+    )
+
+    # Check 2: Both sampling frequency and full-scale configured
+    has_odr = scoped_contains(generated_code, 'SENSOR_ATTR_SAMPLING_FREQUENCY', scope='code_only')
+    has_fs = scoped_contains(generated_code, 'SENSOR_ATTR_FULL_SCALE', scope='code_only')
+    details.append(
+        CheckDetail(
+            check_name="both_attributes_set",
+            passed=has_odr and has_fs,
+            expected="Both SENSOR_ATTR_SAMPLING_FREQUENCY and SENSOR_ATTR_FULL_SCALE set",
+            actual=f"ODR={has_odr}, FS={has_fs}",
+            check_type="constraint",
+        )
+    )
+
+    # Check 3: Error handling on sensor_attr_set
+    attr_set_count = generated_code.count("sensor_attr_set")
+    has_attr_err = attr_set_count >= 1 and (
+        scoped_contains(generated_code, '< 0', scope='code_only') or scoped_contains(generated_code, '!= 0', scope='code_only')
+    )
+    details.append(
+        CheckDetail(
+            check_name="attr_set_error_handling",
+            passed=has_attr_err,
+            expected="Return value of sensor_attr_set() checked",
+            actual="present" if has_attr_err else "missing",
+            check_type="constraint",
+        )
+    )
+
+    # Check 4: sensor_value struct used for attribute values, not raw int
+    # (LLM failure: passing integer directly instead of struct sensor_value)
+    has_sensor_value_for_attr = (
+        scoped_contains(generated_code, 'sensor_value', scope='code_only')
+        and scoped_contains(generated_code, 'val1', scope='code_only')
+    )
+    details.append(
+        CheckDetail(
+            check_name="sensor_value_for_attribute",
+            passed=has_sensor_value_for_attr,
+            expected="struct sensor_value with val1 used for attribute value",
+            actual="present" if has_sensor_value_for_attr else "missing or using raw integer",
+            check_type="constraint",
+        )
+    )
+
+    # Check 5: device_is_ready before anything
+    ready_pos = find_in_code(generated_code, "device_is_ready")
+    details.append(
+        CheckDetail(
+            check_name="device_ready_before_attr",
+            passed=ready_pos != -1 and (attr_pos == -1 or ready_pos < attr_pos),
+            expected="device_is_ready() before sensor_attr_set()",
+            actual="correct" if (ready_pos != -1 and (attr_pos == -1 or ready_pos < attr_pos)) else "wrong order or missing",
+            check_type="constraint",
+        )
+    )
+
+    # Check 6: Configured message printed
+    has_configured_msg = "configured" in generated_code.lower()
+    details.append(
+        CheckDetail(
+            check_name="configuration_message",
+            passed=has_configured_msg,
+            expected="'Sensor configured' message printed after attribute setup",
+            actual="present" if has_configured_msg else "missing",
+            check_type="constraint",
+        )
+    )
+
+    # Check: No cross-platform API contamination
+    cross_plat = check_no_cross_platform_apis(generated_code, skip_platforms=["Linux_Userspace"])
+    details.append(CheckDetail(
+        check_name="no_cross_platform_apis",
+        passed=len(cross_plat) == 0,
+        expected="No FreeRTOS/Arduino/STM32_HAL/POSIX APIs",
+        actual="clean" if not cross_plat else f"found: {[a for a, _ in cross_plat]}",
+        check_type="constraint",
+    ))
+
+    return details

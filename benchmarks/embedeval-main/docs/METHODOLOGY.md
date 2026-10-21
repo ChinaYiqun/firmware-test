@@ -1,0 +1,690 @@
+# EmbedEval Methodology
+
+## Overview
+
+EmbedEval is a benchmark for evaluating LLM capability in embedded firmware code generation. It measures whether LLMs possess the domain-specific knowledge required to produce correct, safe embedded C code across multiple RTOS platforms and hardware targets.
+
+### Benchmark Statistics
+
+| Metric | Value |
+|--------|-------|
+| **Total cases** | 267 |
+| **Categories** | 24 |
+| **Platforms** | 6 (docker_only, esp_idf, native_sim, qemu_arm, stm32_hal, yocto_build) |
+| **Difficulty** | 29 easy, 110 medium, 128 hard |
+| **Private held-out** | 48 cases (17%) for contamination prevention |
+| **Evaluation scenarios** | 2 (generation, bugfix) |
+| **Negatives (mutation tests)** | 78 cases, 650 must_fail mutations |
+
+### Platform Distribution
+
+| Platform | Cases | Categories |
+|----------|-------|------------|
+| Zephyr RTOS (native_sim) | 145 | gpio-basic, uart, adc, pwm, spi-i2c, dma, isr-concurrency, threading, timer, sensor-driver, networking, ble, security, storage, kconfig, device-tree, boot, ota, power-mgmt, watchdog, memory-opt |
+| Zephyr RTOS (qemu_arm) | 8 | (subset of above, board-specific) |
+| ESP-IDF | 5 | esp-adc, esp-ble, esp-gpio, esp-i2c, esp-nvs, esp-ota, esp-sleep, esp-spi, esp-timer, esp-wifi |
+| STM32 HAL | 5 | stm32-gpio, stm32-uart, stm32-spi, stm32-i2c, stm32-timer, stm32-adc, stm32-dma, stm32-lowpower, stm32-freertos (x2) |
+| Linux kernel (docker_only) | 8 | linux-driver |
+| Yocto/Embedded Linux | 8 | yocto |
+
+### Difficulty Distribution by Category
+
+| Category | Easy | Medium | Hard | Total |
+|----------|------|--------|------|-------|
+| adc | 0 | 1 | 1 | 2 |
+| ble | 1 | 4 | 6 | 11 |
+| boot | 2 | 6 | 5 | 13 |
+| device-tree | 2 | 4 | 4 | 10 |
+| dma | 1 | 3 | 9 | 13 |
+| gpio-basic | 2 | 2 | 2 | 6 |
+| isr-concurrency | 0 | 3 | 10 | 13 |
+| kconfig | 2 | 4 | 4 | 10 |
+| linux-driver | 0 | 6 | 12 | 18 |
+| linux-userspace | 0 | 3 | 5 | 8 |
+| memory-opt | 1 | 5 | 6 | 12 |
+| networking | 1 | 8 | 8 | 17 |
+| ota | 1 | 7 | 10 | 18 |
+| power-mgmt | 2 | 6 | 4 | 12 |
+| pwm | 1 | 0 | 0 | 1 |
+| security | 0 | 4 | 6 | 10 |
+| sensor-driver | 1 | 6 | 5 | 12 |
+| spi-i2c | 1 | 9 | 4 | 14 |
+| storage | 3 | 5 | 5 | 13 |
+| threading | 1 | 5 | 9 | 15 |
+| timer | 3 | 6 | 3 | 12 |
+| uart | 1 | 2 | 0 | 3 |
+| watchdog | 2 | 4 | 4 | 10 |
+| yocto | 1 | 7 | 6 | 14 |
+
+---
+
+## System Architecture
+
+### High-Level Component Diagram
+
+```
+                         EmbedEval System Architecture
+ ┌──────────────────────────────────────────────────────────────────────┐
+ │                           CLI (cli.py)                              │
+ │  run | validate | list | categories | agent | sensitivity | guide   │
+ └─────────┬────────────────────────────────────────────────────┬──────┘
+           │                                                    │
+           ▼                                                    ▼
+ ┌─────────────────────┐                          ┌────────────────────┐
+ │   Runner (runner.py) │                          │ Sensitivity        │
+ │  - discover_cases()  │                          │ Analysis           │
+ │  - filter_cases()    │                          │ (sensitivity.py)   │
+ │  - run_benchmark()   │                          └────────────────────┘
+ └──────┬───────┬───────┘
+        │       │
+        ▼       ▼
+ ┌────────────┐ ┌──────────────────────────────────────────────────────┐
+ │ LLM Client │ │            Evaluator (evaluator.py)                  │
+ │ (llm_      │ │                                                      │
+ │  client.py)│ │  L0 Static ──► L1 Compile ──► L2 Runtime            │
+ │            │ │      │             │              │                   │
+ │ 3 modes:   │ │      ▼             ▼              ▼                   │
+ │ - mock     │ │  checks/       west build     west build -t run      │
+ │ - claude-  │ │  static.py     (Docker/       (native_sim/QEMU)      │
+ │   code://  │ │                 local/skip)         │                 │
+ │ - litellm  │ │      │             │              ▼                   │
+ │            │ │      ▼             ▼         L3 Heuristic            │
+ └────────────┘ │  ┌─────────────────────┐         │                   │
+                │  │ Failure at any layer │    checks/behavior.py      │
+                │  │ halts evaluation     │         │                   │
+                │  └─────────────────────┘         ▼                   │
+                │                              L4 Mutation             │
+                │                              checks/negatives.py     │
+                └──────────────────────────────────────────────────────┘
+        │
+        ▼
+ ┌─────────────────────┐    ┌──────────────────────┐
+ │  Scorer (scorer.py)  │───►│ Reporter (reporter.py)│
+ │  - pass@k (unbiased) │    │ - JSON results        │
+ │  - Wilson 95% CI     │    │ - Markdown leaderboard │
+ │  - per-category      │    │ - Failure report       │
+ │  - per-tier          │    │ - Safe guide           │
+ │  - per-reasoning     │    │ - Run archive          │
+ │  - layer pass rates  │    │ - Cross-benchmark      │
+ └─────────────────────┘    └──────────────────────┘
+```
+
+### End-to-End Benchmark Execution Flow
+
+```
+ ┌─────────────┐     ┌──────────────┐     ┌─────────────────┐
+ │ User invokes │     │ Discover     │     │ Filter cases    │
+ │ `embedeval   │────►│ cases from   │────►│ by category,    │
+ │  run ...`    │     │ cases/ dir   │     │ difficulty, tier,│
+ └─────────────┘     └──────────────┘     │ visibility, date│
+                                          └────────┬────────┘
+                                                   │
+                      ┌────────────────────────────┘
+                      │
+                      ▼
+              ┌───────────────┐
+              │ For each case  │◄─────────────────────────────┐
+              │ x N attempts   │                              │
+              └───────┬───────┘                               │
+                      │                                       │
+                      ▼                                       │
+              ┌───────────────┐                               │
+              │ Load prompt   │                               │
+              │ + context     │                               │
+              └───────┬───────┘                               │
+                      │                                       │
+                      ▼                                       │
+              ┌───────────────┐    ┌──────────────────┐      │
+              │ Call LLM      │    │ Extract code from │      │
+              │ (model)       │───►│ markdown blocks   │      │
+              └───────────────┘    └────────┬─────────┘      │
+                                            │                 │
+                                            ▼                 │
+              ┌─────────────────────────────────────┐        │
+              │       5-Layer Evaluation             │        │
+              │                                      │        │
+              │  L0 Static    → pass/fail            │        │
+              │  L1 Compile   → pass/fail/skip       │        │
+              │  L2 Runtime   → pass/fail/skip       │        │
+              │  L3 Heuristic → pass/fail            │        │
+              │  L4 Mutation  → pass/fail             │        │
+              │                                      │        │
+              │  (failure halts remaining layers)     │        │
+              └──────────────┬──────────────────────┘        │
+                             │                                │
+                             ▼                                │
+                    ┌────────────────┐    YES                 │
+                    │ Failed at L0/L1│────────┐               │
+                    │ & feedback > 0?│        ▼               │
+                    └───────┬────────┘ ┌─────────────┐       │
+                         NO │          │ Build error  │       │
+                            │          │ feedback to  │       │
+                            │          │ LLM → retry  │───────┘
+                            ▼          └─────────────┘
+              ┌───────────────────┐    (up to N feedback rounds)
+              │ Append EvalResult │
+              │ to results[]     │
+              └───────┬──────────┘
+                      │
+                      ▼
+              ┌───────────────┐
+              │ Next case/    │───────────────────────┐
+              │ attempt       │                       │ All done
+              └───────────────┘                       │
+                                                      ▼
+                                          ┌───────────────────┐
+                                          │ Score results      │
+                                          │ (pass@k, CI, etc.) │
+                                          └─────────┬─────────┘
+                                                    │
+                                                    ▼
+                                          ┌───────────────────┐
+                                          │ Generate reports   │
+                                          │ - JSON             │
+                                          │ - Leaderboard.md   │
+                                          │ - Failure report   │
+                                          │ - Safe guide       │
+                                          │ - Test tracker     │
+                                          └───────────────────┘
+```
+
+### Per-Case Evaluation Pipeline (Detail)
+
+```
+                    Generated Code (string)
+                            │
+                            ▼
+    ┌───────────────────────────────────────────────────┐
+    │ LAYER 0: Static Analysis                          │
+    │                                                   │
+    │  checks/static.py::run_checks(code) → CheckDetail[] │
+    │                                                   │
+    │  Examples:                                        │
+    │  - Required #include headers present?             │
+    │  - CONFIG_* symbols correct?                      │
+    │  - DT node structure valid?                       │
+    │  - ISR function signatures correct?               │
+    └──────────────────┬────────────────────────────────┘
+                       │ PASS
+                       ▼
+    ┌───────────────────────────────────────────────────┐
+    │ LAYER 1: Compilation Gate                         │
+    │                                                   │
+    │  Platform dispatch:                               │
+    │  ┌─────────────┬──────────────┬──────────────┐   │
+    │  │ Zephyr      │ ESP-IDF      │ STM32 HAL    │   │
+    │  │ west build  │ idf.py build │ arm-none-    │   │
+    │  │ (Docker/    │ (IDF_PATH)   │ eabi-gcc     │   │
+    │  │  local)     │              │ (STM32_HAL_  │   │
+    │  │             │              │  PATH)       │   │
+    │  └─────────────┴──────────────┴──────────────┘   │
+    │                                                   │
+    │  EMBEDEVAL_ENABLE_BUILD:                          │
+    │    docker → Docker container build                │
+    │    1/local → Local west build (ZEPHYR_BASE)       │
+    │    unset → Skip (auto-pass)                       │
+    └──────────────────┬────────────────────────────────┘
+                       │ PASS
+                       ▼
+    ┌───────────────────────────────────────────────────┐
+    │ LAYER 2: Runtime Execution                        │
+    │                                                   │
+    │  west build -t run (native_sim or QEMU)           │
+    │  - Timeout: 10s (firmware runs forever)            │
+    │  - Timeout is normal: kill + capture stdout        │
+    │  - Validate output vs checks/expected_output.txt  │
+    │  - HW targets (nrf52840dk etc.) → auto-skip       │
+    │  - ESP-IDF / STM32 → auto-skip (no QEMU config)  │
+    └──────────────────┬────────────────────────────────┘
+                       │ PASS
+                       ▼
+    ┌───────────────────────────────────────────────────┐
+    │ LAYER 3: Static Heuristic                         │
+    │                                                   │
+    │  checks/behavior.py::run_checks(code) → CheckDetail[] │
+    │                                                   │
+    │  Check utilities (check_utils):                   │
+    │  - Word-boundary matching (has_word, has_api_call) │
+    │  - Scope-aware (check_api_in_function,            │
+    │    check_qualifier_on_variable)                    │
+    │  - Flow analysis (check_return_after_error)        │
+    │  - Order checking (check_cleanup_reverse_order)    │
+    │  - Cross-platform (check_no_cross_platform_apis)   │
+    │  - ISR safety (check_no_isr_forbidden)             │
+    └──────────────────┬────────────────────────────────┘
+                       │ PASS
+                       ▼
+    ┌───────────────────────────────────────────────────┐
+    │ LAYER 4: Mutation Testing (Meta-Verification)     │
+    │                                                   │
+    │  checks/negatives.py (9 cases, 18 mutations)      │
+    │  - Seeds known bugs into reference code            │
+    │  - Verifies L0/L3 checks detect the bug           │
+    │  - Proves the benchmark's own checks are sound     │
+    └──────────────────┬────────────────────────────────┘
+                       │ PASS
+                       ▼
+                  ┌──────────┐
+                  │ ALL PASS │
+                  └──────────┘
+```
+
+### LLM Client Modes
+
+```
+             call_model(model, prompt, context_files)
+                            │
+              ┌─────────────┼──────────────┐
+              │             │              │
+              ▼             ▼              ▼
+        ┌──────────┐ ┌───────────┐ ┌────────────┐
+        │  "mock"  │ │ "claude-  │ │ Any other  │
+        │          │ │  code://" │ │ string     │
+        │ Returns  │ │           │ │            │
+        │ fixed    │ │ claude -p │ │ litellm.   │
+        │ test     │ │ --output- │ │ completion │
+        │ response │ │ format    │ │ ()         │
+        │          │ │ json      │ │            │
+        │          │ │           │ │ API keys   │
+        │ No API   │ │ Subscrip- │ │ required   │
+        │ needed   │ │ tion only │ │ (env vars) │
+        └──────────┘ └───────────┘ └────────────┘
+              │             │              │
+              └─────────────┼──────────────┘
+                            ▼
+                   ┌─────────────────┐
+                   │ LLMResponse     │
+                   │ - generated_code│ ← _extract_code() strips ```blocks
+                   │ - token_usage   │
+                   │ - cost_usd      │
+                   │ - duration_s    │
+                   └─────────────────┘
+```
+
+---
+
+## 5-Layer Evaluation Architecture
+
+EmbedEval evaluates LLM-generated code through five progressively deeper verification layers. Failure at any layer halts evaluation — subsequent layers are marked as skipped.
+
+### Layer 0: Static Analysis
+
+**Purpose:** Catch structural and syntactic issues without compilation.
+
+**Implementation:** Each case provides `checks/static.py` with a `run_checks(generated_code: str) -> list[CheckDetail]` function. Checks include required includes, CONFIG symbol validation, device tree structure, and ISR signature verification.
+
+### Layer 1: Compilation
+
+**Purpose:** Verify that generated code compiles against the target SDK.
+
+**Implementation:** Platform-specific compilation dispatched by metadata:
+
+| Platform | Build Command | Environment Variable |
+|----------|---------------|---------------------|
+| Zephyr (Docker) | `docker run ... west build` | `EMBEDEVAL_ENABLE_BUILD=docker` |
+| Zephyr (local) | `west build` | `EMBEDEVAL_ENABLE_BUILD=1` or `local` |
+| ESP-IDF | `idf.py build` | `IDF_PATH` |
+| STM32 HAL | `arm-none-eabi-gcc -c` | `STM32_HAL_PATH` |
+| Skip | Auto-pass | `EMBEDEVAL_ENABLE_BUILD` unset |
+
+All Zephyr compilation uses temporary directories (copied from case files + generated `src/main.c`) to avoid mutating case files. The build directory is shared between L1 and L2.
+
+**Board target selection:** Each case declares `build_board` in metadata.yaml (default: `native_sim`). The board target is included in the LLM prompt (`Target board: {board}`). L1 compile and L2 runtime layers are **restricted to native_sim cases only**. Cases targeting hardware boards (nrf52840dk) are evaluated on L0+L3 only — this avoids DT overlay mismatches where the LLM's valid code fails L1 due to missing device tree nodes that aren't communicated in the prompt. See `scripts/verify_references_build.py` for reference solution build validation.
+
+**L1/L2 scope:** Of 179 public cases, L1 compile is exercised on native_sim cases only. All 48 nrf52840dk cases have `l1_skip: true` and `l2_skip: true`. An additional 25 native_sim cases also have `l1_skip: true` due to reference code issues (API changes, missing subsystems). Net: ~106 cases have full L0-L4 evaluation, 73 are L0+L3 only.
+
+#### Metadata Field Semantics: `platform` vs `build_board`
+
+Two metadata fields control compilation and runtime behavior:
+
+| Field | Semantics | Example Values | Used By |
+|-------|-----------|----------------|---------|
+| `platform` | **SDK/toolchain** — which build system and framework | `native_sim` (Zephyr), `esp_idf`, `stm32_hal`, `docker_only`, `yocto_build` | Evaluator: routes to correct compiler backend |
+| `build_board` | **Board target** — which hardware target to cross-compile for | `native_sim` (default), `nrf52840dk/nrf52840` | Evaluator: passed to `west build -b <board>` |
+
+These fields are **independent**: a case may use Zephyr SDK (`platform: native_sim`) while targeting nrf52840dk hardware (`build_board: nrf52840dk/nrf52840`). This is not a contradiction — it means "compile with Zephyr for the nrf52840dk board." The `platform` name `native_sim` is a historical artifact from Zephyr's naming convention, not a declaration that the code runs on the simulator.
+
+**Runtime implication:** Only cases with `build_board: native_sim` (or no `build_board`) can execute L2 runtime tests. Cases targeting hardware boards (nrf52840dk) auto-skip L2 with a pass.
+
+#### Per-Category L1/L2 Layer Applicability
+
+The following table shows which evaluation layers apply to each category, based on current metadata (`l1_skip`, `l2_skip` flags) and board targets.
+
+| Category | Cases | L1 Compile | L2 Runtime | Board Target | Notes |
+|----------|-------|------------|------------|--------------|-------|
+| adc | 2 | Skip (2/2) | N/A | nrf52840dk | DT overlay needed |
+| ble | 8 | Partial (4/8 skip) | Skip (4/8) | native_sim | No BT controller on native_sim |
+| boot | 8 | Yes | Yes | native_sim | Config fragments, not C code |
+| device-tree | 8 | Yes | Yes | native_sim | DTS fragments via qemu_arm |
+| dma | 9 | Partial (2/9 skip) | Yes | native_sim | |
+| gpio-basic | 5 | Yes | Mixed | mixed | Multi-platform (Zephyr, ESP, STM32) |
+| isr-concurrency | 9 | Partial (1/9 skip) | Yes | native_sim | |
+| kconfig | 8 | Yes | Yes | native_sim | Config fragments, not C code |
+| linux-driver | 8 | Yes | N/A | native_sim | docker_only platform |
+| linux-userspace | 8 | Partial (3/8 skip) | N/A | native_sim | Userspace: libgpiod, systemd, udev, spidev, sd-bus, eBPF |
+| memory-opt | 10 | Partial (5/10 skip) | Yes | native_sim | |
+| networking | 10 | Partial (4/10 skip) | Skip (4/10) | native_sim | No network on native_sim |
+| ota | 8 | Skip (6/8) | N/A | nrf52840dk | HW-specific OTA |
+| power-mgmt | 8 | Partial (3/8 skip) | N/A | nrf52840dk | HW power management |
+| pwm | 1 | Skip (1/1) | N/A | nrf52840dk | HW PWM |
+| security | 8 | Partial (2/8 skip) | Yes | native_sim | |
+| sensor-driver | 8 | Skip (7/8) | N/A | nrf52840dk | DT overlay needed |
+| spi-i2c | 12 | Partial (3/12 skip) | Mixed | mixed | Multi-platform |
+| storage | 9 | Partial (3/9 skip) | Yes | native_sim | |
+| threading | 12 | Yes | Yes | native_sim | Multi-platform (Zephyr, STM32) |
+| timer | 9 | Partial (3/9 skip) | Yes | native_sim | Multi-platform |
+| uart | 2 | Skip (2/2) | N/A | nrf52840dk | HW UART |
+| watchdog | 9 | Partial (2/9 skip) | Mixed | mixed | |
+| yocto | 8 | Yes | N/A | native_sim | yocto_build platform |
+
+**Legend:** "Skip" = all cases skip that layer. "Partial" = some cases skip. "N/A" = layer not applicable (hardware board or non-Zephyr platform). "Mixed" = multiple board targets within category.
+
+### Layer 2: Runtime Execution
+
+**Purpose:** Execute compiled firmware and detect runtime failures (segfaults, deadlocks, hangs).
+
+**Implementation:** `west build -t run` under native_sim with a 10-second timeout. Embedded firmware runs forever (`while(1)` + `k_sleep`), so timeout is the expected exit — the process is killed and captured stdout is validated against `checks/expected_output.txt` keyword lines. Hardware-only boards (nrf52840dk, etc.) and ESP-IDF/STM32 cases auto-skip runtime.
+
+**Output validation coverage:** 119 of 145 native_sim cases have `expected_output.txt` with 1-3 printk keyword prefixes extracted from reference solutions. The remaining 26 cases are Kconfig-only (18) or have no printk output (8).
+
+### Layer 3: Static Heuristic
+
+**Purpose:** Verify domain-specific behavioral correctness via pattern analysis.
+
+**Implementation:** Each case provides `checks/behavior.py` with domain-specific checks. Available check utilities include:
+- **Word-boundary matching** (`has_word`, `has_api_call`) — prevents substring aliasing
+- **Scope-aware checks** (`check_api_in_function`, `check_qualifier_on_variable`) — verifies patterns in correct function scope
+- **Flow analysis** (`check_return_after_error`) — verifies error handling has return/goto
+- **Order checking** (`check_cleanup_reverse_order`) — verifies cleanup in reverse init order
+- **Cross-platform detection** (`check_no_cross_platform_apis`) — catches API contamination
+- **ISR safety** (`check_no_isr_forbidden`) — verifies no blocking calls in ISR context
+
+### Layer 4: Mutation Testing (Meta-Verification)
+
+L4 is the layer most likely to draw external scrutiny because L3 uses regex
+heuristics rather than full semantic analysis. L4 exists to bound how badly
+those L3 heuristics can mislead the leaderboard.
+
+**Purpose.** Verify that the benchmark's own L0/L3 checks catch known bugs.
+A check that "passes" generated code that contains a seeded bug is a *check
+defect*, not an LLM merit. L4 surfaces these defects so they can be fixed.
+
+**Implementation.** Cases ship `checks/negatives.py` with `must_fail`
+mutations (see the Negatives row in the coverage table above for current
+counts). Each mutation is a small edit — drop `volatile`, swap lock order,
+remove a header, etc. — targeting a specific check. Mutations are authored
+against the reference solution, but the evaluator applies them to the
+**model's generated code** for the case under evaluation, so L4 measures
+check discrimination on the same artifact the leaderboard scored:
+1. Applies the mutation to the generated code (`evaluator.py:_run_mutant_checks`).
+2. Runs the same L0+L3 checks on the mutated code.
+3. Verifies that the targeted check fires.
+4. Records each (mutation, check) pair as `pass` (check fired) or `fail`
+   (check missed the seeded bug).
+
+**Scoring.** L4 is meta-verification only. **L4 results do not affect the
+case pass/fail verdict or per-model pass@1.** A model is never penalized
+because the benchmark's checks happened to be sound on its outputs. L4
+results are summarized at the *benchmark* level, not the *model* level.
+
+**Why this matters for the leaderboard.** When a model passes a case, L4
+tells the reader whether that pass is *trustworthy* (the L3 check was
+mutation-tested and held up) or *provisional* (no L4 mutation defends it
+yet). L4 coverage skews toward the categories with the weakest pass rates,
+where check defects would be most consequential; it does not yet span every
+category.
+
+**Skip conditions.** If a mutation does not change the generated code
+(structurally different from the reference), that single mutation is
+skipped — the benchmark cannot validate a check against code it does not
+apply to. If no `negatives.py` file exists, L4 auto-passes with no details.
+
+**Failure mode handled.** If an L3 regex check matches a substring or a
+typedef instead of the intended construct, an L4 mutation that *removes*
+the intended construct should still cause the check to fire (because the
+regex is matching the wrong thing). When L4 catches this, the check is
+revised. This was the primary signal for several check rewrites between
+v0.0 and v0.1.
+
+---
+
+## Evaluation Scenarios
+
+### Generation (default)
+
+LLM receives a task prompt and must produce complete C source code from scratch. Evaluated through all 5 layers.
+
+```bash
+uv run embedeval run --model claude-code://sonnet --cases cases/
+```
+
+### Bug Fix
+
+LLM receives buggy code (reference + seeded mutation) and must diagnose and fix the bug. Evaluated through the same checks — fixed code must pass all layers.
+
+```bash
+uv run embedeval run --model claude-code://sonnet --cases cases/ --scenario bugfix
+```
+
+Bugfix cases are auto-generated from existing `must_fail` mutations. No additional TC authoring required.
+
+### Compiler Feedback Rounds
+
+When `--feedback-rounds N` is set (N > 0), cases that fail at L0 (static) or L1 (compile) trigger a retry loop:
+
+1. Extract error message and failed check details from the failing layer
+2. Construct a feedback prompt: original task + error context + "fix the code"
+3. Call the LLM again with the feedback prompt
+4. Re-evaluate the new code through all layers
+5. Repeat up to N rounds or until the case passes
+
+```bash
+uv run embedeval run --model claude-code://sonnet --cases cases/ --feedback-rounds 3
+```
+
+This measures LLM self-correction capability on compilation/structural errors.
+
+### Multi-Turn Agent Mode
+
+The `agent` command runs cases in a multi-turn conversation loop where the LLM receives evaluation feedback and can iteratively refine its code:
+
+```bash
+uv run embedeval agent claude-code://sonnet --cases cases/ --max-turns 5
+```
+
+---
+
+## Scoring: pass@k
+
+EmbedEval uses the **unbiased pass@k estimator** from Chen et al. (2021):
+
+```
+pass@k = 1 - C(n-c, k) / C(n, k)
+```
+
+Where `n` = total samples per case, `c` = correct samples, `C(a,b)` = binomial coefficient.
+
+When `n < k`, falls back to empirical estimate (any correct → 1.0).
+
+### Confidence Intervals
+
+All pass@1 scores include **95% Wilson score confidence intervals**:
+
+```
+CI = (center ± spread) / (1 + z²/n)
+```
+
+Reports display: `pass@1 = 89.5% [84.7%, 93.1%]`
+
+### Score Aggregation
+
+Results are aggregated across multiple dimensions:
+
+| Dimension | Implementation |
+|-----------|---------------|
+| **Per-model** | pass@1, pass@3, pass@5, layer pass rates |
+| **Per-category** | pass@1 per category (23 categories) |
+| **Per-tier** | pass@1 by evaluation tier (sanity, core, challenge) |
+| **Per-reasoning** | pass@1 by reasoning type (api_recall, rule_application, cross_domain, system_reasoning) |
+| **Overall** | Best model, total cases, best pass@1 |
+
+### Reporting Outputs
+
+| Output | Description |
+|--------|-------------|
+| `results/<model>-results.json` | Full benchmark report (JSON) |
+| `results/LEADERBOARD.md` | Model comparison, heatmaps, failure distribution |
+| `results/runs/<date>_<model>/` | Per-case detailed results archive |
+| `results/runs/<date>_<model>/report.md` | Failure analysis with patterns |
+| `results/SAFE_GUIDE.md` | Risk-tier guidance for embedded engineers |
+| `results/test_tracker.json` | Incremental test state for `--retest-only` |
+| `results/TEST_RESULTS.md` | Human-readable test results summary |
+| `results/history.json` | Run history for trend tracking |
+
+### Key Metrics
+
+- **pass@1** — first-attempt accuracy (primary metric)
+- **pass@5** — multi-attempt capability
+- **95% CI** — statistical confidence on pass@1
+- **Embed Gap** — EmbedEval pass@1 minus HumanEval pass@1 (cross-benchmark positioning)
+
+---
+
+## Contamination Prevention
+
+### Private Held-Out Set
+
+48 private cases are maintained in a **separate repository** (`embedeval-private`) to prevent contamination through LLM training data exposure:
+
+```bash
+# Include private cases in benchmark run
+uv run embedeval run --model claude-code://sonnet \
+    --cases cases/ \
+    --private-cases ../embedeval-private/cases/ \
+    --include-private
+```
+
+Default benchmark runs evaluate only the 179 public cases. The `--include-private` flag enables the full 227-case evaluation. Visibility filtering is enforced at the runner level: without `--include-private`, cases with `visibility: private` in metadata are excluded.
+
+### Temporal Cutoff
+
+Each case has `created_date` in metadata. The `--after-date` filter enables temporal analysis against model training cutoffs.
+
+### Incremental Retesting
+
+The `--retest-only` flag uses content-hash-based change detection to only re-run cases that have been modified since the last benchmark run, enabling efficient iteration after TC updates.
+
+---
+
+## Analysis Tools
+
+### Prompt Sensitivity Analysis
+
+Measures benchmark robustness to prompt phrasing variations.
+
+```bash
+uv run embedeval sensitivity claude-code://sonnet --sample 30 --variants 3
+```
+
+Three deterministic variant strategies:
+1. **Reorder** — reverse requirement bullet order
+2. **Rephrase** — swap imperative verbs (Write->Implement)
+3. **Remove** — strip "Output ONLY" instructions
+
+Robustness score: 1.0 (all variants agree) to 0.0 (all disagree).
+
+### IRT Difficulty Calibration
+
+Estimates empirical difficulty from multi-model results.
+
+- **Difficulty (b):** `1 - empirical_pass_rate` (higher = harder)
+- **Discrimination (a):** Std dev of per-model pass rates (higher = better differentiator)
+- **Label validation:** Compares assigned easy/medium/hard vs empirical thresholds (>80% / 40-80% / <40%)
+- **Floor/ceiling detection:** Cases all models pass (too easy) or all fail (broken)
+
+### Ablation Study
+
+Measures contribution of each evaluation layer to discriminative power.
+
+| Configuration | Layers |
+|---------------|--------|
+| L0 only | Static analysis |
+| L0 + L3 | Static + heuristic (current default without Docker) |
+| L0 + L1 | Static + compile |
+| L0 + L1 + L3 | Static + compile + heuristic |
+| Full (L0-L4) | All layers |
+
+Layer contribution = delta between configurations (e.g., `L0_rate - L0+L3_rate`).
+
+### Failure Taxonomy
+
+Automated classification of LLM failures into 8 patterns:
+
+| Pattern | Description |
+|---------|-------------|
+| `happy_path_bias` | Error path cleanup missing |
+| `semantic_mismatch` | Compiles but wrong HW semantics |
+| `resource_imbalance` | Alloc without free |
+| `order_violation` | Init/register/use order wrong |
+| `cross_platform` | Wrong platform API used |
+| `api_hallucination` | Non-existent API called |
+| `missing_safety` | Forbidden API in ISR, missing guards |
+| `unknown` | Unmapped check failure |
+
+Classification uses majority voting across failed checks with confidence scoring.
+
+### Safety Guide Generation
+
+Aggregates benchmark results across all models and runs to produce risk-tier guidance:
+
+| Risk Tier | Pass Rate | Recommendation |
+|-----------|-----------|----------------|
+| Critical | <50% | Do not trust — write manually or review every line |
+| Caution | 50-79% | Use as starting point only, expert review mandatory |
+| Moderate | 80-89% | Spot check safety-critical patterns |
+| Reliable | 90%+ | Standard code review sufficient |
+
+```bash
+uv run embedeval guide --results results/
+```
+
+---
+
+## Case Structure
+
+Each case directory contains:
+
+```
+cases/<category>-<number>/
+  metadata.yaml       # Pydantic-validated metadata (id, category, difficulty, platform, etc.)
+  prompt.md            # LLM task prompt
+  reference/main.c     # Verified correct solution
+  checks/static.py     # L0 static analysis checks
+  checks/behavior.py   # L3 behavioral heuristic checks
+  checks/negatives.py  # (9 cases) Mutation tests for meta-verification
+  context/             # Additional context files (optional)
+  CMakeLists.txt       # Zephyr build file (Zephyr cases)
+  prj.conf             # Zephyr Kconfig (Zephyr cases)
+```
+
+### Design Principles
+
+1. **Self-contained** — No external dependencies beyond SDK Docker images
+2. **Reference required** — Every case has a verified reference solution
+3. **Deterministic** — All checks produce deterministic pass/fail (no LLM-as-judge)
+4. **Implicit knowledge** — Prompts describe functional requirements without giving away safety patterns
+
+---
+
+## How EmbedEval Differs from Related Work
+
+| Dimension | HumanEval | SWE-bench | EmbedAgent (ICSE'26) | EmbedEval |
+|-----------|-----------|-----------|----------------------|-----------|
+| **Domain** | General Python | Python SWE | Arduino/ESP32/RPi | Zephyr/ESP-IDF/STM32/Linux |
+| **Cases** | 164 | 2,294 | 126 | 227 (179 public + 48 private) |
+| **Platforms** | 1 | 1 | 3 | 6 |
+| **Scenarios** | 1 | 1 | 3 | 2 + feedback + agent |
+| **Verification** | assert | pytest | Wokwi sim | 5-layer (static + compile + runtime + heuristic + mutation) |
+| **Contamination** | None | PR-based | HW combinations | Separate private repo + temporal cutoff |
+| **Scoring** | pass@k | % resolved | pass@1 | pass@k (unbiased) + 95% CI + Embed Gap |
+| **Unique** | — | — | Circuit design | Implicit Knowledge Gap, 4-Level Model, Safety Guide |

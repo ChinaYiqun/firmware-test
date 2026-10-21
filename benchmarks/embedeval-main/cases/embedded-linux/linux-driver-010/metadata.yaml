@@ -1,0 +1,23 @@
+id: linux-driver-010
+category: linux-driver
+difficulty: hard
+title: IRQ-Safe Locking with spin_lock_irqsave
+description: Character device driver that protects a ring buffer shared between a hardirq handler and a blocking read() syscall using spin_lock_irqsave
+tags:
+- linux
+- kernel
+- driver
+- char-device
+- spinlock
+- irq
+- concurrency
+platform: docker_only
+sdk: embedded-linux
+estimated_tokens: 680
+sdk_version: '5.15'
+created_date: '2026-04-19'
+tier: challenge
+reasoning_types:
+- system_reasoning
+- cross_domain
+- rule_application

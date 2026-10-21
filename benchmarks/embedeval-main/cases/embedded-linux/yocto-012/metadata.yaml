@@ -1,0 +1,21 @@
+id: yocto-012
+category: yocto
+difficulty: medium
+title: PACKAGECONFIG Feature Flags
+description: Write a BitBake recipe that exposes ssl and examples feature flags via PACKAGECONFIG, toggling DEPENDS, EXTRA_OECONF, and RDEPENDS
+tags:
+- yocto
+- kirkstone
+- packageconfig
+- feature-flags
+- depends
+- extra-oeconf
+platform: yocto_build
+sdk: embedded-linux
+estimated_tokens: 340
+sdk_version: '4.0'
+created_date: '2026-04-19'
+tier: core
+reasoning_types:
+- rule_application
+- api_recall

@@ -1,0 +1,24 @@
+id: linux-driver-011
+category: linux-driver
+difficulty: hard
+title: Deferred Work via Workqueue from IRQ
+description: Platform driver that defers sleepable work (register I/O, printk trace) from a hardirq handler into a workqueue worker using INIT_WORK / schedule_work, with proper flush on remove
+tags:
+- linux
+- kernel
+- driver
+- platform-driver
+- workqueue
+- irq
+- deferred-work
+- concurrency
+platform: docker_only
+sdk: embedded-linux
+estimated_tokens: 680
+sdk_version: '5.15'
+created_date: '2026-04-19'
+tier: challenge
+reasoning_types:
+- system_reasoning
+- cross_domain
+- rule_application

@@ -1,0 +1,106 @@
+{
+  "task_id": "claude-code__uart-001__1",
+  "harness": "claude-code",
+  "case_id": "uart-001",
+  "repeat": 1,
+  "started_at": "2026-10-20T08:11:53.968048+00:00",
+  "artifact_directory": "D:\\firmware-test\\experiments\\2026-10-20-qwen38-27b-harness-comparison\\runs\\run-20261020-154440-282906\\tasks\\claude-code__uart-001__1\\3b91142e",
+  "status": "scored_fail",
+  "passed": false,
+  "exit_code": 0,
+  "duration_seconds": 17.781,
+  "usage_events": [
+    {
+      "duration_api_ms": 15354,
+      "stop_reason": "end_turn",
+      "session_id": "ecc199a5-51da-4900-b41d-2af5efe51dd3",
+      "total_cost_usd": 0.047689,
+      "usage": {
+        "input_tokens": 4508,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 3648,
+        "output_tokens": 933,
+        "output_tokens_details": {
+          "thinking_tokens": 311
+        },
+        "server_tool_use": {
+          "web_search_requests": 0,
+          "web_fetch_requests": 0
+        },
+        "service_tier": "standard",
+        "cache_creation": {
+          "ephemeral_1h_input_tokens": 0,
+          "ephemeral_5m_input_tokens": 0
+        },
+        "inference_geo": "",
+        "iterations": [],
+        "speed": "standard",
+        "fallback_credit": null
+      },
+      "modelUsage": {
+        "qwen/qwen3.8-27b": {
+          "inputTokens": 4508,
+          "outputTokens": 933,
+          "cacheReadInputTokens": 3648,
+          "cacheCreationInputTokens": 0,
+          "webSearchRequests": 0,
+          "costUSD": 0.047689,
+          "contextWindow": 200000,
+          "maxOutputTokens": 32000,
+          "thinkingTokens": 311,
+          "canonicalModel": "qwen/qwen3.8-27b",
+          "provider": "firstParty",
+          "costBasis": "unknown"
+        }
+      },
+      "permission_denials": [],
+      "terminal_reason": "completed",
+      "fast_mode_state": "off",
+      "fast_mode_disabled_reason": "sdk_opt_in_required",
+      "subagent_stats": {
+        "spawned": 0,
+        "requested": {
+          "background": 0,
+          "foreground": 0,
+          "unset": 0
+        },
+        "started_in_background": 0,
+        "max_depth": 0,
+        "spawned_by_subagents": 0,
+        "completed": 0,
+        "failed": 0,
+        "killed": {
+          "parent": 0,
+          "user": 0,
+          "system": 0
+        },
+        "refused": {
+          "depth_limit": 0,
+          "concurrency_limit": 0,
+          "budget": 0
+        },
+        "by_type": {}
+      },
+      "safety_stops": 0,
+      "is_error": false,
+      "num_turns": 2,
+      "subtype": "success",
+      "api_error_status": null,
+      "result": "\n\nWrote `submission/main.c` with the complete Zephyr UART echo application:\n\n- **Device lookup** — `DEVICE_DT_GET(DT_ALIAS(uart0))` at file scope inside `main()`, as a `const struct device *const` (matches Zephyr's `DEVICE_DT_GET` const-qualifier behavior).\n- **Readiness check** — `device_is_ready(uart)` before any use; returns `-ENODEV` if the device isn't ready.\n- **Polling loop** — a tight `while (true)` loop with no sleep; `uart_poll_in(uart, &byte)` is called every iteration and the byte is only echoed via `uart_poll_out(uart, byte)` when the read succeeds (return value `0`). A negative return (no data) just loops back to poll again.\n- **Headers** — `zephyr/kernel.h` and `zephyr/drivers/uart.h`.\n\n```c\nconst struct device *const uart = DEVICE_DT_GET(DT_ALIAS(uart0));\n\nif (!device_is_ready(uart)) {\n    return -ENODEV;\n}\n\nuint8_t byte;\n\nwhile (true) {\n    if (uart_poll_in(uart, &byte) == 0) {\n        uart_poll_out(uart, byte);\n    }\n}\n```",
+      "ttft_ms": 7408,
+      "type": "result",
+      "duration_ms": 15874,
+      "uuid": "54d12ee7-b9bc-42f2-b43c-2a42a35a32c1",
+      "ttft_stream_ms": 7350,
+      "time_to_request_ms": 354,
+      "first_content_frame_ms": 7351,
+      "queued_turn_count": 0,
+      "result_index": 0
+    }
+  ],
+  "token_usage": null,
+  "cost_usd": null,
+  "errors": [],
+  "submission_sha256": "45778b9fd5d4661b092c342e9eb58c966bb7aaa010491911ccdab7635237e502",
+  "ended_at": "2026-10-20T08:12:11.794198+00:00"
+}

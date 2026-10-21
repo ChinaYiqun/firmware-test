@@ -1,0 +1,106 @@
+{
+  "task_id": "claude-code__threading-004__1",
+  "harness": "claude-code",
+  "case_id": "threading-004",
+  "repeat": 1,
+  "started_at": "2026-10-20T07:47:40.821156+00:00",
+  "artifact_directory": "D:\\firmware-test\\experiments\\2026-10-20-opus5-harness-comparison\\runs\\run-20261020-154313-c6793e\\tasks\\claude-code__threading-004__1\\e38c3b26",
+  "status": "scored_pass",
+  "passed": true,
+  "exit_code": 0,
+  "duration_seconds": 27.203,
+  "usage_events": [
+    {
+      "duration_api_ms": 26258,
+      "stop_reason": "end_turn",
+      "session_id": "06a6da2a-a875-42dc-a37c-3074aabd4ed0",
+      "total_cost_usd": 0.09524,
+      "usage": {
+        "input_tokens": 10483,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0,
+        "output_tokens": 1713,
+        "output_tokens_details": {
+          "thinking_tokens": 0
+        },
+        "server_tool_use": {
+          "web_search_requests": 0,
+          "web_fetch_requests": 0
+        },
+        "service_tier": "standard",
+        "cache_creation": {
+          "ephemeral_1h_input_tokens": 0,
+          "ephemeral_5m_input_tokens": 0
+        },
+        "inference_geo": "",
+        "iterations": [],
+        "speed": "standard",
+        "fallback_credit": null
+      },
+      "modelUsage": {
+        "claude-opus-5": {
+          "inputTokens": 10483,
+          "outputTokens": 1713,
+          "cacheReadInputTokens": 0,
+          "cacheCreationInputTokens": 0,
+          "webSearchRequests": 0,
+          "costUSD": 0.09524,
+          "contextWindow": 1000000,
+          "maxOutputTokens": 64000,
+          "thinkingTokens": 0,
+          "canonicalModel": "claude-opus-5",
+          "provider": "firstParty",
+          "costBasis": "list"
+        }
+      },
+      "permission_denials": [],
+      "terminal_reason": "completed",
+      "fast_mode_state": "off",
+      "fast_mode_disabled_reason": "sdk_opt_in_required",
+      "subagent_stats": {
+        "spawned": 0,
+        "requested": {
+          "background": 0,
+          "foreground": 0,
+          "unset": 0
+        },
+        "started_in_background": 0,
+        "max_depth": 0,
+        "spawned_by_subagents": 0,
+        "completed": 0,
+        "failed": 0,
+        "killed": {
+          "parent": 0,
+          "user": 0,
+          "system": 0
+        },
+        "refused": {
+          "depth_limit": 0,
+          "concurrency_limit": 0,
+          "budget": 0
+        },
+        "by_type": {}
+      },
+      "safety_stops": 0,
+      "is_error": false,
+      "num_turns": 2,
+      "subtype": "success",
+      "api_error_status": null,
+      "result": "I've written the complete Zephyr RTOS application demonstrating priority inheritance to `submission/main.c`.\n\nThe application shows how priority inheritance prevents priority inversion:\n\n1. **Low priority thread** (priority 10) acquires the mutex first and holds it for 300ms\n2. **Medium priority thread** (priority 7) becomes ready at 50ms but cannot preempt the low priority thread\n3. **High priority thread** (priority 4) tries to acquire the mutex at 100ms, causing the low priority thread to inherit its priority (4), preventing the medium priority thread from interfering\n4. Low priority thread completes its work and releases the mutex\n5. High priority thread then acquires the mutex and completes\n\nThis demonstrates that `k_mutex` in Zephyr provides built-in priority inheritance to solve the priority inversion problem.",
+      "ttft_ms": 13579,
+      "type": "result",
+      "duration_ms": 26415,
+      "uuid": "0767979a-a525-4860-a6bb-8af320e4ec3a",
+      "ttft_stream_ms": 3001,
+      "time_to_request_ms": 139,
+      "first_content_frame_ms": 3001,
+      "queued_turn_count": 0,
+      "result_index": 0
+    }
+  ],
+  "token_usage": null,
+  "cost_usd": null,
+  "errors": [],
+  "submission_sha256": "19fbd8320d78bab33e9dcaf0d63316d090f998e4639f5f1459932eaa93f7b618",
+  "ended_at": "2026-10-20T07:49:01.812627+00:00"
+}

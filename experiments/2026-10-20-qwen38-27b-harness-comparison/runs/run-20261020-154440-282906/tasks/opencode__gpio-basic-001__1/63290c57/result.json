@@ -1,0 +1,65 @@
+{
+  "task_id": "opencode__gpio-basic-001__1",
+  "harness": "opencode",
+  "case_id": "gpio-basic-001",
+  "repeat": 1,
+  "started_at": "2026-10-20T08:11:38.201977+00:00",
+  "artifact_directory": "D:\\firmware-test\\experiments\\2026-10-20-qwen38-27b-harness-comparison\\runs\\run-20261020-154440-282906\\tasks\\opencode__gpio-basic-001__1\\63290c57",
+  "status": "scored_fail",
+  "passed": false,
+  "exit_code": 0,
+  "duration_seconds": 38.109,
+  "usage_events": [
+    {
+      "type": "step_finish",
+      "timestamp": 1792483949256,
+      "sessionID": "ses_ea7a1fe35ffeQ36xO1HBVhP9uL",
+      "part": {
+        "id": "prt_1585e7a88001Ibg04ARQxv1ozU",
+        "reason": "tool-calls",
+        "messageID": "msg_1585e09e5001FQcK4bU7M861Hn",
+        "sessionID": "ses_ea7a1fe35ffeQ36xO1HBVhP9uL",
+        "type": "step-finish",
+        "tokens": {
+          "total": 6439,
+          "input": 4301,
+          "output": 465,
+          "reasoning": 1673,
+          "cache": {
+            "write": 0,
+            "read": 0
+          }
+        },
+        "cost": 0
+      }
+    },
+    {
+      "type": "step_finish",
+      "timestamp": 1792483951723,
+      "sessionID": "ses_ea7a1fe35ffeQ36xO1HBVhP9uL",
+      "part": {
+        "id": "prt_1585e8447001YepN8PVxO9jPR6",
+        "reason": "stop",
+        "messageID": "msg_1585e7aac001ex1i2O2OpjrcEA",
+        "sessionID": "ses_ea7a1fe35ffeQ36xO1HBVhP9uL",
+        "type": "step-finish",
+        "tokens": {
+          "total": 4809,
+          "input": 414,
+          "output": 58,
+          "reasoning": 49,
+          "cache": {
+            "write": 0,
+            "read": 4288
+          }
+        },
+        "cost": 0
+      }
+    }
+  ],
+  "token_usage": null,
+  "cost_usd": null,
+  "errors": [],
+  "submission_sha256": "dab00ef7038ec6a59839f5cc65524d4ec2bbcd0847828e9434ec108d6478f5f0",
+  "ended_at": "2026-10-20T08:12:32.085802+00:00"
+}

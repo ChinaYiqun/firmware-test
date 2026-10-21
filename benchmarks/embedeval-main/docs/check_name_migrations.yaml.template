@@ -1,0 +1,14 @@
+# cases/<tc>/checks/check_name_migrations.yaml
+#
+# Append-only audit log of check_name renames for this TC.
+# Copy this template into a TC's checks/ directory only when a rename is
+# actually needed. Most TCs will never need this file.
+#
+# See docs/CONTRIBUTING.md §"CheckDetail.check_name is an External Contract"
+# for rules and consumer expectations.
+
+renames:
+  - from: old_check_name
+    to:   new_check_name
+    since: "YYYY-MM-DD"    # release date or merge commit date
+    reason: "one-line explanation of why the rename was necessary"

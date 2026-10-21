@@ -1,0 +1,22 @@
+id: boot-uboot-002
+category: boot
+difficulty: hard
+title: FIT Image .its Description
+description: Write a U-Boot FIT image ``.its`` source with kernel + FDT + ramdisk sub-images and a default configuration selecting them, targeting u-boot-imx 2022.04 on i.MX8M Plus
+tags:
+- uboot
+- u-boot-imx
+- fit
+- its
+- boot
+- imx8mp
+platform: native_sim
+sdk: embedded-linux
+estimated_tokens: 420
+sdk_version: '2022.04'
+created_date: '2026-04-19'
+tier: challenge
+reasoning_types:
+- system_reasoning
+- rule_application
+- api_recall

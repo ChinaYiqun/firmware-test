@@ -1,0 +1,106 @@
+"""Behavioral checks for UART async API with DMA application."""
+
+from embedeval.models import CheckDetail
+from embedeval.check_utils import ordered_in_same_function
+from embedeval.check_utils import check_no_cross_platform_apis, extract_numeric
+from embedeval.check_utils import scoped_contains
+from embedeval.check_utils import find_in_code
+
+
+def run_checks(generated_code: str) -> list[CheckDetail]:
+    """Validate UART async behavioral properties and domain invariants."""
+    details: list[CheckDetail] = []
+
+    # Check 1: UART_RX_RDY event handled in callback
+    has_rx_rdy = scoped_contains(generated_code, 'UART_RX_RDY', scope='code_only')
+    details.append(
+        CheckDetail(
+            check_name="uart_rx_rdy_handled",
+            passed=has_rx_rdy,
+            expected="UART_RX_RDY event handled in callback",
+            actual="present" if has_rx_rdy else "missing",
+            check_type="exact_match",
+        )
+    )
+
+    # Check 2: RX buffer defined with positive size
+    buf_size = extract_numeric(generated_code, r"uint8_t\s+\w+\[(\w+)\]")
+    buf_size_ok = buf_size is not None and buf_size > 0
+    details.append(
+        CheckDetail(
+            check_name="rx_buffer_nonzero",
+            passed=buf_size_ok,
+            expected="RX buffer declared with positive size",
+            actual="present" if buf_size_ok else "missing or zero-sized",
+            check_type="constraint",
+        )
+    )
+
+    # Check 3: device_is_ready check present
+    has_ready = scoped_contains(generated_code, 'device_is_ready', scope='code_only')
+    details.append(
+        CheckDetail(
+            check_name="device_ready_check",
+            passed=has_ready,
+            expected="device_is_ready() called before UART operations",
+            actual="present" if has_ready else "missing",
+            check_type="constraint",
+        )
+    )
+
+    # Check 4: callback registered before uart_rx_enable
+    # A re-arm helper defined above main() puts uart_rx_enable earlier in the
+    # file than the uart_callback_set that actually runs first, so compare
+    # within the function that does the setup.
+    cb_pos = find_in_code(generated_code, "uart_callback_set")
+    rx_pos = find_in_code(generated_code, "uart_rx_enable")
+    order_ok = ordered_in_same_function(
+        generated_code, "uart_callback_set", "uart_rx_enable"
+    ) or (cb_pos != -1 and rx_pos != -1 and cb_pos < rx_pos)
+    details.append(
+        CheckDetail(
+            check_name="callback_before_rx_enable",
+            passed=order_ok,
+            expected="uart_callback_set called before uart_rx_enable",
+            actual="correct order" if order_ok else "wrong order or missing",
+            check_type="constraint",
+        )
+    )
+
+    # Check 5: Cross-platform — no Linux/POSIX serial APIs
+    has_posix = any(
+        p in generated_code for p in ["open(", "read(", "write(", "ioctl(", "termios"]
+    )
+    details.append(
+        CheckDetail(
+            check_name="no_posix_serial_apis",
+            passed=not has_posix,
+            expected="No POSIX serial APIs (wrong platform)",
+            actual="POSIX API found" if has_posix else "clean",
+            check_type="constraint",
+        )
+    )
+
+    # Check 6: Ends with k_sleep(K_FOREVER) — not a busy loop
+    has_forever_sleep = scoped_contains(generated_code, 'K_FOREVER', scope='code_only')
+    details.append(
+        CheckDetail(
+            check_name="sleeps_forever_not_busy_loop",
+            passed=has_forever_sleep,
+            expected="k_sleep(K_FOREVER) used instead of busy-wait loop",
+            actual="present" if has_forever_sleep else "missing",
+            check_type="constraint",
+        )
+    )
+
+    # Check: No cross-platform API contamination
+    cross_plat = check_no_cross_platform_apis(generated_code, skip_platforms=["Linux_Userspace"])
+    details.append(CheckDetail(
+        check_name="no_cross_platform_apis",
+        passed=len(cross_plat) == 0,
+        expected="No FreeRTOS/Arduino/STM32_HAL/POSIX APIs",
+        actual="clean" if not cross_plat else f"found: {[a for a, _ in cross_plat]}",
+        check_type="constraint",
+    ))
+
+    return details

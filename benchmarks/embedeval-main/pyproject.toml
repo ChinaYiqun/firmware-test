@@ -1,0 +1,55 @@
+[project]
+name = "embedeval"
+version = "0.2.0"
+description = "LLM benchmark for embedded firmware across Zephyr RTOS, ESP-IDF, STM32, FreeRTOS, Linux drivers, and Yocto"
+readme = "README.md"
+requires-python = ">=3.12"
+license = "Apache-2.0"
+dependencies = [
+    "litellm>=1.0.0",
+    "typer>=0.9.0",
+    "pydantic>=2.0.0",
+    "rich>=13.0.0",
+    "pyyaml>=6.0.0",
+]
+
+[project.scripts]
+embedeval = "embedeval.cli:app"
+
+[build-system]
+requires = ["uv_build>=0.10.12"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "pytest>=8.0.0",
+    "ruff>=0.4.0",
+    "mypy>=1.10.0",
+    "pytest-asyncio>=0.23.0",
+    "types-pyyaml>=6.0.12.20250915",
+]
+
+[tool.ruff]
+line-length = 88
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "W"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["embedeval"]
+
+[tool.mypy]
+strict = true
+python_version = "3.12"
+
+[[tool.mypy.overrides]]
+module = "litellm.*"
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.uv.build-backend]
+# Ensure non-Python data files ship with the wheel.
+source-include = ["src/embedeval/data/*.yaml"]

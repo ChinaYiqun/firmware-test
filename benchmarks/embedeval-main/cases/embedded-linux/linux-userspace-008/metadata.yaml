@@ -1,0 +1,24 @@
+id: linux-userspace-008
+category: linux-userspace
+difficulty: hard
+title: eBPF CO-RE kprobe BPF Program
+description: BPF program attaching to do_unlinkat via kprobe, reading kernel data via BPF_CORE_READ and pushing events to a ringbuf — exercises the CO-RE portability pattern (vmlinux.h + BPF_CORE_READ + SEC license macro)
+tags:
+- ebpf
+- bpf
+- core
+- kprobe
+- libbpf
+- kernel-5.15
+platform: docker_only
+sdk: embedded-linux
+estimated_tokens: 580
+sdk_version: '5.15'
+created_date: '2026-04-19'
+tier: challenge
+l1_skip: true
+reasoning_types:
+- rule_application
+- cross_domain
+- api_recall
+- system_reasoning

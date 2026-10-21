@@ -1,0 +1,108 @@
+"""Behavioral checks for LittleFS file read/write."""
+
+from embedeval.models import CheckDetail
+from embedeval.check_utils import check_no_cross_platform_apis
+from embedeval.check_utils import scoped_contains
+from embedeval.check_utils import find_in_code
+
+
+def run_checks(generated_code: str) -> list[CheckDetail]:
+    """Validate LittleFS behavioral properties."""
+    details: list[CheckDetail] = []
+
+    # Check 1: fs_mount before fs_open (correct ordering)
+    mount_pos = find_in_code(generated_code, "fs_mount")
+    open_pos = find_in_code(generated_code, "fs_open")
+    write_pos = find_in_code(generated_code, "fs_write")
+    mount_first = (
+        mount_pos != -1
+        and open_pos != -1
+        and write_pos != -1
+        and mount_pos < open_pos
+        and mount_pos < write_pos
+    )
+    details.append(
+        CheckDetail(
+            check_name="mount_before_open",
+            passed=mount_first,
+            expected="fs_mount() before fs_open/fs_write",
+            actual="correct order" if mount_first else "wrong order or missing",
+            check_type="constraint",
+        )
+    )
+
+    # Check 2: write before read (write-then-verify pattern)
+    read_pos = find_in_code(generated_code, "fs_read")
+    write_before_read = (
+        write_pos != -1 and read_pos != -1 and write_pos < read_pos
+    )
+    details.append(
+        CheckDetail(
+            check_name="write_before_read",
+            passed=write_before_read,
+            expected="fs_write() before fs_read() (verify pattern)",
+            actual="correct" if write_before_read else "wrong order",
+            check_type="constraint",
+        )
+    )
+
+    # Check 3: FS_O_CREATE flag present for file creation
+    has_create = scoped_contains(generated_code, 'FS_O_CREATE', scope='code_only')
+    details.append(
+        CheckDetail(
+            check_name="fs_o_create_present",
+            passed=has_create,
+            expected="FS_O_CREATE flag in fs_open() for new file",
+            actual="present" if has_create else "missing",
+            check_type="exact_match",
+        )
+    )
+
+    # Check 4: fs_close called (resource cleanup)
+    close_pos = find_in_code(generated_code, "fs_close")
+    has_close = close_pos != -1
+    details.append(
+        CheckDetail(
+            check_name="fs_close_called",
+            passed=has_close,
+            expected="fs_close() called to release file handle",
+            actual="present" if has_close else "missing",
+            check_type="constraint",
+        )
+    )
+
+    # Check 5: error handling present
+    has_error = scoped_contains(generated_code, '< 0', scope='code_only')
+    details.append(
+        CheckDetail(
+            check_name="error_handling",
+            passed=has_error,
+            expected="Error checks on FS API return values",
+            actual="present" if has_error else "missing",
+            check_type="constraint",
+        )
+    )
+
+    # Check 6: fs_seek called before reading back written data
+    has_seek = scoped_contains(generated_code, 'fs_seek', scope='code_only') or scoped_contains(generated_code, 'lfs_file_seek', scope='code_only')
+    details.append(
+        CheckDetail(
+            check_name="seek_before_read",
+            passed=has_seek,
+            expected="fs_seek() called before reading back written data",
+            actual="seek found" if has_seek else "no seek — will read from end of file",
+            check_type="constraint",
+        )
+    )
+
+    # Check: No cross-platform API contamination
+    cross_plat = check_no_cross_platform_apis(generated_code, skip_platforms=["Linux_Userspace"])
+    details.append(CheckDetail(
+        check_name="no_cross_platform_apis",
+        passed=len(cross_plat) == 0,
+        expected="No FreeRTOS/Arduino/STM32_HAL/POSIX APIs",
+        actual="clean" if not cross_plat else f"found: {[a for a, _ in cross_plat]}",
+        check_type="constraint",
+    ))
+
+    return details

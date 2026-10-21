@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+# Mirrors the Lint job in .github/workflows/ci.yml so format/lint drift
+# is caught locally before push, not after CI turns the build red.
+set -euo pipefail
+
+if ! command -v uv >/dev/null 2>&1; then
+    echo "pre-commit: uv not found; skipping ruff checks" >&2
+    exit 0
+fi
+
+echo "pre-commit: ruff format --check src/"
+uv run ruff format --check src/
+
+echo "pre-commit: ruff check src/"
+uv run ruff check src/

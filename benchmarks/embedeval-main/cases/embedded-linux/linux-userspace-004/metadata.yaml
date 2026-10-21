@@ -1,0 +1,21 @@
+id: linux-userspace-004
+category: linux-userspace
+difficulty: medium
+title: systemd Timer + Paired Service (Persistent)
+description: Author a .timer + .service pair that runs a log-cleanup task weekly after boot, surviving reboots without drift via Persistent=true
+tags:
+- systemd
+- timer-unit
+- persistent
+- oneshot
+- embedded-linux
+- kirkstone
+platform: native_sim
+sdk: embedded-linux
+estimated_tokens: 360
+sdk_version: kirkstone
+created_date: '2026-04-19'
+tier: core
+reasoning_types:
+- rule_application
+- api_recall

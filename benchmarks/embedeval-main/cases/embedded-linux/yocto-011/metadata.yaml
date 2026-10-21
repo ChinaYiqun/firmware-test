@@ -1,0 +1,23 @@
+id: yocto-011
+category: yocto
+difficulty: hard
+title: Linux Kernel Config Fragment via .cfg in SRC_URI
+description: Write a Yocto kirkstone .bbappend for linux-imx_%.bbappend that adds a kernel config fragment (.cfg) enabling CONFIG_DEBUG_FS and CONFIG_DYNAMIC_DEBUG via the standard kernel-yocto mechanism
+tags:
+- yocto
+- kirkstone
+- kernel
+- kernel-config
+- fragment
+- linux-imx
+- cfg
+platform: yocto_build
+sdk: embedded-linux
+estimated_tokens: 340
+sdk_version: '4.0'
+created_date: '2026-04-19'
+tier: challenge
+reasoning_types:
+- rule_application
+- cross_domain
+- api_recall

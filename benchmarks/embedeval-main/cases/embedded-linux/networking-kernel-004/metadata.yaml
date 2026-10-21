@@ -1,0 +1,22 @@
+id: networking-kernel-004
+category: networking
+difficulty: hard
+title: Generic Netlink Family Registration
+description: Register a generic netlink family with a single echo command; populates the 5.15 genl_family struct form with .ops / .n_ops / .module = THIS_MODULE and unregisters on module exit
+tags:
+- linux
+- kernel
+- networking
+- generic-netlink
+- genl
+- family-registration
+platform: docker_only
+sdk: embedded-linux
+estimated_tokens: 780
+sdk_version: '5.15'
+created_date: '2026-04-19'
+tier: challenge
+reasoning_types:
+- system_reasoning
+- cross_domain
+- rule_application

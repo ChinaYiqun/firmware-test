@@ -1,0 +1,23 @@
+id: linux-driver-004
+category: linux-driver
+difficulty: hard
+title: Interrupt-Driven Character Device
+description: Char device with IRQ handler that wakes up blocked read() on data available
+tags:
+- linux
+- kernel
+- driver
+- char-device
+- irq
+- waitqueue
+platform: docker_only
+sdk: embedded-linux
+estimated_tokens: 650
+sdk_version: '6.6'
+created_date: '2026-03-24'
+tier: challenge
+reasoning_types:
+- system_reasoning
+- cross_domain
+- rule_application
+- api_recall

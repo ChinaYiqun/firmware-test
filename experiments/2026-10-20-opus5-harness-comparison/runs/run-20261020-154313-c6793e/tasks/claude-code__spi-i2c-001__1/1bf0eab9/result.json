@@ -1,0 +1,106 @@
+{
+  "task_id": "claude-code__spi-i2c-001__1",
+  "harness": "claude-code",
+  "case_id": "spi-i2c-001",
+  "repeat": 1,
+  "started_at": "2026-10-20T07:54:25.048761+00:00",
+  "artifact_directory": "D:\\firmware-test\\experiments\\2026-10-20-opus5-harness-comparison\\runs\\run-20261020-154313-c6793e\\tasks\\claude-code__spi-i2c-001__1\\1bf0eab9",
+  "status": "scored_pass",
+  "passed": true,
+  "exit_code": 0,
+  "duration_seconds": 25.453,
+  "usage_events": [
+    {
+      "duration_api_ms": 23587,
+      "stop_reason": "end_turn",
+      "session_id": "9761b68d-2bc1-49c6-865a-833f82564340",
+      "total_cost_usd": 0.27962,
+      "usage": {
+        "input_tokens": 19329,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0,
+        "output_tokens": 7319,
+        "output_tokens_details": {
+          "thinking_tokens": 0
+        },
+        "server_tool_use": {
+          "web_search_requests": 0,
+          "web_fetch_requests": 0
+        },
+        "service_tier": "standard",
+        "cache_creation": {
+          "ephemeral_1h_input_tokens": 0,
+          "ephemeral_5m_input_tokens": 0
+        },
+        "inference_geo": "",
+        "iterations": [],
+        "speed": "standard",
+        "fallback_credit": null
+      },
+      "modelUsage": {
+        "claude-opus-5": {
+          "inputTokens": 19329,
+          "outputTokens": 7319,
+          "cacheReadInputTokens": 0,
+          "cacheCreationInputTokens": 0,
+          "webSearchRequests": 0,
+          "costUSD": 0.27962,
+          "contextWindow": 1000000,
+          "maxOutputTokens": 64000,
+          "thinkingTokens": 0,
+          "canonicalModel": "claude-opus-5",
+          "provider": "firstParty",
+          "costBasis": "list"
+        }
+      },
+      "permission_denials": [],
+      "terminal_reason": "completed",
+      "fast_mode_state": "off",
+      "fast_mode_disabled_reason": "sdk_opt_in_required",
+      "subagent_stats": {
+        "spawned": 0,
+        "requested": {
+          "background": 0,
+          "foreground": 0,
+          "unset": 0
+        },
+        "started_in_background": 0,
+        "max_depth": 0,
+        "spawned_by_subagents": 0,
+        "completed": 0,
+        "failed": 0,
+        "killed": {
+          "parent": 0,
+          "user": 0,
+          "system": 0
+        },
+        "refused": {
+          "depth_limit": 0,
+          "concurrency_limit": 0,
+          "budget": 0
+        },
+        "by_type": {}
+      },
+      "safety_stops": 0,
+      "is_error": false,
+      "num_turns": 2,
+      "subtype": "success",
+      "api_error_status": null,
+      "result": "I've written the complete Zephyr RTOS application to `submission/main.c`. The application:\n\n1. Gets the I2C bus device from devicetree using `DEVICE_DT_GET(DT_NODELABEL(i2c0))`\n2. Verifies the device is ready with `device_is_ready()` before attempting any I2C operations\n3. Defines the sensor I2C address as 0x68 (7-bit)\n4. Defines the WHO_AM_I register address as 0x75\n5. Reads one byte from the WHO_AM_I register using `i2c_reg_read_byte()`\n6. Checks the return value and handles errors appropriately\n7. Prints the register value with `printk()` on success\n8. Prints an error message on failure\n9. Returns 0 on success or the negative error code on failure\n\nAll required headers are included and the code follows Zephyr I2C API conventions.",
+      "ttft_ms": 8953,
+      "type": "result",
+      "duration_ms": 23825,
+      "uuid": "d01ae459-bfba-4eaf-84f5-c25848f65dae",
+      "ttft_stream_ms": 8371,
+      "time_to_request_ms": 235,
+      "first_content_frame_ms": 8371,
+      "queued_turn_count": 0,
+      "result_index": 0
+    }
+  ],
+  "token_usage": null,
+  "cost_usd": null,
+  "errors": [],
+  "submission_sha256": "d50c37868e5922a983a19254188b6b65773c3044323fc7bdaf018cc395c18331",
+  "ended_at": "2026-10-20T07:54:50.538355+00:00"
+}

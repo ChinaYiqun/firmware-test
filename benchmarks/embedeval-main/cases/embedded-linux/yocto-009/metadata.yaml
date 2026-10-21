@@ -1,0 +1,21 @@
+id: yocto-009
+category: yocto
+difficulty: medium
+title: Meta-Layer conf/layer.conf
+description: Write the conf/layer.conf for a new Yocto kirkstone meta-layer, making it discoverable once added to bblayers.conf
+tags:
+- yocto
+- kirkstone
+- layer
+- bblayers
+- meta-layer
+- infrastructure
+platform: yocto_build
+sdk: embedded-linux
+estimated_tokens: 320
+sdk_version: '4.0'
+created_date: '2026-04-19'
+tier: core
+reasoning_types:
+- rule_application
+- api_recall

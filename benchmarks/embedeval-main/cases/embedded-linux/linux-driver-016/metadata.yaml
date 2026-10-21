@@ -1,0 +1,23 @@
+id: linux-driver-016
+category: linux-driver
+difficulty: medium
+title: Error-Return Discipline Across Mixed APIs
+description: Platform driver probe that correctly distinguishes ERR_PTR, NULL, and negative-int return conventions when acquiring resources with non-managed (non-devm) getters
+tags:
+- linux
+- kernel
+- driver
+- platform-driver
+- is-err
+- ptr-err
+- error-handling
+platform: docker_only
+sdk: embedded-linux
+estimated_tokens: 620
+sdk_version: '5.15'
+created_date: '2026-04-19'
+tier: core
+reasoning_types:
+- rule_application
+- cross_domain
+- api_recall

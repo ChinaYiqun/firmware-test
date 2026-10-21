@@ -1,0 +1,333 @@
+"""EmbedEval data models for benchmark evaluation."""
+
+from enum import Enum
+
+from pydantic import BaseModel, Field
+
+
+class CaseCategory(str, Enum):
+    """Categories of embedded firmware evaluation cases."""
+
+    # Tier 1: Platform-agnostic C code domains
+    GPIO_BASIC = "gpio-basic"
+    UART = "uart"
+    ADC = "adc"
+    PWM = "pwm"
+    SPI_I2C = "spi-i2c"
+    DMA = "dma"
+    ISR_CONCURRENCY = "isr-concurrency"
+    THREADING = "threading"
+    TIMER = "timer"
+    SENSOR_DRIVER = "sensor-driver"
+    NETWORKING = "networking"
+    BLE = "ble"
+    SECURITY = "security"
+    STORAGE = "storage"
+
+    # Tier 2: System-level (build/boot/update)
+    KCONFIG = "kconfig"
+    DEVICE_TREE = "device-tree"
+    BOOT = "boot"
+    OTA = "ota"
+    POWER_MGMT = "power-mgmt"
+    WATCHDOG = "watchdog"
+
+    # Tier 3: Platform-specific
+    YOCTO = "yocto"
+    LINUX_DRIVER = "linux-driver"
+    LINUX_USERSPACE = "linux-userspace"
+    MEMORY_OPT = "memory-opt"
+
+
+class DifficultyTier(str, Enum):
+    """Difficulty tiers for evaluation cases."""
+
+    EASY = "easy"
+    MEDIUM = "medium"
+    HARD = "hard"
+
+
+class Visibility(str, Enum):
+    """Visibility of evaluation cases."""
+
+    PUBLIC = "public"
+    PRIVATE = "private"
+
+
+class CaseTier(str, Enum):
+    """Evaluation tier for benchmark scoring."""
+
+    SANITY = "sanity"  # Basic functionality — score not counted
+    CORE = "core"  # Primary evaluation metric
+    CHALLENGE = "challenge"  # Model differentiation
+
+
+class ReasoningType(str, Enum):
+    """Type of reasoning required to solve a test case."""
+
+    API_RECALL = "api_recall"  # L1: Single API call pattern
+    RULE_APPLICATION = "rule_application"  # L2: Known rule enforcement
+    CROSS_DOMAIN = "cross_domain"  # L3: C + RTOS + HW combined
+    SYSTEM_REASONING = "system_reasoning"  # L4: Backward/whole-system reasoning
+
+
+class EvalPlatform(str, Enum):
+    """Evaluation platform targets."""
+
+    # Zephyr
+    NATIVE_SIM = "native_sim"
+    QEMU_ARM = "qemu_arm"
+    BABBLESIM = "babblesim"
+    # FreeRTOS
+    QEMU_FREERTOS = "qemu_freertos"
+    ESP_IDF = "esp_idf"
+    # STM32 HAL
+    STM32_HAL = "stm32_hal"
+    # Linux
+    DOCKER_ONLY = "docker_only"
+    QEMU_LINUX = "qemu_linux"
+    YOCTO_BUILD = "yocto_build"
+
+
+class Sdk(str, Enum):
+    """SDK / platform family for case classification.
+
+    Each TC lives under cases/<sdk>/<case-id>/ and declares its SDK in
+    metadata.yaml. The bucket drives filtering (--sdk) and per-SDK reporting.
+    """
+
+    ZEPHYR = "zephyr"
+    EMBEDDED_LINUX = "embedded-linux"
+    FREERTOS = "freertos"
+    ESP_IDF = "esp-idf"
+    STM32_HAL = "stm32-hal"
+
+
+class TokenUsage(BaseModel):
+    """Token usage statistics for a single LLM call."""
+
+    input_tokens: int
+    output_tokens: int
+    total_tokens: int
+
+
+class CaseMetadata(BaseModel):
+    """Metadata for an evaluation case.
+
+    Field semantics:
+    - platform: SDK/toolchain (e.g. native_sim = Zephyr, esp_idf = ESP-IDF)
+    - build_board: Board target for compilation (e.g. nrf52840dk/nrf52840)
+      These are independent: platform=native_sim + build_board=nrf52840dk
+      means "compile with Zephyr SDK for nrf52840dk hardware."
+    - l1_skip: Skip L1 compile (reference can't build for target board)
+    - l2_skip: Skip L2 runtime (peripheral unavailable on native_sim)
+    """
+
+    id: str
+    category: CaseCategory
+    difficulty: DifficultyTier
+    title: str
+    description: str
+    tags: list[str]
+    platform: EvalPlatform
+    sdk: Sdk
+    estimated_tokens: int
+    sdk_version: str
+    visibility: Visibility = Visibility.PUBLIC
+    created_date: str | None = None  # ISO date, e.g. "2026-03-24"
+    tier: CaseTier = CaseTier.CORE
+    reasoning_types: list[ReasoningType] = Field(default_factory=list)
+    build_board: str | None = Field(
+        default=None,
+        description="Board target for west build (default: native_sim)",
+    )
+    l1_skip: bool = Field(
+        default=False,
+        description="Skip L1 compile layer (reference fails to build)",
+    )
+    l2_skip: bool = Field(
+        default=False,
+        description="Skip L2 runtime layer (peripheral unavailable)",
+    )
+
+
+class LLMResponse(BaseModel):
+    """Response from an LLM call."""
+
+    model: str
+    generated_code: str
+    token_usage: TokenUsage
+    cost_usd: float = Field(ge=0.0)
+    duration_seconds: float = Field(ge=0.0)
+
+
+class CheckDetail(BaseModel):
+    """Detail of a single evaluation check."""
+
+    check_name: str
+    passed: bool
+    expected: str | None
+    actual: str | None
+    check_type: str
+    weight: float = Field(default=1.0, ge=0.0)
+
+
+class LayerResult(BaseModel):
+    """Result of a single evaluation layer."""
+
+    layer: int = Field(ge=0, le=4)
+    name: str
+    passed: bool
+    details: list[CheckDetail]
+    error: str | None = None
+    duration_seconds: float = Field(ge=0.0)
+    score: float = Field(default=1.0, ge=0.0, le=1.0)
+
+
+class EvalResult(BaseModel):
+    """Result of evaluating a single case against a model."""
+
+    case_id: str
+    category: CaseCategory | None = None
+    sdk: Sdk | None = None
+    model: str
+    attempt: int
+    generated_code: str
+    layers: list[LayerResult]
+    failed_at_layer: int | None = Field(default=None, ge=0, le=4)
+    passed: bool
+    total_score: float = Field(default=1.0, ge=0.0, le=1.0)
+    duration_seconds: float = Field(ge=0.0)
+    token_usage: TokenUsage
+    cost_usd: float = Field(ge=0.0)
+    tier: CaseTier | None = None
+    reasoning_types: list[ReasoningType] = Field(default_factory=list)
+
+
+class PerCheckStat(BaseModel):
+    """Per-check pass/fail aggregate across all cases for a single model.
+
+    Emitted into summary.json for external consumers (dashboards, Hiloop
+    transpile evidence injection, benchmark analysis scripts). This is
+    the authoritative check-level signal — do not re-derive by scraping
+    report.md.
+    """
+
+    check_name: str
+    category: str | None = Field(
+        default=None,
+        description="Case category where this check was observed (None if mixed)",
+    )
+    total_runs: int = Field(
+        ge=0,
+        description="Number of case-evaluations this check appeared in",
+    )
+    fail_count: int = Field(ge=0, description="Number of runs where this check failed")
+    pass_rate: float = Field(ge=0.0, le=1.0)
+    failing_tc_ids: list[str] = Field(
+        default_factory=list,
+        description="Distinct TC IDs where this check failed at least once",
+    )
+
+
+class ModelScore(BaseModel):
+    """Aggregated score for a single model across all cases."""
+
+    model: str
+    pass_at_1: float = Field(ge=0.0, le=1.0)
+    pass_at_1_quality: float = Field(default=0.0, ge=0.0, le=1.0)
+    pass_at_1_comparable: float | None = Field(
+        default=None,
+        ge=0.0,
+        le=1.0,
+        description="pass@1 on common cases only (for fair cross-model comparison)",
+    )
+    pass_at_3: float = Field(default=0.0, ge=0.0, le=1.0)
+    pass_at_5: float = Field(ge=0.0, le=1.0)
+    avg_score: float = Field(default=0.0, ge=0.0, le=1.0)
+    total_cases: int = Field(ge=0)
+    passed_cases: int = Field(ge=0)
+    passed_cases_quality: int = Field(default=0, ge=0)
+    comparable_cases: int | None = Field(
+        default=None,
+        ge=0,
+        description="Number of common cases used for comparable scoring",
+    )
+    layer_pass_rates: dict[str, float]
+    pass_at_1_ci: tuple[float, float] = (0.0, 0.0)
+    n_samples: int = Field(default=1, ge=1)
+    per_check_stats: list[PerCheckStat] = Field(
+        default_factory=list,
+        description="Per-check pass/fail aggregate — see PerCheckStat",
+    )
+
+
+class CategoryScore(BaseModel):
+    """Aggregated score for a single category across all models."""
+
+    category: CaseCategory
+    pass_at_1: float = Field(ge=0.0, le=1.0)
+    total_cases: int = Field(ge=0)
+    passed_cases: int = Field(ge=0)
+
+
+class TierScore(BaseModel):
+    """Pass rate breakdown by evaluation tier."""
+
+    tier: str
+    pass_at_1: float = Field(ge=0.0, le=1.0)
+    total_cases: int = Field(ge=0)
+    passed_cases: int = Field(ge=0)
+
+
+class ReasoningScore(BaseModel):
+    """Pass rate breakdown by reasoning type."""
+
+    reasoning_type: str
+    pass_at_1: float = Field(ge=0.0, le=1.0)
+    total_cases: int = Field(ge=0)
+    passed_cases: int = Field(ge=0)
+
+
+class SdkScore(BaseModel):
+    """Pass rate breakdown by SDK bucket."""
+
+    sdk: Sdk
+    pass_at_1: float = Field(ge=0.0, le=1.0)
+    total_cases: int = Field(ge=0)
+    passed_cases: int = Field(ge=0)
+
+
+class OverallScore(BaseModel):
+    """Overall benchmark scoring summary."""
+
+    total_cases: int
+    total_models: int
+    best_model: str
+    best_pass_at_1: float
+    common_cases: int | None = Field(
+        default=None,
+        ge=0,
+        description="Number of cases common to all models (None if single model)",
+    )
+    case_set_warning: str | None = Field(
+        default=None,
+        description="Warning when models were tested on different case sets",
+    )
+
+
+class BenchmarkReport(BaseModel):
+    """Complete benchmark report with all scores."""
+
+    version: str
+    date: str
+    models: list[ModelScore]
+    categories: list[CategoryScore]
+    tier_scores: list[TierScore] = Field(default_factory=list)
+    reasoning_scores: list[ReasoningScore] = Field(default_factory=list)
+    sdk_scores: list[SdkScore] = Field(default_factory=list)
+    overall: OverallScore
+    scenario: str = "generation"
+    temperature: float = Field(default=0.0, ge=0.0)
+    n_samples_per_case: int = Field(default=1, ge=1)
+    n_runs: int = Field(default=1, ge=1)

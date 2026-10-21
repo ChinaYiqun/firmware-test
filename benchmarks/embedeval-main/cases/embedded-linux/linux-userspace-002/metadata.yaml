@@ -1,0 +1,24 @@
+id: linux-userspace-002
+category: linux-userspace
+difficulty: hard
+title: libgpiod v2 Edge-Event Monitor Daemon
+description: Daemon that uses the libgpiod v2 edge-event API to block on rising-edge events from a GPIO line with a finite per-iteration timeout, emitting a timestamp line on each event until SIGTERM
+tags:
+- libgpiod
+- gpio
+- edge-events
+- daemon
+- signal-handling
+- kernel-5.15
+platform: docker_only
+sdk: embedded-linux
+estimated_tokens: 620
+sdk_version: '2.0'
+created_date: '2026-04-19'
+tier: challenge
+l1_skip: true
+reasoning_types:
+- rule_application
+- cross_domain
+- system_reasoning
+- api_recall

@@ -1,0 +1,22 @@
+id: linux-driver-008
+category: linux-driver
+difficulty: medium
+title: Proc/Sysfs File for Driver Debug Info
+description: Create a /proc entry using proc_ops to expose driver status with seq_printf
+tags:
+- linux
+- kernel
+- driver
+- procfs
+- seq_file
+- debug
+platform: docker_only
+sdk: embedded-linux
+estimated_tokens: 550
+sdk_version: '6.6'
+created_date: '2026-03-24'
+tier: core
+reasoning_types:
+- system_reasoning
+- rule_application
+- api_recall

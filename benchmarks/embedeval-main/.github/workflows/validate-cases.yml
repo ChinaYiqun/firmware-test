@@ -1,0 +1,25 @@
+name: Validate Cases
+
+on:
+  push:
+    paths:
+      - "cases/**"
+  pull_request:
+    paths:
+      - "cases/**"
+
+jobs:
+  validate:
+    name: Validate Test Cases
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: astral-sh/setup-uv@v8.1.0
+        with:
+          enable-cache: true
+      - run: uv sync
+      - name: Validate case reference solutions (layers 1-2 only without Docker)
+        run: uv run embedeval validate --cases cases/
+        continue-on-error: true
+      - name: Audit check scope (REQ-03 — no unscoped substring checks)
+        run: uv run python scripts/audit_check_scope.py --strict

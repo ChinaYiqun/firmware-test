@@ -1,0 +1,26 @@
+id: ota-swupdate-002
+category: ota
+difficulty: hard
+title: SWUpdate Dual-Bank A/B with Bootcnt Failback
+description: Extend a SWUpdate sw-description with two selection groups writing to distinct partition devices, plus bootloader environment variables that arm U-Boot's bootcnt failback mechanism.
+tags:
+- swupdate
+- ota
+- embedded-linux
+- dual-bank
+- bootcnt
+- ab-slot
+- failback
+- kirkstone
+platform: native_sim
+sdk: embedded-linux
+estimated_tokens: 650
+sdk_version: '2022.12'
+created_date: '2026-04-19'
+tier: challenge
+reasoning_types:
+- system_reasoning
+- rule_application
+- api_recall
+l1_skip: true
+l2_skip: true

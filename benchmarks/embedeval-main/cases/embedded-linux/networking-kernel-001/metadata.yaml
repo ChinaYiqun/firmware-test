@@ -1,0 +1,23 @@
+id: networking-kernel-001
+category: networking
+difficulty: hard
+title: Netfilter Pre-Routing Hook with Softirq-Safe Body
+description: Register a netfilter PRE_ROUTING hook that counts packets from softirq context and defers logging to a workqueue worker; hook body stays softirq-safe and the module unwinds correctly on partial init failure
+tags:
+- linux
+- kernel
+- networking
+- netfilter
+- softirq
+- workqueue
+- deferred-work
+platform: docker_only
+sdk: embedded-linux
+estimated_tokens: 720
+sdk_version: '5.15'
+created_date: '2026-04-19'
+tier: challenge
+reasoning_types:
+- system_reasoning
+- cross_domain
+- rule_application

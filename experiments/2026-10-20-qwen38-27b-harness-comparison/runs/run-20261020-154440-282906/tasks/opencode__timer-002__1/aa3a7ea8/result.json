@@ -1,0 +1,29 @@
+{
+  "task_id": "opencode__timer-002__1",
+  "harness": "opencode",
+  "case_id": "timer-002",
+  "repeat": 1,
+  "started_at": "2026-10-20T08:10:22.834558+00:00",
+  "artifact_directory": "D:\\firmware-test\\experiments\\2026-10-20-qwen38-27b-harness-comparison\\runs\\run-20261020-154440-282906\\tasks\\opencode__timer-002__1\\aa3a7ea8",
+  "status": "infra_error",
+  "passed": false,
+  "exit_code": 1,
+  "duration_seconds": 15.765,
+  "usage_events": [],
+  "token_usage": null,
+  "cost_usd": null,
+  "errors": [
+    {
+      "type": "error",
+      "timestamp": 1792483913524,
+      "sessionID": "ses_ea7a23d72ffe6xhb81Xcju0jGU",
+      "error": {
+        "name": "UnknownError",
+        "data": {
+          "message": "unknown certificate verification error"
+        }
+      }
+    }
+  ],
+  "ended_at": "2026-10-20T08:11:53.963641+00:00"
+}
