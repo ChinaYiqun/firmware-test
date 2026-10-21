@@ -114,6 +114,34 @@ def build(harness, workspace, state, config, binaries):
     state.mkdir(parents=True, exist_ok=True)
     if harness == "opencode":
         model = "bench/" + config["model"]
+        # external_directory is relative to OpenCode's detected project/worktree,
+        # which may be the enclosing benchmark repository rather than this task.
+        # Deny file access by default and allow only this exact task directory.
+        workspace = workspace.resolve()
+        task_paths = {"*": "deny", workspace.as_posix() + "/**": "allow"}
+        if os.name == "nt":
+            task_paths[str(workspace) + "\\**"] = "allow"
+        # OpenCode 1.19.3 read/write permission patterns are relative to the
+        # detected Git worktree (not absolute filePath). Include that exact
+        # task prefix too; never grant the containing repository wholesale.
+        try:
+            git_root = subprocess.check_output(
+                ["git", "-C", str(workspace), "rev-parse", "--show-toplevel"],
+                stderr=subprocess.DEVNULL, timeout=10).decode().strip()
+            project = Path(git_root).resolve()
+        except (OSError, subprocess.SubprocessError):
+            project = workspace
+        relative = os.path.relpath(workspace, project)
+        if relative != ".":
+            for prefix in {relative, relative.replace("\\", "/")}:
+                task_paths[prefix] = "allow"
+                task_paths[prefix + ("\\**" if "\\" in prefix else "/**")] = "allow"
+        else:
+            # No repository: the task itself is the worktree. External access
+            # remains denied, including all ../ paths and absolute drive paths.
+            task_paths.update({"task.md": "allow", "submission/*": "allow", "submission\\*": "allow"})
+        permissions = {"*": "deny", "read": task_paths, "edit": task_paths,
+                       "external_directory": "deny", "glob": "deny", "grep": "deny"}
         native = {
             "$schema": "https://opencode.ai/config.json", "model": model,
             "small_model": model, "enabled_providers": ["bench"],
@@ -124,10 +152,8 @@ def build(harness, workspace, state, config, binaries):
                             "apiKey": "{env:ANTHROPIC_API_KEY}",
                             "headers": {"Authorization": "Bearer {env:ANTHROPIC_AUTH_TOKEN}"}},
                 "models": {config["model"]: {"name": config["model"]}}}},
-            "permission": {"*": "deny", "read": "allow", "edit": "allow",
-                           "glob": "allow", "grep": "allow", "external_directory": "deny"},
-            "agent": {"build": {"permission": {"*": "deny", "read": "allow",
-                "edit": "allow", "glob": "allow", "grep": "allow", "external_directory": "deny"}}},
+            "permission": permissions,
+            "agent": {"build": {"permission": permissions}},
         }
         dump(state / "opencode.json", native)
         for key, sub in [("XDG_CONFIG_HOME", "config"), ("XDG_DATA_HOME", "data"),

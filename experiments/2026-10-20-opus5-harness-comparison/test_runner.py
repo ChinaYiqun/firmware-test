@@ -11,6 +11,26 @@ import run_benchmark as runner
 
 
 class RunnerTests(unittest.TestCase):
+    def test_opencode_file_permissions_are_scoped_to_task(self):
+        with tempfile.TemporaryDirectory() as name:
+            base = Path(name)
+            workspace = base / "workspace"
+            workspace.mkdir()
+            with patch.object(runner.subprocess, "check_output", return_value=str(base).encode()):
+                runner.build("opencode", workspace, base / "state",
+                             {"model": "qwen/qwen3.8-27b", "base_url": "https://openrouter.ai/api"},
+                             {"opencode": "not-executed"})
+            config = json.loads((base / "state/opencode.json").read_text(encoding="utf-8"))
+            for permissions in [config["permission"], config["agent"]["build"]["permission"]]:
+                for tool in ["read", "edit"]:
+                    self.assertEqual(permissions[tool]["*"], "deny")
+                    self.assertEqual(permissions[tool][workspace.resolve().as_posix() + "/**"], "allow")
+                    self.assertEqual(permissions[tool]["workspace/**"], "allow")
+                    self.assertNotIn(base.resolve().as_posix() + "/**", permissions[tool])
+                    self.assertNotIn("../*", permissions[tool])
+                self.assertEqual(permissions["grep"], "deny")
+                self.assertEqual(permissions["glob"], "deny")
+
     def test_json_scalar_and_plain_error_lines_are_diagnostics(self):
         with tempfile.TemporaryDirectory() as directory:
             folder = Path(directory)
