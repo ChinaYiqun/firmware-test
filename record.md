@@ -4,15 +4,13 @@
 
 | 运行时间（北京时间） | 模型与接口 | Harness | 题数 / 任务数 | 结果速览 | 对应报告 |
 |---|---|---|---:|---|---|
-| 2026-10-20 15:44–15:58 | `claude-opus-5`，第三方网关 | OpenCode、Claude Code | 10 / 20 | OpenCode 7/10；Claude Code 7/10 | [本次 report.md](experiments/2026-10-20-opus5-harness-comparison/runs/run-20261020-154313-c6793e/report.md) |
-| 2026-10-20 15:44–16:12 | `qwen/qwen3.8-27b`，OpenRouter | OpenCode、Claude Code | 10 / 20 | OpenCode 2/10；Claude Code 3/10；另有 2 次接口错误、1 次超时 | [本次 report.md](experiments/2026-10-20-qwen38-27b-harness-comparison/runs/run-20261020-154440-282906/report.md) |
-| 2026-10-21 14:07–14:18 | `qwen3.8-27b-coder390-q6k-mtp`，本地社区版 | OpenCode | 10 / 10 | 2/10 | [本次 report.md](experiments/2026-10-21-local-qwen38-27b-opencode/runs/run-20261021-140708-d22d11/report.md) |
-| 2026-10-21 19:08 至 2026-10-22 10:05（含中断、续跑） | `qwen/qwen3.8-27b`，OpenRouter | OpenCode | 219 / 219 | 120/219（54.8%）；已评分 210 题，另有 6 题超时、3 题无提交 | [本次 report.md](experiments/2026-10-21-qwen38-27b-opencode-full-static/runs/run-20261021-185529-c2b052/report.md) |
-| 2026-10-21 19:19–20:14 | `qwen3.8-27b-coder390-fp8`，本地 | OpenCode | 219 / 219 | 116/219；另有 2 题超时 | [本次 report.md](experiments/2026-10-21-full-public-l0l3-qwen-fp8-opencode/runs/run-20261021-191945-c710e8/report.md) |
+| 2026-10-20 15:44–15:58 | `claude-opus-5`，第三方网关 | OpenCode、Claude Code | 10 / 20 | OpenCode 7/10（70.0%）；Claude Code 7/10（70.0%） | [本次 report.md](experiments/2026-10-20-opus5-harness-comparison/runs/run-20261020-154313-c6793e/report.md) |
+| 2026-10-20 15:44–16:12 | `qwen/qwen3.8-27b`，OpenRouter | OpenCode、Claude Code | 10 / 20 | OpenCode 2/10（20.0%）；Claude Code 3/10（30.0%） | [本次 report.md](experiments/2026-10-20-qwen38-27b-harness-comparison/runs/run-20261020-154440-282906/report.md) |
+| 2026-10-21 14:07–14:18 | `qwen3.8-27b-coder390-q6k-mtp`，本地社区版 | OpenCode | 10 / 10 | 2/10（20.0%） | [本次 report.md](experiments/2026-10-21-local-qwen38-27b-opencode/runs/run-20261021-140708-d22d11/report.md) |
+| 2026-10-21 19:08 至 2026-10-22 10:05（含中断、续跑） | `qwen/qwen3.8-27b`，OpenRouter | OpenCode | 219 / 219 | 120/219（54.8%） | [本次 report.md](experiments/2026-10-21-qwen38-27b-opencode-full-static/runs/run-20261021-185529-c2b052/report.md) |
+| 2026-10-21 19:19–20:14 | `qwen3.8-27b-coder390-fp8`，本地 | OpenCode | 219 / 219 | 116/219（53.0%） | [本次 report.md](experiments/2026-10-21-full-public-l0l3-qwen-fp8-opencode/runs/run-20261021-191945-c710e8/report.md) |
 
 前 3 次使用同一组 10 道 Zephyr 题；后两次使用全部 219 道公开题。`结果速览` 的分母是该 harness 计划运行的题数，包含评分失败、接口错误和超时；具体逐题状态以各自的 `report.md` 和同目录 `summary.json` 为准。
-
-OpenRouter 全量实验的请求 ID 为 `qwen/qwen3.8-27b`（27B），不是 32B。该次观测 Token 总量为 6,357,899（213 题完整、5 题部分、1 题未知），最新每题耗时累加 25,263.045 秒，平均 115.356 秒；运行区间包含隔夜中断，不能视作连续执行时间。221 条尝试元数据（含 2 条中断记录）及逐题检查明细见该报告同目录的 [results.json](experiments/2026-10-21-qwen38-27b-opencode-full-static/runs/run-20261021-185529-c2b052/results.json)。OpenRouter 与本地 FP8 的采样、思考和输出预算设置不同，不能仅凭通过数作受控的模型优劣判断。
 
 ## 未生成正式报告的启动目录
 
