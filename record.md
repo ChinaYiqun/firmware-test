@@ -18,6 +18,14 @@
 
 `runs/dry-*` 是离线流程测试或预检，不是正式模型跑分，因此不列入表中。
 
+仓库保留实验脚本、固定题集、环境检查、正式报告与汇总配置，以及详细报告实际引用的案例提交和评分文件。其余逐题工作区、原始日志、数据库和临时状态保存在运行电脑，不随 Git 发布。
+
+## 相关报告与实验入口
+
+- [固定 OpenCode 的三模型对比报告](FIRMWARE_BENCHMARK_REPORT_OPENCODE_THREE_MODELS.md)：汇总前 3 次 10 题实验，并附本地社区版的案例证据。
+- [本地社区版实验说明](experiments/2026-10-21-local-qwen38-27b-opencode/README.md)及[与 OpenRouter 版对照](experiments/2026-10-21-local-qwen38-27b-opencode/comparison.md)。
+- [本地 FP8 全量实验说明及启动入口](experiments/2026-10-21-full-public-l0l3-qwen-fp8-opencode/README.md)。
+
 ## 已准备、尚无正式报告的实验
 
 - [OpenRouter Qwen / OpenCode 全量静态评测](experiments/2026-10-21-qwen38-27b-opencode-full-static/README.md)：已准备 219 题运行入口；截至本记录发布时，仓库内还没有它的正式 `report.md`。其他机器上的实际运行状态需以该机器的结果为准。

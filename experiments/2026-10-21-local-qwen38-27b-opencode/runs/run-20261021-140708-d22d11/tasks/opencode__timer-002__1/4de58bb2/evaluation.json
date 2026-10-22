@@ -1,0 +1,70 @@
+{
+  "passed": false,
+  "healthy": true,
+  "scope": "L0+L3 static only",
+  "layers": [
+    {
+      "layer": 0,
+      "name": "static_analysis",
+      "passed": false,
+      "details": [
+        {
+          "check_name": "kernel_header_included",
+          "passed": true,
+          "expected": "zephyr/kernel.h included",
+          "actual": "present",
+          "check_type": "exact_match",
+          "weight": 1.0
+        },
+        {
+          "check_name": "timer_defined",
+          "passed": true,
+          "expected": "K_TIMER_DEFINE or k_timer_init used",
+          "actual": "present",
+          "check_type": "exact_match",
+          "weight": 1.0
+        },
+        {
+          "check_name": "work_item_initialized",
+          "passed": true,
+          "expected": "k_work_init() or K_WORK_DEFINE used",
+          "actual": "present",
+          "check_type": "exact_match",
+          "weight": 1.0
+        },
+        {
+          "check_name": "work_submitted",
+          "passed": true,
+          "expected": "k_work_submit() called",
+          "actual": "present",
+          "check_type": "exact_match",
+          "weight": 1.0
+        },
+        {
+          "check_name": "timer_started",
+          "passed": true,
+          "expected": "k_timer_start() called",
+          "actual": "present",
+          "check_type": "exact_match",
+          "weight": 1.0
+        },
+        {
+          "check_name": "one_shot_period_no_wait",
+          "passed": false,
+          "expected": "K_NO_WAIT used as period for one-shot timer",
+          "actual": "missing - may use non-zero period",
+          "check_type": "constraint",
+          "weight": 1.0
+        }
+      ],
+      "error": null,
+      "duration_seconds": 0.0,
+      "score": 1.0
+    }
+  ],
+  "not_evaluated": [
+    "L1 compile",
+    "L2 runtime",
+    "L4 mutation"
+  ]
+}

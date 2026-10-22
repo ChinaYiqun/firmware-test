@@ -15,3 +15,4 @@
 # Preserve benchmark snapshots and measured run artifacts byte-for-byte.
 benchmarks/** -text
 experiments/**/runs/** -text
+experiments/**/subsets/** -text -eol whitespace=cr-at-eol

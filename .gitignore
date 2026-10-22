@@ -11,6 +11,14 @@ node_modules/
 **/.lock
 **/outside-workspace.txt
 **/runs/dry-*/
+**/runs/run-*/tasks/
+**/runs/run-*/preflight/
+**/runs/run-*/preflight-passed.json
+**/runs/run-*/request-params.jsonl
+**/runs/run-*/run.log
+**/runs/run-*/results.sqlite
+**/runs/run-*/tasks.csv
+**/runs/run-*/frozen-runner.py
 
 # Credentials and local settings
 .env

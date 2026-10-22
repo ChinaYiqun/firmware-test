@@ -1,0 +1,62 @@
+{
+  "passed": false,
+  "healthy": true,
+  "scope": "L0+L3 static only",
+  "layers": [
+    {
+      "layer": 0,
+      "name": "static_analysis",
+      "passed": false,
+      "details": [
+        {
+          "check_name": "no_kmalloc",
+          "passed": true,
+          "expected": "No k_malloc calls (forbidden in ISR)",
+          "actual": "no k_malloc",
+          "check_type": "constraint",
+          "weight": 1.0
+        },
+        {
+          "check_name": "no_floating_point",
+          "passed": true,
+          "expected": "No floating point operations (ISR context)",
+          "actual": "no floating point",
+          "check_type": "constraint",
+          "weight": 1.0
+        },
+        {
+          "check_name": "no_printk",
+          "passed": false,
+          "expected": "No printk calls (ISR context)",
+          "actual": "printk found",
+          "check_type": "constraint",
+          "weight": 1.0
+        },
+        {
+          "check_name": "uses_atomic_operations",
+          "passed": true,
+          "expected": "Uses atomic_t, atomic_set, or atomic_get",
+          "actual": "atomic operations found",
+          "check_type": "exact_match",
+          "weight": 1.0
+        },
+        {
+          "check_name": "zephyr_headers_included",
+          "passed": true,
+          "expected": "Zephyr kernel or atomic headers included",
+          "actual": "zephyr headers found",
+          "check_type": "exact_match",
+          "weight": 1.0
+        }
+      ],
+      "error": null,
+      "duration_seconds": 0.0,
+      "score": 1.0
+    }
+  ],
+  "not_evaluated": [
+    "L1 compile",
+    "L2 runtime",
+    "L4 mutation"
+  ]
+}

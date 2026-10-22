@@ -1,0 +1,4 @@
+{
+  "model": "qwen3.8-27b-coder390-q6k-mtp",
+  "base_url": "http://127.0.0.1:18931"
+}

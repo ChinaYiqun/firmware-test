@@ -27,6 +27,9 @@
 
 - [Opus 实验报告](experiments/2026-10-20-opus5-harness-comparison/runs/run-20261020-154313-c6793e/report.md)
 - [Qwen 实验报告](experiments/2026-10-20-qwen38-27b-harness-comparison/runs/run-20261020-154440-282906/report.md)
+- [固定 OpenCode 的三模型对比报告](FIRMWARE_BENCHMARK_REPORT_OPENCODE_THREE_MODELS.md)
+- [本地社区版 Qwen 10 题报告](experiments/2026-10-21-local-qwen38-27b-opencode/runs/run-20261021-140708-d22d11/report.md)
+- [本地 FP8 Qwen 219 题报告](experiments/2026-10-21-full-public-l0l3-qwen-fp8-opencode/runs/run-20261021-191945-c710e8/report.md)
 - [40 任务 CSV](evaluation/merged-results.csv) / [合并 JSON](evaluation/merged-results.json)
 
 ## 目录

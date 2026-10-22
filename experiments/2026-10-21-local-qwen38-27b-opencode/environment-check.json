@@ -1,0 +1,1269 @@
+{
+  "checked_at": "2026-10-21T06:07:07.566065+00:00",
+  "python": "3.12.13 (main, May 10 2026, 19:35:37) [MSC v.1944 64 bit (AMD64)]",
+  "executable": "D:\\firmware-test\\experiments\\2026-10-20-opus5-harness-comparison\\.venv\\Scripts\\python.exe",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "packages": {
+    "embedeval": "0.2.0",
+    "pydantic": "2.14.1",
+    "PyYAML": "6.0.3",
+    "rich": "15.0.0",
+    "litellm": "1.106.0"
+  },
+  "passed": true,
+  "cases": [
+    {
+      "case_id": "gpio-basic-001",
+      "passed": true,
+      "layers": [
+        {
+          "layer": 0,
+          "name": "static_analysis",
+          "passed": true,
+          "details": [
+            {
+              "check_name": "gpio_header_included",
+              "passed": true,
+              "expected": "zephyr/drivers/gpio.h included",
+              "actual": "present",
+              "check_type": "exact_match",
+              "weight": 1.0
+            },
+            {
+              "check_name": "kernel_header_included",
+              "passed": true,
+              "expected": "zephyr/kernel.h included",
+              "actual": "present",
+              "check_type": "exact_match",
+              "weight": 1.0
+            },
+            {
+              "check_name": "uses_dt_spec",
+              "passed": true,
+              "expected": "GPIO_DT_SPEC_GET macro used",
+              "actual": "present",
+              "check_type": "exact_match",
+              "weight": 1.0
+            },
+            {
+              "check_name": "gpio_callback_struct",
+              "passed": true,
+              "expected": "struct gpio_callback defined",
+              "actual": "present",
+              "check_type": "exact_match",
+              "weight": 1.0
+            },
+            {
+              "check_name": "gpio_init_callback_called",
+              "passed": true,
+              "expected": "gpio_init_callback() called",
+              "actual": "present",
+              "check_type": "exact_match",
+              "weight": 1.0
+            },
+            {
+              "check_name": "no_raw_register_access",
+              "passed": true,
+              "expected": "Uses GPIO API, not raw register access",
+              "actual": "API only",
+              "check_type": "constraint",
+              "weight": 1.0
+            }
+          ],
+          "error": null,
+          "duration_seconds": 0.0,
+          "score": 1.0
+        },
+        {
+          "layer": 3,
+          "name": "static_heuristic",
+          "passed": true,
+          "details": [
+            {
+              "check_name": "led_configured_output",
+              "passed": true,
+              "expected": "LED pin configured as GPIO_OUTPUT",
+              "actual": "present",
+              "check_type": "exact_match",
+              "weight": 1.0
+            },
+            {
+              "check_name": "button_configured_input",
+              "passed": true,
+              "expected": "Button pin configured as GPIO_INPUT",
+              "actual": "present",
+              "check_type": "exact_match",
+              "weight": 1.0
+            },
+            {
+              "check_name": "interrupt_edge_triggered",
+              "passed": true,
+              "expected": "Edge-triggered interrupt configured",
+              "actual": "present",
+              "check_type": "exact_match",
+              "weight": 1.0
+            },
+            {
+              "check_name": "callback_before_sleep",
+              "passed": true,
+              "expected": "gpio_add_callback called before k_sleep",
+              "actual": "correct order",
+              "check_type": "constraint",
+              "weight": 1.0
+            },
+            {
+              "check_name": "led_toggle_in_callback",
+              "passed": true,
+              "expected": "gpio_pin_toggle called (in callback)",
+              "actual": "present",
+              "check_type": "exact_match",
+              "weight": 1.0
+            },
+            {
+              "check_name": "device_ready_check",
+              "passed": true,
+              "expected": "Device ready check before GPIO operations",
+              "actual": "present",
+              "check_type": "constraint",
+              "weight": 1.0
+            },
+            {
+              "check_name": "no_cross_platform_apis",
+              "passed": true,
+              "expected": "No FreeRTOS/Arduino/STM32_HAL/POSIX APIs",
+              "actual": "clean",
+              "check_type": "constraint",
+              "weight": 1.0
+            }
+          ],
+          "error": null,
+          "duration_seconds": 0.0,
+          "score": 1.0
+        }
+      ]
+    },
+    {
+      "case_id": "uart-001",
+      "passed": true,
+      "layers": [
+        {
+          "layer": 0,
+          "name": "static_analysis",
+          "passed": true,
+          "details": [
+            {
+              "check_name": "uart_header_included",
+              "passed": true,
+              "expected": "zephyr/drivers/uart.h included",
+              "actual": "present",
+              "check_type": "exact_match",
+              "weight": 1.0
+            },
+            {
+              "check_name": "kernel_header_included",
+              "passed": true,
+              "expected": "zephyr/kernel.h included",
+              "actual": "present",
+              "check_type": "exact_match",
+              "weight": 1.0
+            },
+            {
+              "check_name": "uses_devicetree_binding",
+              "passed": true,
+              "expected": "DEVICE_DT_GET or DT_ALIAS used to get UART device",
+              "actual": "present",
+              "check_type": "exact_match",
+              "weight": 1.0
+            },
+            {
+              "check_name": "uses_uart_poll_in",
+              "passed": true,
+              "expected": "uart_poll_in() called for reading",
+              "actual": "present",
+              "check_type": "exact_match",
+              "weight": 1.0
+            },
+            {
+              "check_name": "uses_uart_poll_out",
+              "passed": true,
+              "expected": "uart_poll_out() called for writing",
+              "actual": "present",
+              "check_type": "exact_match",
+              "weight": 1.0
+            },
+            {
+              "check_name": "no_printf_usage",
+              "passed": true,
+              "expected": "No printf — uses UART API directly",
+              "actual": "no printf",
+              "check_type": "constraint",
+              "weight": 1.0
+            },
+            {
+              "check_name": "no_raw_register_access",
+              "passed": true,
+              "expected": "Uses UART API, not raw register access",
+              "actual": "API only",
+              "check_type": "constraint",
+              "weight": 1.0
+            }
+          ],
+          "error": null,
+          "duration_seconds": 0.0,
+          "score": 1.0
+        },
+        {
+          "layer": 3,
+          "name": "static_heuristic",
+          "passed": true,
+          "details": [
+            {
+              "check_name": "device_ready_check",
+              "passed": true,
+              "expected": "device_is_ready() called before UART operations",
+              "actual": "present",
+              "check_type": "constraint",
+              "weight": 1.0
+            },
+            {
+              "check_name": "poll_in_return_checked",
+              "passed": true,
+              "expected": "uart_poll_in return value checked before echoing",
+              "actual": "checked",
+              "check_type": "constraint",
+              "weight": 1.0
+            },
+            {
+              "check_name": "infinite_loop_present",
+              "passed": true,
+              "expected": "Infinite loop for continuous echo (while(1) or for(;;))",
+              "actual": "present",
+              "check_type": "exact_match",
+              "weight": 1.0
+            },
+            {
+              "check_name": "no_long_sleep_in_poll_loop",
+              "passed": true,
+              "expected": "No long blocking sleep inside poll loop",
+              "actual": "no long sleep",
+              "check_type": "constraint",
+              "weight": 1.0
+            },
+            {
+              "check_name": "no_mixed_poll_and_irq_api",
+              "passed": true,
+              "expected": "Uses poll API consistently, not mixed with IRQ API",
+              "actual": "API consistent",
+              "check_type": "constraint",
+              "weight": 1.0
+            },
+            {
+              "check_name": "echo_order_correct",
+              "passed": true,
+              "expected": "uart_poll_out called after uart_poll_in",
+              "actual": "correct order",
+              "check_type": "constraint",
+              "weight": 1.0
+            },
+            {
+              "check_name": "no_cross_platform_apis",
+              "passed": true,
+              "expected": "No FreeRTOS/Arduino/STM32_HAL/POSIX APIs",
+              "actual": "clean",
+              "check_type": "constraint",
+              "weight": 1.0
+            }
+          ],
+          "error": null,
+          "duration_seconds": 0.0,
+          "score": 1.0
+        }
+      ]
+    },
+    {
+      "case_id": "spi-i2c-002",
+      "passed": true,
+      "layers": [
+        {
+          "layer": 0,
+          "name": "static_analysis",
+          "passed": true,
+          "details": [
+            {
+              "check_name": "spi_header_included",
+              "passed": true,
+              "expected": "zephyr/drivers/spi.h included",
+              "actual": "present",
+              "check_type": "exact_match",
+              "weight": 1.0
+            },
+            {
+              "check_name": "device_binding",
+              "passed": true,
+              "expected": "DEVICE_DT_GET or device_get_binding used",
+              "actual": "present",
+              "check_type": "exact_match",
+              "weight": 1.0
+            },
+            {
+              "check_name": "spi_transceive_called",
+              "passed": true,
+              "expected": "spi_transceive() called",
+              "actual": "present",
+              "check_type": "exact_match",
+              "weight": 1.0
+            },
+            {
+              "check_name": "spi_buf_set_used",
+              "passed": true,
+              "expected": "struct spi_buf_set defined",
+              "actual": "present",
+              "check_type": "exact_match",
+              "weight": 1.0
+            },
+            {
+              "check_name": "spi_config_used",
+              "passed": true,
+              "expected": "struct spi_config defined",
+              "actual": "present",
+              "check_type": "exact_match",
+              "weight": 1.0
+            }
+          ],
+          "error": null,
+          "duration_seconds": 0.0,
+          "score": 1.0
+        },
+        {
+          "layer": 3,
+          "name": "static_heuristic",
+          "passed": true,
+          "details": [
+            {
+              "check_name": "ready_check_before_spi",
+              "passed": true,
+              "expected": "device_is_ready() before spi_transceive()",
+              "actual": "correct order",
+              "check_type": "constraint",
+              "weight": 1.0
+            },
+            {
+              "check_name": "separate_tx_rx_buffers",
+              "passed": true,
+              "expected": "Separate tx and rx buffers defined",
+              "actual": "tx_buf=True, rx_buf=True",
+              "check_type": "constraint",
+              "weight": 1.0
+            },
+            {
+              "check_name": "spi_error_handling",
+              "passed": true,
+              "expected": "Return value of spi_transceive() checked for errors",
+              "actual": "present",
+              "check_type": "constraint",
+              "weight": 1.0
+            },
+            {
+              "check_name": "loopback_comparison",
+              "passed": true,
+              "expected": "TX and RX buffers compared to verify loopback",
+              "actual": "present",
+              "check_type": "constraint",
+              "weight": 1.0
+            },
+            {
+              "check_name": "spi_frequency_configured",
+              "passed": true,
+              "expected": "SPI frequency set to non-zero value in spi_config",
+              "actual": "present",
+              "check_type": "constraint",
+              "weight": 1.0
+            },
+            {
+              "check_name": "no_cross_platform_apis",
+              "passed": true,
+              "expected": "No FreeRTOS/Arduino/STM32_HAL/POSIX APIs",
+              "actual": "clean",
+              "check_type": "constraint",
+              "weight": 1.0
+            }
+          ],
+          "error": null,
+          "duration_seconds": 0.0,
+          "score": 1.0
+        }
+      ]
+    },
+    {
+      "case_id": "spi-i2c-001",
+      "passed": true,
+      "layers": [
+        {
+          "layer": 0,
+          "name": "static_analysis",
+          "passed": true,
+          "details": [
+            {
+              "check_name": "i2c_header_included",
+              "passed": true,
+              "expected": "zephyr/drivers/i2c.h included",
+              "actual": "present",
+              "check_type": "exact_match",
+              "weight": 1.0
+            },
+            {
+              "check_name": "device_binding",
+              "passed": true,
+              "expected": "DEVICE_DT_GET or device_get_binding used",
+              "actual": "present",
+              "check_type": "exact_match",
+              "weight": 1.0
+            },
+            {
+              "check_name": "i2c_address_defined",
+              "passed": true,
+              "expected": "I2C address defined as hex constant",
+              "actual": "present",
+              "check_type": "exact_match",
+              "weight": 1.0
+            },
+            {
+              "check_name": "i2c_read_api_used",
+              "passed": true,
+              "expected": "I2C read API called",
+              "actual": "present",
+              "check_type": "exact_match",
+              "weight": 1.0
+            },
+            {
+              "check_name": "no_raw_i2c_access",
+              "passed": true,
+              "expected": "Uses I2C API, not raw register access",
+              "actual": "API only",
+              "check_type": "constraint",
+              "weight": 1.0
+            }
+          ],
+          "error": null,
+          "duration_seconds": 0.0,
+          "score": 1.0
+        },
+        {
+          "layer": 3,
+          "name": "static_heuristic",
+          "passed": true,
+          "details": [
+            {
+              "check_name": "ready_check_before_io",
+              "passed": true,
+              "expected": "device_is_ready() before I2C operations",
+              "actual": "correct order",
+              "check_type": "constraint",
+              "weight": 1.0
+            },
+            {
+              "check_name": "i2c_address_7bit_range",
+              "passed": true,
+              "expected": "I2C address in 7-bit range (0x01-0x7F)",
+              "actual": "addresses found: ['0x68']",
+              "check_type": "constraint",
+              "weight": 1.0
+            },
+            {
+              "check_name": "i2c_error_handling",
+              "passed": true,
+              "expected": "Return value checked for I2C read errors",
+              "actual": "present",
+              "check_type": "constraint",
+              "weight": 1.0
+            },
+            {
+              "check_name": "register_address_defined",
+              "passed": true,
+              "expected": "Register address defined (WHO_AM_I or 0x75)",
+              "actual": "present",
+              "check_type": "exact_match",
+              "weight": 1.0
+            },
+            {
+              "check_name": "read_result_stored",
+              "passed": true,
+              "expected": "Read result stored in uint8_t variable",
+              "actual": "present",
+              "check_type": "constraint",
+              "weight": 1.0
+            },
+            {
+              "check_name": "no_cross_platform_apis",
+              "passed": true,
+              "expected": "No FreeRTOS/Arduino/STM32_HAL/POSIX APIs",
+              "actual": "clean",
+              "check_type": "constraint",
+              "weight": 1.0
+            }
+          ],
+          "error": null,
+          "duration_seconds": 0.0,
+          "score": 1.0
+        }
+      ]
+    },
+    {
+      "case_id": "timer-002",
+      "passed": true,
+      "layers": [
+        {
+          "layer": 0,
+          "name": "static_analysis",
+          "passed": true,
+          "details": [
+            {
+              "check_name": "kernel_header_included",
+              "passed": true,
+              "expected": "zephyr/kernel.h included",
+              "actual": "present",
+              "check_type": "exact_match",
+              "weight": 1.0
+            },
+            {
+              "check_name": "timer_defined",
+              "passed": true,
+              "expected": "K_TIMER_DEFINE or k_timer_init used",
+              "actual": "present",
+              "check_type": "exact_match",
+              "weight": 1.0
+            },
+            {
+              "check_name": "work_item_initialized",
+              "passed": true,
+              "expected": "k_work_init() or K_WORK_DEFINE used",
+              "actual": "present",
+              "check_type": "exact_match",
+              "weight": 1.0
+            },
+            {
+              "check_name": "work_submitted",
+              "passed": true,
+              "expected": "k_work_submit() called",
+              "actual": "present",
+              "check_type": "exact_match",
+              "weight": 1.0
+            },
+            {
+              "check_name": "timer_started",
+              "passed": true,
+              "expected": "k_timer_start() called",
+              "actual": "present",
+              "check_type": "exact_match",
+              "weight": 1.0
+            },
+            {
+              "check_name": "one_shot_period_no_wait",
+              "passed": true,
+              "expected": "K_NO_WAIT used as period for one-shot timer",
+              "actual": "present",
+              "check_type": "constraint",
+              "weight": 1.0
+            }
+          ],
+          "error": null,
+          "duration_seconds": 0.0,
+          "score": 1.0
+        },
+        {
+          "layer": 3,
+          "name": "static_heuristic",
+          "passed": true,
+          "details": [
+            {
+              "check_name": "timer_is_truly_one_shot",
+              "passed": true,
+              "expected": "k_timer_start period argument is K_NO_WAIT (one-shot)",
+              "actual": "one-shot period",
+              "check_type": "constraint",
+              "weight": 1.0
+            },
+            {
+              "check_name": "work_submitted_from_expiry",
+              "passed": true,
+              "expected": "k_work_submit() called from timer expiry function, not main",
+              "actual": "correct - in expiry",
+              "check_type": "constraint",
+              "weight": 1.0
+            },
+            {
+              "check_name": "expiry_does_not_block",
+              "passed": true,
+              "expected": "Timer expiry function does not call k_sleep or k_msleep",
+              "actual": "no blocking",
+              "check_type": "constraint",
+              "weight": 1.0
+            },
+            {
+              "check_name": "worker_function_signature",
+              "passed": true,
+              "expected": "Worker function takes struct k_work * parameter",
+              "actual": "correct",
+              "check_type": "exact_match",
+              "weight": 1.0
+            },
+            {
+              "check_name": "main_sleeps_after_start",
+              "passed": true,
+              "expected": "Main sleeps after starting timer (not busy-wait)",
+              "actual": "present",
+              "check_type": "constraint",
+              "weight": 1.0
+            },
+            {
+              "check_name": "no_cross_platform_apis",
+              "passed": true,
+              "expected": "No FreeRTOS/Arduino/STM32_HAL/POSIX APIs",
+              "actual": "clean",
+              "check_type": "constraint",
+              "weight": 1.0
+            }
+          ],
+          "error": null,
+          "duration_seconds": 0.0,
+          "score": 1.0
+        }
+      ]
+    },
+    {
+      "case_id": "threading-001",
+      "passed": true,
+      "layers": [
+        {
+          "layer": 0,
+          "name": "static_analysis",
+          "passed": true,
+          "details": [
+            {
+              "check_name": "kernel_header_included",
+              "passed": true,
+              "expected": "zephyr/kernel.h included",
+              "actual": "present",
+              "check_type": "exact_match",
+              "weight": 1.0
+            },
+            {
+              "check_name": "msgq_defined",
+              "passed": true,
+              "expected": "K_MSGQ_DEFINE or k_msgq_init used",
+              "actual": "present",
+              "check_type": "exact_match",
+              "weight": 1.0
+            },
+            {
+              "check_name": "two_threads_defined",
+              "passed": true,
+              "expected": "At least 2 threads defined",
+              "actual": "2 threads found",
+              "check_type": "exact_match",
+              "weight": 1.0
+            },
+            {
+              "check_name": "msgq_put_called",
+              "passed": true,
+              "expected": "k_msgq_put() called (producer)",
+              "actual": "present",
+              "check_type": "exact_match",
+              "weight": 1.0
+            },
+            {
+              "check_name": "msgq_get_called",
+              "passed": true,
+              "expected": "k_msgq_get() called (consumer)",
+              "actual": "present",
+              "check_type": "exact_match",
+              "weight": 1.0
+            }
+          ],
+          "error": null,
+          "duration_seconds": 0.0,
+          "score": 1.0
+        },
+        {
+          "layer": 3,
+          "name": "static_heuristic",
+          "passed": true,
+          "details": [
+            {
+              "check_name": "different_thread_priorities",
+              "passed": true,
+              "expected": "Producer and consumer have different priorities",
+              "actual": "priorities: ['5', '6']",
+              "check_type": "constraint",
+              "weight": 1.0
+            },
+            {
+              "check_name": "producer_sleeps_between_sends",
+              "passed": true,
+              "expected": "Producer calls k_sleep between sends",
+              "actual": "present",
+              "check_type": "constraint",
+              "weight": 1.0
+            },
+            {
+              "check_name": "consumer_blocking_get",
+              "passed": true,
+              "expected": "Consumer uses blocking k_msgq_get (K_FOREVER or timeout)",
+              "actual": "present",
+              "check_type": "constraint",
+              "weight": 1.0
+            },
+            {
+              "check_name": "message_struct_with_data",
+              "passed": true,
+              "expected": "Message struct with typed data field",
+              "actual": "struct=True, field=True",
+              "check_type": "exact_match",
+              "weight": 1.0
+            },
+            {
+              "check_name": "queue_capacity_positive",
+              "passed": true,
+              "expected": "Message queue capacity > 0",
+              "actual": "capacity=10",
+              "check_type": "constraint",
+              "weight": 1.0
+            },
+            {
+              "check_name": "no_cross_platform_apis",
+              "passed": true,
+              "expected": "No FreeRTOS/Arduino/STM32_HAL/POSIX APIs",
+              "actual": "clean",
+              "check_type": "constraint",
+              "weight": 1.0
+            }
+          ],
+          "error": null,
+          "duration_seconds": 0.0,
+          "score": 1.0
+        }
+      ]
+    },
+    {
+      "case_id": "dma-001",
+      "passed": true,
+      "layers": [
+        {
+          "layer": 0,
+          "name": "static_analysis",
+          "passed": true,
+          "details": [
+            {
+              "check_name": "dma_header_included",
+              "passed": true,
+              "expected": "zephyr/drivers/dma.h included",
+              "actual": "present",
+              "check_type": "exact_match",
+              "weight": 1.0
+            },
+            {
+              "check_name": "dma_config_struct",
+              "passed": true,
+              "expected": "struct dma_config defined",
+              "actual": "present",
+              "check_type": "exact_match",
+              "weight": 1.0
+            },
+            {
+              "check_name": "dma_block_config_struct",
+              "passed": true,
+              "expected": "struct dma_block_config defined",
+              "actual": "present",
+              "check_type": "exact_match",
+              "weight": 1.0
+            },
+            {
+              "check_name": "dma_config_called",
+              "passed": true,
+              "expected": "dma_config() called",
+              "actual": "present",
+              "check_type": "exact_match",
+              "weight": 1.0
+            },
+            {
+              "check_name": "dma_start_called",
+              "passed": true,
+              "expected": "dma_start() called",
+              "actual": "present",
+              "check_type": "exact_match",
+              "weight": 1.0
+            }
+          ],
+          "error": null,
+          "duration_seconds": 0.0,
+          "score": 1.0
+        },
+        {
+          "layer": 3,
+          "name": "static_heuristic",
+          "passed": true,
+          "details": [
+            {
+              "check_name": "separate_src_dst_buffers",
+              "passed": true,
+              "expected": "Separate source and destination buffers",
+              "actual": "src=True, dst=True",
+              "check_type": "constraint",
+              "weight": 1.0
+            },
+            {
+              "check_name": "memory_to_memory_direction",
+              "passed": true,
+              "expected": "channel_direction = MEMORY_TO_MEMORY",
+              "actual": "present",
+              "check_type": "exact_match",
+              "weight": 1.0
+            },
+            {
+              "check_name": "config_before_start",
+              "passed": true,
+              "expected": "dma_config() called before dma_start()",
+              "actual": "correct order",
+              "check_type": "constraint",
+              "weight": 1.0
+            },
+            {
+              "check_name": "completion_synchronization",
+              "passed": true,
+              "expected": "DMA completion synchronization mechanism",
+              "actual": "present",
+              "check_type": "constraint",
+              "weight": 1.0
+            },
+            {
+              "check_name": "block_size_set",
+              "passed": true,
+              "expected": "block_size configured in block config",
+              "actual": "present",
+              "check_type": "exact_match",
+              "weight": 1.0
+            },
+            {
+              "check_name": "dma_error_handling",
+              "passed": true,
+              "expected": "Error checking for DMA API return values",
+              "actual": "present",
+              "check_type": "constraint",
+              "weight": 1.0
+            },
+            {
+              "check_name": "device_ready_check",
+              "passed": true,
+              "expected": "device_is_ready() before DMA operations",
+              "actual": "present",
+              "check_type": "constraint",
+              "weight": 1.0
+            },
+            {
+              "check_name": "no_cross_platform_apis",
+              "passed": true,
+              "expected": "No FreeRTOS/Arduino/STM32_HAL/POSIX APIs",
+              "actual": "clean",
+              "check_type": "constraint",
+              "weight": 1.0
+            }
+          ],
+          "error": null,
+          "duration_seconds": 0.0,
+          "score": 1.0
+        }
+      ]
+    },
+    {
+      "case_id": "threading-004",
+      "passed": true,
+      "layers": [
+        {
+          "layer": 0,
+          "name": "static_analysis",
+          "passed": true,
+          "details": [
+            {
+              "check_name": "kernel_header_included",
+              "passed": true,
+              "expected": "zephyr/kernel.h included",
+              "actual": "present",
+              "check_type": "exact_match",
+              "weight": 1.0
+            },
+            {
+              "check_name": "mutex_used_not_semaphore",
+              "passed": true,
+              "expected": "k_mutex used (provides priority inheritance)",
+              "actual": "present",
+              "check_type": "exact_match",
+              "weight": 1.0
+            },
+            {
+              "check_name": "mutex_lock_called",
+              "passed": true,
+              "expected": "k_mutex_lock() called",
+              "actual": "present",
+              "check_type": "exact_match",
+              "weight": 1.0
+            },
+            {
+              "check_name": "mutex_unlock_called",
+              "passed": true,
+              "expected": "k_mutex_unlock() called",
+              "actual": "present",
+              "check_type": "exact_match",
+              "weight": 1.0
+            },
+            {
+              "check_name": "three_threads_defined",
+              "passed": true,
+              "expected": "At least 3 threads defined (low, med, high priority)",
+              "actual": "3 threads found",
+              "check_type": "exact_match",
+              "weight": 1.0
+            }
+          ],
+          "error": null,
+          "duration_seconds": 0.0,
+          "score": 1.0
+        },
+        {
+          "layer": 3,
+          "name": "static_heuristic",
+          "passed": true,
+          "details": [
+            {
+              "check_name": "mutex_not_semaphore",
+              "passed": true,
+              "expected": "k_mutex used (not k_sem) — only mutex has priority inheritance",
+              "actual": "mutex",
+              "check_type": "constraint",
+              "weight": 1.0
+            },
+            {
+              "check_name": "three_distinct_priorities",
+              "passed": true,
+              "expected": "Three distinct priorities for low, med, high threads",
+              "actual": "priorities=['10', '4', '7']",
+              "check_type": "constraint",
+              "weight": 1.0
+            },
+            {
+              "check_name": "mutex_holder_sleeps_while_locked",
+              "passed": true,
+              "expected": "Thread holding mutex calls k_sleep (simulates work under lock)",
+              "actual": "present",
+              "check_type": "constraint",
+              "weight": 1.0
+            },
+            {
+              "check_name": "mutex_contention_present",
+              "passed": true,
+              "expected": "k_mutex_lock called >= 2 times (contention between threads)",
+              "actual": "lock_count=2",
+              "check_type": "constraint",
+              "weight": 1.0
+            },
+            {
+              "check_name": "no_deadlock_unlock_balanced",
+              "passed": true,
+              "expected": "k_mutex_unlock called at least as many times as k_mutex_lock",
+              "actual": "lock=2, unlock=2",
+              "check_type": "constraint",
+              "weight": 1.0
+            },
+            {
+              "check_name": "same_mutex_shared",
+              "passed": true,
+              "expected": "Same mutex used by multiple threads for priority inheritance",
+              "actual": "mutex usage: {'prio_mutex': 2}",
+              "check_type": "constraint",
+              "weight": 1.0
+            },
+            {
+              "check_name": "no_cross_platform_apis",
+              "passed": true,
+              "expected": "No FreeRTOS/Arduino/STM32_HAL/POSIX APIs",
+              "actual": "clean",
+              "check_type": "constraint",
+              "weight": 1.0
+            }
+          ],
+          "error": null,
+          "duration_seconds": 0.0,
+          "score": 1.0
+        }
+      ]
+    },
+    {
+      "case_id": "dma-003",
+      "passed": true,
+      "layers": [
+        {
+          "layer": 0,
+          "name": "static_analysis",
+          "passed": true,
+          "details": [
+            {
+              "check_name": "dma_header_included",
+              "passed": true,
+              "expected": "zephyr/drivers/dma.h included",
+              "actual": "present",
+              "check_type": "exact_match",
+              "weight": 1.0
+            },
+            {
+              "check_name": "cyclic_flag_set",
+              "passed": true,
+              "expected": "cyclic field set in dma_block_config",
+              "actual": "present",
+              "check_type": "exact_match",
+              "weight": 1.0
+            },
+            {
+              "check_name": "dma_reload_called",
+              "passed": true,
+              "expected": "dma_reload() called in callback for continuous operation",
+              "actual": "present",
+              "check_type": "exact_match",
+              "weight": 1.0
+            },
+            {
+              "check_name": "dma_stop_called",
+              "passed": true,
+              "expected": "dma_stop() called to terminate circular transfer",
+              "actual": "present",
+              "check_type": "exact_match",
+              "weight": 1.0
+            },
+            {
+              "check_name": "dma_config_and_start",
+              "passed": true,
+              "expected": "dma_config() and dma_start() both called",
+              "actual": "config=True, start=True",
+              "check_type": "exact_match",
+              "weight": 1.0
+            }
+          ],
+          "error": null,
+          "duration_seconds": 0.0,
+          "score": 1.0
+        },
+        {
+          "layer": 3,
+          "name": "static_heuristic",
+          "passed": true,
+          "details": [
+            {
+              "check_name": "reload_in_callback",
+              "passed": true,
+              "expected": "dma_reload() called from within DMA callback",
+              "actual": "correct",
+              "check_type": "constraint",
+              "weight": 1.0
+            },
+            {
+              "check_name": "cyclic_enabled",
+              "passed": true,
+              "expected": "cyclic = 1 set in dma_block_config",
+              "actual": "present",
+              "check_type": "constraint",
+              "weight": 1.0
+            },
+            {
+              "check_name": "ping_pong_buffers",
+              "passed": true,
+              "expected": "Two alternating destination buffers (ping-pong) for circular DMA",
+              "actual": "present",
+              "check_type": "constraint",
+              "weight": 1.0
+            },
+            {
+              "check_name": "dma_stop_called",
+              "passed": true,
+              "expected": "dma_stop() called to terminate circular DMA",
+              "actual": "present",
+              "check_type": "constraint",
+              "weight": 1.0
+            },
+            {
+              "check_name": "dma_error_handling",
+              "passed": true,
+              "expected": "Error checking on DMA API return values",
+              "actual": "present",
+              "check_type": "constraint",
+              "weight": 1.0
+            },
+            {
+              "check_name": "no_cross_platform_apis",
+              "passed": true,
+              "expected": "No FreeRTOS/Arduino/STM32_HAL/POSIX APIs",
+              "actual": "clean",
+              "check_type": "constraint",
+              "weight": 1.0
+            }
+          ],
+          "error": null,
+          "duration_seconds": 0.0,
+          "score": 1.0
+        }
+      ]
+    },
+    {
+      "case_id": "isr-concurrency-001",
+      "passed": true,
+      "layers": [
+        {
+          "layer": 0,
+          "name": "static_analysis",
+          "passed": true,
+          "details": [
+            {
+              "check_name": "no_kmalloc",
+              "passed": true,
+              "expected": "No k_malloc calls (forbidden in ISR)",
+              "actual": "no k_malloc",
+              "check_type": "constraint",
+              "weight": 1.0
+            },
+            {
+              "check_name": "no_floating_point",
+              "passed": true,
+              "expected": "No floating point operations (ISR context)",
+              "actual": "no floating point",
+              "check_type": "constraint",
+              "weight": 1.0
+            },
+            {
+              "check_name": "no_printk",
+              "passed": true,
+              "expected": "No printk calls (ISR context)",
+              "actual": "no printk",
+              "check_type": "constraint",
+              "weight": 1.0
+            },
+            {
+              "check_name": "uses_atomic_operations",
+              "passed": true,
+              "expected": "Uses atomic_t, atomic_set, or atomic_get",
+              "actual": "atomic operations found",
+              "check_type": "exact_match",
+              "weight": 1.0
+            },
+            {
+              "check_name": "zephyr_headers_included",
+              "passed": true,
+              "expected": "Zephyr kernel or atomic headers included",
+              "actual": "zephyr headers found",
+              "check_type": "exact_match",
+              "weight": 1.0
+            }
+          ],
+          "error": null,
+          "duration_seconds": 0.0,
+          "score": 1.0
+        },
+        {
+          "layer": 3,
+          "name": "static_heuristic",
+          "passed": true,
+          "details": [
+            {
+              "check_name": "ring_buffer_struct_defined",
+              "passed": true,
+              "expected": "Ring buffer struct definition",
+              "actual": "struct found",
+              "check_type": "exact_match",
+              "weight": 1.0
+            },
+            {
+              "check_name": "init_function_present",
+              "passed": true,
+              "expected": "Initialization function",
+              "actual": "init function found",
+              "check_type": "exact_match",
+              "weight": 1.0
+            },
+            {
+              "check_name": "put_get_functions_present",
+              "passed": true,
+              "expected": "Both put/produce and get/consume functions",
+              "actual": "put=True, get=True",
+              "check_type": "exact_match",
+              "weight": 1.0
+            },
+            {
+              "check_name": "buffer_full_handling",
+              "passed": true,
+              "expected": "Buffer full condition handling",
+              "actual": "full handling found",
+              "check_type": "constraint",
+              "weight": 1.0
+            },
+            {
+              "check_name": "buffer_empty_handling",
+              "passed": true,
+              "expected": "Buffer empty condition handling",
+              "actual": "empty handling found",
+              "check_type": "constraint",
+              "weight": 1.0
+            },
+            {
+              "check_name": "fifo_ordering",
+              "passed": true,
+              "expected": "FIFO ordering via head/tail indices",
+              "actual": "head/tail indices found",
+              "check_type": "constraint",
+              "weight": 1.0
+            },
+            {
+              "check_name": "atomic_index_operations",
+              "passed": true,
+              "expected": "Atomic operations for index management",
+              "actual": "atomic operations found",
+              "check_type": "exact_match",
+              "weight": 1.0
+            },
+            {
+              "check_name": "no_mutex_semaphore",
+              "passed": true,
+              "expected": "No mutex/semaphore usage (lock-free)",
+              "actual": "lock-free confirmed",
+              "check_type": "constraint",
+              "weight": 1.0
+            },
+            {
+              "check_name": "no_forbidden_apis_in_isr",
+              "passed": true,
+              "expected": "No printk/k_malloc/k_mutex_lock/k_sleep inside ISR bodies",
+              "actual": "clean",
+              "check_type": "constraint",
+              "weight": 1.0
+            },
+            {
+              "check_name": "no_cross_platform_apis",
+              "passed": true,
+              "expected": "No FreeRTOS/Arduino/STM32_HAL/POSIX APIs",
+              "actual": "clean",
+              "check_type": "constraint",
+              "weight": 1.0
+            },
+            {
+              "check_name": "no_malloc_in_callbacks",
+              "passed": true,
+              "expected": "No k_malloc/malloc in callback/handler functions",
+              "actual": "clean",
+              "check_type": "constraint",
+              "weight": 1.0
+            }
+          ],
+          "error": null,
+          "duration_seconds": 0.0,
+          "score": 1.0
+        }
+      ]
+    }
+  ],
+  "source_sha256": "3a34460a8589c9c30e881a372950e84eea6db365df66d96de2de0243ba9a57af"
+}
