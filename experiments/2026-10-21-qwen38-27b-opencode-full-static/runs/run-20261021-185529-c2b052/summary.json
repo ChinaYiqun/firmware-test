@@ -1,0 +1,27 @@
+{
+  "model": "qwen/qwen3.8-27b",
+  "harness": "opencode",
+  "scope": "L0+L3 only",
+  "dry_run": false,
+  "runtime_status": "finished",
+  "planned": 219,
+  "finished": 219,
+  "passed": 120,
+  "scored": 210,
+  "progress_percent": 100.0,
+  "status_counts": {
+    "scored_pass": 120,
+    "scored_fail": 90,
+    "timeout": 6,
+    "no_submission": 3
+  },
+  "retryable_cases": [],
+  "observed_tokens": 6357899,
+  "observed_tokens_all_attempts": 6357899,
+  "usage_coverage": {
+    "complete": 213,
+    "unknown": 1,
+    "partial": 5
+  },
+  "cost_usd": null
+}

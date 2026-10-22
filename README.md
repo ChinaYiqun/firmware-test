@@ -8,6 +8,8 @@
 
 [OpenRouter Qwen 219 题实验目录](experiments/2026-10-21-qwen38-27b-opencode-full-static/README.md)使用 OpenCode 和 `qwen/qwen3.8-27b`，只执行 L0/L3；参考实现已通过对应健康检查。运行入口是该目录的 `start.cmd`，支持确认题数和断点续跑。
 
+该轮已完成 **219/219 题，120 题通过（54.8%）**，正式报告和精简逐题结果已归档，完整索引见 [实验运行记录](record.md)。
+
 [本地 FP8 Qwen 219 题实验目录](experiments/2026-10-21-full-public-l0l3-qwen-fp8-opencode/README.md)使用 OpenCode 和本地 `qwen3.8-27b-coder390-fp8`；已完成的结果见下方报告与 [实验运行记录](record.md)。
 
 ## 已完成的实验
@@ -28,6 +30,7 @@
 - [固定 OpenCode 的三模型评测报告](FIRMWARE_BENCHMARK_REPORT_OPENCODE_THREE_MODELS.md)
 - [本地社区版 Qwen 10 题报告](experiments/2026-10-21-local-qwen38-27b-opencode/runs/run-20261021-140708-d22d11/report.md)
 - [本地 FP8 Qwen 219 题报告](experiments/2026-10-21-full-public-l0l3-qwen-fp8-opencode/runs/run-20261021-191945-c710e8/report.md)
+- [OpenRouter Qwen 219 题报告](experiments/2026-10-21-qwen38-27b-opencode-full-static/runs/run-20261021-185529-c2b052/report.md)
 - [40 任务 CSV](evaluation/merged-results.csv) / [合并 JSON](evaluation/merged-results.json)
 
 ## 目录
@@ -38,7 +41,7 @@ evaluation/       # 子集、汇总指标和报告生成脚本
 experiments/      # 实验配置、启动脚本、实际运行结果及轨迹
 ```
 
-保留正式实验的提交代码、评分明细、脱敏日志、SQLite 结果库及冻结配置。虚拟环境、CLI 内部状态、重复下载 ZIP、离线模拟结果和 EmbedAgent 上游历史输出不提交。
+仓库保留正式实验报告、汇总配置和精选案例证据；OpenRouter 全量实验另提供精简逐题结果与检查明细。原始日志、SQLite 结果库、逐题工作区和临时状态留在运行电脑，按 `.gitignore` 排除；既有已跟踪的历史产物保持原样。虚拟环境、重复下载 ZIP、离线模拟结果和 EmbedAgent 上游历史输出不提交。
 
 ## 在新电脑准备环境
 

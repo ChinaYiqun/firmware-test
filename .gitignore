@@ -19,6 +19,9 @@ node_modules/
 **/runs/run-*/results.sqlite
 **/runs/run-*/tasks.csv
 **/runs/run-*/frozen-runner.py
+**/runs/run-*/frozen-engine.py
+**/runs/run-*/config-revisions/
+**/permission-validation/
 
 # Credentials and local settings
 .env
@@ -37,7 +40,7 @@ benchmarks/EmbedAgent-main/eval/result/
 benchmarks/EmbedAgent-main/eval/infer_results/
 test_openrouter.sh
 
-# Machine-specific launch state; run logs/results remain tracked
+# Machine-specific launch state; compact reports/results can be published
 **/launch-status.json
 **/latest-run.json
 **/latest-dry-run.json
