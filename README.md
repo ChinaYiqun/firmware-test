@@ -1,5 +1,7 @@
 # Firmware Agent Benchmark
 
+按运行时间、模型、Harness 和题数查找报告： [实验运行记录](record.md)。
+
 在 EmbedEval 上比较 OpenCode / Claude Code，记录评分、耗时、Token 和逐题产物。
 
 ## 全量 Qwen / OpenCode 静态评测
@@ -14,14 +16,14 @@
 
 ## 已完成的实验
 
-10 道 Zephyr 任务，每组合运行 1 次，共 40 个计分任务；仅运行 L0/L3 静态检查，未验证编译或硬件运行。
+下表是前两组实验：10 道 Zephyr 任务，每组各用 OpenCode 和 Claude Code 运行 1 次，共 40 个计分任务。后续本地模型及 219 题全量运行见 [实验运行记录](record.md)。这些实验仅运行 L0/L3 静态检查，未验证编译或硬件运行。
 
 | 模型接口 | OpenCode | Claude Code |
 |---|---:|---:|
 | claude-opus-5（第三方远程网关，非官方直连） | 7/10 | 7/10 |
 | qwen/qwen3.8-27b（OpenRouter 远程接口） | 2/10 | 3/10 |
 
-通过数以全部计划任务为分母，包含接口异常等未成功交付的情况。Qwen 的两个 Harness 在共同完成评分的 7 题上均通过 2 题，不能只凭总通过数判断 Harness 优劣。报告中的“模拟本地”是展示标签；本次没有本地模型推理或本地性能测量。
+通过数以全部计划任务为分母，包含接口异常等未成功交付的情况。Qwen 的两个 Harness 在共同完成评分的 7 题上均通过 2 题，不能只凭总通过数判断 Harness 优劣。前两组报告中的“模拟本地”是展示标签；前两组没有本地模型推理或本地性能测量。
 
 - [Opus 实验报告](experiments/2026-10-20-opus5-harness-comparison/runs/run-20261020-154313-c6793e/report.md)
 - [Qwen 实验报告](experiments/2026-10-20-qwen38-27b-harness-comparison/runs/run-20261020-154440-282906/report.md)

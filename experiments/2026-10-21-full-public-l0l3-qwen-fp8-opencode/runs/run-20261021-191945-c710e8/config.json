@@ -1,0 +1,1791 @@
+{
+  "model": "qwen3.8-27b-coder390-fp8",
+  "base_url": "http://127.0.0.1:18931",
+  "timeout_seconds": 600,
+  "concurrency": 2,
+  "repetitions": 1,
+  "dry_run": false,
+  "source_sha256": "4dff6ca7106a28bee76684ece031ba372a98c2b33c7406c401828245bafd9d6e",
+  "scoring": "L0+L3",
+  "runner_sha256": "f519ced561a9a7d8e3d5076c345828110b701e5a7f328e8c1fba04e01449e40a",
+  "health_script_sha256": "f3c9062e21db7e18e3efdffcc64b15fd1f38e9932f4b744f2654e5a9d341349a",
+  "proxy_script_sha256": "46c590ae8d00618a0b2d308ed931434952a7ddaf4b9ea3b2aa9323cb363cfbe7",
+  "manifest_sha256": "5d18a04f354576496aee4a3661ce3a6c4061578a076438c3464f562626effb6e",
+  "candidate_count": 219,
+  "selected_count": 219,
+  "sampling": {
+    "temperature": 0,
+    "chat_template_kwargs": {
+      "enable_thinking": false
+    },
+    "max_tokens_cap": 16384,
+    "context_retry_margin": 512
+  },
+  "external_retries": 0,
+  "cli_internal_retries": "Harness defaults, within task timeout",
+  "isolation": "Harness file-tool restrictions; no OS sandbox",
+  "reasoning_parameters": "Harness defaults; not aligned",
+  "disable_experimental_betas": false,
+  "subset": {
+    "benchmark": "EmbedEval",
+    "purpose": "All locally available public cases, L0+L3 static only",
+    "selection_seed": 42,
+    "cases": [
+      {
+        "id": "device-tree-001",
+        "path": "benchmarks/embedeval-main/cases/zephyr/device-tree-001",
+        "difficulty": "medium",
+        "category": "device-tree",
+        "title": "I2C Sensor Node with Interrupt GPIO Overlay",
+        "sdk": "zephyr"
+      },
+      {
+        "id": "spi-i2c-002",
+        "path": "benchmarks/embedeval-main/cases/zephyr/spi-i2c-002",
+        "difficulty": "easy",
+        "category": "spi-i2c",
+        "title": "SPI Loopback Test",
+        "sdk": "zephyr"
+      },
+      {
+        "id": "ota-swupdate-002",
+        "path": "benchmarks/embedeval-main/cases/embedded-linux/ota-swupdate-002",
+        "difficulty": "hard",
+        "category": "ota",
+        "title": "SWUpdate Dual-Bank A/B with Bootcnt Failback",
+        "sdk": "embedded-linux"
+      },
+      {
+        "id": "networking-007",
+        "path": "benchmarks/embedeval-main/cases/zephyr/networking-007",
+        "difficulty": "hard",
+        "category": "networking",
+        "title": "DNS Resolution with Timeout",
+        "sdk": "zephyr"
+      },
+      {
+        "id": "spi-i2c-008",
+        "path": "benchmarks/embedeval-main/cases/zephyr/spi-i2c-008",
+        "difficulty": "hard",
+        "category": "spi-i2c",
+        "title": "I2C Target (Slave) Mode Implementation",
+        "sdk": "zephyr"
+      },
+      {
+        "id": "boot-008",
+        "path": "benchmarks/embedeval-main/cases/zephyr/boot-008",
+        "difficulty": "medium",
+        "category": "boot",
+        "title": "MCUboot Downgrade Protection Kconfig",
+        "sdk": "zephyr"
+      },
+      {
+        "id": "yocto-006",
+        "path": "benchmarks/embedeval-main/cases/embedded-linux/yocto-006",
+        "difficulty": "hard",
+        "category": "yocto",
+        "title": "Yocto Recipe with Patch Application",
+        "sdk": "embedded-linux"
+      },
+      {
+        "id": "networking-kernel-002",
+        "path": "benchmarks/embedeval-main/cases/embedded-linux/networking-kernel-002",
+        "difficulty": "hard",
+        "category": "networking",
+        "title": "sk_buff Clone + Queue + Free Discipline",
+        "sdk": "embedded-linux"
+      },
+      {
+        "id": "ota-005",
+        "path": "benchmarks/embedeval-main/cases/zephyr/ota-005",
+        "difficulty": "hard",
+        "category": "ota",
+        "title": "Full OTA Flow with Rollback Safety",
+        "sdk": "zephyr"
+      },
+      {
+        "id": "linux-userspace-002",
+        "path": "benchmarks/embedeval-main/cases/embedded-linux/linux-userspace-002",
+        "difficulty": "hard",
+        "category": "linux-userspace",
+        "title": "libgpiod v2 Edge-Event Monitor Daemon",
+        "sdk": "embedded-linux"
+      },
+      {
+        "id": "isr-concurrency-003",
+        "path": "benchmarks/embedeval-main/cases/zephyr/isr-concurrency-003",
+        "difficulty": "medium",
+        "category": "isr-concurrency",
+        "title": "Spinlock-Protected Shared State",
+        "sdk": "zephyr"
+      },
+      {
+        "id": "ble-004",
+        "path": "benchmarks/embedeval-main/cases/zephyr/ble-004",
+        "difficulty": "medium",
+        "category": "ble",
+        "title": "BLE Connection Callbacks",
+        "sdk": "zephyr"
+      },
+      {
+        "id": "yocto-009",
+        "path": "benchmarks/embedeval-main/cases/embedded-linux/yocto-009",
+        "difficulty": "medium",
+        "category": "yocto",
+        "title": "Meta-Layer conf/layer.conf",
+        "sdk": "embedded-linux"
+      },
+      {
+        "id": "networking-004",
+        "path": "benchmarks/embedeval-main/cases/zephyr/networking-004",
+        "difficulty": "medium",
+        "category": "networking",
+        "title": "CoAP Client GET Request",
+        "sdk": "zephyr"
+      },
+      {
+        "id": "device-tree-008",
+        "path": "benchmarks/embedeval-main/cases/zephyr/device-tree-008",
+        "difficulty": "hard",
+        "category": "device-tree",
+        "title": "DMA Channel Assignment in Device Tree",
+        "sdk": "zephyr"
+      },
+      {
+        "id": "linux-driver-010",
+        "path": "benchmarks/embedeval-main/cases/embedded-linux/linux-driver-010",
+        "difficulty": "hard",
+        "category": "linux-driver",
+        "title": "IRQ-Safe Locking with spin_lock_irqsave",
+        "sdk": "embedded-linux"
+      },
+      {
+        "id": "ble-002",
+        "path": "benchmarks/embedeval-main/cases/zephyr/ble-002",
+        "difficulty": "easy",
+        "category": "ble",
+        "title": "BLE Observer (Scan)",
+        "sdk": "zephyr"
+      },
+      {
+        "id": "device-tree-004",
+        "path": "benchmarks/embedeval-main/cases/zephyr/device-tree-004",
+        "difficulty": "medium",
+        "category": "device-tree",
+        "title": "CAN Bus Controller Overlay",
+        "sdk": "zephyr"
+      },
+      {
+        "id": "linux-driver-002",
+        "path": "benchmarks/embedeval-main/cases/embedded-linux/linux-driver-002",
+        "difficulty": "medium",
+        "category": "linux-driver",
+        "title": "Platform Driver with Device Tree Binding",
+        "sdk": "embedded-linux"
+      },
+      {
+        "id": "spi-i2c-005",
+        "path": "benchmarks/embedeval-main/cases/zephyr/spi-i2c-005",
+        "difficulty": "hard",
+        "category": "spi-i2c",
+        "title": "I2C Bus Scan",
+        "sdk": "zephyr"
+      },
+      {
+        "id": "power-mgmt-004",
+        "path": "benchmarks/embedeval-main/cases/zephyr/power-mgmt-004",
+        "difficulty": "medium",
+        "category": "power-mgmt",
+        "title": "PM Device Runtime Enable/Disable",
+        "sdk": "zephyr"
+      },
+      {
+        "id": "timer-006",
+        "path": "benchmarks/embedeval-main/cases/zephyr/timer-006",
+        "difficulty": "hard",
+        "category": "timer",
+        "title": "Precise Timing with Hardware Counter and ISR",
+        "sdk": "zephyr"
+      },
+      {
+        "id": "memory-opt-008",
+        "path": "benchmarks/embedeval-main/cases/zephyr/memory-opt-008",
+        "difficulty": "hard",
+        "category": "memory-opt",
+        "title": "Memory Footprint Minimization via Kconfig",
+        "sdk": "zephyr"
+      },
+      {
+        "id": "security-004",
+        "path": "benchmarks/embedeval-main/cases/zephyr/security-004",
+        "difficulty": "hard",
+        "category": "security",
+        "title": "PSA Key Derivation with HKDF",
+        "sdk": "zephyr"
+      },
+      {
+        "id": "kconfig-004",
+        "path": "benchmarks/embedeval-main/cases/zephyr/kconfig-004",
+        "difficulty": "medium",
+        "category": "kconfig",
+        "title": "Logging with Multiple Backends Kconfig Fragment",
+        "sdk": "zephyr"
+      },
+      {
+        "id": "kconfig-001",
+        "path": "benchmarks/embedeval-main/cases/zephyr/kconfig-001",
+        "difficulty": "easy",
+        "category": "kconfig",
+        "title": "SPI with DMA Mode Kconfig Fragment",
+        "sdk": "zephyr"
+      },
+      {
+        "id": "watchdog-002",
+        "path": "benchmarks/embedeval-main/cases/zephyr/watchdog-002",
+        "difficulty": "medium",
+        "category": "watchdog",
+        "title": "Task Watchdog for Thread Health Monitoring",
+        "sdk": "zephyr"
+      },
+      {
+        "id": "networking-kernel-003",
+        "path": "benchmarks/embedeval-main/cases/embedded-linux/networking-kernel-003",
+        "difficulty": "hard",
+        "category": "networking",
+        "title": "Netlink Kernel Socket with Input Callback",
+        "sdk": "embedded-linux"
+      },
+      {
+        "id": "boot-uboot-003",
+        "path": "benchmarks/embedeval-main/cases/embedded-linux/boot-uboot-003",
+        "difficulty": "medium",
+        "category": "boot",
+        "title": "extlinux.conf for U-Boot distro_boot",
+        "sdk": "embedded-linux"
+      },
+      {
+        "id": "watchdog-001",
+        "path": "benchmarks/embedeval-main/cases/zephyr/watchdog-001",
+        "difficulty": "easy",
+        "category": "watchdog",
+        "title": "Watchdog Timer Setup and Periodic Feed",
+        "sdk": "zephyr"
+      },
+      {
+        "id": "ota-011",
+        "path": "benchmarks/embedeval-main/cases/zephyr/ota-011",
+        "difficulty": "hard",
+        "category": "ota",
+        "title": "Confirm-or-Rollback After OTA Boot",
+        "sdk": "zephyr"
+      },
+      {
+        "id": "yocto-004",
+        "path": "benchmarks/embedeval-main/cases/embedded-linux/yocto-004",
+        "difficulty": "medium",
+        "category": "yocto",
+        "title": "Yocto Recipe with Build and Runtime Dependencies",
+        "sdk": "embedded-linux"
+      },
+      {
+        "id": "boot-uboot-004",
+        "path": "benchmarks/embedeval-main/cases/embedded-linux/boot-uboot-004",
+        "difficulty": "hard",
+        "category": "boot",
+        "title": "Verified Boot FIT Signature",
+        "sdk": "embedded-linux"
+      },
+      {
+        "id": "linux-driver-012",
+        "path": "benchmarks/embedeval-main/cases/embedded-linux/linux-driver-012",
+        "difficulty": "hard",
+        "category": "linux-driver",
+        "title": "Threaded IRQ with Primary/Thread Split",
+        "sdk": "embedded-linux"
+      },
+      {
+        "id": "gpio-basic-006",
+        "path": "benchmarks/embedeval-main/cases/zephyr/gpio-basic-006",
+        "difficulty": "hard",
+        "category": "gpio-basic",
+        "title": "GPIO Interrupt Debounce with Timer",
+        "sdk": "zephyr"
+      },
+      {
+        "id": "yocto-007",
+        "path": "benchmarks/embedeval-main/cases/embedded-linux/yocto-007",
+        "difficulty": "medium",
+        "category": "yocto",
+        "title": "Yocto Custom Image Recipe",
+        "sdk": "embedded-linux"
+      },
+      {
+        "id": "timer-002",
+        "path": "benchmarks/embedeval-main/cases/zephyr/timer-002",
+        "difficulty": "medium",
+        "category": "timer",
+        "title": "One-shot Timer with Work Queue Submission",
+        "sdk": "zephyr"
+      },
+      {
+        "id": "boot-004",
+        "path": "benchmarks/embedeval-main/cases/zephyr/boot-004",
+        "difficulty": "medium",
+        "category": "boot",
+        "title": "MCUboot Swap with Revert Kconfig",
+        "sdk": "zephyr"
+      },
+      {
+        "id": "isr-concurrency-005",
+        "path": "benchmarks/embedeval-main/cases/zephyr/isr-concurrency-005",
+        "difficulty": "hard",
+        "category": "isr-concurrency",
+        "title": "ISR-Deferred Processing with k_work",
+        "sdk": "zephyr"
+      },
+      {
+        "id": "kconfig-006",
+        "path": "benchmarks/embedeval-main/cases/zephyr/kconfig-006",
+        "difficulty": "hard",
+        "category": "kconfig",
+        "title": "Secure Boot Hardening Kconfig Fragment",
+        "sdk": "zephyr"
+      },
+      {
+        "id": "stm32-uart-001",
+        "path": "benchmarks/embedeval-main/cases/stm32-hal/stm32-uart-001",
+        "difficulty": "medium",
+        "category": "networking",
+        "title": "STM32 UART Interrupt Receive with Echo",
+        "sdk": "stm32-hal"
+      },
+      {
+        "id": "security-007",
+        "path": "benchmarks/embedeval-main/cases/zephyr/security-007",
+        "difficulty": "hard",
+        "category": "security",
+        "title": "TLS Mutual Authentication (Client Certificate)",
+        "sdk": "zephyr"
+      },
+      {
+        "id": "isr-concurrency-001",
+        "path": "benchmarks/embedeval-main/cases/zephyr/isr-concurrency-001",
+        "difficulty": "hard",
+        "category": "isr-concurrency",
+        "title": "ISR-safe Ring Buffer Implementation",
+        "sdk": "zephyr"
+      },
+      {
+        "id": "sensor-driver-001",
+        "path": "benchmarks/embedeval-main/cases/zephyr/sensor-driver-001",
+        "difficulty": "medium",
+        "category": "sensor-driver",
+        "title": "Zephyr Sensor API Temperature Read",
+        "sdk": "zephyr"
+      },
+      {
+        "id": "linux-driver-007",
+        "path": "benchmarks/embedeval-main/cases/embedded-linux/linux-driver-007",
+        "difficulty": "hard",
+        "category": "linux-driver",
+        "title": "DMA-Coherent Buffer Allocation",
+        "sdk": "embedded-linux"
+      },
+      {
+        "id": "uart-001",
+        "path": "benchmarks/embedeval-main/cases/zephyr/uart-001",
+        "difficulty": "easy",
+        "category": "uart",
+        "title": "UART Echo",
+        "sdk": "zephyr"
+      },
+      {
+        "id": "linux-driver-006",
+        "path": "benchmarks/embedeval-main/cases/embedded-linux/linux-driver-006",
+        "difficulty": "hard",
+        "category": "linux-driver",
+        "title": "Input Validation in ioctl Handler",
+        "sdk": "embedded-linux"
+      },
+      {
+        "id": "linux-driver-009",
+        "path": "benchmarks/embedeval-main/cases/embedded-linux/linux-driver-009",
+        "difficulty": "hard",
+        "category": "linux-driver",
+        "title": "GFP Flag Selection Across Contexts",
+        "sdk": "embedded-linux"
+      },
+      {
+        "id": "ota-swupdate-004",
+        "path": "benchmarks/embedeval-main/cases/embedded-linux/ota-swupdate-004",
+        "difficulty": "medium",
+        "category": "ota",
+        "title": "SWUpdate Pre/Post-Install Scripts with Idempotent Handlers",
+        "sdk": "embedded-linux"
+      },
+      {
+        "id": "networking-006",
+        "path": "benchmarks/embedeval-main/cases/zephyr/networking-006",
+        "difficulty": "hard",
+        "category": "networking",
+        "title": "TCP Server with Buffer Overflow Protection",
+        "sdk": "zephyr"
+      },
+      {
+        "id": "esp-i2c-001",
+        "path": "benchmarks/embedeval-main/cases/esp-idf/esp-i2c-001",
+        "difficulty": "medium",
+        "category": "spi-i2c",
+        "title": "ESP-IDF I2C Master Communication",
+        "sdk": "esp-idf"
+      },
+      {
+        "id": "spi-i2c-006",
+        "path": "benchmarks/embedeval-main/cases/zephyr/spi-i2c-006",
+        "difficulty": "hard",
+        "category": "spi-i2c",
+        "title": "I2C with Clock Stretching Timeout",
+        "sdk": "zephyr"
+      },
+      {
+        "id": "storage-012",
+        "path": "benchmarks/embedeval-main/cases/zephyr/storage-012",
+        "difficulty": "hard",
+        "category": "storage",
+        "title": "Flash-Wear-Aware Persistent Data Logger",
+        "sdk": "zephyr"
+      },
+      {
+        "id": "sensor-driver-008",
+        "path": "benchmarks/embedeval-main/cases/zephyr/sensor-driver-008",
+        "difficulty": "hard",
+        "category": "sensor-driver",
+        "title": "Sensor Fusion (Accel + Gyro to Orientation)",
+        "sdk": "zephyr"
+      },
+      {
+        "id": "watchdog-003",
+        "path": "benchmarks/embedeval-main/cases/zephyr/watchdog-003",
+        "difficulty": "easy",
+        "category": "watchdog",
+        "title": "Watchdog with Warning Callback Before Reset",
+        "sdk": "zephyr"
+      },
+      {
+        "id": "dma-004",
+        "path": "benchmarks/embedeval-main/cases/zephyr/dma-004",
+        "difficulty": "medium",
+        "category": "dma",
+        "title": "DMA Scatter-Gather Multi-block Transfer",
+        "sdk": "zephyr"
+      },
+      {
+        "id": "device-tree-002",
+        "path": "benchmarks/embedeval-main/cases/zephyr/device-tree-002",
+        "difficulty": "easy",
+        "category": "device-tree",
+        "title": "SPI NOR Flash Node Overlay",
+        "sdk": "zephyr"
+      },
+      {
+        "id": "security-006",
+        "path": "benchmarks/embedeval-main/cases/zephyr/security-006",
+        "difficulty": "hard",
+        "category": "security",
+        "title": "Secure Key Storage with Anti-Tamper (Non-Extractable)",
+        "sdk": "zephyr"
+      },
+      {
+        "id": "linux-driver-013",
+        "path": "benchmarks/embedeval-main/cases/embedded-linux/linux-driver-013",
+        "difficulty": "hard",
+        "category": "linux-driver",
+        "title": "Managed Resources in a Platform Driver Probe",
+        "sdk": "embedded-linux"
+      },
+      {
+        "id": "networking-008",
+        "path": "benchmarks/embedeval-main/cases/zephyr/networking-008",
+        "difficulty": "medium",
+        "category": "networking",
+        "title": "MQTT with Last Will and Testament",
+        "sdk": "zephyr"
+      },
+      {
+        "id": "networking-003",
+        "path": "benchmarks/embedeval-main/cases/zephyr/networking-003",
+        "difficulty": "medium",
+        "category": "networking",
+        "title": "TCP Client with Connection Retry",
+        "sdk": "zephyr"
+      },
+      {
+        "id": "ota-007",
+        "path": "benchmarks/embedeval-main/cases/zephyr/ota-007",
+        "difficulty": "medium",
+        "category": "ota",
+        "title": "OTA Progress Reporting",
+        "sdk": "zephyr"
+      },
+      {
+        "id": "adc-001",
+        "path": "benchmarks/embedeval-main/cases/zephyr/adc-001",
+        "difficulty": "medium",
+        "category": "adc",
+        "title": "ADC Single Channel Read",
+        "sdk": "zephyr"
+      },
+      {
+        "id": "boot-uboot-001",
+        "path": "benchmarks/embedeval-main/cases/embedded-linux/boot-uboot-001",
+        "difficulty": "easy",
+        "category": "boot",
+        "title": "U-Boot Environment Defconfig",
+        "sdk": "embedded-linux"
+      },
+      {
+        "id": "storage-003",
+        "path": "benchmarks/embedeval-main/cases/zephyr/storage-003",
+        "difficulty": "medium",
+        "category": "storage",
+        "title": "LittleFS File Read/Write",
+        "sdk": "zephyr"
+      },
+      {
+        "id": "device-tree-007",
+        "path": "benchmarks/embedeval-main/cases/zephyr/device-tree-007",
+        "difficulty": "medium",
+        "category": "device-tree",
+        "title": "Clock Source Configuration",
+        "sdk": "zephyr"
+      },
+      {
+        "id": "spi-i2c-007",
+        "path": "benchmarks/embedeval-main/cases/zephyr/spi-i2c-007",
+        "difficulty": "medium",
+        "category": "spi-i2c",
+        "title": "SPI Full-Duplex Transfer",
+        "sdk": "zephyr"
+      },
+      {
+        "id": "ota-swupdate-003",
+        "path": "benchmarks/embedeval-main/cases/embedded-linux/ota-swupdate-003",
+        "difficulty": "hard",
+        "category": "ota",
+        "title": "SWUpdate Signed Update with Per-Image SHA-256",
+        "sdk": "embedded-linux"
+      },
+      {
+        "id": "sensor-driver-004",
+        "path": "benchmarks/embedeval-main/cases/zephyr/sensor-driver-004",
+        "difficulty": "medium",
+        "category": "sensor-driver",
+        "title": "Sensor Attribute Configuration Before Read",
+        "sdk": "zephyr"
+      },
+      {
+        "id": "sensor-driver-003",
+        "path": "benchmarks/embedeval-main/cases/zephyr/sensor-driver-003",
+        "difficulty": "medium",
+        "category": "sensor-driver",
+        "title": "Multi-Channel Accelerometer Read (XYZ)",
+        "sdk": "zephyr"
+      },
+      {
+        "id": "memory-opt-004",
+        "path": "benchmarks/embedeval-main/cases/zephyr/memory-opt-004",
+        "difficulty": "medium",
+        "category": "memory-opt",
+        "title": "Thread Stack Analyzer",
+        "sdk": "zephyr"
+      },
+      {
+        "id": "isr-concurrency-002",
+        "path": "benchmarks/embedeval-main/cases/zephyr/isr-concurrency-002",
+        "difficulty": "medium",
+        "category": "isr-concurrency",
+        "title": "ISR-to-Thread Communication with k_msgq",
+        "sdk": "zephyr"
+      },
+      {
+        "id": "threading-003",
+        "path": "benchmarks/embedeval-main/cases/zephyr/threading-003",
+        "difficulty": "medium",
+        "category": "threading",
+        "title": "Semaphore-Based Event Signaling",
+        "sdk": "zephyr"
+      },
+      {
+        "id": "threading-005",
+        "path": "benchmarks/embedeval-main/cases/zephyr/threading-005",
+        "difficulty": "hard",
+        "category": "threading",
+        "title": "Work Queue with Delayed Submission",
+        "sdk": "zephyr"
+      },
+      {
+        "id": "watchdog-005",
+        "path": "benchmarks/embedeval-main/cases/zephyr/watchdog-005",
+        "difficulty": "hard",
+        "category": "watchdog",
+        "title": "Watchdog with Thread Health Flag Monitoring",
+        "sdk": "zephyr"
+      },
+      {
+        "id": "networking-kernel-005",
+        "path": "benchmarks/embedeval-main/cases/embedded-linux/networking-kernel-005",
+        "difficulty": "medium",
+        "category": "networking",
+        "title": "Netdevice UP/DOWN Notifier",
+        "sdk": "embedded-linux"
+      },
+      {
+        "id": "sensor-driver-006",
+        "path": "benchmarks/embedeval-main/cases/zephyr/sensor-driver-006",
+        "difficulty": "hard",
+        "category": "sensor-driver",
+        "title": "Custom Sensor Driver with I2C Backend",
+        "sdk": "zephyr"
+      },
+      {
+        "id": "power-mgmt-005",
+        "path": "benchmarks/embedeval-main/cases/zephyr/power-mgmt-005",
+        "difficulty": "hard",
+        "category": "power-mgmt",
+        "title": "Multi-device PM Ordering with Rollback",
+        "sdk": "zephyr"
+      },
+      {
+        "id": "isr-concurrency-012",
+        "path": "benchmarks/embedeval-main/cases/zephyr/isr-concurrency-012",
+        "difficulty": "hard",
+        "category": "isr-concurrency",
+        "title": "ISR–Thread Synchronization Primitive Selection",
+        "sdk": "zephyr"
+      },
+      {
+        "id": "yocto-010",
+        "path": "benchmarks/embedeval-main/cases/embedded-linux/yocto-010",
+        "difficulty": "hard",
+        "category": "yocto",
+        "title": ".bbappend with Colon-Form Overrides",
+        "sdk": "embedded-linux"
+      },
+      {
+        "id": "security-002",
+        "path": "benchmarks/embedeval-main/cases/zephyr/security-002",
+        "difficulty": "medium",
+        "category": "security",
+        "title": "PSA Crypto SHA-256 Hash",
+        "sdk": "zephyr"
+      },
+      {
+        "id": "memory-opt-003",
+        "path": "benchmarks/embedeval-main/cases/zephyr/memory-opt-003",
+        "difficulty": "medium",
+        "category": "memory-opt",
+        "title": "K_HEAP vs K_MEM_SLAB Selection",
+        "sdk": "zephyr"
+      },
+      {
+        "id": "boot-007",
+        "path": "benchmarks/embedeval-main/cases/zephyr/boot-007",
+        "difficulty": "medium",
+        "category": "boot",
+        "title": "MCUboot Serial Recovery Mode Kconfig",
+        "sdk": "zephyr"
+      },
+      {
+        "id": "networking-005",
+        "path": "benchmarks/embedeval-main/cases/zephyr/networking-005",
+        "difficulty": "hard",
+        "category": "networking",
+        "title": "HTTP Client with TLS",
+        "sdk": "zephyr"
+      },
+      {
+        "id": "storage-008",
+        "path": "benchmarks/embedeval-main/cases/zephyr/storage-008",
+        "difficulty": "hard",
+        "category": "storage",
+        "title": "Atomic Config Update (Write-then-Commit)",
+        "sdk": "zephyr"
+      },
+      {
+        "id": "device-tree-003",
+        "path": "benchmarks/embedeval-main/cases/zephyr/device-tree-003",
+        "difficulty": "easy",
+        "category": "device-tree",
+        "title": "PWM LED Node Overlay",
+        "sdk": "zephyr"
+      },
+      {
+        "id": "linux-driver-016",
+        "path": "benchmarks/embedeval-main/cases/embedded-linux/linux-driver-016",
+        "difficulty": "medium",
+        "category": "linux-driver",
+        "title": "Error-Return Discipline Across Mixed APIs",
+        "sdk": "embedded-linux"
+      },
+      {
+        "id": "networking-001",
+        "path": "benchmarks/embedeval-main/cases/zephyr/networking-001",
+        "difficulty": "medium",
+        "category": "networking",
+        "title": "MQTT Client Publish with Connection Handling",
+        "sdk": "zephyr"
+      },
+      {
+        "id": "threading-008",
+        "path": "benchmarks/embedeval-main/cases/zephyr/threading-008",
+        "difficulty": "hard",
+        "category": "threading",
+        "title": "Real-Time Thread with Deadline Measurement",
+        "sdk": "zephyr"
+      },
+      {
+        "id": "pwm-001",
+        "path": "benchmarks/embedeval-main/cases/zephyr/pwm-001",
+        "difficulty": "easy",
+        "category": "pwm",
+        "title": "PWM LED Brightness Control",
+        "sdk": "zephyr"
+      },
+      {
+        "id": "kconfig-002",
+        "path": "benchmarks/embedeval-main/cases/zephyr/kconfig-002",
+        "difficulty": "medium",
+        "category": "kconfig",
+        "title": "BLE Mesh Kconfig Fragment",
+        "sdk": "zephyr"
+      },
+      {
+        "id": "ble-003",
+        "path": "benchmarks/embedeval-main/cases/zephyr/ble-003",
+        "difficulty": "medium",
+        "category": "ble",
+        "title": "BLE Peripheral with Notifications",
+        "sdk": "zephyr"
+      },
+      {
+        "id": "memory-opt-011",
+        "path": "benchmarks/embedeval-main/cases/zephyr/memory-opt-011",
+        "difficulty": "hard",
+        "category": "memory-opt",
+        "title": "Sensor Data Buffer Pool on 32KB RAM Target",
+        "sdk": "zephyr"
+      },
+      {
+        "id": "watchdog-008",
+        "path": "benchmarks/embedeval-main/cases/zephyr/watchdog-008",
+        "difficulty": "hard",
+        "category": "watchdog",
+        "title": "Watchdog Disable Attempt Detection",
+        "sdk": "zephyr"
+      },
+      {
+        "id": "yocto-008",
+        "path": "benchmarks/embedeval-main/cases/embedded-linux/yocto-008",
+        "difficulty": "hard",
+        "category": "yocto",
+        "title": "Yocto Recipe with Multi-License Parsing",
+        "sdk": "embedded-linux"
+      },
+      {
+        "id": "memory-opt-005",
+        "path": "benchmarks/embedeval-main/cases/zephyr/memory-opt-005",
+        "difficulty": "hard",
+        "category": "memory-opt",
+        "title": "Memory Domain with Partitions",
+        "sdk": "zephyr"
+      },
+      {
+        "id": "gpio-basic-005",
+        "path": "benchmarks/embedeval-main/cases/zephyr/gpio-basic-005",
+        "difficulty": "medium",
+        "category": "gpio-basic",
+        "title": "Multi-LED Sequential Blink",
+        "sdk": "zephyr"
+      },
+      {
+        "id": "esp-timer-001",
+        "path": "benchmarks/embedeval-main/cases/esp-idf/esp-timer-001",
+        "difficulty": "medium",
+        "category": "timer",
+        "title": "ESP-IDF High-Resolution Periodic Timer",
+        "sdk": "esp-idf"
+      },
+      {
+        "id": "timer-005",
+        "path": "benchmarks/embedeval-main/cases/zephyr/timer-005",
+        "difficulty": "hard",
+        "category": "timer",
+        "title": "Multi-timer Coordination with Atomic Shared State",
+        "sdk": "zephyr"
+      },
+      {
+        "id": "memory-opt-007",
+        "path": "benchmarks/embedeval-main/cases/zephyr/memory-opt-007",
+        "difficulty": "medium",
+        "category": "memory-opt",
+        "title": "Fixed-Size Object Pool (No Heap)",
+        "sdk": "zephyr"
+      },
+      {
+        "id": "isr-concurrency-007",
+        "path": "benchmarks/embedeval-main/cases/zephyr/isr-concurrency-007",
+        "difficulty": "hard",
+        "category": "isr-concurrency",
+        "title": "Nested Interrupt Priority Management",
+        "sdk": "zephyr"
+      },
+      {
+        "id": "timer-008",
+        "path": "benchmarks/embedeval-main/cases/zephyr/timer-008",
+        "difficulty": "hard",
+        "category": "timer",
+        "title": "High-Resolution Timestamp with k_cycle_get_32",
+        "sdk": "zephyr"
+      },
+      {
+        "id": "power-mgmt-002",
+        "path": "benchmarks/embedeval-main/cases/zephyr/power-mgmt-002",
+        "difficulty": "easy",
+        "category": "power-mgmt",
+        "title": "Simple System Sleep",
+        "sdk": "zephyr"
+      },
+      {
+        "id": "dma-011",
+        "path": "benchmarks/embedeval-main/cases/zephyr/dma-011",
+        "difficulty": "hard",
+        "category": "dma",
+        "title": "Non-Contiguous Multi-Buffer DMA Transfer",
+        "sdk": "zephyr"
+      },
+      {
+        "id": "watchdog-010",
+        "path": "benchmarks/embedeval-main/cases/zephyr/watchdog-010",
+        "difficulty": "hard",
+        "category": "watchdog",
+        "title": "Watchdog with NVS Persistent Reboot Counter",
+        "sdk": "zephyr"
+      },
+      {
+        "id": "sensor-driver-007",
+        "path": "benchmarks/embedeval-main/cases/zephyr/sensor-driver-007",
+        "difficulty": "medium",
+        "category": "sensor-driver",
+        "title": "Sensor Batch Read with FIFO",
+        "sdk": "zephyr"
+      },
+      {
+        "id": "ota-rauc-001",
+        "path": "benchmarks/embedeval-main/cases/embedded-linux/ota-rauc-001",
+        "difficulty": "medium",
+        "category": "ota",
+        "title": "RAUC Bundle Manifest (Minimal)",
+        "sdk": "embedded-linux"
+      },
+      {
+        "id": "ota-003",
+        "path": "benchmarks/embedeval-main/cases/zephyr/ota-003",
+        "difficulty": "medium",
+        "category": "ota",
+        "title": "DFU Target Flash Write",
+        "sdk": "zephyr"
+      },
+      {
+        "id": "memory-opt-012",
+        "path": "benchmarks/embedeval-main/cases/zephyr/memory-opt-012",
+        "difficulty": "hard",
+        "category": "memory-opt",
+        "title": "Flash-Efficient CRC-16 for 16KB Target",
+        "sdk": "zephyr"
+      },
+      {
+        "id": "device-tree-005",
+        "path": "benchmarks/embedeval-main/cases/zephyr/device-tree-005",
+        "difficulty": "hard",
+        "category": "device-tree",
+        "title": "Multi-Peripheral Board Overlay",
+        "sdk": "zephyr"
+      },
+      {
+        "id": "threading-006",
+        "path": "benchmarks/embedeval-main/cases/zephyr/threading-006",
+        "difficulty": "hard",
+        "category": "threading",
+        "title": "Deadlock-Free Multi-Mutex Acquisition",
+        "sdk": "zephyr"
+      },
+      {
+        "id": "ble-001",
+        "path": "benchmarks/embedeval-main/cases/zephyr/ble-001",
+        "difficulty": "hard",
+        "category": "ble",
+        "title": "BLE GATT Custom Service with Read/Write",
+        "sdk": "zephyr"
+      },
+      {
+        "id": "threading-012",
+        "path": "benchmarks/embedeval-main/cases/zephyr/threading-012",
+        "difficulty": "hard",
+        "category": "threading",
+        "title": "Sensor-Filter-UART Task Architecture",
+        "sdk": "zephyr"
+      },
+      {
+        "id": "memory-opt-002",
+        "path": "benchmarks/embedeval-main/cases/zephyr/memory-opt-002",
+        "difficulty": "easy",
+        "category": "memory-opt",
+        "title": "Stack Size Optimization Kconfig",
+        "sdk": "zephyr"
+      },
+      {
+        "id": "memory-opt-006",
+        "path": "benchmarks/embedeval-main/cases/zephyr/memory-opt-006",
+        "difficulty": "hard",
+        "category": "memory-opt",
+        "title": "Stack Overflow Detection via Kconfig and Runtime Check",
+        "sdk": "zephyr"
+      },
+      {
+        "id": "spi-i2c-001",
+        "path": "benchmarks/embedeval-main/cases/zephyr/spi-i2c-001",
+        "difficulty": "medium",
+        "category": "spi-i2c",
+        "title": "I2C Sensor Register Read with Error Handling",
+        "sdk": "zephyr"
+      },
+      {
+        "id": "kconfig-003",
+        "path": "benchmarks/embedeval-main/cases/zephyr/kconfig-003",
+        "difficulty": "easy",
+        "category": "kconfig",
+        "title": "USB CDC ACM Kconfig Fragment",
+        "sdk": "zephyr"
+      },
+      {
+        "id": "boot-003",
+        "path": "benchmarks/embedeval-main/cases/zephyr/boot-003",
+        "difficulty": "medium",
+        "category": "boot",
+        "title": "Secure Boot with Signing Kconfig",
+        "sdk": "zephyr"
+      },
+      {
+        "id": "power-mgmt-001",
+        "path": "benchmarks/embedeval-main/cases/zephyr/power-mgmt-001",
+        "difficulty": "medium",
+        "category": "power-mgmt",
+        "title": "Device Power Management Action Handler",
+        "sdk": "zephyr"
+      },
+      {
+        "id": "linux-userspace-008",
+        "path": "benchmarks/embedeval-main/cases/embedded-linux/linux-userspace-008",
+        "difficulty": "hard",
+        "category": "linux-userspace",
+        "title": "eBPF CO-RE kprobe BPF Program",
+        "sdk": "embedded-linux"
+      },
+      {
+        "id": "timer-003",
+        "path": "benchmarks/embedeval-main/cases/zephyr/timer-003",
+        "difficulty": "medium",
+        "category": "timer",
+        "title": "Hardware Counter with Alarm Callback",
+        "sdk": "zephyr"
+      },
+      {
+        "id": "ota-rauc-002",
+        "path": "benchmarks/embedeval-main/cases/embedded-linux/ota-rauc-002",
+        "difficulty": "hard",
+        "category": "ota",
+        "title": "RAUC A/B Slot Manifest with Install-Check Hook",
+        "sdk": "embedded-linux"
+      },
+      {
+        "id": "esp-gpio-001",
+        "path": "benchmarks/embedeval-main/cases/esp-idf/esp-gpio-001",
+        "difficulty": "easy",
+        "category": "gpio-basic",
+        "title": "ESP-IDF GPIO LED Blink",
+        "sdk": "esp-idf"
+      },
+      {
+        "id": "storage-005",
+        "path": "benchmarks/embedeval-main/cases/zephyr/storage-005",
+        "difficulty": "hard",
+        "category": "storage",
+        "title": "NVS Wear-Leveling Awareness",
+        "sdk": "zephyr"
+      },
+      {
+        "id": "isr-concurrency-004",
+        "path": "benchmarks/embedeval-main/cases/zephyr/isr-concurrency-004",
+        "difficulty": "hard",
+        "category": "isr-concurrency",
+        "title": "Double-Buffer (Ping-Pong) Pattern",
+        "sdk": "zephyr"
+      },
+      {
+        "id": "linux-driver-001",
+        "path": "benchmarks/embedeval-main/cases/embedded-linux/linux-driver-001",
+        "difficulty": "hard",
+        "category": "linux-driver",
+        "title": "Linux Character Device Driver with Read/Write",
+        "sdk": "embedded-linux"
+      },
+      {
+        "id": "isr-concurrency-006",
+        "path": "benchmarks/embedeval-main/cases/zephyr/isr-concurrency-006",
+        "difficulty": "hard",
+        "category": "isr-concurrency",
+        "title": "ISR-Safe FIFO with k_fifo",
+        "sdk": "zephyr"
+      },
+      {
+        "id": "power-mgmt-008",
+        "path": "benchmarks/embedeval-main/cases/zephyr/power-mgmt-008",
+        "difficulty": "hard",
+        "category": "power-mgmt",
+        "title": "Wake Timer from Deep Sleep",
+        "sdk": "zephyr"
+      },
+      {
+        "id": "linux-driver-011",
+        "path": "benchmarks/embedeval-main/cases/embedded-linux/linux-driver-011",
+        "difficulty": "hard",
+        "category": "linux-driver",
+        "title": "Deferred Work via Workqueue from IRQ",
+        "sdk": "embedded-linux"
+      },
+      {
+        "id": "device-tree-006",
+        "path": "benchmarks/embedeval-main/cases/zephyr/device-tree-006",
+        "difficulty": "hard",
+        "category": "device-tree",
+        "title": "Pinctrl Configuration for UART Pins",
+        "sdk": "zephyr"
+      },
+      {
+        "id": "storage-013",
+        "path": "benchmarks/embedeval-main/cases/zephyr/storage-013",
+        "difficulty": "hard",
+        "category": "storage",
+        "title": "High-Frequency Counter Persisted to Flash",
+        "sdk": "zephyr"
+      },
+      {
+        "id": "ble-007",
+        "path": "benchmarks/embedeval-main/cases/zephyr/ble-007",
+        "difficulty": "medium",
+        "category": "ble",
+        "title": "BLE Advertising with Manufacturer Data",
+        "sdk": "zephyr"
+      },
+      {
+        "id": "security-003",
+        "path": "benchmarks/embedeval-main/cases/zephyr/security-003",
+        "difficulty": "medium",
+        "category": "security",
+        "title": "PSA Crypto Random Number Generation",
+        "sdk": "zephyr"
+      },
+      {
+        "id": "memory-opt-001",
+        "path": "benchmarks/embedeval-main/cases/zephyr/memory-opt-001",
+        "difficulty": "medium",
+        "category": "memory-opt",
+        "title": "Static Memory Slab Allocation (No Heap)",
+        "sdk": "zephyr"
+      },
+      {
+        "id": "threading-007",
+        "path": "benchmarks/embedeval-main/cases/zephyr/threading-007",
+        "difficulty": "medium",
+        "category": "threading",
+        "title": "Thread-Safe Singleton Initialization",
+        "sdk": "zephyr"
+      },
+      {
+        "id": "watchdog-004",
+        "path": "benchmarks/embedeval-main/cases/zephyr/watchdog-004",
+        "difficulty": "medium",
+        "category": "watchdog",
+        "title": "Dual-channel Watchdog with Different Timeouts",
+        "sdk": "zephyr"
+      },
+      {
+        "id": "ota-001",
+        "path": "benchmarks/embedeval-main/cases/zephyr/ota-001",
+        "difficulty": "hard",
+        "category": "ota",
+        "title": "MCUboot Image Swap Confirmation After OTA",
+        "sdk": "zephyr"
+      },
+      {
+        "id": "yocto-005",
+        "path": "benchmarks/embedeval-main/cases/embedded-linux/yocto-005",
+        "difficulty": "hard",
+        "category": "yocto",
+        "title": "Yocto Out-of-Tree Kernel Module Recipe",
+        "sdk": "embedded-linux"
+      },
+      {
+        "id": "linux-driver-015",
+        "path": "benchmarks/embedeval-main/cases/embedded-linux/linux-driver-015",
+        "difficulty": "medium",
+        "category": "linux-driver",
+        "title": "Regmap Abstraction for MMIO Register Access",
+        "sdk": "embedded-linux"
+      },
+      {
+        "id": "ble-006",
+        "path": "benchmarks/embedeval-main/cases/zephyr/ble-006",
+        "difficulty": "hard",
+        "category": "ble",
+        "title": "BLE Secure OTA (DFU over BLE)",
+        "sdk": "zephyr"
+      },
+      {
+        "id": "esp-spi-001",
+        "path": "benchmarks/embedeval-main/cases/esp-idf/esp-spi-001",
+        "difficulty": "medium",
+        "category": "spi-i2c",
+        "title": "ESP-IDF SPI Master Half-Duplex Write",
+        "sdk": "esp-idf"
+      },
+      {
+        "id": "dma-005",
+        "path": "benchmarks/embedeval-main/cases/zephyr/dma-005",
+        "difficulty": "hard",
+        "category": "dma",
+        "title": "DMA with Cache Coherency",
+        "sdk": "zephyr"
+      },
+      {
+        "id": "dma-009",
+        "path": "benchmarks/embedeval-main/cases/zephyr/dma-009",
+        "difficulty": "hard",
+        "category": "dma",
+        "title": "DMA Transfer Abort and Error Recovery",
+        "sdk": "zephyr"
+      },
+      {
+        "id": "yocto-003",
+        "path": "benchmarks/embedeval-main/cases/embedded-linux/yocto-003",
+        "difficulty": "medium",
+        "category": "yocto",
+        "title": "Yocto Recipe with Systemd Service",
+        "sdk": "embedded-linux"
+      },
+      {
+        "id": "dma-008",
+        "path": "benchmarks/embedeval-main/cases/zephyr/dma-008",
+        "difficulty": "hard",
+        "category": "dma",
+        "title": "DMA Error Handling with Callback Status Check",
+        "sdk": "zephyr"
+      },
+      {
+        "id": "kconfig-007",
+        "path": "benchmarks/embedeval-main/cases/zephyr/kconfig-007",
+        "difficulty": "medium",
+        "category": "kconfig",
+        "title": "WiFi and BLE Coexistence Kconfig Fragment",
+        "sdk": "zephyr"
+      },
+      {
+        "id": "storage-004",
+        "path": "benchmarks/embedeval-main/cases/zephyr/storage-004",
+        "difficulty": "medium",
+        "category": "storage",
+        "title": "Flash Area Erase and Write",
+        "sdk": "zephyr"
+      },
+      {
+        "id": "spi-i2c-003",
+        "path": "benchmarks/embedeval-main/cases/zephyr/spi-i2c-003",
+        "difficulty": "medium",
+        "category": "spi-i2c",
+        "title": "I2C Multi-register Burst Read",
+        "sdk": "zephyr"
+      },
+      {
+        "id": "linux-userspace-006",
+        "path": "benchmarks/embedeval-main/cases/embedded-linux/linux-userspace-006",
+        "difficulty": "hard",
+        "category": "linux-userspace",
+        "title": "spidev ioctl SPI_IOC_MESSAGE Transaction",
+        "sdk": "embedded-linux"
+      },
+      {
+        "id": "threading-013",
+        "path": "benchmarks/embedeval-main/cases/zephyr/threading-013",
+        "difficulty": "hard",
+        "category": "threading",
+        "title": "Shared Memory IPC with Producer-Consumer Handshake",
+        "sdk": "zephyr"
+      },
+      {
+        "id": "security-008",
+        "path": "benchmarks/embedeval-main/cases/zephyr/security-008",
+        "difficulty": "medium",
+        "category": "security",
+        "title": "HMAC-SHA256 Message Authentication (PSA MAC API)",
+        "sdk": "zephyr"
+      },
+      {
+        "id": "boot-005",
+        "path": "benchmarks/embedeval-main/cases/zephyr/boot-005",
+        "difficulty": "hard",
+        "category": "boot",
+        "title": "Multi-image Boot Configuration Kconfig",
+        "sdk": "zephyr"
+      },
+      {
+        "id": "stm32-i2c-001",
+        "path": "benchmarks/embedeval-main/cases/stm32-hal/stm32-i2c-001",
+        "difficulty": "medium",
+        "category": "spi-i2c",
+        "title": "STM32 I2C Sensor Register Read",
+        "sdk": "stm32-hal"
+      },
+      {
+        "id": "threading-004",
+        "path": "benchmarks/embedeval-main/cases/zephyr/threading-004",
+        "difficulty": "hard",
+        "category": "threading",
+        "title": "Priority Inheritance Mutex",
+        "sdk": "zephyr"
+      },
+      {
+        "id": "linux-driver-014",
+        "path": "benchmarks/embedeval-main/cases/embedded-linux/linux-driver-014",
+        "difficulty": "hard",
+        "category": "linux-driver",
+        "title": "Long-Lived Kernel Thread with kthread_should_stop",
+        "sdk": "embedded-linux"
+      },
+      {
+        "id": "yocto-011",
+        "path": "benchmarks/embedeval-main/cases/embedded-linux/yocto-011",
+        "difficulty": "hard",
+        "category": "yocto",
+        "title": "Linux Kernel Config Fragment via .cfg in SRC_URI",
+        "sdk": "embedded-linux"
+      },
+      {
+        "id": "power-mgmt-003",
+        "path": "benchmarks/embedeval-main/cases/zephyr/power-mgmt-003",
+        "difficulty": "medium",
+        "category": "power-mgmt",
+        "title": "Device PM with State Tracking",
+        "sdk": "zephyr"
+      },
+      {
+        "id": "dma-007",
+        "path": "benchmarks/embedeval-main/cases/zephyr/dma-007",
+        "difficulty": "hard",
+        "category": "dma",
+        "title": "DMA Channel Priority Configuration",
+        "sdk": "zephyr"
+      },
+      {
+        "id": "security-005",
+        "path": "benchmarks/embedeval-main/cases/zephyr/security-005",
+        "difficulty": "hard",
+        "category": "security",
+        "title": "TF-M PSA Protected Storage",
+        "sdk": "zephyr"
+      },
+      {
+        "id": "boot-006",
+        "path": "benchmarks/embedeval-main/cases/zephyr/boot-006",
+        "difficulty": "hard",
+        "category": "boot",
+        "title": "Encrypted MCUboot Image Kconfig",
+        "sdk": "zephyr"
+      },
+      {
+        "id": "ota-006",
+        "path": "benchmarks/embedeval-main/cases/zephyr/ota-006",
+        "difficulty": "hard",
+        "category": "ota",
+        "title": "OTA with Image Hash Verification",
+        "sdk": "zephyr"
+      },
+      {
+        "id": "linux-userspace-001",
+        "path": "benchmarks/embedeval-main/cases/embedded-linux/linux-userspace-001",
+        "difficulty": "medium",
+        "category": "linux-userspace",
+        "title": "libgpiod v2 CLI Toggle Tool",
+        "sdk": "embedded-linux"
+      },
+      {
+        "id": "dma-012",
+        "path": "benchmarks/embedeval-main/cases/zephyr/dma-012",
+        "difficulty": "hard",
+        "category": "dma",
+        "title": "DMA from CPU-Written Buffer with Implicit Cache Handling",
+        "sdk": "zephyr"
+      },
+      {
+        "id": "networking-kernel-004",
+        "path": "benchmarks/embedeval-main/cases/embedded-linux/networking-kernel-004",
+        "difficulty": "hard",
+        "category": "networking",
+        "title": "Generic Netlink Family Registration",
+        "sdk": "embedded-linux"
+      },
+      {
+        "id": "ota-002",
+        "path": "benchmarks/embedeval-main/cases/zephyr/ota-002",
+        "difficulty": "easy",
+        "category": "ota",
+        "title": "MCUboot Swap Type Check",
+        "sdk": "zephyr"
+      },
+      {
+        "id": "kconfig-008",
+        "path": "benchmarks/embedeval-main/cases/zephyr/kconfig-008",
+        "difficulty": "hard",
+        "category": "kconfig",
+        "title": "Memory Protection Unit Kconfig Fragment",
+        "sdk": "zephyr"
+      },
+      {
+        "id": "linux-driver-008",
+        "path": "benchmarks/embedeval-main/cases/embedded-linux/linux-driver-008",
+        "difficulty": "medium",
+        "category": "linux-driver",
+        "title": "Proc/Sysfs File for Driver Debug Info",
+        "sdk": "embedded-linux"
+      },
+      {
+        "id": "ble-005",
+        "path": "benchmarks/embedeval-main/cases/zephyr/ble-005",
+        "difficulty": "hard",
+        "category": "ble",
+        "title": "BLE Pairing with Security",
+        "sdk": "zephyr"
+      },
+      {
+        "id": "threading-011",
+        "path": "benchmarks/embedeval-main/cases/zephyr/threading-011",
+        "difficulty": "hard",
+        "category": "threading",
+        "title": "Periodic Control Loop with Deadline Miss Handling",
+        "sdk": "zephyr"
+      },
+      {
+        "id": "dma-003",
+        "path": "benchmarks/embedeval-main/cases/zephyr/dma-003",
+        "difficulty": "hard",
+        "category": "dma",
+        "title": "DMA Circular Buffer",
+        "sdk": "zephyr"
+      },
+      {
+        "id": "dma-006",
+        "path": "benchmarks/embedeval-main/cases/zephyr/dma-006",
+        "difficulty": "hard",
+        "category": "dma",
+        "title": "DMA with Buffer Alignment Requirements",
+        "sdk": "zephyr"
+      },
+      {
+        "id": "linux-userspace-005",
+        "path": "benchmarks/embedeval-main/cases/embedded-linux/linux-userspace-005",
+        "difficulty": "hard",
+        "category": "linux-userspace",
+        "title": "udev Rule for USB Hotplug with Systemctl Action",
+        "sdk": "embedded-linux"
+      },
+      {
+        "id": "gpio-basic-001",
+        "path": "benchmarks/embedeval-main/cases/zephyr/gpio-basic-001",
+        "difficulty": "easy",
+        "category": "gpio-basic",
+        "title": "GPIO Button Interrupt with LED Toggle",
+        "sdk": "zephyr"
+      },
+      {
+        "id": "timer-001",
+        "path": "benchmarks/embedeval-main/cases/zephyr/timer-001",
+        "difficulty": "easy",
+        "category": "timer",
+        "title": "Periodic Kernel Timer with Counter",
+        "sdk": "zephyr"
+      },
+      {
+        "id": "uart-002",
+        "path": "benchmarks/embedeval-main/cases/zephyr/uart-002",
+        "difficulty": "medium",
+        "category": "uart",
+        "title": "UART Async API with DMA",
+        "sdk": "zephyr"
+      },
+      {
+        "id": "dma-001",
+        "path": "benchmarks/embedeval-main/cases/zephyr/dma-001",
+        "difficulty": "medium",
+        "category": "dma",
+        "title": "Memory-to-Memory DMA Transfer",
+        "sdk": "zephyr"
+      },
+      {
+        "id": "threading-014",
+        "path": "benchmarks/embedeval-main/cases/zephyr/threading-014",
+        "difficulty": "hard",
+        "category": "threading",
+        "title": "Producer-Consumer Ordering Without Explicit Primitives",
+        "sdk": "zephyr"
+      },
+      {
+        "id": "yocto-001",
+        "path": "benchmarks/embedeval-main/cases/embedded-linux/yocto-001",
+        "difficulty": "medium",
+        "category": "yocto",
+        "title": "BitBake Recipe for a Simple C Application",
+        "sdk": "embedded-linux"
+      },
+      {
+        "id": "storage-007",
+        "path": "benchmarks/embedeval-main/cases/zephyr/storage-007",
+        "difficulty": "medium",
+        "category": "storage",
+        "title": "LittleFS Mount with Format-on-Failure Recovery",
+        "sdk": "zephyr"
+      },
+      {
+        "id": "dma-002",
+        "path": "benchmarks/embedeval-main/cases/zephyr/dma-002",
+        "difficulty": "easy",
+        "category": "dma",
+        "title": "DMA Peripheral-to-Memory Transfer",
+        "sdk": "zephyr"
+      },
+      {
+        "id": "timer-004",
+        "path": "benchmarks/embedeval-main/cases/zephyr/timer-004",
+        "difficulty": "easy",
+        "category": "timer",
+        "title": "Delayed Work Item Scheduling",
+        "sdk": "zephyr"
+      },
+      {
+        "id": "storage-001",
+        "path": "benchmarks/embedeval-main/cases/zephyr/storage-001",
+        "difficulty": "medium",
+        "category": "storage",
+        "title": "NVS Key-Value Store Read/Write",
+        "sdk": "zephyr"
+      },
+      {
+        "id": "yocto-002",
+        "path": "benchmarks/embedeval-main/cases/embedded-linux/yocto-002",
+        "difficulty": "easy",
+        "category": "yocto",
+        "title": "Yocto Recipe with CMake Build System",
+        "sdk": "embedded-linux"
+      },
+      {
+        "id": "boot-uboot-002",
+        "path": "benchmarks/embedeval-main/cases/embedded-linux/boot-uboot-002",
+        "difficulty": "hard",
+        "category": "boot",
+        "title": "FIT Image .its Description",
+        "sdk": "embedded-linux"
+      },
+      {
+        "id": "boot-001",
+        "path": "benchmarks/embedeval-main/cases/zephyr/boot-001",
+        "difficulty": "medium",
+        "category": "boot",
+        "title": "MCUboot Image Confirmation Kconfig",
+        "sdk": "zephyr"
+      },
+      {
+        "id": "power-mgmt-006",
+        "path": "benchmarks/embedeval-main/cases/zephyr/power-mgmt-006",
+        "difficulty": "hard",
+        "category": "power-mgmt",
+        "title": "Peripheral Power Gating via Clock Control",
+        "sdk": "zephyr"
+      },
+      {
+        "id": "kconfig-005",
+        "path": "benchmarks/embedeval-main/cases/zephyr/kconfig-005",
+        "difficulty": "hard",
+        "category": "kconfig",
+        "title": "TLS Networking Kconfig Fragment",
+        "sdk": "zephyr"
+      },
+      {
+        "id": "stm32-freertos-001",
+        "path": "benchmarks/embedeval-main/cases/freertos/stm32-freertos-001",
+        "difficulty": "medium",
+        "category": "threading",
+        "title": "STM32 FreeRTOS Producer-Consumer with Queue",
+        "sdk": "freertos"
+      },
+      {
+        "id": "isr-concurrency-008",
+        "path": "benchmarks/embedeval-main/cases/zephyr/isr-concurrency-008",
+        "difficulty": "hard",
+        "category": "isr-concurrency",
+        "title": "Lock-Free Single-Producer Single-Consumer Queue",
+        "sdk": "zephyr"
+      },
+      {
+        "id": "timer-007",
+        "path": "benchmarks/embedeval-main/cases/zephyr/timer-007",
+        "difficulty": "medium",
+        "category": "timer",
+        "title": "Watchdog Fed by Timer (Cascaded Safety)",
+        "sdk": "zephyr"
+      },
+      {
+        "id": "storage-002",
+        "path": "benchmarks/embedeval-main/cases/zephyr/storage-002",
+        "difficulty": "easy",
+        "category": "storage",
+        "title": "Settings Subsystem Load/Save",
+        "sdk": "zephyr"
+      },
+      {
+        "id": "sensor-driver-005",
+        "path": "benchmarks/embedeval-main/cases/zephyr/sensor-driver-005",
+        "difficulty": "hard",
+        "category": "sensor-driver",
+        "title": "Custom Sensor Driver Registration",
+        "sdk": "zephyr"
+      },
+      {
+        "id": "storage-006",
+        "path": "benchmarks/embedeval-main/cases/zephyr/storage-006",
+        "difficulty": "hard",
+        "category": "storage",
+        "title": "Wear-Aware Flash Write with Sector Rotation",
+        "sdk": "zephyr"
+      },
+      {
+        "id": "yocto-012",
+        "path": "benchmarks/embedeval-main/cases/embedded-linux/yocto-012",
+        "difficulty": "medium",
+        "category": "yocto",
+        "title": "PACKAGECONFIG Feature Flags",
+        "sdk": "embedded-linux"
+      },
+      {
+        "id": "ota-008",
+        "path": "benchmarks/embedeval-main/cases/zephyr/ota-008",
+        "difficulty": "hard",
+        "category": "ota",
+        "title": "OTA Rollback with Timeout",
+        "sdk": "zephyr"
+      },
+      {
+        "id": "watchdog-007",
+        "path": "benchmarks/embedeval-main/cases/zephyr/watchdog-007",
+        "difficulty": "medium",
+        "category": "watchdog",
+        "title": "Multi-Thread Watchdog Monitoring Pattern",
+        "sdk": "zephyr"
+      },
+      {
+        "id": "security-001",
+        "path": "benchmarks/embedeval-main/cases/zephyr/security-001",
+        "difficulty": "hard",
+        "category": "security",
+        "title": "PSA Crypto AES-256-CBC Encrypt/Decrypt",
+        "sdk": "zephyr"
+      },
+      {
+        "id": "networking-002",
+        "path": "benchmarks/embedeval-main/cases/zephyr/networking-002",
+        "difficulty": "easy",
+        "category": "networking",
+        "title": "UDP Socket Send/Receive",
+        "sdk": "zephyr"
+      },
+      {
+        "id": "stm32-spi-001",
+        "path": "benchmarks/embedeval-main/cases/stm32-hal/stm32-spi-001",
+        "difficulty": "medium",
+        "category": "spi-i2c",
+        "title": "STM32 SPI Master Communication with Manual CS",
+        "sdk": "stm32-hal"
+      },
+      {
+        "id": "esp-wifi-001",
+        "path": "benchmarks/embedeval-main/cases/esp-idf/esp-wifi-001",
+        "difficulty": "medium",
+        "category": "networking",
+        "title": "ESP-IDF WiFi Station Mode Connect",
+        "sdk": "esp-idf"
+      },
+      {
+        "id": "linux-userspace-004",
+        "path": "benchmarks/embedeval-main/cases/embedded-linux/linux-userspace-004",
+        "difficulty": "medium",
+        "category": "linux-userspace",
+        "title": "systemd Timer + Paired Service (Persistent)",
+        "sdk": "embedded-linux"
+      },
+      {
+        "id": "linux-driver-004",
+        "path": "benchmarks/embedeval-main/cases/embedded-linux/linux-driver-004",
+        "difficulty": "hard",
+        "category": "linux-driver",
+        "title": "Interrupt-Driven Character Device",
+        "sdk": "embedded-linux"
+      },
+      {
+        "id": "linux-driver-005",
+        "path": "benchmarks/embedeval-main/cases/embedded-linux/linux-driver-005",
+        "difficulty": "hard",
+        "category": "linux-driver",
+        "title": "Sysfs Attribute Interface",
+        "sdk": "embedded-linux"
+      },
+      {
+        "id": "isr-concurrency-011",
+        "path": "benchmarks/embedeval-main/cases/zephyr/isr-concurrency-011",
+        "difficulty": "hard",
+        "category": "isr-concurrency",
+        "title": "ISR-Driven Data Collection with Stack Protection",
+        "sdk": "zephyr"
+      },
+      {
+        "id": "power-mgmt-007",
+        "path": "benchmarks/embedeval-main/cases/zephyr/power-mgmt-007",
+        "difficulty": "medium",
+        "category": "power-mgmt",
+        "title": "System PM Policy Override",
+        "sdk": "zephyr"
+      },
+      {
+        "id": "linux-userspace-003",
+        "path": "benchmarks/embedeval-main/cases/embedded-linux/linux-userspace-003",
+        "difficulty": "medium",
+        "category": "linux-userspace",
+        "title": "systemd Service Unit with Watchdog + Restart Triad",
+        "sdk": "embedded-linux"
+      },
+      {
+        "id": "ota-004",
+        "path": "benchmarks/embedeval-main/cases/zephyr/ota-004",
+        "difficulty": "medium",
+        "category": "ota",
+        "title": "Image Version Check Before Update",
+        "sdk": "zephyr"
+      },
+      {
+        "id": "watchdog-006",
+        "path": "benchmarks/embedeval-main/cases/zephyr/watchdog-006",
+        "difficulty": "hard",
+        "category": "watchdog",
+        "title": "Watchdog with Pre-timeout ISR Warning Callback",
+        "sdk": "zephyr"
+      },
+      {
+        "id": "spi-i2c-004",
+        "path": "benchmarks/embedeval-main/cases/zephyr/spi-i2c-004",
+        "difficulty": "medium",
+        "category": "spi-i2c",
+        "title": "SPI Flash Write and Read Verify",
+        "sdk": "zephyr"
+      },
+      {
+        "id": "linux-userspace-007",
+        "path": "benchmarks/embedeval-main/cases/embedded-linux/linux-userspace-007",
+        "difficulty": "hard",
+        "category": "linux-userspace",
+        "title": "sd-bus Service with vtable",
+        "sdk": "embedded-linux"
+      },
+      {
+        "id": "threading-001",
+        "path": "benchmarks/embedeval-main/cases/zephyr/threading-001",
+        "difficulty": "medium",
+        "category": "threading",
+        "title": "Producer-Consumer with Message Queue",
+        "sdk": "zephyr"
+      },
+      {
+        "id": "ota-swupdate-001",
+        "path": "benchmarks/embedeval-main/cases/embedded-linux/ota-swupdate-001",
+        "difficulty": "medium",
+        "category": "ota",
+        "title": "SWUpdate sw-description with Minimal Image Triple",
+        "sdk": "embedded-linux"
+      },
+      {
+        "id": "stm32-gpio-001",
+        "path": "benchmarks/embedeval-main/cases/stm32-hal/stm32-gpio-001",
+        "difficulty": "medium",
+        "category": "gpio-basic",
+        "title": "STM32 GPIO LED Toggle with Button Interrupt",
+        "sdk": "stm32-hal"
+      },
+      {
+        "id": "adc-002",
+        "path": "benchmarks/embedeval-main/cases/zephyr/adc-002",
+        "difficulty": "hard",
+        "category": "adc",
+        "title": "ADC with Hardware Averaging and Oversampling",
+        "sdk": "zephyr"
+      },
+      {
+        "id": "ble-008",
+        "path": "benchmarks/embedeval-main/cases/zephyr/ble-008",
+        "difficulty": "hard",
+        "category": "ble",
+        "title": "BLE Central (Scanner + Connect)",
+        "sdk": "zephyr"
+      },
+      {
+        "id": "threading-002",
+        "path": "benchmarks/embedeval-main/cases/zephyr/threading-002",
+        "difficulty": "easy",
+        "category": "threading",
+        "title": "Mutex-Protected Shared Counter",
+        "sdk": "zephyr"
+      },
+      {
+        "id": "linux-driver-003",
+        "path": "benchmarks/embedeval-main/cases/embedded-linux/linux-driver-003",
+        "difficulty": "medium",
+        "category": "linux-driver",
+        "title": "IIO ADC Driver Skeleton",
+        "sdk": "embedded-linux"
+      },
+      {
+        "id": "networking-kernel-001",
+        "path": "benchmarks/embedeval-main/cases/embedded-linux/networking-kernel-001",
+        "difficulty": "hard",
+        "category": "networking",
+        "title": "Netfilter Pre-Routing Hook with Softirq-Safe Body",
+        "sdk": "embedded-linux"
+      },
+      {
+        "id": "sensor-driver-002",
+        "path": "benchmarks/embedeval-main/cases/zephyr/sensor-driver-002",
+        "difficulty": "easy",
+        "category": "sensor-driver",
+        "title": "Sensor with Data-Ready Trigger Callback",
+        "sdk": "zephyr"
+      }
+    ]
+  },
+  "versions": {
+    "opencode": "1.19.3"
+  }
+}

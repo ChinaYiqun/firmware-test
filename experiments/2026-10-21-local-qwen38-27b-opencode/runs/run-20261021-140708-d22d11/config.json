@@ -1,0 +1,100 @@
+{
+  "model": "qwen3.8-27b-coder390-q6k-mtp",
+  "base_url": "http://127.0.0.1:18931",
+  "timeout_seconds": 600,
+  "concurrency": 2,
+  "repetitions": 1,
+  "dry_run": false,
+  "source_sha256": "3a34460a8589c9c30e881a372950e84eea6db365df66d96de2de0243ba9a57af",
+  "scoring": "L0+L3",
+  "runner_sha256": "c0feddb4eff7ba3378f2a6c8fc2846cb1ce883a1e953da28fafa7421a2572ae0",
+  "external_retries": 0,
+  "cli_internal_retries": "Harness defaults, within task timeout",
+  "isolation": "Harness file-tool restrictions; no OS sandbox",
+  "reasoning_parameters": "Harness defaults; not aligned",
+  "disable_experimental_betas": false,
+  "subset": {
+    "benchmark": "EmbedEval",
+    "purpose": "Paired OpenCode / Claude Code pilot; not a representative benchmark score",
+    "initial_checks": [
+      "L0 static",
+      "L3 heuristic"
+    ],
+    "cases": [
+      {
+        "id": "gpio-basic-001",
+        "path": "benchmarks/embedeval-main/cases/zephyr/gpio-basic-001",
+        "difficulty": "easy",
+        "category": "gpio-basic",
+        "title": "GPIO Button Interrupt with LED Toggle"
+      },
+      {
+        "id": "uart-001",
+        "path": "benchmarks/embedeval-main/cases/zephyr/uart-001",
+        "difficulty": "easy",
+        "category": "uart",
+        "title": "UART Echo"
+      },
+      {
+        "id": "spi-i2c-002",
+        "path": "benchmarks/embedeval-main/cases/zephyr/spi-i2c-002",
+        "difficulty": "easy",
+        "category": "spi-i2c",
+        "title": "SPI Loopback Test"
+      },
+      {
+        "id": "spi-i2c-001",
+        "path": "benchmarks/embedeval-main/cases/zephyr/spi-i2c-001",
+        "difficulty": "medium",
+        "category": "spi-i2c",
+        "title": "I2C Sensor Register Read with Error Handling"
+      },
+      {
+        "id": "timer-002",
+        "path": "benchmarks/embedeval-main/cases/zephyr/timer-002",
+        "difficulty": "medium",
+        "category": "timer",
+        "title": "One-shot Timer with Work Queue Submission"
+      },
+      {
+        "id": "threading-001",
+        "path": "benchmarks/embedeval-main/cases/zephyr/threading-001",
+        "difficulty": "medium",
+        "category": "threading",
+        "title": "Producer-Consumer with Message Queue"
+      },
+      {
+        "id": "dma-001",
+        "path": "benchmarks/embedeval-main/cases/zephyr/dma-001",
+        "difficulty": "medium",
+        "category": "dma",
+        "title": "Memory-to-Memory DMA Transfer"
+      },
+      {
+        "id": "threading-004",
+        "path": "benchmarks/embedeval-main/cases/zephyr/threading-004",
+        "difficulty": "hard",
+        "category": "threading",
+        "title": "Priority Inheritance Mutex"
+      },
+      {
+        "id": "dma-003",
+        "path": "benchmarks/embedeval-main/cases/zephyr/dma-003",
+        "difficulty": "hard",
+        "category": "dma",
+        "title": "DMA Circular Buffer"
+      },
+      {
+        "id": "isr-concurrency-001",
+        "path": "benchmarks/embedeval-main/cases/zephyr/isr-concurrency-001",
+        "difficulty": "hard",
+        "category": "isr-concurrency",
+        "title": "ISR-safe Ring Buffer Implementation"
+      }
+    ],
+    "selection_method": "Manual coverage-based subset: 3 easy, 4 medium, 3 hard; not a random sample."
+  },
+  "versions": {
+    "opencode": "1.19.3"
+  }
+}

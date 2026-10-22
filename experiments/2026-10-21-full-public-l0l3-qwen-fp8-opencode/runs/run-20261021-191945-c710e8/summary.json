@@ -1,0 +1,20 @@
+{
+  "dry_run": false,
+  "scope": "L0+L3 static only",
+  "planned": 219,
+  "completed": 219,
+  "interrupted": false,
+  "harnesses": {
+    "opencode": {
+      "passed": 116,
+      "scored": 217,
+      "planned": 219,
+      "complete": 219,
+      "status_counts": {
+        "scored_fail": 101,
+        "scored_pass": 116,
+        "timeout": 2
+      }
+    }
+  }
+}
